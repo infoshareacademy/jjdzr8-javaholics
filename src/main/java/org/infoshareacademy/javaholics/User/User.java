@@ -52,11 +52,11 @@ public class User {
         this.userNickname = userNickname;
     }
 
-    public String getUserSex() {
+    public SexChoice getUserSex() {
         return userSex;
     }
 
-    public void setUserSex(String userSex) {
+    public void setUserSex(SexChoice userSex) {
         this.userSex = userSex;
     }
 

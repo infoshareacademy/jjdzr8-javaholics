@@ -19,7 +19,7 @@ public class Event {
     private User eventOwner;
 
     private String eventDescr;
-    // todo tu odniesienie do trasy konieczna nazwa i import i aktualizacja gettera settera
+    // todo tu odniesienie do trasy konieczna nazwa i import oraz aktualizacja gettera settera - na razie bład
     private Route eventRoute;
 
     private Integer eventUserCount;
