@@ -1,5 +1,7 @@
 package org.infoshareacademy.javaholics.Event;
 
+import org.infoshareacademy.javaholics.User.User;
+
 import java.util.Date;
 
 public class Event {
@@ -7,22 +9,24 @@ public class Event {
     private Integer eventId;
 
     private Date eventDate;
-    //do dyskusji czy nie Time poźniej
+    //do dyskusji czy nie Time poźniej nie znam do końca tej klasy
     private String eventTime;
 
     private String eventPlace;
 
     private String eventRegion;
-    //tu odniesienie do klasy User
-    private String eventOwner;
+
+    private User eventOwner;
 
     private String eventDescr;
-    // tu odniesienie do trasy
-    private String eventRoute;
+    // todo tu odniesienie do trasy konieczna nazwa i import i aktualizacja gettera settera
+    private Route eventRoute;
 
     private Integer eventUserCount;
 
+
     // getters and setters
+
 
     public Integer getEventId() {
         return eventId;
@@ -64,11 +68,11 @@ public class Event {
         this.eventRegion = eventRegion;
     }
 
-    public String getEventOwner() {
+    public User getEventOwner() {
         return eventOwner;
     }
 
-    public void setEventOwner(String eventOwner) {
+    public void setEventOwner(User eventOwner) {
         this.eventOwner = eventOwner;
     }
 
@@ -80,11 +84,11 @@ public class Event {
         this.eventDescr = eventDescr;
     }
 
-    public String getEventRoute() {
+    public Route getEventRoute() {
         return eventRoute;
     }
 
-    public void setEventRoute(String eventRoute) {
+    public void setEventRoute(Route eventRoute) {
         this.eventRoute = eventRoute;
     }
 

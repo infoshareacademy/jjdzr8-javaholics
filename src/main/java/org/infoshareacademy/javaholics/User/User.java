@@ -9,8 +9,8 @@ public class User {
     private String userLastName;
 
     private String userNickname;
-    // tu odiesienie do enum SexChoice
-    private String userSex;
+    // tu odniesienie do enum SexChoice
+    private SexChoice userSex;
 
     private String userCity;
 
