@@ -7,32 +7,24 @@ import java.util.Date;
 public class Event {
 
     private Long eventId;
-
     private Date eventDate;
-    //do dyskusji czy nie Time poźniej nie znam do końca tej klasy
+    //suggestion: do dyskusji czy nie Time poźniej nie znam do końca tej klasy
     private String eventTime;
-
     private String eventPlace;
-
     private String eventRegion;
-
     private User eventOwner;
-
     private String eventDescr;
     // todo tu odniesienie do trasy konieczna nazwa i import oraz aktualizacja gettera settera - na razie bład
     private Route eventRoute;
-
     private Integer eventUserCount;
-
 
     // getters and setters
 
-
-    public Integer getEventId() {
+    public Long getEventId() {
         return eventId;
     }
 
-    public void setEventId(Integer eventId) {
+    public void setEventId(Long eventId) {
         this.eventId = eventId;
     }
 

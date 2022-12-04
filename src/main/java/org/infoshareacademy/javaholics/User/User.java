@@ -5,30 +5,23 @@ import java.awt.image.BufferedImage;
 public class User {
 
     private Long userId;
-
     private String userName;
-
     private String userLastName;
-
     private String userNickname;
     // tu odniesienie do enum SexChoice
     private SexChoice userSex;
-
     private BufferedImage image;
-
     private String userCity;
-
     private String userPrefRegion;
-
     private String userDescr;
 
     // getters and setters
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -86,5 +79,13 @@ public class User {
 
     public void setUserDescr(String userDescr) {
         this.userDescr = userDescr;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 }
