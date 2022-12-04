@@ -15,8 +15,9 @@ public class Event {
     private User ownerOfEvent;
     private String description;
     // todo tu odniesienie do trasy konieczna nazwa i import oraz aktualizacja gettera settera - na razie bład
-    private Route eventRoute;
+    private Route id;
     private Integer usersCount;
+
 
     // constructors
 
