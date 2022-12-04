@@ -15,11 +15,8 @@ public class Route {
     private User authorRoute;
     private double avgRating;
 
-    public Route(){
 
-    }
-
-    public Route(long id, String name, String locality, String placeStart, String placeStop, RouteDifficulty difficulty, File routeFile, Event lastEvent, User authorRoute) {
+    public Route(long id, String name) {
         this.id = id;
         this.name = name;
         this.locality = locality;
@@ -33,10 +30,6 @@ public class Route {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
