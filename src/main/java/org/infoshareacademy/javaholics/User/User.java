@@ -1,8 +1,10 @@
 package org.infoshareacademy.javaholics.User;
 
+import java.awt.image.BufferedImage;
+
 public class User {
 
-    private Integer userId;
+    private Long userId;
 
     private String userName;
 
@@ -11,6 +13,8 @@ public class User {
     private String userNickname;
     // tu odniesienie do enum SexChoice
     private SexChoice userSex;
+
+    private BufferedImage image;
 
     private String userCity;
 

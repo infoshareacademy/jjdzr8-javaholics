@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Event {
 
-    private Integer eventId;
+    private Long eventId;
 
     private Date eventDate;
     //do dyskusji czy nie Time poźniej nie znam do końca tej klasy
