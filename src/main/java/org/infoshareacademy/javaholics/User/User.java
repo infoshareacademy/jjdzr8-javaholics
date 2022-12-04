@@ -4,87 +4,79 @@ import java.awt.image.BufferedImage;
 
 public class User {
 
-    private Long userId;
-    private String userName;
-    private String userLastName;
-    private String userNickname;
+    private Long id;
+    private String name;
+    private String lastName;
+    private String login;
     // tu odniesienie do enum SexChoice
-    private SexChoice userSex;
+    private SexChoice sex;
     private BufferedImage image;
-    private String userCity;
-    private String userPrefRegion;
-    private String userDescr;
+    private String location;
+    private String prefferedRegionEvents;
+    private String dectription;
+
+    //constructors
+
+    public User(Long id, String name, String login) {
+        this.id = id;
+        this.name = name;
+        this.login = login;
+    }
+
 
     // getters and setters
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
-
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public String getUserLastName() {
-        return userLastName;
+    public String getLastName() {
+        return lastName;
     }
-
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
-
-    public String getUserNickname() {
-        return userNickname;
+    public String getLogin() {
+        return login;
     }
-
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
+    public void setLogin(String login) {
+        this.login = login;
     }
-
-    public SexChoice getUserSex() {
-        return userSex;
+    public SexChoice getSex() {
+        return sex;
     }
-
-    public void setUserSex(SexChoice userSex) {
-        this.userSex = userSex;
+    public void setSex(SexChoice sex) {
+        this.sex = sex;
     }
-
-    public String getUserCity() {
-        return userCity;
+    public String getLocation() {
+        return location;
     }
-
-    public void setUserCity(String userCity) {
-        this.userCity = userCity;
+    public void setLocation(String location) {
+        this.location = location;
     }
-
-    public String getUserPrefRegion() {
-        return userPrefRegion;
+    public String getPrefferedRegionEvents() {
+        return prefferedRegionEvents;
     }
-
-    public void setUserPrefRegion(String userPrefRegion) {
-        this.userPrefRegion = userPrefRegion;
+    public void setPrefferedRegionEvents(String prefferedRegionEvents) {
+        this.prefferedRegionEvents = prefferedRegionEvents;
     }
-
-    public String getUserDescr() {
-        return userDescr;
+    public String getDectription() {
+        return dectription;
     }
-
-    public void setUserDescr(String userDescr) {
-        this.userDescr = userDescr;
+    public void setDectription(String dectription) {
+        this.dectription = dectription;
     }
-
     public BufferedImage getImage() {
         return image;
     }
-
     public void setImage(BufferedImage image) {
         this.image = image;
     }

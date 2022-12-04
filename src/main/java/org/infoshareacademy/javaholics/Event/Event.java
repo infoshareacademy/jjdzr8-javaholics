@@ -6,89 +6,81 @@ import java.util.Date;
 
 public class Event {
 
-    private Long eventId;
-    private Date eventDate;
+    private Long id;
+    private Date date;
     //suggestion: do dyskusji czy nie Time poźniej nie znam do końca tej klasy
-    private String eventTime;
-    private String eventPlace;
-    private String eventRegion;
-    private User eventOwner;
-    private String eventDescr;
+    private String time;
+    private String place;
+    private String region;
+    private User ownerOfEvent;
+    private String description;
     // todo tu odniesienie do trasy konieczna nazwa i import oraz aktualizacja gettera settera - na razie bład
     private Route eventRoute;
-    private Integer eventUserCount;
+    private Integer usersCount;
+
+    // constructors
+
+    public Event(Long id, Date date, String time, User ownerOfEvent) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.ownerOfEvent = ownerOfEvent;
+    }
 
     // getters and setters
 
-    public Long getEventId() {
-        return eventId;
+    public Long getId() {
+        return id;
     }
-
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setId(Long id) {
+        this.id = id;
     }
-
-    public Date getEventDate() {
-        return eventDate;
+    public Date getDate() {
+        return date;
     }
-
-    public void setEventDate(Date eventDate) {
-        this.eventDate = eventDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
-
-    public String getEventTime() {
-        return eventTime;
+    public String getTime() {
+        return time;
     }
-
-    public void setEventTime(String eventTime) {
-        this.eventTime = eventTime;
+    public void setTime(String time) {
+        this.time = time;
     }
-
-    public String getEventPlace() {
-        return eventPlace;
+    public String getPlace() {
+        return place;
     }
-
-    public void setEventPlace(String eventPlace) {
-        this.eventPlace = eventPlace;
+    public void setPlace(String place) {
+        this.place = place;
     }
-
-    public String getEventRegion() {
-        return eventRegion;
+    public String getRegion() {
+        return region;
     }
-
-    public void setEventRegion(String eventRegion) {
-        this.eventRegion = eventRegion;
+    public void setRegion(String region) {
+        this.region = region;
     }
-
-    public User getEventOwner() {
-        return eventOwner;
+    public User getOwnerOfEvent() {
+        return ownerOfEvent;
     }
-
-    public void setEventOwner(User eventOwner) {
-        this.eventOwner = eventOwner;
+    public void setOwnerOfEvent(User ownerOfEvent) {
+        this.ownerOfEvent = ownerOfEvent;
     }
-
-    public String getEventDescr() {
-        return eventDescr;
+    public String getDescription() {
+        return description;
     }
-
-    public void setEventDescr(String eventDescr) {
-        this.eventDescr = eventDescr;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
     public Route getEventRoute() {
         return eventRoute;
     }
-
     public void setEventRoute(Route eventRoute) {
         this.eventRoute = eventRoute;
     }
-
-    public Integer getEventUserCount() {
-        return eventUserCount;
+    public Integer getUsersCount() {
+        return usersCount;
     }
-
-    public void setEventUserCount(Integer eventUserCount) {
-        this.eventUserCount = eventUserCount;
+    public void setUsersCount(Integer usersCount) {
+        this.usersCount = usersCount;
     }
 }
