@@ -11,7 +11,6 @@ public class Route {
     private String placeStop;
     private RouteDifficulty difficulty;
     private File routeFile;
-    private Event lastEvent;
     private User authorRoute;
     private double avgRating;
 
@@ -19,13 +18,6 @@ public class Route {
     public Route(long id, String name) {
         this.id = id;
         this.name = name;
-        this.locality = locality;
-        this.placeStart = placeStart;
-        this.placeStop = placeStop;
-        this.difficulty = difficulty;
-        this.routeFile = routeFile;
-        this.lastEvent = lastEvent;
-        this.authorRoute = authorRoute;
     }
 
     public long getId() {
