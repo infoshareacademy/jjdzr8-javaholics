@@ -1,6 +1,5 @@
 package org.infoshareacademy.javaholics;
 
-import java.awt.print.Printable;
 import java.util.Scanner;
 
 public class Menu {
