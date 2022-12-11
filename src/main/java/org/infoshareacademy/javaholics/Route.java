@@ -11,7 +11,7 @@ public class Route {
     private String placeStop;
     private RouteDifficulty difficulty;
     private File routeFile;
-    private User authorRoute;
+    private User userId;
     private double avgRating;
 
 
@@ -56,13 +56,6 @@ public class Route {
         this.placeStop = placeStop;
     }
 
-    public RouteDifficulty getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(RouteDifficulty difficulty) {
-        this.difficulty = difficulty;
-    }
 
     public File getRouteFile() {
         return routeFile;
@@ -80,12 +73,12 @@ public class Route {
         this.lastEvent = lastEvent;
     }
 
-    public User getAuthorRoute() {
-        return authorRoute;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setAuthorRoute(User authorRoute) {
-        this.authorRoute = authorRoute;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public double getAvgRating() {
