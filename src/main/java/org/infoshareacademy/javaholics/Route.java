@@ -1,0 +1,91 @@
+package org.infoshareacademy.javaholics;
+
+import java.io.File;
+
+public class Route {
+
+    private long id;
+    private String name;
+    private String locality;
+    private String placeStart;
+    private String placeStop;
+    private RouteDifficulty difficulty;
+    private File routeFile;
+    private User userId;
+    private double avgRating;
+
+
+    public Route(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
+
+    public String getPlaceStart() {
+        return placeStart;
+    }
+
+    public void setPlaceStart(String placeStart) {
+        this.placeStart = placeStart;
+    }
+
+    public String getPlaceStop() {
+        return placeStop;
+    }
+
+    public void setPlaceStop(String placeStop) {
+        this.placeStop = placeStop;
+    }
+
+
+    public File getRouteFile() {
+        return routeFile;
+    }
+
+    public void setRouteFile(File routeFile) {
+        this.routeFile = routeFile;
+    }
+
+    public Event getLastEvent() {
+        return lastEvent;
+    }
+
+    public void setLastEvent(Event lastEvent) {
+        this.lastEvent = lastEvent;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
+    }
+}
