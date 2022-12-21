@@ -1,21 +1,18 @@
-package org.infoshareacademy.javaholics.Event;
+package org.infoshareacademy.javaholics.event;
 
-import org.infoshareacademy.javaholics.User.User;
-
+import org.infoshareacademy.javaholics.user.User;
+import org.infoshareacademy.javaholics.route.Route;
 import java.util.Date;
 
 public class Event {
 
     private Long id;
     private Date date;
-    //suggestion: do dyskusji czy nie Time poźniej nie znam do końca tej klasy
     private String time;
     private String place;
     private String region;
     private User ownerOfEvent;
     private String description;
-    // todo tu odniesienie do trasy konieczna nazwa i import oraz aktualizacja gettera settera - na razie bład
-    private Route id;
     private Integer usersCount;
 
 
@@ -72,12 +69,12 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
-    public Route getEventRoute() {
-        return eventRoute;
-    }
-    public void setEventRoute(Route eventRoute) {
-        this.eventRoute = eventRoute;
-    }
+//    public Route getEventRoute() {
+//        return eventRoute;
+//    }
+//    public void setEventRoute(Route eventRoute) {
+//        this.eventRoute = eventRoute;
+//    }
     public Integer getUsersCount() {
         return usersCount;
     }
