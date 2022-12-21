@@ -11,7 +11,7 @@ public class Route {
     private String placeStop;
     private RouteDifficulty difficulty;
     private File routeFile;
-    private User userId;
+//    private User userId;
     private double avgRating;
     private String type;
     private int length;
@@ -89,21 +89,21 @@ public class Route {
         this.routeFile = routeFile;
     }
 
-    public Event getLastEvent() {
-        return lastEvent;
-    }
-
-    public void setLastEvent(Event lastEvent) {
-        this.lastEvent = lastEvent;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
+//    public Event getLastEvent() {
+//        return lastEvent;
+//    }
+//
+//    public void setLastEvent(Event lastEvent) {
+//        this.lastEvent = lastEvent;
+//    }
+//
+//    public User getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(User userId) {
+//        this.userId = userId;
+//    }
 
     public double getAvgRating() {
         return avgRating;

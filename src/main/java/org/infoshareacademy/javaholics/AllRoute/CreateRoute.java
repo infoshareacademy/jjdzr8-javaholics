@@ -5,6 +5,7 @@ import org.infoshareacademy.javaholics.RouteDifficulty;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Date;
 
@@ -12,12 +13,14 @@ public class CreateRoute {
     boolean status;
     Date date = new Date();
     Route route = new Route();
+
     public Date getDate() {
         return date;
     }
 
     Scanner scanner = new Scanner(System.in);
-    public void routeLength (){
+
+    public void routeLength() {
         System.out.println("Podaj początek trasy : ");
         route.setPlaceStart(scanner.nextLine());
         System.out.println("Podaj koniec trasy : ");
@@ -28,48 +31,58 @@ public class CreateRoute {
         System.out.println("Całkowita długość trasy to " + route.getLength());
 
     }
-    public void routeLevelOfDifficulty (){
+
+    public void routeLevelOfDifficulty() {
         System.out.println("Podaj poziom trudności trasy :");
         System.out.println("1 - Łatwy");
         System.out.println("2 - Średni");
         System.out.println("3 - Wymagający");
         System.out.println("4 - Bardzo trudny");
-        int levelOfDifficulty = scanner.nextInt();
-        if (levelOfDifficulty == 1){
-            System.out.println("Poziom trasy - Łatwy");
-            route.setDifficulty(RouteDifficulty.EASY);
+        try {
+                int levelOfDifficulty = scanner.nextInt();
+                if (levelOfDifficulty == 1) {
+                    System.out.println("Poziom trasy - Łatwy");
+                    route.setDifficulty(RouteDifficulty.EASY);
+                }
+                if (levelOfDifficulty == 2) {
+                    System.out.println("Poziom trasy - Średni");
+                    route.setDifficulty(RouteDifficulty.MEDIUM);
+                }
+                if (levelOfDifficulty == 3) {
+                    System.out.println("Poziom trasy - Wymagający");
+                    route.setDifficulty(RouteDifficulty.EXTREME);
+                }
+                if (levelOfDifficulty == 4) {
+                    System.out.println("Poziom trasy - Bardzo trudny");
+                    route.setDifficulty(RouteDifficulty.HARD);
+                }
+        }catch(InputMismatchException e){
+                System.out.println("Wybierz poprawny typ trasy");
+            }
+            System.out.println("Proponowany poziom trudności stworzonej trasy to " + route.getDifficulty());
         }
-        if (levelOfDifficulty == 2){
-            System.out.println("Poziom trasy - Średni");
-            route.setDifficulty(RouteDifficulty.MEDIUM);
-        }
-        if (levelOfDifficulty == 3){
-            System.out.println("Poziom trasy - Wymagający");
-            route.setDifficulty(RouteDifficulty.EXTREME);
-        }
-        if (levelOfDifficulty == 4){
-            System.out.println("Poziom trasy - Bardzo trudny");
-            route.setDifficulty(RouteDifficulty.HARD);
-        }
-        System.out.println("Proponowany poziom trudności stworzonej trasy to " + route.getDifficulty());
-    }
+
     public void routeType (){
         System.out.println("Podaj typ trasy :  ");
         System.out.println("1 - Trasa spacerowa ");
         System.out.println("2 - Trasa rowerowa ");
         System.out.println("3 - Trasa trekingowa ");
-        int typeRoute = scanner.nextInt();
-        if (typeRoute == 1){
-            System.out.println("Typ trasy - Trasa spacerowa");
-            route.setType("Trasa spacerowa");
-        }
-        if (typeRoute == 2){
-            System.out.println("Typ trasy - Trasa rowerowa");
-            route.setType("Trasa rowerowa");
-        }
-        if (typeRoute == 3){
-            System.out.println("Typ trasy - Trasa trekingowa");
-            route.setType("Trasa trekingowa");
+        try {
+            int typeRoute = scanner.nextInt();
+            if (typeRoute == 1) {
+                System.out.println("Typ trasy - Trasa spacerowa");
+                route.setType("Trasa spacerowa");
+            }
+            if (typeRoute == 2) {
+                System.out.println("Typ trasy - Trasa rowerowa");
+                route.setType("Trasa rowerowa");
+            }
+            if (typeRoute == 3) {
+                System.out.println("Typ trasy - Trasa trekingowa");
+                route.setType("Trasa trekingowa");
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Wybierz poprawny typ trasy");
         }
         System.out.println(route.getType());
     }
