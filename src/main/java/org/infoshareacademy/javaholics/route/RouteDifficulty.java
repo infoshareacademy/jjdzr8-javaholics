@@ -1,4 +1,4 @@
-package org.infoshareacademy.javaholics;
+package org.infoshareacademy.javaholics.route;
 
 public enum RouteDifficulty {
     EASY("łatwa"),

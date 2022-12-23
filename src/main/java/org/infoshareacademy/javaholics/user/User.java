@@ -1,4 +1,4 @@
-package org.infoshareacademy.javaholics.User;
+package org.infoshareacademy.javaholics.user;
 
 import java.awt.image.BufferedImage;
 

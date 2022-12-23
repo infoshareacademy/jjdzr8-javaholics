@@ -1,4 +1,7 @@
-package org.infoshareacademy.javaholics;
+package org.infoshareacademy.javaholics.route;
+
+import org.infoshareacademy.javaholics.user.User;
+import org.infoshareacademy.javaholics.event.Event;
 
 import java.io.File;
 
@@ -63,14 +66,6 @@ public class Route {
 
     public void setRouteFile(File routeFile) {
         this.routeFile = routeFile;
-    }
-
-    public Event getLastEvent() {
-        return lastEvent;
-    }
-
-    public void setLastEvent(Event lastEvent) {
-        this.lastEvent = lastEvent;
     }
 
     public User getUserId() {
