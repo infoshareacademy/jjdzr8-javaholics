@@ -12,6 +12,6 @@ public class App
     {
         System.out.println( "Hello Javaholics");
         CreateRoute route = new CreateRoute();
-        route.routeLevelOfDifficulty();
+        route.summaryRoute();
     }
 }

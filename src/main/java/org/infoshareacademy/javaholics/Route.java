@@ -14,13 +14,13 @@ public class Route {
 //    private User userId;
     private double avgRating;
     private String type;
-    private int length;
+    private double length;
 
-    public int getLength() {
+    public double getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(double length) {
         this.length = length;
     }
 
