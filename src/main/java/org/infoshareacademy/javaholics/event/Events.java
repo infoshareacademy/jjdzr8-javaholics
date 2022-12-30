@@ -1,11 +1,17 @@
 package org.infoshareacademy.javaholics.event;
 
+import org.infoshareacademy.javaholics.user.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Events {
 
     private static List<Event> eventArrayList = new ArrayList<>();
+
+    public List<Event> getEvents() {
+        return eventArrayList;
+    }
 
     public static List<Event> getEventArrayList() {
         return eventArrayList;

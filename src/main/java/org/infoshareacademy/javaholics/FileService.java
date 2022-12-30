@@ -6,14 +6,14 @@ import java.io.FileWriter;
 import java.io.Reader;
 import java.io.Writer;
 
-import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-
+import org.infoshareacademy.javaholics.event.Events;
+import org.infoshareacademy.javaholics.route.Routes;
+import org.infoshareacademy.javaholics.user.Users;
 
 
 abstract class FileService {
@@ -44,7 +44,7 @@ abstract class FileService {
 
         try (Writer writer = new FileWriter(pathToSave.toString())){
             gson.toJson(objectToSave, writer);
-            System.out.println("Zapisano w: " + pathToSave.toString());
+            System.out.println("Zapisano w: " + pathToSave);
         } catch (NoSuchFileException ex){
             System.out.println("Brak pliku docelowego: " + ex.getMessage());
         } catch (IOException ex){
@@ -53,14 +53,39 @@ abstract class FileService {
 
     }
 
-    public static TestObject readTestFromFile(Path pathToRead){
-        try (Reader reader = new FileReader(pathToRead.toString())) {
-            System.out.println("Zczytuje plik: " + pathToRead.toString());
-            TestObject test = gson.fromJson(reader, TestObject.class);
-            return test;
+     public static Users readUsersFromFile() {
+        try (Reader reader = new FileReader(pathUsersFile.toString())) {
+            System.out.println("Zczytuję plik: " + pathUsersFile);
+            Users users = gson.fromJson(reader, Users.class);
+            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + users.getUsers().size());
+            return users;
         } catch (IOException e) {
-            System.out.println("Pli nieznaleziony lub uszkodzony: " + e.getMessage());
-            return new TestObject("test", "test", "test", 11L);
+            System.out.println("Plik nieznaleziony lub uszkodzony: " + e.getMessage());
+            return new Users();
+        }
+    }
+
+    public static Events readEventsFromFile() {
+        try (Reader reader = new FileReader(pathEventsFile.toString())) {
+            System.out.println("Zczytuję plik: " + pathEventsFile);
+            Events events= gson.fromJson(reader, Events.class);
+            System.out.println("Plik właściwie zaimportowany. Ilość eventów: " + events.getEvents().size());
+            return events;
+        } catch (IOException e) {
+            System.out.println("Plik nieznaleziony lub uszkodzony: " + e.getMessage());
+            return new Events();
+        }
+    }
+
+    public static Routes readRoutessFromFile() {
+        try (Reader reader = new FileReader(pathRoutesFile.toString())) {
+            System.out.println("Zczytuję plik: " + pathRoutesFile);
+            Routes routes= gson.fromJson(reader, Routes.class);
+            System.out.println("Plik właściwie zaimportowany. Ilość eventów: " + routes.getRoutes().size());
+            return routes;
+        } catch (IOException e) {
+            System.out.println("Plik nieznaleziony lub uszkodzony: " + e.getMessage());
+            return new Routes();
         }
     }
 }

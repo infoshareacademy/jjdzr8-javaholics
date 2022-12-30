@@ -3,9 +3,13 @@ package org.infoshareacademy.javaholics.user;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Users {
+public class Users {
 
         private static List<User> userArrayList = new ArrayList<>();
+
+        public List<User> getUsers() {
+            return userArrayList;
+        }
 
         public static List<User> getUserArrayList() {
             return userArrayList;

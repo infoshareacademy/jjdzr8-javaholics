@@ -17,9 +17,6 @@ public class App {
     public static void main(String[] args) {
 
 //      scenariusze testowe
-        TestObject test1 = new TestObject("test1.imie", "Test1.nazwisko", "TesterAlpha", 11L);
-        TestObject test2 = new TestObject("test2.imie", "Test2.nazwisko", "TesterBeta", 22L);
-
         User user1 = new User(111L, "Jan1", "login1");
         Users.add(user1);
         User user2 = new User(222L, "Jan2", "login2");
@@ -42,9 +39,11 @@ public class App {
 //        Sprawdzenie czy sciezka działa - działa
 //        System.out.println(FileService.getPathUsersFile().toString());
 
-       FileService.writeObjectToJsonFile(Users.getUserArrayList(), FileService.getPathUsersFile());
-       FileService.writeObjectToJsonFile(Routes.getRouteArrayList(), FileService.getPathRoutesFile());
-       FileService.writeObjectToJsonFile(Events.getEventArrayList(), FileService.getPathEventsFile());
+//       FileService.writeObjectToJsonFile(Users.getUserArrayList(), FileService.getPathUsersFile());
+//       FileService.writeObjectToJsonFile(Routes.getRouteArrayList(), FileService.getPathRoutesFile());
+//       FileService.writeObjectToJsonFile(Events.getEventArrayList(), FileService.getPathEventsFile());
+
+            FileService.readUsersFromFile();
 
 
     }

@@ -1,10 +1,16 @@
 package org.infoshareacademy.javaholics.route;
 
+import org.infoshareacademy.javaholics.event.Event;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Routes {
+public class Routes {
     private static List<Route> routeArrayList = new ArrayList<>();
+
+    public List<Route> getRoutes() {
+        return routeArrayList;
+    }
 
     public static List<Route> getRouteArrayList() {
         return routeArrayList;
