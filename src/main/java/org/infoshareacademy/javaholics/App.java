@@ -9,5 +9,7 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello Javaholics");
+        Menu menu = new Menu();
+        menu.printMenu();
     }
 }
