@@ -1,0 +1,12 @@
+[
+  {
+    "id": 111,
+    "date": "Jan 1, 1970, 1:00:01 AM",
+    "time": "17",
+    "ownerOfEvent": {
+      "id": 111,
+      "name": "Jan1",
+      "login": "login1"
+    }
+  }
+]

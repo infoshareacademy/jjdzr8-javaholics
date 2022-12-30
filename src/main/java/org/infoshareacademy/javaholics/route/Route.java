@@ -13,7 +13,7 @@ public class Route {
     private String placeStart;
     private String placeStop;
     private RouteDifficulty difficulty;
-    private File routeFile;
+    private String routeFile;
     private User userId;
     private double avgRating;
 
@@ -60,11 +60,11 @@ public class Route {
     }
 
 
-    public File getRouteFile() {
+    public String getRouteFile() {
         return routeFile;
     }
 
-    public void setRouteFile(File routeFile) {
+    public void setRouteFile(String  routeFile) {
         this.routeFile = routeFile;
     }
 

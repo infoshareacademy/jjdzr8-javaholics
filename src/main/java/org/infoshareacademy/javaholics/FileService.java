@@ -60,7 +60,7 @@ abstract class FileService {
             return test;
         } catch (IOException e) {
             System.out.println("Pli nieznaleziony lub uszkodzony: " + e.getMessage());
-            return new TestObject("test", "test", "test");
+            return new TestObject("test", "test", "test", 11L);
         }
     }
 }
