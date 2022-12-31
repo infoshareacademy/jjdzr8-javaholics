@@ -1,28 +1,22 @@
 package org.infoshareacademy.javaholics.event;
 
-import org.infoshareacademy.javaholics.user.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Events {
 
-    private static List<Event> eventArrayList = new ArrayList<>();
+    private List<Event> events = new ArrayList<>();
 
     public List<Event> getEvents() {
-        return eventArrayList;
+        return events;
     }
 
-    public static List<Event> getEventArrayList() {
-        return eventArrayList;
+    public void setEvents(final List<Event> events) {
+        this.events = events;
     }
 
-    public void setUserArrayList(List<Event> userArrayList) {
-        this.eventArrayList = userArrayList;
-    }
-
-    public static void add(Event event) {
-        eventArrayList.add(event);
+    public void add(Event event) {
+        events.add(event);
         System.out.println("Nowy event dodany: " + event.toString());
     }
 }

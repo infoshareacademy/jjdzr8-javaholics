@@ -1,13 +1,10 @@
 package org.infoshareacademy.javaholics.route;
 
 import org.infoshareacademy.javaholics.user.User;
-import org.infoshareacademy.javaholics.event.Event;
-
-import java.io.File;
 
 public class Route {
 
-    private long id;
+    private final long id;
     private String name;
     private String locality;
     private String placeStart;
@@ -16,7 +13,6 @@ public class Route {
     private String routeFile;
     private User userId;
     private double avgRating;
-
 
     public Route(long id, String name) {
         this.id = id;
@@ -59,12 +55,11 @@ public class Route {
         this.placeStop = placeStop;
     }
 
-
     public String getRouteFile() {
         return routeFile;
     }
 
-    public void setRouteFile(String  routeFile) {
+    public void setRouteFile(String routeFile) {
         this.routeFile = routeFile;
     }
 
@@ -82,5 +77,13 @@ public class Route {
 
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
+    }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            '}';
     }
 }
