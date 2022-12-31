@@ -6,11 +6,15 @@ import java.io.FileWriter;
 import java.io.Reader;
 import java.io.Writer;
 
+import java.lang.reflect.Type;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.infoshareacademy.javaholics.event.Events;
 import org.infoshareacademy.javaholics.route.Routes;
 import org.infoshareacademy.javaholics.user.Users;
@@ -56,8 +60,10 @@ abstract class FileService {
      public static Users readUsersFromFile() {
         try (Reader reader = new FileReader(pathUsersFile.toString())) {
             System.out.println("Zczytuję plik: " + pathUsersFile);
-            Users users = gson.fromJson(reader, Users.class);
-            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + users.getUsers().size());
+            Type collectionType = new TypeToken<Collection<Users>>(){}.getType();
+            ArrayList users = gson.fromJson(reader, collectionType);
+//            Users userArrayList = gson.fromJson(reader, Users.class);
+            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + users.size());
             return users;
         } catch (IOException e) {
             System.out.println("Plik nieznaleziony lub uszkodzony: " + e.getMessage());

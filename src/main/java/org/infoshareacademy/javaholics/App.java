@@ -43,7 +43,9 @@ public class App {
 //       FileService.writeObjectToJsonFile(Routes.getRouteArrayList(), FileService.getPathRoutesFile());
 //       FileService.writeObjectToJsonFile(Events.getEventArrayList(), FileService.getPathEventsFile());
 
-            FileService.readUsersFromFile();
+         Users users = FileService.readUsersFromFile();
+
+
 
 
     }
