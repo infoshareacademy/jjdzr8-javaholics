@@ -1,7 +1,9 @@
-[
-  {
-    "id": 111,
-    "name": "trasa1",
-    "avgRating": 0.0
-  }
-]
+{
+  "routes": [
+    {
+      "id": 111,
+      "name": "trasa1",
+      "avgRating": 0.0
+    }
+  ]
+}

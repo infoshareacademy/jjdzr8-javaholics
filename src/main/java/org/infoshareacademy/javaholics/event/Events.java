@@ -7,22 +7,18 @@ import java.util.List;
 
 public class Events {
 
-    private static List<Event> eventArrayList = new ArrayList<>();
+    private List<Event> events = new ArrayList<>();
 
     public List<Event> getEvents() {
-        return eventArrayList;
+        return events;
     }
 
-    public static List<Event> getEventArrayList() {
-        return eventArrayList;
+    public void setEvents(List<Event> userArrayList) {
+        this.events = userArrayList;
     }
 
-    public void setUserArrayList(List<Event> userArrayList) {
-        this.eventArrayList = userArrayList;
-    }
-
-    public static void add(Event event) {
-        eventArrayList.add(event);
+    public void add(Event event) {
+        events.add(event);
         System.out.println("Nowy event dodany: " + event.toString());
     }
 }

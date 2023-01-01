@@ -5,23 +5,19 @@ import java.util.List;
 
 public class Users {
 
-        private static List<User> userArrayList = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
-        public List<User> getUsers() {
-            return userArrayList;
-        }
+    public List<User> getUsers() {
+        return users;
+    }
 
-        public static List<User> getUserArrayList() {
-            return userArrayList;
-        }
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
-        public void setUserArrayList(List<User> userArrayList) {
-            this.userArrayList = userArrayList;
-        }
-
-        public static void add(User user) {
-            userArrayList.add(user);
-            System.out.println("Nowy użytkownik dodany: " + user.toString());
-        }
+    public void add(User user) {
+        users.add(user);
+        System.out.println("Nowy użytkownik dodany: " + user.toString());
+    }
 
 }

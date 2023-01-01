@@ -16,36 +16,41 @@ import java.util.Date;
 public class App {
     public static void main(String[] args) {
 
-//      scenariusze testowe
+//      konstruktor obiektu rezygnacja z klasy abstrakcyjnej i metod statycznych
+
+        FileService fileService = new FileService();
+//      scenariusz testowy
+        // Users
+
+        Users users = new Users();
         User user1 = new User(111L, "Jan1", "login1");
-        Users.add(user1);
+        users.add(user1);
         User user2 = new User(222L, "Jan2", "login2");
-        Users.add(user2);
+        users.add(user2);
 
-        Route route1 = new Route(111L, "trasa1");
-        Routes.add(route1);
+        System.out.println(fileService.toJson(users));
 
-        Event event1 = new Event(111L, new Date(2022-12-29), "17", user1);
-        Events.add(event1);
+        // Zapis
+        fileService.writeJsonFile(users);
 
-//        działa - spr konwertera json
-//        System.out.println(FileService.toJson(user1));
-//        System.out.println(FileService.toJson(route1));
-//        System.out.println(FileService.toJson(event1));
-//
-//        dziala
-//        System.out.println(FileService.toJson(Users.getUserArrayList()));
+        // Odczyt
+        Users usersFromJson = fileService.readUsersFromFile();
 
-//        Sprawdzenie czy sciezka działa - działa
-//        System.out.println(FileService.getPathUsersFile().toString());
+        usersFromJson.getUsers().forEach(System.out::println);
 
-//       FileService.writeObjectToJsonFile(Users.getUserArrayList(), FileService.getPathUsersFile());
-//       FileService.writeObjectToJsonFile(Routes.getRouteArrayList(), FileService.getPathRoutesFile());
-//       FileService.writeObjectToJsonFile(Events.getEventArrayList(), FileService.getPathEventsFile());
+        // Routes
+        Routes routes = new Routes();
+        routes.add(new Route(111L, "trasa1"));
+        fileService.writeToJsonFile(routes);
+        Routes routesFromJson = fileService.readRoutesFromFile();
+        routesFromJson.getRoutes().forEach(System.out::println);
 
-         Users users = FileService.readUsersFromFile();
-
-
+        // Events
+        Events events = new Events();
+        events.add(new Event(111L, new Date(2022 - 12 - 29), "17", user1));
+        fileService.writeToJsonFile(events);
+        Events eventsFromJson = fileService.readEventsFromFile();
+        eventsFromJson.getEvents().forEach(System.out::println);
 
 
     }
