@@ -1,7 +1,7 @@
 package org.infoshareacademy.javaholics.event;
 
 import org.infoshareacademy.javaholics.user.User;
-import org.infoshareacademy.javaholics.route.Route;
+
 import java.util.Date;
 
 public class Event {
@@ -18,7 +18,7 @@ public class Event {
 
     // constructors
 
-    public Event(Long id, Date date, String time, User ownerOfEvent) {
+    public Event() {
         this.id = id;
         this.date = date;
         this.time = time;
@@ -80,5 +80,8 @@ public class Event {
     }
     public void setUsersCount(Integer usersCount) {
         this.usersCount = usersCount;
+    }
+
+    public void setOwnerOfEvent() {
     }
 }
