@@ -16,12 +16,13 @@ public class Route {
     private String routeFile;
     private User userId;
     private double avgRating;
+    private String type;
+    private double length;
 
-
-    public Route(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+//    public Route(long id, String name) {
+//        this.id = id;
+//        this.name = name;
+//    }
 
     public long getId() {
         return id;
@@ -82,5 +83,29 @@ public class Route {
 
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    public RouteDifficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(RouteDifficulty difficulty) {
+        this.difficulty = difficulty;
     }
 }
