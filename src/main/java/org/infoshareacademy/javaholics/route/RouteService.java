@@ -1,5 +1,7 @@
 package org.infoshareacademy.javaholics.route;
 
+import org.infoshareacademy.javaholics.Menu;
+
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -14,7 +16,7 @@ public class RouteService {
     }
 
     Scanner scanner = new Scanner(System.in);
-
+// Generator długości trasy
     public void routeLength() {
         boolean error = false;
         System.out.println("Podaj początek trasy : ");
@@ -38,7 +40,7 @@ public class RouteService {
         System.out.println("Początek twojej trasy jest : " + route.getPlaceStart() + " , a koniec jest " + route.getPlaceStop());
         System.out.println("Całkowita długość trasy to " + route.getLength() + " km");
     }
-
+// Generator poziomu trudnosci
     public void routeLevelOfDifficulty() {
         boolean error = false;
         System.out.println("Podaj poziom trudności trasy :");
@@ -80,7 +82,7 @@ public class RouteService {
         System.out.println("Proponowany poziom trudności stworzonej trasy to " + route.getDifficulty());
     }
 
-
+// Generator
     public void routeType (){
         System.out.println("Podaj typ trasy :  ");
         System.out.println("1 - Trasa spacerowa ");
@@ -138,6 +140,11 @@ public class RouteService {
         System.out.println("Data i godzina zapisania trasy : " + getDate());
         System.out.println("///////////////////////////////////////////");
     }
+    public void menuReturn(){
+        scanner.nextLine();
+        Menu menu = new Menu();
+        menu.printMenu();
+    }
     public void routCre(){
         routeArea();
         routeLength();
@@ -145,5 +152,6 @@ public class RouteService {
         routeLevelOfDifficulty();
         routeDate();
         summaryRoute();
+        menuReturn();
     }
 }
