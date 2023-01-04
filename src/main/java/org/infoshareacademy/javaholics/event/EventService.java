@@ -10,11 +10,6 @@ import java.util.Scanner;
 
 public class EventService {
 
-//trasa początek i koniec
-//data i godzina rozpoczęcia
-//ilośc uczestników
-//nick i mail organizatora
-
     User user = new User();
     Event event = new Event();
     Date date = new Date();
