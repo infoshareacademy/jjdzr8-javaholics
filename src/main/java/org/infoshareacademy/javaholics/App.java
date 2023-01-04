@@ -1,6 +1,7 @@
 package org.infoshareacademy.javaholics;
 
 
+import org.infoshareacademy.javaholics.event.EventService;
 import org.infoshareacademy.javaholics.utils.FileUtils;
 import org.infoshareacademy.javaholics.utils.IpsNumbers;
 
@@ -15,5 +16,6 @@ public class App {
         ipsNumbers.setIpRoute(2);
         ipsNumbers.setIpEvent(3);
         FileUtils.saveUsersToJsonFile(ipsNumbers);
+
     }
 }

@@ -21,24 +21,33 @@ public class EventService {
 
     Scanner scanner = new Scanner(System.in);
     public void eventDetails() {
-        try {
-            System.out.print("podaj miejsce eventu: ");
-            event.setPlace(scanner.nextLine());
-            System.out.print("podaj region eventu: ");
-            event.setRegion(scanner.nextLine());
-            System.out.print("Opis wydarzenia: ");
-            event.setDescription(scanner.nextLine());
-        } catch (InputMismatchException e) {
-            System.out.println("błąd walidacji");
-            System.exit(0);
-        }
-        try {
-            System.out.print("Ile będzie uczestników: ");
-            event.setUsersCount(scanner.nextInt());
-        } catch (InputMismatchException e) {
-            System.out.println("Podaj poprawne dane, ile będzie uczestników.");
-            System.exit(0);
-        }
+
+        boolean error = false;
+
+        System.out.print("podaj miejsce eventu: ");
+        event.setPlace(scanner.nextLine());
+        System.out.print("podaj region eventu: ");
+        event.setRegion(scanner.nextLine());
+        System.out.print("Opis wydarzenia: ");
+        event.setDescription(scanner.nextLine());
+        System.out.print("Ile będzie uczestników: ");
+        do {
+            error = false;
+
+            try {
+                event.setUsersCount(scanner.nextInt());
+                while (event.getUsersCount() < 0 || event.getUsersCount() == 0) {
+                    System.out.print("Podaj poprawnie ile będzie uczestników: ");
+                    event.setUsersCount(scanner.nextInt());
+                }
+
+            } catch (InputMismatchException e) {
+                System.out.print("Błędne dane, ile będzie uczestników: ");
+                error = true;
+                scanner.nextInt();
+            }
+        } while (error);
+
 
         System.out.println("Data eventu: " + getDate());
 
