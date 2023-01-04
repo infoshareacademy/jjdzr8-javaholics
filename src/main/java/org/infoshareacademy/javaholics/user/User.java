@@ -10,7 +10,7 @@ public class User {
     private String login;
     // tu odniesienie do enum SexChoice
     private SexChoice sex;
-    private BufferedImage image;
+    private String image;
     private String location;
     private String prefferedRegionEvents;
     private String dectription;
@@ -74,10 +74,10 @@ public class User {
     public void setDectription(String dectription) {
         this.dectription = dectription;
     }
-    public BufferedImage getImage() {
+    public String getImage() {
         return image;
     }
-    public void setImage(BufferedImage image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
