@@ -1,4 +1,5 @@
 package org.infoshareacademy.javaholics;
+import org.infoshareacademy.javaholics.route.RouteFactory;
 import org.infoshareacademy.javaholics.route.RouteService;
 
 import java.util.InputMismatchException;
@@ -23,8 +24,8 @@ public class Menu {
                 switch (scanner.nextInt()) {
                     case 1:
                         System.out.println("Dodaj nową trasę");
-                        RouteService routeService = new RouteService();
-                        routeService.routCre();
+                        RouteFactory newRoute = new RouteFactory();
+                        newRoute.addRoute();
                         break;
                     case 2:
                         System.out.println("Wyszukaj trasę");

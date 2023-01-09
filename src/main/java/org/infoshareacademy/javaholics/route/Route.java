@@ -19,10 +19,10 @@ public class Route {
     private String type;
     private double length;
 
-//    public Route(long id, String name) {
-//        this.id = id;
-//        this.name = name;
-//    }
+    public Route(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public long getId() {
         return id;

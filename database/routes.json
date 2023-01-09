@@ -2,8 +2,12 @@
   "routes": [
     {
       "id": 111,
-      "name": "trasa1",
-      "avgRating": 0.0
+      "name": "Trasa",
+      "locality": "Gdańsk",
+      "placeStart": "Wrzeszcz",
+      "placeStop": "Oliwa",
+      "avgRating": 0.0,
+      "length": 34.5
     }
   ]
 }

@@ -1,4 +1,4 @@
-package org.infoshareacademy.javaholics;
+package org.infoshareacademy.javaholics.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 
-class FileService {
+public class FileService {
 
     private static final Path pathUsersFile = Path.of("database", "users.json");
     private static final Path pathEventsFile = Path.of("database", "events.json");
