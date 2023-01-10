@@ -1,6 +1,9 @@
 package org.infoshareacademy.javaholics.route;
 
 import org.infoshareacademy.javaholics.Menu;
+import org.infoshareacademy.javaholics.utils.FileService;
+import org.infoshareacademy.javaholics.utils.InputMechanics;
+import org.infoshareacademy.javaholics.utils.Instructions;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -8,39 +11,40 @@ import java.util.Scanner;
 
 public class RouteService {
     boolean status;
+    Route newRoute;
     Date date = new Date();
-    Route route = new Route();
-
+    InputMechanics input = new InputMechanics();
+    Scanner scanner = new Scanner(System.in);
     public Date getDate() {
+        newRoute.setDate(date);
         return date;
     }
 
-    Scanner scanner = new Scanner(System.in);
-// Generator długości trasy
+    public void routeInitialize() {
+        // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
+        long id = 111L;
+        System.out.println(Instructions.getSeparator());
+        System.out.println("Podaj nazwę trasy: ");
+        String nameFromScanner = input.getInputShort();
+
+        newRoute = new Route(id, nameFromScanner);
+
+        System.out.println("Wprowadzona nazwa:");
+        System.out.println(newRoute.getName());
+    }
+    // Generator długości trasy
     public void routeLength() {
         boolean error = false;
         System.out.println("Podaj początek trasy : ");
-        route.setPlaceStart(scanner.nextLine());
+        newRoute.setPlaceStart(input.getInputShort());
         System.out.println("Podaj koniec trasy : ");
-        route.setPlaceStop(scanner.nextLine());
+        newRoute.setPlaceStop(input.getInputShort());
         System.out.println("Podaj długość trasy w km : ");
-        do{
-            error = false;
-            try {
-                route.setLength(scanner.nextDouble());
-                while (route.getLength() < 0 || route.getLength() == 0) {
-                    System.out.println("Podaj poprawną długośc trasy");
-                    route.setLength(scanner.nextDouble());
-                }
-            }catch (InputMismatchException e) {
-                System.out.println("Podaj poprawną długośc trasy");
-                error = true;
-                scanner.nextLine();}
-        }while (error);
-        System.out.println("Początek twojej trasy jest : " + route.getPlaceStart() + " , a koniec jest " + route.getPlaceStop());
-        System.out.println("Całkowita długość trasy to " + route.getLength() + " km");
+        newRoute.setLength(input.getInputNumber());
+        System.out.println("Początek twojej trasy jest : " + newRoute.getPlaceStart() + " , a koniec jest " + newRoute.getPlaceStop());
+        System.out.println("Całkowita długość trasy to " + newRoute.getLength() + " km");
     }
-// Generator poziomu trudnosci
+    // Generator poziomu trudnosci
     public void routeLevelOfDifficulty() {
         boolean error = false;
         System.out.println("Podaj poziom trudności trasy :");
@@ -59,19 +63,19 @@ public class RouteService {
                 }
                 if (levelOfDifficulty == 1) {
                     System.out.println("Poziom trasy - Łatwy");
-                    route.setDifficulty(RouteDifficulty.EASY);
+                    newRoute.setDifficulty(RouteDifficulty.EASY);
                 }
                 if (levelOfDifficulty == 2) {
                     System.out.println("Poziom trasy - Średni");
-                    route.setDifficulty(RouteDifficulty.MEDIUM);
+                    newRoute.setDifficulty(RouteDifficulty.MEDIUM);
                 }
                 if (levelOfDifficulty == 3) {
                     System.out.println("Poziom trasy - Wymagający");
-                    route.setDifficulty(RouteDifficulty.EXTREME);
+                    newRoute.setDifficulty(RouteDifficulty.EXTREME);
                 }
                 if (levelOfDifficulty == 4) {
                     System.out.println("Poziom trasy - Bardzo trudny");
-                    route.setDifficulty(RouteDifficulty.HARD);
+                    newRoute.setDifficulty(RouteDifficulty.HARD);
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Wybierz poprawny poziom trudności trasy");
@@ -79,10 +83,10 @@ public class RouteService {
                 scanner.nextLine();
             }
         } while (error);
-        System.out.println("Proponowany poziom trudności stworzonej trasy to " + route.getDifficulty());
+        System.out.println("Proponowany poziom trudności stworzonej trasy to " + newRoute.getDifficulty());
     }
 
-// Generator
+    // Generator
     public void routeType (){
         System.out.println("Podaj typ trasy :  ");
         System.out.println("1 - Trasa spacerowa ");
@@ -100,15 +104,15 @@ public class RouteService {
                 }
                 if (typeRoute == 1) {
                     System.out.println("Typ trasy - Trasa spacerowa");
-                    route.setType("Trasa spacerowa");
+                    newRoute.setType("Trasa spacerowa");
                 }
                 if (typeRoute == 2) {
                     System.out.println("Typ trasy - Trasa rowerowa");
-                    route.setType("Trasa rowerowa");
+                    newRoute.setType("Trasa rowerowa");
                 }
                 if (typeRoute == 3) {
                     System.out.println("Typ trasy - Trasa trekingowa");
-                    route.setType("Trasa trekingowa");
+                    newRoute.setType("Trasa trekingowa");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Wybierz poprawny typ trasy");
@@ -116,42 +120,53 @@ public class RouteService {
                 scanner.nextLine();
             }
         }while (error) ;
-        System.out.println(route.getType());
+        System.out.println(newRoute.getType());
     }
 
     public void routeArea () {
         System.out.println("W jakiej miejscowości chcesz zacząć? ");
-        route.setLocality(scanner.nextLine());
+        newRoute.setLocality(input.getInputShort());
         System.out.println("Trasa ma lokalizację w miejscu : ");
-        System.out.println(route.getLocality());
+        System.out.println(newRoute.getLocality());
     }
     public void routeDate () {
         System.out.println(getDate());
     }
     public void summaryRoute(){
-        System.out.println("///////////////////////////////////////////");
+        System.out.println("----------------------------------------");
         System.out.println("Podsumowanie stworzonej trasy : ");
-        System.out.println("Trasa rozpoczyna się w miejscowości : " + route.getLocality());
-        System.out.println("Trasa rozpoczyna się w punkcie : " + route.getPlaceStart());
-        System.out.println("Trasa kończy się w punkcie : " + route.getPlaceStop());
-        System.out.println("Długość trasy to : " + route.getLength() + " km");
-        System.out.println("Typ trasy to : " + route.getType());
-        System.out.println("Poziom trudności trasy to : " + route.getDifficulty());
+        System.out.println("Trasa rozpoczyna się w miejscowości : " + newRoute.getLocality());
+        System.out.println("Trasa rozpoczyna się w punkcie : " + newRoute.getPlaceStart());
+        System.out.println("Trasa kończy się w punkcie : " + newRoute.getPlaceStop());
+        System.out.println("Długość trasy to : " + newRoute.getLength() + " km");
+        System.out.println("Typ trasy to : " + newRoute.getType());
+        System.out.println("Poziom trudności trasy to : " + newRoute.getDifficulty());
         System.out.println("Data i godzina zapisania trasy : " + getDate());
         System.out.println("///////////////////////////////////////////");
+        System.out.println(Instructions.getSeparator());
     }
     public void menuReturn(){
         scanner.nextLine();
         Menu menu = new Menu();
         menu.printMenu();
     }
+    public void saveRoute(){
+        FileService fileService = new FileService();
+
+        Routes routes = new Routes();
+        routes.add(newRoute);
+        fileService.writeToJsonFile(routes);
+    }
+
     public void routCre(){
+        routeInitialize();
         routeArea();
         routeLength();
         routeType();
         routeLevelOfDifficulty();
         routeDate();
         summaryRoute();
+        saveRoute();
         menuReturn();
     }
 }
