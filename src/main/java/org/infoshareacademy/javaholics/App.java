@@ -2,6 +2,7 @@ package org.infoshareacademy.javaholics;
 
 
 import org.infoshareacademy.javaholics.event.Event;
+import org.infoshareacademy.javaholics.event.EventService;
 import org.infoshareacademy.javaholics.event.Events;
 import org.infoshareacademy.javaholics.route.Route;
 import org.infoshareacademy.javaholics.route.RouteService;
@@ -17,7 +18,8 @@ public class App {
     public static void main(String[] args) {
 
         RouteService routeService = new RouteService();
-        routeService.routCre();
+        EventService eventService = new EventService();
+        eventService.startEvent();
 ////      konstruktor obiektu rezygnacja z klasy abstrakcyjnej i metod statycznych
 //
 //        FileService fileService = new FileService();

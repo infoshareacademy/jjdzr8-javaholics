@@ -7,6 +7,7 @@ import java.util.Date;
 public class Event {
 
     private Long id;
+    private String eventName;
     private Date date;
     private String time;
     private String place;
@@ -18,7 +19,17 @@ public class Event {
 
     // constructors
 
-    public Event(Long id, Date date, String time, User ownerOfEvent) {
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public Event(String eventName, Long id, Date date, String time, User ownerOfEvent) {
+        this.eventName = eventName;
         this.id = id;
         this.date = date;
         this.time = time;

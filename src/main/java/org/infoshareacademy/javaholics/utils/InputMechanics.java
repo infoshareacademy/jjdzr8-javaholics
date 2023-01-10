@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputMechanics {
-
+    Scanner scanner;
     int shortInputLength = 50;
     // pobiera z klawiatury String do X znaków (krótki tekst)
     public String getInputShort(){
@@ -45,18 +45,18 @@ public class InputMechanics {
             try {
                 input = reader.nextDouble();
 
-                if (input <= 0) {
-                    throw new InputMismatchException("Podaj poprawną długośc trasy (liczbę dodatanią)");
+                while (input < 0 || input == 0) {
+                    System.out.println("Podaj poprawną wartość");
+                    input = reader.nextDouble();
                 }
                 // do poprawy wyjatek dla podania stringa zamiast liczby i ewentualne rzutowanie na double integera
-
             } catch (InputMismatchException e){
-            System.out.println(e.getMessage());
-            flagAnswer = true;
+                System.out.println("Podaj poprawną wartość");
+                flagAnswer = true;
+                reader.nextLine();
             }
         }
         while (flagAnswer);
-
         return input;
     }
 }

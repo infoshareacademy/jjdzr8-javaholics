@@ -2,15 +2,15 @@
   "routes": [
     {
       "id": 111,
-      "name": "bobo",
-      "locality": "tak",
-      "placeStart": "nie",
-      "placeStop": "nie",
-      "difficulty": "MEDIUM",
+      "name": "sad",
+      "locality": "asd",
+      "placeStart": "asd",
+      "placeStop": "asd",
+      "difficulty": "EXTREME",
       "avgRating": 0.0,
-      "type": "Trasa rowerowa",
+      "type": "Trasa spacerowa",
       "length": 12.0,
-      "date": "Jan 10, 2023, 9:44:15 PM"
+      "date": "Jan 10, 2023, 10:25:57 PM"
     }
   ]
 }
