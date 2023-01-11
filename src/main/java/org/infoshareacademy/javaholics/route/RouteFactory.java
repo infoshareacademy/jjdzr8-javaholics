@@ -31,7 +31,7 @@ public class RouteFactory {
         System.out.println("Podaj nazwę trasy: ");
         String nameFromScanner = input.getInputShort();
 
-        newRoute = new Route(id, nameFromScanner);1
+        newRoute = new Route(id, nameFromScanner);
 
         System.out.println("Wprowadzona nazwa:");
         System.out.println(newRoute.getName());

@@ -20,4 +20,10 @@ public class Users {
         System.out.println("Nowy użytkownik dodany: " + user.toString());
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "users=" + users +
+                '}';
+    }
 }

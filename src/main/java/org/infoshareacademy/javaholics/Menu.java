@@ -1,4 +1,5 @@
 package org.infoshareacademy.javaholics;
+import org.infoshareacademy.javaholics.event.EventService;
 import org.infoshareacademy.javaholics.route.RouteFactory;
 import org.infoshareacademy.javaholics.route.RouteService;
 
@@ -41,6 +42,8 @@ public class Menu {
                         break;
                     case 6:
                         System.out.println("Wyszukaj Event");
+                        EventService eventService = new EventService();
+                        eventService.displayEventsRegionAndPlace();
                         break;
                     default:
                         System.out.println("Wybierz opcję od 1 do 6");

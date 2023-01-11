@@ -21,4 +21,11 @@ public class Events {
         events.add(event);
         System.out.println("Nowy event dodany: " + event.toString());
     }
+
+    @Override
+    public String toString() {
+        return "Events{" +
+                "events=" + events +
+                '}';
+    }
 }

@@ -81,4 +81,18 @@ public class Event {
     public void setUsersCount(Integer usersCount) {
         this.usersCount = usersCount;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", date=" + date +
+                ", time='" + time + '\'' +
+                ", place='" + place + '\'' +
+                ", region='" + region + '\'' +
+                ", ownerOfEvent=" + ownerOfEvent +
+                ", description='" + description + '\'' +
+                ", usersCount=" + usersCount +
+                '}';
+    }
 }

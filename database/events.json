@@ -1,13 +1,99 @@
 {
   "events": [
     {
-      "id": 111,
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "id": 1,
+      "date": "Jan 1, 2023, 1:00:01 AM",
       "time": "17",
+      "place": "Gdańsk",
+      "region": "N",
       "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
-        "login": "login1"
+        "id": 1,
+        "name": "Karol",
+        "login": "karol"
+      }
+    },
+    {
+      "id": 2,
+      "date": "Feb 1, 2023, 1:00:01 AM",
+      "time": "18",
+      "place": "Wrocław",
+      "region": "SW",
+      "ownerOfEvent": {
+        "id": 2,
+        "name": "Kuba",
+        "login": "kuba"
+      }
+    },
+    {
+      "id": 3,
+      "date": "Mar 1, 2023, 1:00:01 AM",
+      "time": "17",
+      "place": "Wrocław",
+      "region": "SW",
+      "ownerOfEvent": {
+        "id": 3,
+        "name": "Kamil",
+        "login": "kamil"
+      }
+    },
+    {
+      "id": 4,
+      "date": "Jun 4, 2023, 1:00:01 AM",
+      "time": "15",
+      "place": "Malbork",
+      "region": "N",
+      "ownerOfEvent": {
+        "id": 4,
+        "name": "Michał",
+        "login": "michal"
+      }
+    },
+    {
+      "id": 5,
+      "date": "Feb 23, 2023, 1:00:01 AM",
+      "time": "17",
+      "place": "Gdańsk",
+      "region": "N",
+      "ownerOfEvent": {
+        "id": 1,
+        "name": "Karol",
+        "login": "karol"
+      }
+    },
+    {
+      "id": 6,
+      "date": "Apr 4, 2023, 1:00:01 AM",
+      "time": "18",
+      "place": "Wrocław",
+      "region": "SW",
+      "ownerOfEvent": {
+        "id": 2,
+        "name": "Kuba",
+        "login": "kuba"
+      }
+    },
+    {
+      "id": 7,
+      "date": "Jul 6, 2023, 1:00:01 AM",
+      "time": "7",
+      "place": "Wrocław",
+      "region": "SW",
+      "ownerOfEvent": {
+        "id": 3,
+        "name": "Kamil",
+        "login": "kamil"
+      }
+    },
+    {
+      "id": 8,
+      "date": "Oct 14, 2023, 1:00:01 AM",
+      "time": "16",
+      "place": "Malbork",
+      "region": "N",
+      "ownerOfEvent": {
+        "id": 4,
+        "name": "Michał",
+        "login": "michal"
       }
     }
   ]

@@ -1,14 +1,24 @@
 {
   "users": [
     {
-      "id": 111,
-      "name": "Jan1",
-      "login": "login1"
+      "id": 1,
+      "name": "Karol",
+      "login": "karol"
     },
     {
-      "id": 222,
-      "name": "Jan2",
-      "login": "login2"
+      "id": 2,
+      "name": "Kuba",
+      "login": "kuba"
+    },
+    {
+      "id": 3,
+      "name": "Kamil",
+      "login": "kamil"
+    },
+    {
+      "id": 4,
+      "name": "Michał",
+      "login": "michal"
     }
   ]
 }
