@@ -22,9 +22,7 @@ public class App {
 
         RouteService routeService = new RouteService();
         EventService eventService = new EventService();
-        FileService fileService = new FileService();
-        RouteSearch routeSearch = new RouteSearch();
-        routeSearch.routeSearch();
+        routeService.routCre();
 ////      konstruktor obiektu rezygnacja z klasy abstrakcyjnej i metod statycznych
 //
 //        FileService fileService = new FileService();
