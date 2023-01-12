@@ -5,10 +5,13 @@ import org.infoshareacademy.javaholics.event.Event;
 import org.infoshareacademy.javaholics.event.EventService;
 import org.infoshareacademy.javaholics.event.Events;
 import org.infoshareacademy.javaholics.route.Route;
+import org.infoshareacademy.javaholics.route.RouteSearch;
 import org.infoshareacademy.javaholics.route.RouteService;
 import org.infoshareacademy.javaholics.route.Routes;
 import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
+
+import java.io.File;
 import java.util.Date;
 import org.infoshareacademy.javaholics.utils.FileUtils;
 import org.infoshareacademy.javaholics.utils.IpsNumbers;
@@ -19,7 +22,9 @@ public class App {
 
         RouteService routeService = new RouteService();
         EventService eventService = new EventService();
-        eventService.startEvent();
+        FileService fileService = new FileService();
+        RouteSearch routeSearch = new RouteSearch();
+        routeSearch.routeSearch();
 ////      konstruktor obiektu rezygnacja z klasy abstrakcyjnej i metod statycznych
 //
 //        FileService fileService = new FileService();

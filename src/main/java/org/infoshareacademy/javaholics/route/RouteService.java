@@ -41,7 +41,6 @@ public class RouteService {
         newRoute.setPlaceStop(input.getInputShort());
         System.out.println("Podaj długość trasy w km : ");
         newRoute.setLength(input.getInputNumber());
-//        newRoute.setLength(input.getInputNumber());
         System.out.println("Początek twojej trasy jest : " + newRoute.getPlaceStart() + " , a koniec jest " + newRoute.getPlaceStop());
         System.out.println("Całkowita długość trasy to " + newRoute.getLength() + " km");
     }
