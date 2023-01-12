@@ -1,19 +1,19 @@
 {
-  "events": [
-    {
+  "events": {
+    "111": {
       "id": 111,
-      "eventName": "13123",
+      "eventName": "Event",
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
-      "place": "asdas",
-      "region": "wae",
+      "place": "Sopot",
+      "region": "Pomorskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
         "login": "login1"
       },
-      "description": "asd",
-      "usersCount": 12
+      "description": "blblabla",
+      "usersCount": 3
     }
-  ]
+  }
 }

@@ -76,9 +76,7 @@ public class EventService {
     }
     public void saveEvent(){
         FileService fileService = new FileService();
-        Events events = new Events();
-        events.add(newEvent);
-        fileService.writeToJsonFile(events);
+        fileService.addNewEventToDatabase(newEvent);
     }
     public void startEvent(){
         eventInitialize();

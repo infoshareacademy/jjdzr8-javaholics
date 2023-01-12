@@ -20,9 +20,9 @@ import org.infoshareacademy.javaholics.utils.IpsNumbers;
 public class App {
     public static void main(String[] args) {
 
-        RouteService routeService = new RouteService();
         EventService eventService = new EventService();
-        routeService.routCre();
+        eventService.startEvent();
+
 ////      konstruktor obiektu rezygnacja z klasy abstrakcyjnej i metod statycznych
 //
 //        FileService fileService = new FileService();

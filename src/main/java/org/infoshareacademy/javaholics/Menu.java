@@ -13,6 +13,12 @@ public class Menu {
         System.out.println("5. Dodaj Event");
         System.out.println("6. Wyszukaj Event");
 
+        //InputMechanics input = new InputMechanics();
+        //System.out.print("Co chcesz zrobić - podaj z klawiatury odpwiednią cyfrę: ");
+        //input.getInputSwitch(6); - ta metoda wsadzona do switcha uproszczonego /bez wyjatków, sprawdzę is wrong answer itp
+
+
+
         boolean isWrongAnswer;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Co chcesz zrobić: ");
