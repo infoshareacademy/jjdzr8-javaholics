@@ -1,27 +1,20 @@
 package org.infoshareacademy.javaholics;
 
 
-import org.infoshareacademy.javaholics.event.Event;
 import org.infoshareacademy.javaholics.event.EventService;
-import org.infoshareacademy.javaholics.event.Events;
-import org.infoshareacademy.javaholics.route.Route;
-import org.infoshareacademy.javaholics.route.RouteSearch;
 import org.infoshareacademy.javaholics.route.RouteService;
-import org.infoshareacademy.javaholics.route.Routes;
-import org.infoshareacademy.javaholics.user.User;
-import org.infoshareacademy.javaholics.user.Users;
-
-import java.io.File;
-import java.util.Date;
-import org.infoshareacademy.javaholics.utils.FileUtils;
-import org.infoshareacademy.javaholics.utils.IpsNumbers;
-
+import org.infoshareacademy.javaholics.user.UserService;
 
 public class App {
     public static void main(String[] args) {
-
         EventService eventService = new EventService();
-        eventService.startEvent();
+        UserService userService = new UserService();
+        RouteService routeService = new RouteService();
+//        eventService.startEvent();
+        System.out.println(eventService.getCurrentIpNoSaveToJson());
+        System.out.println(eventService.getCurrentIpWithSaveNextIpToJson());
+        System.out.println(userService.getCurrentIpWithSaveNextIpToJson());
+        System.out.println(routeService.getCurrentIpWithSaveNextIpToJson());
 
 ////      konstruktor obiektu rezygnacja z klasy abstrakcyjnej i metod statycznych
 //

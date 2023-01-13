@@ -1,15 +1,14 @@
 package org.infoshareacademy.javaholics.route;
 
+import org.infoshareacademy.javaholics.IdNumbers;
 import org.infoshareacademy.javaholics.Menu;
-import org.infoshareacademy.javaholics.utils.FileService;
-import org.infoshareacademy.javaholics.utils.InputMechanics;
-import org.infoshareacademy.javaholics.utils.Instructions;
+import org.infoshareacademy.javaholics.utils.*;
 
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class RouteService {
+public class RouteService implements IdNumbers {
     boolean status;
     Route newRoute;
     Date date = new Date();
@@ -168,5 +167,24 @@ public class RouteService {
         summaryRoute();
         saveRoute();
         menuReturn();
+    }
+
+    @Override
+    public long getCurrentIpNoSaveToJson() {
+        IDsNumbers iDsNumbers = new IDsNumbers();
+        FileUtils fileUtils = new FileUtils();
+        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        return iDsNumbers.getIpRoute();
+    }
+
+    @Override
+    public long getCurrentIpWithSaveNextIpToJson() {
+        IDsNumbers iDsNumbers = new IDsNumbers();
+        FileUtils fileUtils = new FileUtils();
+        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        long idRoute = iDsNumbers.getIpRoute();
+        iDsNumbers.setIpRoute(idRoute+1);
+        fileUtils.saveIpsToJsonFile(iDsNumbers);
+        return idRoute;
     }
 }

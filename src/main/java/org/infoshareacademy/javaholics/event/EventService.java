@@ -1,20 +1,15 @@
 package org.infoshareacademy.javaholics.event;
 
-import org.infoshareacademy.javaholics.route.Route;
-import org.infoshareacademy.javaholics.route.Routes;
+import org.infoshareacademy.javaholics.IdNumbers;
 import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
-import org.infoshareacademy.javaholics.utils.FileService;
-import org.infoshareacademy.javaholics.utils.InputMechanics;
-import org.infoshareacademy.javaholics.utils.Instructions;
+import org.infoshareacademy.javaholics.utils.*;
 
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static java.util.Calendar.AM;
-
-public class EventService {
+public class EventService implements IdNumbers {
 
 //trasa początek i koniec
 //data i godzina rozpoczęcia
@@ -83,4 +78,22 @@ public class EventService {
         eventDetails();
         saveEvent();
     }
+
+    public long getCurrentIpNoSaveToJson(){
+        IDsNumbers iDsNumbers = new IDsNumbers();
+        FileUtils fileUtils = new FileUtils();
+        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        return iDsNumbers.getIpEvent();
+    }
+
+    public long getCurrentIpWithSaveNextIpToJson(){
+        IDsNumbers iDsNumbers = new IDsNumbers();
+        FileUtils fileUtils = new FileUtils();
+        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        long idEvent = iDsNumbers.getIpEvent();
+        iDsNumbers.setIpEvent(idEvent+1);
+        fileUtils.saveIpsToJsonFile(iDsNumbers);
+        return idEvent;
+    }
+
     }
