@@ -80,4 +80,19 @@ public class User {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", sex=" + sex +
+                ", image='" + image + '\'' +
+                ", location='" + location + '\'' +
+                ", prefferedRegionEvents='" + prefferedRegionEvents + '\'' +
+                ", dectription='" + dectription + '\'' +
+                '}';
+    }
 }

@@ -2,10 +2,11 @@ package org.infoshareacademy.javaholics.event;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Events {
 
-    private Map<Long, Event> events = new HashMap();
+    private Map<Long, Event> events = new TreeMap<>();
 
     public Map<Long, Event> getEvents() {
         return events;

@@ -2,23 +2,25 @@ package org.infoshareacademy.javaholics;
 
 
 import org.infoshareacademy.javaholics.event.EventService;
+import org.infoshareacademy.javaholics.event.Events;
 import org.infoshareacademy.javaholics.route.RouteService;
 import org.infoshareacademy.javaholics.user.UserService;
+import org.infoshareacademy.javaholics.utils.FileService;
 
 public class App {
     public static void main(String[] args) {
         EventService eventService = new EventService();
-        UserService userService = new UserService();
-        RouteService routeService = new RouteService();
-//        eventService.startEvent();
-        System.out.println(eventService.getCurrentIpNoSaveToJson());
-        System.out.println(eventService.getCurrentIpWithSaveNextIpToJson());
-        System.out.println(userService.getCurrentIpWithSaveNextIpToJson());
-        System.out.println(routeService.getCurrentIpWithSaveNextIpToJson());
+//        UserService userService = new UserService();
+//        RouteService routeService = new RouteService();
+////        eventService.startEvent();
+//        System.out.println(eventService.getCurrentIpNoSaveToJson());
+//        System.out.println(eventService.getCurrentIpWithSaveNextIpToJson());
+//        System.out.println(userService.getCurrentIpWithSaveNextIpToJson());
+//        System.out.println(routeService.getCurrentIpWithSaveNextIpToJson());
 
 ////      konstruktor obiektu rezygnacja z klasy abstrakcyjnej i metod statycznych
 //
-//        FileService fileService = new FileService();
+        FileService fileService = new FileService();
 ////      scenariusz testowy
 //        // Users
 //
@@ -50,8 +52,8 @@ public class App {
 //        events.add(new Event(111L, new Date(2022 - 12 - 29), "17", user1));
 //        fileService.writeToJsonFile(events);
 //        Events eventsFromJson = fileService.readEventsFromFile();
-//        eventsFromJson.getEvents().forEach(System.out::println);
-//
+//        eventsFromJson.getEvents().forEach((k,v) -> System.out.println(k + " "+v));
+        eventService.displaySortedEventsByRegionAndPalce();
 //
 //
 //        IpsNumbers ipsNumbers = FileUtils.readUsersJsonFile();

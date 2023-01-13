@@ -95,33 +95,31 @@ public class Event {
     }
 
     @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", eventName='" + eventName + '\'' +
+                ", date=" + date +
+                ", time='" + time + '\'' +
+                ", place='" + place + '\'' +
+                ", region='" + region + '\'' +
+                ", ownerOfEvent=" + ownerOfEvent +
+                ", description='" + description + '\'' +
+                ", usersCount=" + usersCount +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Event event)) return false;
-
-        if (!Objects.equals(id, event.id)) return false;
-        if (!Objects.equals(eventName, event.eventName)) return false;
-        if (!Objects.equals(date, event.date)) return false;
-        if (!Objects.equals(time, event.time)) return false;
-        if (!Objects.equals(place, event.place)) return false;
-        if (!Objects.equals(region, event.region)) return false;
-        if (!Objects.equals(ownerOfEvent, event.ownerOfEvent)) return false;
-        if (!Objects.equals(description, event.description)) return false;
-        return Objects.equals(usersCount, event.usersCount);
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return Objects.equals(id, event.id) && Objects.equals(eventName, event.eventName) && Objects.equals(date, event.date) && Objects.equals(time, event.time) && Objects.equals(place, event.place) && Objects.equals(region, event.region) && Objects.equals(ownerOfEvent, event.ownerOfEvent) && Objects.equals(description, event.description) && Objects.equals(usersCount, event.usersCount);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (eventName != null ? eventName.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (place != null ? place.hashCode() : 0);
-        result = 31 * result + (region != null ? region.hashCode() : 0);
-        result = 31 * result + (ownerOfEvent != null ? ownerOfEvent.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (usersCount != null ? usersCount.hashCode() : 0);
-        return result;
+        return Objects.hash(id, eventName, date, time, place, region, ownerOfEvent, description, usersCount);
     }
 }
 
