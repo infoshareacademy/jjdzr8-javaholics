@@ -189,8 +189,7 @@ public class RouteService implements IdNumbers {
         FileService fileService = new FileService();
 
         Routes routes = new Routes();
-        routes.add(newRoute);
-        fileService.writeToJsonFile(routes);
+        fileService.addNewRouteToDatabase(r);
     }
 
     public void routCre(){

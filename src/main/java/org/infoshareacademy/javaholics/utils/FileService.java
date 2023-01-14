@@ -39,21 +39,25 @@ public class FileService {
     public static String toJson(Object objectToJson){
         return gson.toJson(objectToJson);
     }
-
+    public void addNewEventToDatabase(Event eventToAdd){
+        Events eventsFromJson = readEventsFromFile();
+        eventsFromJson.simpleAdd(eventToAdd);
         writeToJsonFile(eventsFromJson);
+    }
+        
 
     }
 
-    public void addNewRouteToDatabase(Route routeToAdd){
+  public void addNewRouteToDatabase(Route routeToAdd){
         Routes routesFromJson = readRoutesFromFile();
-
-        //routesFromJson.simpleAdd(routeToAdd);
+        routesFromJson.simpleAddRoute(routeToAdd);
         writeToJsonFile(routesFromJson);
-
     }
-
+        
+public void writeJsonFile(final Users users) {
         writeObjectToJsonFile(users, pathUsersFile);
     }
+    
     public void writeToJsonFile(final Routes routes) {
         writeObjectToJsonFile(routes, pathRoutesFile);
     }
@@ -106,7 +110,7 @@ public class FileService {
     public Routes readRoutesFromFile() {
         Routes routes = readDataFromJsonFile(Routes.class, pathRoutesFile);
         if (Objects.nonNull(routes)) {
-            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + routes.getRoutes().size());
+            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + routes.getRouteMap().size());
             return routes;
         } else {
             return new Routes();
