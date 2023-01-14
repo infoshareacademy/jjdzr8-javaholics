@@ -1,4 +1,6 @@
 package org.infoshareacademy.javaholics;
+import org.infoshareacademy.javaholics.event.EventService;
+import org.infoshareacademy.javaholics.route.RouteSearch;
 import org.infoshareacademy.javaholics.route.RouteService;
 
 import java.util.InputMismatchException;
@@ -28,18 +30,28 @@ public class Menu {
                         break;
                     case 2:
                         System.out.println("Wyszukaj trasę");
+                        RouteSearch routeSearch = new RouteSearch();
+                        routeSearch.displayRoutPlaceAndDifficulty();
                         break;
                     case 3:
                         System.out.println("Edytuj trasę");
+                        RouteService routeService1 = new RouteService();
+                        routeService1.editRoute();
                         break;
                     case 4:
-                        System.out.println("Usuń trasę");
+                        System.out.println("Dodaj Event");
+                        EventService eventService = new EventService();
+                        eventService.startEvent();
                         break;
                     case 5:
-                        System.out.println("Dodaj Event");
+                        System.out.println("Edytuj event");
+                        EventService eventService3 = new EventService();
+                        eventService3.editEvent();
                         break;
                     case 6:
                         System.out.println("Wyszukaj Event");
+                        EventService eventService2 = new EventService();
+                        eventService2.displaySortedEventsByRegionAndPalce();
                         break;
                     default:
                         System.out.println("Wybierz opcję od 1 do 6");

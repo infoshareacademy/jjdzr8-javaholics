@@ -2,7 +2,6 @@ package org.infoshareacademy.javaholics.event;
 
 import com.google.gson.JsonObject;
 import org.infoshareacademy.javaholics.IdNumbers;
-import org.infoshareacademy.javaholics.route.Routes;
 import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
 import org.infoshareacademy.javaholics.utils.*;
@@ -116,7 +115,7 @@ public class EventService implements IdNumbers {
         eventDetails();
         saveEvent();
     }
-    public void editRoute(){
+    public void editEvent(){
         FileService fileService = new FileService();
         try {
             Events events = new Events();

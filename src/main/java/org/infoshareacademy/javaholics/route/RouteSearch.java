@@ -17,7 +17,8 @@ import java.util.*;
 public class RouteSearch {
     FileService fileService = new FileService();
 
-    public void displayEventsRegionAndPlace() {
+
+    public void displayRoutPlaceAndDifficulty() {
 
         Routes routes = new Routes();
         routes = fileService.readRoutesFromFile();
