@@ -1,9 +1,12 @@
-package org.infoshareacademy.javaholics;
+package org.infoshareacademy.javaholics.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.infoshareacademy.javaholics.event.Event;
 import org.infoshareacademy.javaholics.event.Events;
+import org.infoshareacademy.javaholics.route.Route;
 import org.infoshareacademy.javaholics.route.Routes;
+import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
 
 import java.io.*;
@@ -12,13 +15,13 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 
-class FileService {
-
+public class FileService {
+    // definicja ścieżek do plików bazy
     private static final Path pathUsersFile = Path.of("database", "users.json");
     private static final Path pathEventsFile = Path.of("database", "events.json");
     private static final Path pathRoutesFile = Path.of("database", "routes.json");
 
-
+    // gettery do ścieżek
     public static Path getPathUsersFile() {
         return pathUsersFile;
     }
@@ -29,14 +32,40 @@ class FileService {
         return pathRoutesFile;
     }
 
+    // inicjalizacja Gson
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-
+    // metody zapisu
     public static String toJson(Object objectToJson){
         return gson.toJson(objectToJson);
     }
 
-    public void writeJsonFile(final Users users) {
+    // metody zapisu z wczesniejszym wczytaniem bazy danych i dodaniem do struktury danych pojedynczego wpisu
+    public void addNewEventToDatabase(Event eventToAdd){
+        Events eventsFromJson = readEventsFromFile();
+        // TODO: 13.01.2023 wybrac poprawna metodę w zaleznosci od struktury danych
+        // eventsFromJson.simpleAdd(eventToAdd);
+        writeToJsonFile(eventsFromJson);
+
+    }
+
+    public void addNewRouteToDatabase(Route routeToAdd){
+        Routes routesFromJson = readRoutesFromFile();
+        // TODO: 13.01.2023 wybrac poprawna metodę w zaleznosci od struktury danych
+        //routesFromJson.simpleAdd(routeToAdd);
+        writeToJsonFile(routesFromJson);
+
+    }
+
+    public void addNewUserToDatabase(User userToAdd){
+        Users usersFromJson = readUsersFromFile();
+        // TODO: 13.01.2023 wybrac poprawna metodę w zaleznosci od struktury danych
+        //usersFromJson.simpleAdd(userToAdd);
+        writeToJsonFile(usersFromJson);
+
+    }
+    // metody zapisu bez czytania bazy danych
+    public void writeToJsonFile(final Users users) {
         writeObjectToJsonFile(users, pathUsersFile);
     }
     public void writeToJsonFile(final Routes routes) {
@@ -57,6 +86,8 @@ class FileService {
         }
 
     }
+
+    // metody czytania pliku
     private <T> T readDataFromJsonFile(Class<T> dataType, Path path) {
         try (Reader reader = new FileReader(path.toFile())) {
             System.out.println("Zaczytuję plik: " + path);
