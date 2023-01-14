@@ -60,7 +60,7 @@ public class Menu {
                 }
 
             } catch (InputMismatchException e) {
-                System.out.println("Wybierz proszę widoczne opcje powyżej.");
+                System.out.print("Wybierz proszę widoczne opcje powyżej.");
                 isWrongAnswer = true;
                 scanner.nextLine();
             }
