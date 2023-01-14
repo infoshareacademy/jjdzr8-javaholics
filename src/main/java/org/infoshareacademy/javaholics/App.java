@@ -10,8 +10,6 @@ import org.infoshareacademy.javaholics.utils.FileService;
 
 public class App {
     public static void main(String[] args) {
-        EventService eventService = new EventService();
-        RouteService routeService = new RouteService();
         Menu menu = new Menu();
         menu.printMenu();
     }

@@ -11,7 +11,7 @@ public class FileUtils {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String IDS_JSON_FILE = "src/main/resources/IdNumbers.json";
 
-    public void saveIpsToJsonFile(IDsNumbers ipsNumbers) {
+    public void saveIdsToJsonFile(IDsNumbers ipsNumbers) {
         try (Writer writer = new FileWriter(IDS_JSON_FILE)) {
             GSON.toJson(ipsNumbers, writer);
             System.out.println("IDs' saved to json file:  " + IDS_JSON_FILE);
@@ -20,7 +20,7 @@ public class FileUtils {
         }
     }
 
-    public IDsNumbers readIpsFromJsonFile() {
+    public IDsNumbers readIdsFromJsonFile() {
         try (Reader reader = new FileReader(IDS_JSON_FILE)) {
             System.out.println("Reading IDs' from json file: " + IDS_JSON_FILE);
             IDsNumbers ipsNumbers = GSON.fromJson(reader, IDsNumbers.class);

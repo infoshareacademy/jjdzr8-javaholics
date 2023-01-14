@@ -7,21 +7,21 @@ import org.infoshareacademy.javaholics.utils.IDsNumbers;
 public class UserService implements IdNumbers {
 
     @Override
-    public long getCurrentIpNoSaveToJson() {
+    public long getCurrentIdNoSaveToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
         return iDsNumbers.getIpUser();
     }
 
     @Override
-    public long getCurrentIpWithSaveNextIpToJson() {
+    public long getCurrentIdWithSaveNextIdToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
         long idUser = iDsNumbers.getIpUser();
         iDsNumbers.setIpUser(idUser+1);
-        fileUtils.saveIpsToJsonFile(iDsNumbers);
+        fileUtils.saveIdsToJsonFile(iDsNumbers);
         return idUser;
     }
 
