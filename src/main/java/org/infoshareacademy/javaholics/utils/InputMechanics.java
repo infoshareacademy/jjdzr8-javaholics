@@ -76,11 +76,6 @@ public class InputMechanics {
             try {
                 input = reader.nextDouble();
 
-                    while (input <= 0) {
-                        System.out.println("Podaj poprawną wartość");
-                        input = reader.nextDouble();
-                    }
-                } catch (InputMismatchException e){
                 System.out.println("Podaj poprawną wartość");
                 flagAnswer = true;
                 reader.nextLine();
