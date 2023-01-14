@@ -32,7 +32,7 @@ public class FileService {
     }
 
     // inicjalizacja Gson
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     // metody zapisu
     public static String toJson(Object objectToJson){

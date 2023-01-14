@@ -1,11 +1,18 @@
 package org.infoshareacademy.javaholics.event;
 
+import com.google.gson.JsonObject;
 import org.infoshareacademy.javaholics.IdNumbers;
+import org.infoshareacademy.javaholics.route.Routes;
 import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
 import org.infoshareacademy.javaholics.utils.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.*;
+
+import static org.infoshareacademy.javaholics.utils.FileService.gson;
 
 public class EventService implements IdNumbers {
 
@@ -25,8 +32,38 @@ public class EventService implements IdNumbers {
         return date;
     }
 
-    public void eventInitialize() {
+    public void eventInitializeStart() {
         long id = 111L;
+        System.out.println(Instructions.getSeparator());
+        System.out.println("Podaj nazwę eventu: ");
+        String nameFromScanner = input.getInputShort();
+
+        newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
+
+        System.out.println("Wprowadzone parametry eventu: ");
+        System.out.println("Nazwa eventu : " + newEvent.getEventName());
+        System.out.println("Id eventu : " + newEvent.getId());
+        System.out.println("Data eventu : " + newEvent.getDate());
+        System.out.println("Godzina rozpoczęcia eventu : " + newEvent.getTime());
+    }
+    public void eventInitializeEdit() {
+        boolean error = false;
+        long id = 0;
+        do {
+            error = false;
+            try {
+                System.out.print("Podaj numer Id eventu: ");
+                id = Long.parseLong(scanner.nextLine());
+                while (id < 0 || id == 0) {
+                    System.out.println("Podaj poprawną wartość");
+                    id = Long.parseLong(scanner.nextLine());
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Podaj poprawny numer ID:");
+                error = true;
+                scanner.nextLine();
+            }
+        } while (error);
         System.out.println(Instructions.getSeparator());
         System.out.println("Podaj nazwę eventu: ");
         String nameFromScanner = input.getInputShort();
@@ -75,7 +112,23 @@ public class EventService implements IdNumbers {
     }
 
     public void startEvent() {
-        eventInitialize();
+        eventInitializeStart();
+        eventDetails();
+        saveEvent();
+    }
+    public void editRoute(){
+        FileService fileService = new FileService();
+        try {
+            Events events = new Events();
+            events = fileService.readEventsFromFile();
+            BufferedReader br = new BufferedReader(new FileReader("database/events.json"));
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            String stringResponse = jsonObject.get("events").toString();
+            System.out.println(stringResponse);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        eventInitializeEdit();
         eventDetails();
         saveEvent();
     }
