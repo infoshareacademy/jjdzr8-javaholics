@@ -5,6 +5,7 @@ import org.infoshareacademy.javaholics.event.Event;
 
 import java.io.File;
 import java.util.Date;
+import java.util.Objects;
 
 public class Route {
 
@@ -118,4 +119,34 @@ public class Route {
     public void setDifficulty(RouteDifficulty difficulty) {
         this.difficulty = difficulty;
     }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", locality='" + locality + '\'' +
+                ", placeStart='" + placeStart + '\'' +
+                ", placeStop='" + placeStop + '\'' +
+                ", difficulty=" + difficulty +
+                ", userId=" + userId +
+                ", avgRating=" + avgRating +
+                ", type='" + type + '\'' +
+                ", length=" + length +
+                ", date=" + date +
+                '}';
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Route route = (Route) o;
+        return Objects.equals(id, route.id) && Objects.equals(name, route.name) && Objects.equals(locality, route.locality) && Objects.equals(placeStart, route.placeStart) && Objects.equals(placeStop, route.placeStop) && Objects.equals(difficulty, route.difficulty) && Objects.equals(type, route.type) && Objects.equals(avgRating, route.avgRating) && Objects.equals(userId, route.userId)&& Objects.equals(length, route.length);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, locality, placeStart, placeStop, difficulty, userId, avgRating, type, length, date);
+    }
 }
+

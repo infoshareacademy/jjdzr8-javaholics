@@ -1,12 +1,19 @@
 package org.infoshareacademy.javaholics.route;
 
+import com.google.gson.JsonObject;
 import org.infoshareacademy.javaholics.IdNumbers;
 import org.infoshareacademy.javaholics.Menu;
 import org.infoshareacademy.javaholics.utils.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static org.infoshareacademy.javaholics.utils.FileService.gson;
 
 public class RouteService implements IdNumbers {
     boolean status;
@@ -21,9 +28,37 @@ public class RouteService implements IdNumbers {
 
     public void routeInitialize() {
         // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
-        long id = 111L;
+        long id = getCurrentIpWithSaveNextIpToJson();
         System.out.println(Instructions.getSeparator());
-        System.out.println("Podaj nazwę trasy: ");
+        System.out.print("Podaj nazwę trasy: ");
+        String nameFromScanner = input.getInputShort();
+
+        newRoute = new Route(id, nameFromScanner);
+
+        System.out.println("Wprowadzona nazwa:");
+        System.out.println(newRoute.getName());
+    }
+    public void routeInitializeEdit() {
+        boolean error = false;
+        long id = 0;
+        do {
+            error = false;
+            try {
+                System.out.print("Podaj numer Id trasy: ");
+                id = Long.parseLong(scanner.nextLine());
+                while (id < 0 || id == 0) {
+                    System.out.print("Podaj poprawną wartość");
+                    id = Long.parseLong(scanner.nextLine());
+                }
+            } catch (InputMismatchException e) {
+                System.out.print("Podaj poprawny numer ID:");
+                error = true;
+                scanner.nextLine();
+            }
+        } while (error);
+        // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
+        System.out.println(Instructions.getSeparator());
+        System.out.print("Podaj nazwę trasy: ");
         String nameFromScanner = input.getInputShort();
 
         newRoute = new Route(id, nameFromScanner);
@@ -34,14 +69,14 @@ public class RouteService implements IdNumbers {
     // Generator długości trasy
     public void routeLength() {
         boolean error = false;
-        System.out.println("Podaj początek trasy : ");
+        System.out.print("Podaj początek trasy : ");
         newRoute.setPlaceStart(input.getInputShort());
-        System.out.println("Podaj koniec trasy : ");
+        System.out.print("Podaj koniec trasy : ");
         newRoute.setPlaceStop(input.getInputShort());
-        System.out.println("Podaj długość trasy w km : ");
+        System.out.print("Podaj długość trasy w km : ");
         newRoute.setLength(input.getInputNumber());
-        System.out.println("Początek twojej trasy jest : " + newRoute.getPlaceStart() + " , a koniec jest " + newRoute.getPlaceStop());
-        System.out.println("Całkowita długość trasy to " + newRoute.getLength() + " km");
+        System.out.print("Początek twojej trasy jest : " + newRoute.getPlaceStart() + " , a koniec jest " + newRoute.getPlaceStop());
+        System.out.print("Całkowita długość trasy to " + newRoute.getLength() + " km");
     }
     // Generator poziomu trudnosci
     public void routeLevelOfDifficulty() {
@@ -77,7 +112,7 @@ public class RouteService implements IdNumbers {
                     newRoute.setDifficulty(RouteDifficulty.HARD);
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Wybierz poprawny poziom trudności trasy");
+                System.out.print("Wybierz poprawny poziom trudności trasy");
                 error = true;
                 scanner.nextLine();
             }
@@ -123,10 +158,10 @@ public class RouteService implements IdNumbers {
     }
 
     public void routeArea () {
-        System.out.println("W jakiej miejscowości chcesz zacząć? ");
+        System.out.print("W jakiej miejscowości chcesz zacząć? ");
         newRoute.setLocality(input.getInputShort());
-        System.out.println("Trasa ma lokalizację w miejscu : ");
-        System.out.println(newRoute.getLocality());
+        System.out.print("Trasa ma lokalizację w miejscu : ");
+        System.out.print(newRoute.getLocality());
     }
     public void routeDate () {
         System.out.println(getDate());
@@ -145,6 +180,7 @@ public class RouteService implements IdNumbers {
         System.out.println(Instructions.getSeparator());
     }
     public void menuReturn(){
+        System.out.println("Wciśnij dowolny przycisk by wrócić do menu");
         scanner.nextLine();
         Menu menu = new Menu();
         menu.printMenu();
@@ -159,6 +195,28 @@ public class RouteService implements IdNumbers {
 
     public void routCre(){
         routeInitialize();
+        routeArea();
+        routeLength();
+        routeType();
+        routeLevelOfDifficulty();
+        routeDate();
+        summaryRoute();
+        saveRoute();
+        menuReturn();
+    }
+    public void editRoute(){
+        FileService fileService = new FileService();
+        try {
+            Routes routes = new Routes();
+            routes = fileService.readRoutesFromFile();
+            BufferedReader br = new BufferedReader(new FileReader("database/routes.json"));
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            String stringResponse = jsonObject.get("routes").toString();
+            System.out.println(stringResponse);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        routeInitializeEdit();
         routeArea();
         routeLength();
         routeType();

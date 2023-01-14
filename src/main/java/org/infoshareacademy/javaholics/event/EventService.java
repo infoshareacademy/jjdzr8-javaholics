@@ -1,18 +1,19 @@
 package org.infoshareacademy.javaholics.event;
 
+import com.google.gson.JsonObject;
 import org.infoshareacademy.javaholics.IdNumbers;
+import org.infoshareacademy.javaholics.Menu;
 import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
 import org.infoshareacademy.javaholics.utils.*;
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.*;
 
-public class EventService implements IdNumbers {
+import static org.infoshareacademy.javaholics.utils.FileService.gson;
 
-//trasa początek i koniec
-//data i godzina rozpoczęcia
-//ilośc uczestników
-//nick i mail organizatora
+public class EventService implements IdNumbers {
 
     Users user = new Users();
     InputMechanics input = new InputMechanics();
@@ -20,15 +21,21 @@ public class EventService implements IdNumbers {
     Event newEvent;
     Date date = new Date();
     Scanner scanner = new Scanner(System.in);
+    public void menuReturn() {
+        System.out.println("Wciśnij dowolny przycisk by wrócić do menu");
+        scanner.nextLine();
+        Menu menu = new Menu();
+        menu.printMenu();
+    }
 
     public Date getDate() {
         return date;
     }
 
-    public void eventInitialize() {
+    public void eventInitializeStart() {
         long id = 111L;
         System.out.println(Instructions.getSeparator());
-        System.out.println("Podaj nazwę eventu: ");
+        System.out.print("Podaj nazwę eventu: ");
         String nameFromScanner = input.getInputShort();
 
         newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
@@ -38,6 +45,36 @@ public class EventService implements IdNumbers {
         System.out.println("Id eventu : " + newEvent.getId());
         System.out.println("Data eventu : " + newEvent.getDate());
         System.out.println("Godzina rozpoczęcia eventu : " + newEvent.getTime());
+    }
+    public void eventInitializeEdit() {
+        boolean error = false;
+        long id = 0;
+        do {
+            error = false;
+            try {
+                System.out.print("Podaj numer Id eventu: ");
+                id = Long.parseLong(scanner.nextLine());
+                while (id < 0 || id == 0) {
+                    System.out.println("Podaj poprawną wartość");
+                    id = Long.parseLong(scanner.nextLine());
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Podaj poprawny numer ID:");
+                error = true;
+                scanner.nextLine();
+            }
+        } while (error);
+        System.out.println(Instructions.getSeparator());
+        System.out.println("Podaj nazwę eventu: ");
+        String nameFromScanner = input.getInputShort();
+
+        newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
+
+        System.out.println("Wprowadzone parametry eventu: ");
+        System.out.print("Nazwa eventu : " + newEvent.getEventName());
+        System.out.print("Id eventu : " + newEvent.getId());
+        System.out.print("Data eventu : " + newEvent.getDate());
+        System.out.print("Godzina rozpoczęcia eventu : " + newEvent.getTime());
     }
 
     public void eventDetails() {
@@ -75,9 +112,27 @@ public class EventService implements IdNumbers {
     }
 
     public void startEvent() {
-        eventInitialize();
+        eventInitializeStart();
         eventDetails();
         saveEvent();
+        menuReturn();
+    }
+    public void editEvent(){
+        FileService fileService = new FileService();
+        try {
+            Events events = new Events();
+            events = fileService.readEventsFromFile();
+            BufferedReader br = new BufferedReader(new FileReader("database/events.json"));
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            String stringResponse = jsonObject.get("events").toString();
+            System.out.println(stringResponse);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        eventInitializeEdit();
+        eventDetails();
+        saveEvent();
+        menuReturn();
     }
 
     public long getCurrentIdNoSaveToJson() {
@@ -131,7 +186,7 @@ public class EventService implements IdNumbers {
         System.out.println(regionAndPlaceMap.keySet());
 
         String region;
-        Boolean allPlaces = false;
+        boolean allPlaces = false;
 
         do {
             System.out.println("Wpisz właściwy region lub *, aby wszystkie lokalizacje !");
@@ -188,6 +243,7 @@ public class EventService implements IdNumbers {
         for (int i = 0; i < sortedEvents.length; i++) {
             System.out.println(sortedEvents[i]);
         }
+        menuReturn();
     }
 
     public Event[] sortArrayEvent(Event[] event) {

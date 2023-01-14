@@ -2,33 +2,33 @@
   "events": {
     "1": {
       "id": 1,
-      "eventName": "Event_1",
-      "date": "Jan 20, 2023, 1:00:01 AM",
-      "time": "16:00",
-      "place": "Sopot",
-      "region": "Pomorskie",
+      "eventName": "TTTTT",
+      "date": "Jan 1, 1970, 1:00:01 AM",
+      "time": "17:00",
+      "place": "TTTT",
+      "region": "TTT",
       "ownerOfEvent": {
-        "id": 1,
-        "name": "Karol",
+        "id": 111,
+        "name": "Jan1",
         "login": "login1"
       },
-      "description": "blblabla",
-      "usersCount": 3
+      "description": "TTT",
+      "usersCount": 12
     },
     "2": {
       "id": 2,
-      "eventName": "Event_2",
-      "date": "Jan 19, 2023, 1:00:01 AM",
-      "time": "15:00",
-      "place": "Wrocław",
-      "region": "Dolnośląskie",
+      "eventName": "TEST",
+      "date": "Jan 1, 1970, 1:00:01 AM",
+      "time": "17:00",
+      "place": "TEST",
+      "region": "TEST",
       "ownerOfEvent": {
-        "id": 2,
-        "name": "Kuba",
-        "login": "login2"
+        "id": 111,
+        "name": "Jan1",
+        "login": "login1"
       },
-      "description": "blblabla",
-      "usersCount": 3
+      "description": "TEST",
+      "usersCount": 12
     },
     "3": {
       "id": 3,
@@ -119,6 +119,21 @@
       },
       "description": "blblabla",
       "usersCount": 3
+    },
+    "111": {
+      "id": 111,
+      "eventName": "Wariatkow",
+      "date": "Jan 1, 1970, 1:00:01 AM",
+      "time": "17:00",
+      "place": "Wroclaw",
+      "region": "Psie Pole",
+      "ownerOfEvent": {
+        "id": 111,
+        "name": "Jan1",
+        "login": "login1"
+      },
+      "description": "gkjn",
+      "usersCount": 100
     }
   }
 }
