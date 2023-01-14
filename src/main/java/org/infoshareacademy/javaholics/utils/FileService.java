@@ -6,7 +6,7 @@ import org.infoshareacademy.javaholics.event.Event;
 import org.infoshareacademy.javaholics.event.Events;
 import org.infoshareacademy.javaholics.route.Route;
 import org.infoshareacademy.javaholics.route.Routes;
-import org.infoshareacademy.javaholics.user.User;
+
 import org.infoshareacademy.javaholics.user.Users;
 
 import java.io.*;
@@ -40,32 +40,18 @@ public class FileService {
         return gson.toJson(objectToJson);
     }
 
-    // metody zapisu z wczesniejszym wczytaniem bazy danych i dodaniem do struktury danych pojedynczego wpisu
-    public void addNewEventToDatabase(Event eventToAdd){
-        Events eventsFromJson = readEventsFromFile();
-        // TODO: 13.01.2023 wybrac poprawna metodę w zaleznosci od struktury danych
-        // eventsFromJson.simpleAdd(eventToAdd);
         writeToJsonFile(eventsFromJson);
 
     }
 
     public void addNewRouteToDatabase(Route routeToAdd){
         Routes routesFromJson = readRoutesFromFile();
-        // TODO: 13.01.2023 wybrac poprawna metodę w zaleznosci od struktury danych
+
         //routesFromJson.simpleAdd(routeToAdd);
         writeToJsonFile(routesFromJson);
 
     }
 
-    public void addNewUserToDatabase(User userToAdd){
-        Users usersFromJson = readUsersFromFile();
-        // TODO: 13.01.2023 wybrac poprawna metodę w zaleznosci od struktury danych
-        //usersFromJson.simpleAdd(userToAdd);
-        writeToJsonFile(usersFromJson);
-
-    }
-    // metody zapisu bez czytania bazy danych
-    public void writeToJsonFile(final Users users) {
         writeObjectToJsonFile(users, pathUsersFile);
     }
     public void writeToJsonFile(final Routes routes) {

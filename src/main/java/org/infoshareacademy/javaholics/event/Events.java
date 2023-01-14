@@ -1,24 +1,23 @@
 package org.infoshareacademy.javaholics.event;
 
-import org.infoshareacademy.javaholics.user.User;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Events {
 
-    private List<Event> events = new ArrayList<>();
+    private Map<Long, Event> events = new TreeMap<>();
 
-    public List<Event> getEvents() {
+    public Map<Long, Event> getEvents() {
         return events;
     }
 
-    public void setEvents(List<Event> userArrayList) {
-        this.events = userArrayList;
+    public void setEvents(Map<Long, Event> events) {
+        this.events = events;
     }
 
-    public void add(Event event) {
-        events.add(event);
+    public void simpleAdd(Event event) {
+        events.put(event.getId(), event);
         System.out.println("Nowy event dodany: " + event.toString());
     }
 }

@@ -1,14 +1,124 @@
 {
-  "events": [
-    {
-      "id": 111,
-      "date": "Jan 1, 1970, 1:00:01 AM",
-      "time": "17",
+  "events": {
+    "1": {
+      "id": 1,
+      "eventName": "Event_1",
+      "date": "Jan 20, 2023, 1:00:01 AM",
+      "time": "16:00",
+      "place": "Sopot",
+      "region": "Pomorskie",
       "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
+        "id": 1,
+        "name": "Karol",
         "login": "login1"
-      }
+      },
+      "description": "blblabla",
+      "usersCount": 3
+    },
+    "2": {
+      "id": 2,
+      "eventName": "Event_2",
+      "date": "Jan 19, 2023, 1:00:01 AM",
+      "time": "15:00",
+      "place": "Wrocław",
+      "region": "Dolnośląskie",
+      "ownerOfEvent": {
+        "id": 2,
+        "name": "Kuba",
+        "login": "login2"
+      },
+      "description": "blblabla",
+      "usersCount": 3
+    },
+    "3": {
+      "id": 3,
+      "eventName": "Event_3",
+      "date": "Feb 1, 2023, 1:00:01 AM",
+      "time": "17:00",
+      "place": "Oława",
+      "region": "Dolnośląskie",
+      "ownerOfEvent": {
+        "id": 3,
+        "name": "Kamil",
+        "login": "login3"
+      },
+      "description": "blblabla",
+      "usersCount": 3
+    },
+    "4": {
+      "id": 4,
+      "eventName": "Event_4",
+      "date": "Jan 30, 2023, 1:00:01 AM",
+      "time": "10:00",
+      "place": "Malbork",
+      "region": "Pomorskie",
+      "ownerOfEvent": {
+        "id": 4,
+        "name": "Michał",
+        "login": "login4"
+      },
+      "description": "blblabla",
+      "usersCount": 3
+    },
+    "5": {
+      "id": 5,
+      "eventName": "Event_5",
+      "date": "Dec 1, 2023, 1:00:01 AM",
+      "time": "17:00",
+      "place": "Gdańsk",
+      "region": "Pomorskie",
+      "ownerOfEvent": {
+        "id": 1,
+        "name": "Karol",
+        "login": "login1"
+      },
+      "description": "blblabla",
+      "usersCount": 3
+    },
+    "6": {
+      "id": 6,
+      "eventName": "Event_6",
+      "date": "Jun 19, 2023, 1:00:01 AM",
+      "time": "7:00",
+      "place": "Wrocław",
+      "region": "Dolnośląskie",
+      "ownerOfEvent": {
+        "id": 2,
+        "name": "Kuba",
+        "login": "login2"
+      },
+      "description": "blblabla",
+      "usersCount": 3
+    },
+    "7": {
+      "id": 7,
+      "eventName": "Event_7",
+      "date": "Mar 1, 2023, 1:00:01 AM",
+      "time": "17:00",
+      "place": "Olawa",
+      "region": "Dolnośląskie",
+      "ownerOfEvent": {
+        "id": 3,
+        "name": "Kamil",
+        "login": "login3"
+      },
+      "description": "blblabla",
+      "usersCount": 3
+    },
+    "8": {
+      "id": 8,
+      "eventName": "Event_8",
+      "date": "Jul 10, 2023, 1:00:01 AM",
+      "time": "20:00",
+      "place": "Malbork",
+      "region": "Pomorskie",
+      "ownerOfEvent": {
+        "id": 4,
+        "name": "Michał",
+        "login": "login4"
+      },
+      "description": "blblabla",
+      "usersCount": 3
     }
-  ]
+  }
 }
