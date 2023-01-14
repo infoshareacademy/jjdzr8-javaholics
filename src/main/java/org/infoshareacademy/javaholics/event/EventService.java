@@ -80,20 +80,20 @@ public class EventService implements IdNumbers {
         saveEvent();
     }
 
-    public long getCurrentIpNoSaveToJson() {
+    public long getCurrentIdNoSaveToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
         return iDsNumbers.getIpEvent();
     }
 
-    public long getCurrentIpWithSaveNextIpToJson() {
+    public long getCurrentIdWithSaveNextIdToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
         long idEvent = iDsNumbers.getIpEvent();
         iDsNumbers.setIpEvent(idEvent + 1);
-        fileUtils.saveIpsToJsonFile(iDsNumbers);
+        fileUtils.saveIdsToJsonFile(iDsNumbers);
         return idEvent;
     }
 

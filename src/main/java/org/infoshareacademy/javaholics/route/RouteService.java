@@ -170,21 +170,21 @@ public class RouteService implements IdNumbers {
     }
 
     @Override
-    public long getCurrentIpNoSaveToJson() {
+    public long getCurrentIdNoSaveToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
         return iDsNumbers.getIpRoute();
     }
 
     @Override
-    public long getCurrentIpWithSaveNextIpToJson() {
+    public long getCurrentIdWithSaveNextIdToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIpsFromJsonFile();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
         long idRoute = iDsNumbers.getIpRoute();
         iDsNumbers.setIpRoute(idRoute+1);
-        fileUtils.saveIpsToJsonFile(iDsNumbers);
+        fileUtils.saveIdsToJsonFile(iDsNumbers);
         return idRoute;
     }
 }
