@@ -1,16 +1,17 @@
 {
-  "routes": [
-    {
-      "id": 6,
-      "name": "Krosno",
-      "locality": "Odrzan",
-      "placeStart": "krosno",
-      "placeStop": "krosno",
-      "difficulty": "EASY",
+  "routeMap": {
+    "8": {
+      "id": 8,
+      "name": "dfsf",
+      "locality": "fdsf",
+      "placeStart": "sdfsd",
+      "placeStop": "fdsf",
+      "difficulty": "HARD",
+      "userId": 1111,
       "avgRating": 0.0,
       "type": "Trasa rowerowa",
-      "length": 1111.0,
-      "date": "Jan 14, 2023, 9:56:16 PM"
+      "length": 2.3,
+      "date": "Jan 14, 2023, 11:26:11 PM"
     }
-  ]
+  }
 }

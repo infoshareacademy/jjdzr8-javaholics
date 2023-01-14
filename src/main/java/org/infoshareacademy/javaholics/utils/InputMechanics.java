@@ -75,7 +75,11 @@ public class InputMechanics {
             flagAnswer = false;
             try {
                 input = reader.nextDouble();
-
+                while (input <= 0) {
+                    System.out.println("Podaj poprawną wartość");
+                    input = reader.nextDouble();
+                }
+            } catch (InputMismatchException e){
                 System.out.println("Podaj poprawną wartość");
                 flagAnswer = true;
                 reader.nextLine();
@@ -84,6 +88,7 @@ public class InputMechanics {
         while (flagAnswer);
         return input;
     }
+
     // pobiera z klawiatury liczbę do pol wyboru kontekstowego 1, 2, 3...-  od 1 do zadanego zakresu (range)
     public int getInputSwitch(int range){
 

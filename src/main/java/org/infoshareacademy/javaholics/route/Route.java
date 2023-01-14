@@ -16,7 +16,7 @@ public class Route {
     private String placeStop;
     private RouteDifficulty difficulty;
     private String routeFile;
-    private User userId;
+    private long userId;
     private double avgRating;
     private String type;
     private double length;
@@ -80,11 +80,11 @@ public class Route {
         this.routeFile = routeFile;
     }
 
-    public User getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
