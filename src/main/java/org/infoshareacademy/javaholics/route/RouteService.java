@@ -6,7 +6,6 @@ import org.infoshareacademy.javaholics.Menu;
 import org.infoshareacademy.javaholics.utils.*;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Date;
@@ -27,8 +26,7 @@ public class RouteService implements IdNumbers {
     }
 
     public void routeInitialize() {
-        // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
-        long id = getCurrentIpWithSaveNextIpToJson();
+        long id = getCurrentIdWithSaveNextIdToJson() ;
         System.out.println(Instructions.getSeparator());
         System.out.print("Podaj nazwę trasy: ");
         String nameFromScanner = input.getInputShort();
@@ -37,6 +35,7 @@ public class RouteService implements IdNumbers {
 
         System.out.println("Wprowadzona nazwa:");
         System.out.println(newRoute.getName());
+        newRoute.setUserId(1111L);
     }
     public void routeInitializeEdit() {
         boolean error = false;
@@ -69,11 +68,11 @@ public class RouteService implements IdNumbers {
     // Generator długości trasy
     public void routeLength() {
         boolean error = false;
-        System.out.print("Podaj początek trasy : ");
+        System.out.print(" Podaj początek trasy : ");
         newRoute.setPlaceStart(input.getInputShort());
-        System.out.print("Podaj koniec trasy : ");
+        System.out.print(" Podaj koniec trasy : ");
         newRoute.setPlaceStop(input.getInputShort());
-        System.out.print("Podaj długość trasy w km : ");
+        System.out.print(" Podaj długość trasy w km : ");
         newRoute.setLength(input.getInputNumber());
         System.out.print("Początek twojej trasy jest : " + newRoute.getPlaceStart() + " , a koniec jest " + newRoute.getPlaceStop());
         System.out.print("Całkowita długość trasy to " + newRoute.getLength() + " km");
@@ -187,9 +186,7 @@ public class RouteService implements IdNumbers {
     }
     public void saveRoute(){
         FileService fileService = new FileService();
-
-        Routes routes = new Routes();
-        fileService.addNewRouteToDatabase(r);
+        fileService.addNewRouteToDatabase(newRoute);
     }
 
     public void routCre(){
