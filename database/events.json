@@ -2,18 +2,18 @@
   "events": {
     "1": {
       "id": 1,
-      "eventName": "Event_1",
-      "date": "Jan 20, 2023, 1:00:01 AM",
-      "time": "16:00",
-      "place": "Sopot",
-      "region": "Pomorskie",
+      "eventName": "TTTTT",
+      "date": "Jan 1, 1970, 1:00:01 AM",
+      "time": "17:00",
+      "place": "TTTT",
+      "region": "TTT",
       "ownerOfEvent": {
-        "id": 1,
-        "name": "Karol",
+        "id": 111,
+        "name": "Jan1",
         "login": "login1"
       },
-      "description": "blblabla",
-      "usersCount": 3
+      "description": "TTT",
+      "usersCount": 12
     },
     "2": {
       "id": 2,

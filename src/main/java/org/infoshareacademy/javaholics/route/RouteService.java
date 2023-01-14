@@ -28,7 +28,7 @@ public class RouteService implements IdNumbers {
 
     public void routeInitialize() {
         // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
-        long id = 111L;
+        long id = getCurrentIpWithSaveNextIpToJson();
         System.out.println(Instructions.getSeparator());
         System.out.println("Podaj nazwę trasy: ");
         String nameFromScanner = input.getInputShort();
@@ -180,6 +180,7 @@ public class RouteService implements IdNumbers {
         System.out.println(Instructions.getSeparator());
     }
     public void menuReturn(){
+        System.out.println("Wciśnij dowolny przycisk by wrócić do menu");
         scanner.nextLine();
         Menu menu = new Menu();
         menu.printMenu();

@@ -1,5 +1,6 @@
 package org.infoshareacademy.javaholics;
 import org.infoshareacademy.javaholics.event.EventService;
+//import org.infoshareacademy.javaholics.route.RouteSearch;
 import org.infoshareacademy.javaholics.route.RouteSearch;
 import org.infoshareacademy.javaholics.route.RouteService;
 
@@ -11,8 +12,8 @@ public class Menu {
         System.out.println("1. Dodaj nową trasę");
         System.out.println("2. Wyszukaj trasę");
         System.out.println("3. Edytuj trasę");
-        System.out.println("4. Usuń trasę");
-        System.out.println("5. Dodaj Event");
+        System.out.println("4. Dodaj Event");
+        System.out.println("5. Edytuj Event");
         System.out.println("6. Wyszukaj Event");
 
         boolean isWrongAnswer;
@@ -31,7 +32,7 @@ public class Menu {
                     case 2:
                         System.out.println("Wyszukaj trasę");
                         RouteSearch routeSearch = new RouteSearch();
-                        routeSearch.displayRoutPlaceAndDifficulty();
+                        routeSearch.displayRoutePlaceAndDifficulty();
                         break;
                     case 3:
                         System.out.println("Edytuj trasę");

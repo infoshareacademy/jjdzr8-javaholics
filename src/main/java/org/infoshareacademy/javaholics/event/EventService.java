@@ -2,6 +2,7 @@ package org.infoshareacademy.javaholics.event;
 
 import com.google.gson.JsonObject;
 import org.infoshareacademy.javaholics.IdNumbers;
+import org.infoshareacademy.javaholics.Menu;
 import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
 import org.infoshareacademy.javaholics.utils.*;
@@ -26,6 +27,12 @@ public class EventService implements IdNumbers {
     Event newEvent;
     Date date = new Date();
     Scanner scanner = new Scanner(System.in);
+    public void menuReturn() {
+        System.out.println("Wciśnij dowolny przycisk by wrócić do menu");
+        scanner.nextLine();
+        Menu menu = new Menu();
+        menu.printMenu();
+    }
 
     public Date getDate() {
         return date;
@@ -114,6 +121,7 @@ public class EventService implements IdNumbers {
         eventInitializeStart();
         eventDetails();
         saveEvent();
+        menuReturn();
     }
     public void editEvent(){
         FileService fileService = new FileService();
@@ -130,6 +138,7 @@ public class EventService implements IdNumbers {
         eventInitializeEdit();
         eventDetails();
         saveEvent();
+        menuReturn();
     }
 
     public long getCurrentIpNoSaveToJson() {
@@ -240,6 +249,7 @@ public class EventService implements IdNumbers {
         for (int i = 0; i < sortedEvents.length; i++) {
             System.out.println(sortedEvents[i]);
         }
+        menuReturn();
     }
 
     public Event[] sortArrayEvent(Event[] event) {
