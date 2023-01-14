@@ -122,18 +122,18 @@
     },
     "111": {
       "id": 111,
-      "eventName": "AAAA",
+      "eventName": "Wariatkow",
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
-      "place": "AAAA",
-      "region": "AAAA",
+      "place": "Wroclaw",
+      "region": "Psie Pole",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
         "login": "login1"
       },
-      "description": "AAAA",
-      "usersCount": 12
+      "description": "gkjn",
+      "usersCount": 100
     }
   }
 }

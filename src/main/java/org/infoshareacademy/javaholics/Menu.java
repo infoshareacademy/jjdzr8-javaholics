@@ -20,43 +20,43 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Co chcesz zrobić: ");
 
+        RouteService routeService = new RouteService();
+        EventService eventService = new EventService();
+        RouteSearch routeSearch = new RouteSearch();
+
+
         do {
             isWrongAnswer = false;
             try {
                 switch (scanner.nextInt()) {
-                    case 1:
+                    case 1 -> {
                         System.out.println("Dodaj nową trasę");
-                        RouteService routeService = new RouteService();
                         routeService.routCre();
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         System.out.println("Wyszukaj trasę");
-                        RouteSearch routeSearch = new RouteSearch();
                         routeSearch.displayRoutePlaceAndDifficulty();
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         System.out.println("Edytuj trasę");
-                        RouteService routeService1 = new RouteService();
-                        routeService1.editRoute();
-                        break;
-                    case 4:
+                        routeService.editRoute();
+                    }
+                    case 4 -> {
                         System.out.println("Dodaj Event");
-                        EventService eventService = new EventService();
                         eventService.startEvent();
-                        break;
-                    case 5:
+                    }
+                    case 5 -> {
                         System.out.println("Edytuj event");
-                        EventService eventService3 = new EventService();
-                        eventService3.editEvent();
-                        break;
-                    case 6:
+                        eventService.editEvent();
+                    }
+                    case 6 -> {
                         System.out.println("Wyszukaj Event");
-                        EventService eventService2 = new EventService();
-                        eventService2.displaySortedEventsByRegionAndPalce();
-                        break;
-                    default:
+                        eventService.displaySortedEventsByRegionAndPalce();
+                    }
+                    default -> {
                         System.out.println("Wybierz opcję od 1 do 6");
                         isWrongAnswer = true;
+                    }
                 }
 
             } catch (InputMismatchException e) {

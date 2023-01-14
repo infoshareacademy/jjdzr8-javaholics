@@ -6,7 +6,6 @@ import org.infoshareacademy.javaholics.Menu;
 import org.infoshareacademy.javaholics.user.User;
 import org.infoshareacademy.javaholics.user.Users;
 import org.infoshareacademy.javaholics.utils.*;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,11 +14,6 @@ import java.util.*;
 import static org.infoshareacademy.javaholics.utils.FileService.gson;
 
 public class EventService implements IdNumbers {
-
-//trasa początek i koniec
-//data i godzina rozpoczęcia
-//ilośc uczestników
-//nick i mail organizatora
 
     Users user = new Users();
     InputMechanics input = new InputMechanics();
@@ -41,7 +35,7 @@ public class EventService implements IdNumbers {
     public void eventInitializeStart() {
         long id = 111L;
         System.out.println(Instructions.getSeparator());
-        System.out.println("Podaj nazwę eventu: ");
+        System.out.print("Podaj nazwę eventu: ");
         String nameFromScanner = input.getInputShort();
 
         newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
@@ -77,10 +71,10 @@ public class EventService implements IdNumbers {
         newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
 
         System.out.println("Wprowadzone parametry eventu: ");
-        System.out.println("Nazwa eventu : " + newEvent.getEventName());
-        System.out.println("Id eventu : " + newEvent.getId());
-        System.out.println("Data eventu : " + newEvent.getDate());
-        System.out.println("Godzina rozpoczęcia eventu : " + newEvent.getTime());
+        System.out.print("Nazwa eventu : " + newEvent.getEventName());
+        System.out.print("Id eventu : " + newEvent.getId());
+        System.out.print("Data eventu : " + newEvent.getDate());
+        System.out.print("Godzina rozpoczęcia eventu : " + newEvent.getTime());
     }
 
     public void eventDetails() {
@@ -192,7 +186,7 @@ public class EventService implements IdNumbers {
         System.out.println(regionAndPlaceMap.keySet());
 
         String region;
-        Boolean allPlaces = false;
+        boolean allPlaces = false;
 
         do {
             System.out.println("Wpisz właściwy region lub *, aby wszystkie lokalizacje !");
