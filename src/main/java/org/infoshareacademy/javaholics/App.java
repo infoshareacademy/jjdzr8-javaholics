@@ -10,6 +10,8 @@ import org.infoshareacademy.javaholics.utils.FileService;
 public class App {
     public static void main(String[] args) {
         EventService eventService = new EventService();
+        RouteService routeService = new RouteService();
+        routeService.routCre();
 //        UserService userService = new UserService();
 //        RouteService routeService = new RouteService();
 ////        eventService.startEvent();

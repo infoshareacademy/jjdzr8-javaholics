@@ -1,12 +1,19 @@
 package org.infoshareacademy.javaholics.route;
 
+import com.google.gson.JsonObject;
 import org.infoshareacademy.javaholics.IdNumbers;
 import org.infoshareacademy.javaholics.Menu;
 import org.infoshareacademy.javaholics.utils.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static org.infoshareacademy.javaholics.utils.FileService.gson;
 
 public class RouteService implements IdNumbers {
     boolean status;
@@ -22,6 +29,34 @@ public class RouteService implements IdNumbers {
     public void routeInitialize() {
         // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
         long id = 111L;
+        System.out.println(Instructions.getSeparator());
+        System.out.println("Podaj nazwę trasy: ");
+        String nameFromScanner = input.getInputShort();
+
+        newRoute = new Route(id, nameFromScanner);
+
+        System.out.println("Wprowadzona nazwa:");
+        System.out.println(newRoute.getName());
+    }
+    public void routeInitializeEdit() {
+        boolean error = false;
+        long id = 0;
+        do {
+            error = false;
+            try {
+                System.out.print("Podaj numer Id trasy: ");
+                id = Long.parseLong(scanner.nextLine());
+                while (id < 0 || id == 0) {
+                    System.out.println("Podaj poprawną wartość");
+                    id = Long.parseLong(scanner.nextLine());
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Podaj poprawny numer ID:");
+                error = true;
+                scanner.nextLine();
+            }
+        } while (error);
+        // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
         System.out.println(Instructions.getSeparator());
         System.out.println("Podaj nazwę trasy: ");
         String nameFromScanner = input.getInputShort();
@@ -159,6 +194,28 @@ public class RouteService implements IdNumbers {
 
     public void routCre(){
         routeInitialize();
+        routeArea();
+        routeLength();
+        routeType();
+        routeLevelOfDifficulty();
+        routeDate();
+        summaryRoute();
+        saveRoute();
+        menuReturn();
+    }
+    public void editRoute(){
+        FileService fileService = new FileService();
+        try {
+            Routes routes = new Routes();
+            routes = fileService.readRoutesFromFile();
+            BufferedReader br = new BufferedReader(new FileReader("database/routes.json"));
+            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+            String stringResponse = jsonObject.get("routes").toString();
+            System.out.println(stringResponse);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        routeInitializeEdit();
         routeArea();
         routeLength();
         routeType();
