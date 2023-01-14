@@ -28,7 +28,8 @@ public class RouteService implements IdNumbers {
 
     public void routeInitialize() {
         // tu do poprawienia by id bylo dynamicznie nadawane i kolejno od ostaniego
-        long id = getCurrentIpWithSaveNextIpToJson();
+        getCurrentIdWithSaveNextIdToJson();
+        long id = getCurrentIdNoSaveToJson();
         System.out.println(Instructions.getSeparator());
         System.out.print("Podaj nazwę trasy: ");
         String nameFromScanner = input.getInputShort();

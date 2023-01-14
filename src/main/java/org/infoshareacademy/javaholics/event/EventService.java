@@ -33,7 +33,8 @@ public class EventService implements IdNumbers {
     }
 
     public void eventInitializeStart() {
-        long id = 111L;
+        getCurrentIdWithSaveNextIdToJson();
+        long id = getCurrentIdNoSaveToJson();
         System.out.println(Instructions.getSeparator());
         System.out.print("Podaj nazwę eventu: ");
         String nameFromScanner = input.getInputShort();

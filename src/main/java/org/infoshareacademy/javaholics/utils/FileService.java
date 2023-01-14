@@ -39,21 +39,18 @@ public class FileService {
     public static String toJson(Object objectToJson){
         return gson.toJson(objectToJson);
     }
-
+    public void addNewEventToDatabase(Event eventToAdd){
+        Events eventsFromJson = readEventsFromFile();
+        eventsFromJson.simpleAdd(eventToAdd);
         writeToJsonFile(eventsFromJson);
-
     }
-
     public void addNewRouteToDatabase(Route routeToAdd){
         Routes routesFromJson = readRoutesFromFile();
 
         //routesFromJson.simpleAdd(routeToAdd);
         writeToJsonFile(routesFromJson);
-
     }
 
-        writeObjectToJsonFile(users, pathUsersFile);
-    }
     public void writeToJsonFile(final Routes routes) {
         writeObjectToJsonFile(routes, pathRoutesFile);
     }
