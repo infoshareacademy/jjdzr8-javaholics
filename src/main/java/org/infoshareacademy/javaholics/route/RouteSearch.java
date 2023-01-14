@@ -1,15 +1,8 @@
 package org.infoshareacademy.javaholics.route;
 
-import com.google.gson.reflect.TypeToken;
 import org.infoshareacademy.javaholics.Menu;
 import org.infoshareacademy.javaholics.utils.FileService;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.Buffer;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.util.*;
 public class RouteSearch {
 
@@ -21,20 +14,20 @@ Scanner scanner = new Scanner(System.in);
         routes = fileService.readRoutesFromFile();
         Map<String, Map<String, List<Route>>> regionAndPlaceMap = new TreeMap<>();
 
-        for (int i = 0; i < routes.getRoutes().size(); i++) {
-            String keyLocality = routes.getRoutes().get(i).getLocality();
-            String keyType = String.valueOf(routes.getRoutes().get(i).getType());
+        for (int i = 0; i < routes.getRouteMap().size(); i++) {
+            String keyLocality = routes.getRouteMap().get(i).getLocality();
+            String keyType = String.valueOf(routes.getRouteMap().get(i).getType());
 
             if (!regionAndPlaceMap.containsKey(keyLocality)) {
                 regionAndPlaceMap.put(keyLocality, new TreeMap<>());
                 regionAndPlaceMap.get(keyLocality).put(keyType, new ArrayList<>());
-                regionAndPlaceMap.get(keyLocality).get(keyType).add(routes.getRoutes().get(i));
+                regionAndPlaceMap.get(keyLocality).get(keyType).add(routes.getRouteMap().get(i));
             } else {
                 if (!regionAndPlaceMap.get(keyLocality).containsKey(keyType)) {
                     regionAndPlaceMap.get(keyLocality).put(keyType, new ArrayList<>());
-                    regionAndPlaceMap.get(keyLocality).get(keyType).add(routes.getRoutes().get(i));
+                    regionAndPlaceMap.get(keyLocality).get(keyType).add(routes.getRouteMap().get(i));
                 } else {
-                    regionAndPlaceMap.get(keyLocality).get(keyType).add(routes.getRoutes().get(i));
+                    regionAndPlaceMap.get(keyLocality).get(keyType).add(routes.getRouteMap().get(i));
                 }
 
             }

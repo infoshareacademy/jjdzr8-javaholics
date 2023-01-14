@@ -48,7 +48,7 @@ public class FileService {
 
     public void addNewRouteToDatabase(Route routeToAdd){
         Routes routesFromJson = readRoutesFromFile();
-        //routesFromJson.simpleAdd(routeToAdd);
+        routesFromJson.simpleAddRoute(routeToAdd);
         writeToJsonFile(routesFromJson);
 
     }
@@ -108,7 +108,7 @@ public class FileService {
     public Routes readRoutesFromFile() {
         Routes routes = readDataFromJsonFile(Routes.class, pathRoutesFile);
         if (Objects.nonNull(routes)) {
-            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + routes.getRoutes().size());
+            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + routes.getRouteMap().size());
             return routes;
         } else {
             return new Routes();
