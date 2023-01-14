@@ -1,17 +1,56 @@
 {
   "routeMap": {
-    "8": {
-      "id": 8,
-      "name": "dfsf",
-      "locality": "fdsf",
-      "placeStart": "sdfsd",
-      "placeStop": "fdsf",
-      "difficulty": "HARD",
+    "9": {
+      "id": 9,
+      "name": "Gdańsk-Zakopane",
+      "locality": "Gdańsk",
+      "placeStart": "Gdańsk",
+      "placeStop": "Zakopane",
+      "difficulty": "EXTREME",
       "userId": 1111,
       "avgRating": 0.0,
       "type": "Trasa rowerowa",
-      "length": 2.3,
-      "date": "Jan 14, 2023, 11:26:11 PM"
+      "length": 704.0,
+      "date": "Jan 14, 2023, 11:55:55 PM"
+    },
+    "10": {
+      "id": 10,
+      "name": "Spacer",
+      "locality": "Gdańsk",
+      "placeStart": "Olia",
+      "placeStop": "Pacholek",
+      "difficulty": "EASY",
+      "userId": 1111,
+      "avgRating": 0.0,
+      "type": "Trasa spacerowa",
+      "length": 1.4,
+      "date": "Jan 14, 2023, 11:57:00 PM"
+    },
+    "11": {
+      "id": 11,
+      "name": "Gdańsk-Sopot",
+      "locality": "Gdańsk",
+      "placeStart": "Długa",
+      "placeStop": "Monte",
+      "difficulty": "MEDIUM",
+      "userId": 1111,
+      "avgRating": 0.0,
+      "type": "Trasa rowerowa",
+      "length": 24.5,
+      "date": "Jan 14, 2023, 11:57:47 PM"
+    },
+    "12": {
+      "id": 12,
+      "name": "Gdańsk-Gdynia",
+      "locality": "Gdańsk",
+      "placeStart": "Długa",
+      "placeStop": "Świetojańska",
+      "difficulty": "MEDIUM",
+      "userId": 1111,
+      "avgRating": 0.0,
+      "type": "Trasa rowerowa",
+      "length": 39.0,
+      "date": "Jan 15, 2023, 12:00:39 AM"
     }
   }
 }
