@@ -44,8 +44,8 @@ public class EventService implements IdNumbers {
         System.out.println("Wprowadzone parametry eventu: ");
         System.out.println("Nazwa eventu : " + newEvent.getEventName());
         System.out.println("Id eventu : " + newEvent.getId());
-        System.out.println("Data eventu : " + newEvent.getDate());
-        System.out.println("Godzina rozpoczęcia eventu : " + newEvent.getTime());
+//        System.out.println("Data eventu : " + newEvent.getDate());
+//        System.out.println("Godzina rozpoczęcia eventu : " + newEvent.getTime());
     }
     public void eventInitializeEdit() {
         boolean error = false;

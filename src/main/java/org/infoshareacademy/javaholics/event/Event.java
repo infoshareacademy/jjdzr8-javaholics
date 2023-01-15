@@ -105,7 +105,6 @@ public class Event {
                 ", region='" + region + '\'' +
                 ", ownerOfEvent=" + ownerOfEvent +
                 ", description='" + description + '\'' +
-                ", usersCount=" + usersCount +
                 '}';
     }
 

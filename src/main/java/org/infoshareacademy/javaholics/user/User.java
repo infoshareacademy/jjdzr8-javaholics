@@ -86,13 +86,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
                 ", login='" + login + '\'' +
-                ", sex=" + sex +
-                ", image='" + image + '\'' +
-                ", location='" + location + '\'' +
-                ", prefferedRegionEvents='" + prefferedRegionEvents + '\'' +
-                ", dectription='" + dectription + '\'' +
                 '}';
     }
 }

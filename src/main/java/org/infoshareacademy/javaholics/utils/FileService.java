@@ -44,12 +44,12 @@ public class FileService {
         eventsFromJson.simpleAdd(eventToAdd);
         writeToJsonFile(eventsFromJson);
     }
-    public void addNewRouteToDatabase(Route routeToAdd){
-        Routes routesFromJson = readRoutesFromFile();
-
-        //routesFromJson.simpleAdd(routeToAdd);
-        writeToJsonFile(routesFromJson);
-    }
+//    public void addNewRouteToDatabase(Route routeToAdd){
+//        Routes routesFromJson = readRoutesFromFile();
+//
+//        //routesFromJson.simpleAdd(routeToAdd);
+//        writeToJsonFile(routesFromJson);
+//    }
 
     public void writeToJsonFile(final Routes routes) {
         writeObjectToJsonFile(routes, pathRoutesFile);

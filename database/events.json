@@ -2,11 +2,11 @@
   "events": {
     "1": {
       "id": 1,
-      "eventName": "Opop",
+      "eventName": "Wystrzałowy",
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
       "place": "Katowice",
-      "region": "Katowice",
+      "region": "Pomorskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
@@ -17,11 +17,11 @@
     },
     "2": {
       "id": 2,
-      "eventName": "TEST",
+      "eventName": "Wyzwanie",
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
-      "place": "TEST",
-      "region": "TEST",
+      "place": "Katowice",
+      "region": "Pomorskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
@@ -92,26 +92,26 @@
     },
     "7": {
       "id": 7,
-      "eventName": "BBBB",
+      "eventName": "Juvenalia",
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
-      "place": "asda",
-      "region": "asd",
+      "place": "Wrocław",
+      "region": "Dolnośląskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
         "login": "login1"
       },
-      "description": "asd",
+      "description": "ImprezaStudencka",
       "usersCount": 12
     },
     "8": {
       "id": 8,
-      "eventName": "QQQ",
+      "eventName": "Wakacje",
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
-      "place": "QQQ",
-      "region": "QqQQ",
+      "place": "MorskieOko",
+      "region": "Pomorskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
@@ -126,7 +126,7 @@
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
       "place": "Wroclaw",
-      "region": "Psie Pole",
+      "region": "Dolnośląskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
@@ -137,11 +137,11 @@
     },
     "9": {
       "id": 9,
-      "eventName": "awsdas",
+      "eventName": "Katowice",
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
-      "place": "asd",
-      "region": "sad",
+      "place": "Rzeka",
+      "region": "Dolnośląskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
@@ -156,7 +156,7 @@
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
       "place": "Gliwice",
-      "region": "Krupówki",
+      "region": "Śląsk",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
@@ -171,7 +171,7 @@
       "date": "Jan 1, 1970, 1:00:01 AM",
       "time": "17:00",
       "place": "Warszawa",
-      "region": "Centrum",
+      "region": "Pomorskie",
       "ownerOfEvent": {
         "id": 111,
         "name": "Jan1",
