@@ -164,6 +164,21 @@
       },
       "description": "Cięzko",
       "usersCount": 12
+    },
+    "12": {
+      "id": 12,
+      "eventName": "Sylwester",
+      "date": "Jan 1, 1970, 1:00:01 AM",
+      "time": "17:00",
+      "place": "Warszawa",
+      "region": "Centrum",
+      "ownerOfEvent": {
+        "id": 111,
+        "name": "Jan1",
+        "login": "login1"
+      },
+      "description": "Sylwester",
+      "usersCount": 12
     }
   }
 }

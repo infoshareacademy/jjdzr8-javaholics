@@ -1,16 +1,16 @@
 {
   "routes": [
     {
-      "id": 12,
-      "name": "asd",
-      "locality": "asd",
-      "placeStart": "asd",
-      "placeStop": "asd",
+      "id": 13,
+      "name": "Wyzwanie",
+      "locality": "Kraków",
+      "placeStart": "Rzeka",
+      "placeStop": "Zamek",
       "difficulty": "EXTREME",
       "avgRating": 0.0,
       "type": "Trasa rowerowa",
       "length": 12.0,
-      "date": "Jan 15, 2023, 1:39:04 AM"
+      "date": "Jan 15, 2023, 8:43:40 AM"
     }
   ]
 }
