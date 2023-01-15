@@ -76,12 +76,15 @@ public class InputMechanics {
             try {
                 input = reader.nextDouble();
 
+                while (input < 0 || input == 0) {
+                    System.out.println("Podaj poprawną wartość");
+                    input = reader.nextDouble();
+                }
+                // do poprawy wyjatek dla podania stringa zamiast liczby i ewentualne rzutowanie na double integera
+            } catch (InputMismatchException e){
                 System.out.println("Podaj poprawną wartość");
                 flagAnswer = true;
                 reader.nextLine();
-            }catch (InputMismatchException e){
-                System.out.println(e.getMessage());
-                flagAnswer = true;
             }
         }
         while (flagAnswer);
