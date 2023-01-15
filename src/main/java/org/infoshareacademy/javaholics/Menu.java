@@ -3,12 +3,14 @@ import org.infoshareacademy.javaholics.event.EventService;
 //import org.infoshareacademy.javaholics.route.RouteSearch;
 import org.infoshareacademy.javaholics.route.RouteSearch;
 import org.infoshareacademy.javaholics.route.RouteService;
+import org.infoshareacademy.javaholics.utils.Instructions;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Menu {
 
     public void printMenu() {
+        System.out.println(Instructions.getLogo());
         System.out.println("1. Dodaj nową trasę");
         System.out.println("2. Wyszukaj trasę");
         System.out.println("3. Edytuj trasę");
