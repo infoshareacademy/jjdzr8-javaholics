@@ -1,16 +1,16 @@
 {
   "routes": [
     {
-      "id": 13,
-      "name": "Wyzwanie",
-      "locality": "Kraków",
-      "placeStart": "Rzeka",
-      "placeStop": "Zamek",
-      "difficulty": "EXTREME",
+      "id": 14,
+      "name": "Edit",
+      "locality": "Wrocław",
+      "placeStart": "Centum",
+      "placeStop": "Grunwal",
+      "difficulty": "HARD",
       "avgRating": 0.0,
-      "type": "Trasa rowerowa",
+      "type": "Trasa spacerowa",
       "length": 12.0,
-      "date": "Jan 15, 2023, 8:43:40 AM"
+      "date": "Jan 15, 2023, 12:04:05 PM"
     }
   ]
 }

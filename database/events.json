@@ -47,18 +47,18 @@
     },
     "4": {
       "id": 4,
-      "eventName": "Event_4",
-      "date": "Jan 30, 2023, 1:00:01 AM",
-      "time": "10:00",
-      "place": "Malbork",
-      "region": "Pomorskie",
+      "eventName": "Event_4_edit",
+      "date": "Jan 1, 1970, 1:00:01 AM",
+      "time": "17:00",
+      "place": "Kraków",
+      "region": "Centrum",
       "ownerOfEvent": {
-        "id": 4,
-        "name": "Michał",
-        "login": "login4"
+        "id": 111,
+        "name": "Jan1",
+        "login": "login1"
       },
-      "description": "blblabla",
-      "usersCount": 3
+      "description": "Kawa",
+      "usersCount": 5
     },
     "5": {
       "id": 5,
@@ -179,6 +179,21 @@
       },
       "description": "Sylwester",
       "usersCount": 12
+    },
+    "15": {
+      "id": 15,
+      "eventName": "Projekt",
+      "date": "Jan 1, 1970, 1:00:01 AM",
+      "time": "17:00",
+      "place": "Wrocław",
+      "region": "Centrum",
+      "ownerOfEvent": {
+        "id": 111,
+        "name": "Jan1",
+        "login": "login1"
+      },
+      "description": "Odpoczynek",
+      "usersCount": 4
     }
   }
 }
