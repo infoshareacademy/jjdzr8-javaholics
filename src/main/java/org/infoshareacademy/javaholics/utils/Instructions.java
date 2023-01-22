@@ -11,10 +11,8 @@ public class Instructions {
             |_| |_| |_|\\___|\\___|\\__|_____\\__, |\\___|\\__|_| |_|\\___|_|  \s
                                           |___/                         \s                                                              
             """;
-
     public static String getSeparator() {
         return separator;
     }
-
     public static String getLogo() { return logo; }
 }

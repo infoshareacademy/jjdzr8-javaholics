@@ -44,17 +44,13 @@ public class FileService {
         eventsFromJson.simpleAdd(eventToAdd);
         writeToJsonFile(eventsFromJson);
     }
+//    public void addNewRouteToDatabase(Route routeToAdd){
+//        Routes routesFromJson = readRoutesFromFile();
+//
+//        //routesFromJson.simpleAdd(routeToAdd);
+//        writeToJsonFile(routesFromJson);
+//    }
 
-  public void addNewRouteToDatabase(Route routeToAdd){
-        Routes routesFromJson = readRoutesFromFile();
-        routesFromJson.simpleAddRoute(routeToAdd);
-        writeToJsonFile(routesFromJson);
-    }
-        
-public void writeJsonFile(final Users users) {
-        writeObjectToJsonFile(users, pathUsersFile);
-    }
-    
     public void writeToJsonFile(final Routes routes) {
         writeObjectToJsonFile(routes, pathRoutesFile);
     }
@@ -97,7 +93,7 @@ public void writeJsonFile(final Users users) {
     public Events readEventsFromFile() {
         Events events = readDataFromJsonFile(Events.class, pathEventsFile);
         if (Objects.nonNull(events)) {
-            System.out.println("Plik właściwie zaimportowany. Ilość eventów: " + events.getEvents().size());
+            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + events.getEvents().size());
             return events;
         } else {
             return new Events();
@@ -107,7 +103,7 @@ public void writeJsonFile(final Users users) {
     public Routes readRoutesFromFile() {
         Routes routes = readDataFromJsonFile(Routes.class, pathRoutesFile);
         if (Objects.nonNull(routes)) {
-            System.out.println("Plik właściwie zaimportowany. Ilość tras: " + routes.getRouteMap().size());
+            System.out.println("Plik właściwie zaimportowany. Ilość użytkowników: " + routes.getRoutes().size());
             return routes;
         } else {
             return new Routes();

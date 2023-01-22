@@ -55,6 +55,8 @@ Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < regionAndPlaceMap.get(region).get(difficulty).size(); i++) {
             System.out.println(regionAndPlaceMap.get(region).get(difficulty).get(i));
         }
+        System.out.println("Wciśnij dowolny przycisk");
+        menuReturn();
     }
     public void menuReturn(){
         scanner.nextLine();
