@@ -1,9 +1,9 @@
 package com.javaholics.web.service;
 
 import com.google.gson.JsonObject;
-import org.infoshareacademy.javaholics.IdNumbers;
-import org.infoshareacademy.javaholics.Menu;
-import org.infoshareacademy.javaholics.utils.*;
+import com.javaholics.web.repository.*;
+import com.javaholics.web.service.*;
+import com.javaholics.web.controller.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static org.infoshareacademy.javaholics.utils.FileService.gson;
+import static com.javaholics.web.repository.FileService.gson;
 
 public class RouteService implements IdNumbers {
     boolean status;

@@ -1,10 +1,7 @@
 package com.javaholics.web.service;
-import org.infoshareacademy.javaholics.event.EventService;
-//import org.infoshareacademy.javaholics.route.RouteSearch;
-import org.infoshareacademy.javaholics.route.RouteSearch;
-import org.infoshareacademy.javaholics.route.RouteService;
-import org.infoshareacademy.javaholics.utils.Instructions;
-
+import com.javaholics.web.repository.*;
+import com.javaholics.web.service.*;
+import com.javaholics.web.controller.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Menu {

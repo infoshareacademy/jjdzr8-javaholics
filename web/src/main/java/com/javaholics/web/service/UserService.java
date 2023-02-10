@@ -1,8 +1,8 @@
 package com.javaholics.web.service;
 
-import org.infoshareacademy.javaholics.IdNumbers;
-import org.infoshareacademy.javaholics.utils.FileUtils;
-import org.infoshareacademy.javaholics.utils.IDsNumbers;
+import com.javaholics.web.repository.*;
+import com.javaholics.web.service.*;
+import com.javaholics.web.controller.*;
 
 public class UserService implements IdNumbers {
 

@@ -1,18 +1,13 @@
 package com.javaholics.web.service;
-
 import com.google.gson.JsonObject;
-import org.infoshareacademy.javaholics.IdNumbers;
-import org.infoshareacademy.javaholics.Menu;
-import org.infoshareacademy.javaholics.user.User;
-import org.infoshareacademy.javaholics.user.Users;
-import org.infoshareacademy.javaholics.utils.*;
+import com.javaholics.web.repository.*;
+import com.javaholics.web.service.*;
+import com.javaholics.web.controller.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
-
-import static org.infoshareacademy.javaholics.utils.FileService.gson;
-
+import static com.javaholics.web.repository.FileService.gson;
 public class EventService implements IdNumbers {
 
     Users user = new Users();
