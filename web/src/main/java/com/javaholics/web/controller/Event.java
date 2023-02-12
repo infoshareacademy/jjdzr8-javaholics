@@ -1,7 +1,7 @@
 package com.javaholics.web.controller;
 
-import org.infoshareacademy.javaholics.user.User;
-import org.infoshareacademy.javaholics.route.Route;
+import com.javaholics.web.controller.User;
+import com.javaholics.web.controller.Route;
 import java.util.Date;
 import java.util.Objects;
 
