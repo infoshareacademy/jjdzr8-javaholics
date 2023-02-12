@@ -3,6 +3,7 @@ package com.javaholics.web.service;
 import com.google.gson.JsonObject;
 import com.javaholics.web.controller.Menu;
 import com.javaholics.web.repository.*;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,7 +13,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static com.javaholics.web.service.FileService.gson;
-
+@Service
 public class RouteService implements IdNumbers {
     boolean status;
     Route newRoute;

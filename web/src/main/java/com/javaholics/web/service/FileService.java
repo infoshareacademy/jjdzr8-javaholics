@@ -5,18 +5,19 @@ import com.javaholics.web.repository.Event;
 import com.javaholics.web.repository.Events;
 import com.javaholics.web.repository.Routes;
 import com.javaholics.web.repository.Users;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.Objects;
 
-
+@Service
 public class FileService {
     // definicja ścieżek do plików bazy
     private static final Path pathUsersFile = Path.of("database", "users.json");
     private static final Path pathEventsFile = Path.of("database", "events.json");
-    private static final Path pathRoutesFile = Path.of("database", "routes.json");
+    private static final Path pathRoutesFile = Path.of("web","src","main","java","com","javaholics","web","database","routes.json");
 
     // gettery do ścieżek
     public static Path getPathUsersFile() {
