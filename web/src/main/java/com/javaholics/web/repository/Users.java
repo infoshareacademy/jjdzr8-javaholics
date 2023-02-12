@@ -1,4 +1,4 @@
-package com.javaholics.web.controller;
+package com.javaholics.web.repository;
 
 import java.util.ArrayList;
 import java.util.List;

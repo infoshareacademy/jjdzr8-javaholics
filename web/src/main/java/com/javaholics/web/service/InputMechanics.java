@@ -1,4 +1,4 @@
-package com.javaholics.web.repository;
+package com.javaholics.web.service;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

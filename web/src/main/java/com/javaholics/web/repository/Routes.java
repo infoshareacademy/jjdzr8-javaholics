@@ -1,9 +1,7 @@
-package com.javaholics.web.controller;
+package com.javaholics.web.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class Routes {
     private List<Route> routes = new ArrayList<>();

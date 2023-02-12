@@ -1,6 +1,4 @@
-package com.javaholics.web.controller;
-
-import java.awt.image.BufferedImage;
+package com.javaholics.web.repository;
 
 public class User {
 

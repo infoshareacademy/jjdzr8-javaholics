@@ -1,4 +1,4 @@
-package com.javaholics.web.controller;
+package com.javaholics.web.repository;
 
 public enum RouteDifficulty {
     EASY("łatwa"),

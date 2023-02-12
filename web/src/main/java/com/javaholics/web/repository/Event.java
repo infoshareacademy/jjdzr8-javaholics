@@ -1,7 +1,5 @@
-package com.javaholics.web.controller;
+package com.javaholics.web.repository;
 
-import com.javaholics.web.controller.User;
-import com.javaholics.web.controller.Route;
 import java.util.Date;
 import java.util.Objects;
 

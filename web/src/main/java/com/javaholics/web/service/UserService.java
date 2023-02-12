@@ -1,8 +1,6 @@
 package com.javaholics.web.service;
 
 import com.javaholics.web.repository.*;
-import com.javaholics.web.service.*;
-import com.javaholics.web.controller.*;
 
 public class UserService implements IdNumbers {
 
