@@ -1,4 +1,6 @@
-package com.javaholics.web.repository;
+package com.javaholics.web.service;
+
+import com.javaholics.web.repository.Route;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.javaholics.web.repository;
 
-import com.javaholics.web.repository.FileUtils;
+import com.javaholics.web.service.FileUtils;
 
 public class IDsNumbers {
 

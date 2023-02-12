@@ -1,6 +1,10 @@
-package com.javaholics.web.repository;
+package com.javaholics.web.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.javaholics.web.repository.Event;
+import com.javaholics.web.service.Events;
+import com.javaholics.web.service.Routes;
+import com.javaholics.web.service.Users;
 
 import java.io.*;
 import java.nio.file.NoSuchFileException;

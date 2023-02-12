@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
-import static com.javaholics.web.repository.FileService.gson;
+import static com.javaholics.web.service.FileService.gson;
 public class EventService implements IdNumbers {
 
     Users user = new Users();
