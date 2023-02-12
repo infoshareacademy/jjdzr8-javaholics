@@ -1,4 +1,4 @@
-package com.javaholics.web.service;
+package com.javaholics.web.repository;
 
 import com.javaholics.web.repository.Route;
 
