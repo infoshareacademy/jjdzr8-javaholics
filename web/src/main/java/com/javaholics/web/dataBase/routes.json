@@ -1,0 +1,17 @@
+{
+  "routes": [
+    {
+      "id": 15,
+      "name": "sad",
+      "locality": "asd",
+      "placeStart": "qwe",
+      "placeStop": "asd",
+      "difficulty": "EXTREME",
+      "userId": 0,
+      "avgRating": 0.0,
+      "type": "Trasa rowerowa",
+      "length": 15.0,
+      "date": "Jan 22, 2023, 11:13:40 PM"
+    }
+  ]
+}
