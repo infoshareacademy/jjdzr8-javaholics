@@ -2,9 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+
+    <title>Meet2gether - Wspólne trasy, eventy i przygody</title>
+    <meta content="Jest to aplikacja pozwalająca na spotykanie się ze znajomymi na wspólnych aktywanościach na zewnątrz. Wygodna wyszukiwarka tras i ewentów." name="description">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../static/css/style.css" rel="stylesheet">
 </head>
+
 <body>
-Index
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <div class="logo">
+            <h1 class="text-light"><a href="index.html">Meet2gether</a></h1>
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="routes/routes.html">Trasy</a></li>
+                <li><a href="events/events.html">Eventy</a></li>
+                <li class="dropdown"><a href="#"><span>O nas</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="about.html">Czym jest Meet2gether</a></li>
+                        <li><a href="team.html">Zespół</a></li>
+                    </ul>
+                </li>
+                <li><a class="getstarted" href="login.html">Login</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+    </div>
+</header>
+
+<section id="hero">
+    <div class="hero-container" data-aos="fade-up">
+        <h1>Witaj w Meet2gether</h1>
+        <h2>Zacznijmy przygodę w terenie.</br>
+            Nie ważne jak pokonujesz trasę, poznawaj nowych ludzi i uczestnicz we wspólnych eventach.</h2>
+        <a href="#about" class="btn-get-started scrollto">Wyszukaj event lub trasę</a>
+    </div>
+</section>
+
 </body>
 </html>
