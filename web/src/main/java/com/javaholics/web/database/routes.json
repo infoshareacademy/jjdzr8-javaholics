@@ -11,7 +11,7 @@
       "avgRating": 3.0,
       "type": "Trasa rowerowa",
       "length": 15.0,
-      "date": "2022-02-24"
+      "date": "Feb 24, 2022, 12:00:00 AM"
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@
       "avgRating": 2.3,
       "type": "Trasa rowerowa",
       "length": 35.0,
-      "date": "2022-02-24"
+      "date": "Feb 24, 2022, 12:00:00 AM"
     },
     {
       "id": 3,
@@ -37,7 +37,7 @@
       "avgRating": 3.3,
       "type": "Trasa rowerowa",
       "length": 25.0,
-      "date": "2022-02-24"
+      "date": "Feb 24, 2022, 12:00:00 AM"
     },
     {
       "id": 4,
@@ -50,7 +50,7 @@
       "avgRating": 6.0,
       "type": "Trasa rowerowa",
       "length": 5.0,
-      "date": "2022-02-24"
+      "date": "Feb 24, 2022, 12:00:00 AM"
     },
     {
       "id": 5,
@@ -63,7 +63,7 @@
       "avgRating": 2.3,
       "type": "Trasa rowerowa",
       "length": 5.0,
-      "date": "2022-02-24"
+      "date": "Feb 24, 2022, 12:00:00 AM"
     }
   ]
 }
