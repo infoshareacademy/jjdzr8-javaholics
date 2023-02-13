@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Menu {
 
-    public void printMenu() {
+   /* public void printMenu() {
         System.out.println(Instructions.getLogo());
         System.out.println("1. Dodaj nową trasę");
         System.out.println("2. Wyszukaj trasę");
@@ -63,5 +63,5 @@ public class Menu {
                 scanner.nextLine();
             }
         } while (isWrongAnswer);
-    }
+    }*/
 }

@@ -1,10 +1,12 @@
 package com.javaholics.web.repository;
 
 import com.javaholics.web.repository.Route;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class Routes {
     private List<Route> routes = new ArrayList<>();
 

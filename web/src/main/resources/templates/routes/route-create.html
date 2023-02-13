@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8">
+  <title>Create of Route</title>
+</head>
+<body>
+<div>
+  <form action="#" th:action="@{/routes}" th:object="${route}" method="post">
+    <p>Id: <input type="text" th:field="*{id}"/></p>
+    <p>Nazwa: <input type="text" th:field="*{name}"/></p>
+    <p>Lokalizacja: <input type="text" th:field="*{locality}"/></p>
+    <p>Miejsce startu: <input type="text" th:field="*{placeStart}"/></p>
+    <p>Miejsce zakończenia: <input type="text" th:field="*{placeStop}"/></p>
+    <p>Trudność: <select>
+      <option value="0" th:text="#{route.select-difficulty}"/>
+      <option th:each="difficulty : ${T(com.javaholics.web.repository.RouteDifficulty).values()}" th:value="${difficulty}" th:text="${difficulty}"/>
+    </select></p>
+    <p>Plik: <input type="text" th:field="*{routeFile}"/></p>
+    <p>User Id: <input type="text" th:field="*{userId}"/></p>
+    <p>Typ: <input type="text" th:field="*{type}"/></p>
+    <p>Długość: <input type="text" th:field="*{length}"/></p>
+    <p>Data: <input type="text" th:field="*{date}"/></p>
+    <ul th:if="${#fields.hasErrors('*')}">
+      <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+    </ul>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+  </form>
+</div>
+</body>
+</html>

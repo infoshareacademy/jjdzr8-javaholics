@@ -60,7 +60,7 @@ public class RouteSearch {
     public void menuReturn(){
         scanner.nextLine();
         Menu menu = new Menu();
-        menu.printMenu();
+//        menu.printMenu();
     }
 }
 
