@@ -33,14 +33,14 @@ public class RouteController {
     public String showRoutes(Model model) {
         List<Route> routeList = routeService.getRoutes();
         model.addAttribute("routes", routeList);
-        return "routes/route-view";
+        return "routes/routes";
     }
 
     @GetMapping("/routes/{routeId}")
     public String getRouteById(@PathVariable("routeId") Long routeId, Model model) {
         Route route = routeService.findRouteById(routeId);
         model.addAttribute("route", route);
-        return "routes/route-edit";
+        return "routes/modifyroute";
     }
     @PostMapping("/routes/{routeId}/edit")
     public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute Route route, Model model) throws ParseException {
@@ -57,20 +57,26 @@ public class RouteController {
     @GetMapping("/routes/create")
     public String showCreateForm(Model model) {
         model.addAttribute("route", new Route(1,"routeName"));
-        return "routes/route-create";
+        return "routes/addroute";
     }
 
     @PostMapping("/routes")
     public String createRoute(@Valid @ModelAttribute Route route, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "routes/route-view";
+            return "routes/routes";
         }
         routeService.addRoute(route);
         return "redirect:/routes";
     }
-    @GetMapping("/cars/get-error")
+    @GetMapping("/routes/get-error")
     public String getRouteWithWrongIdAndThrowError() {
         routeService.findRouteById(-1L);
-        return "routes/route-view";
+        return "routes/routes";
     }
+    @GetMapping("routes/save")
+    public String saveRoutes(){
+        routeService.saveRoutesToJson();
+        return "redirect:/routes";
+    }
+
 }

@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.javaholics.web.repository.Route;
+
 @Service
 public class RouteService {
 
@@ -23,13 +24,14 @@ public class RouteService {
     public RouteService(FileService fileService) {
         this.fileService = fileService;
         List<Route> routeList = fileService.readRoutesFromFile().getRoutes();
-        routes=routeList;
+        routes = routeList;
     }
 
     public List<Route> getRoutes() {
         return routes;
     }
-    public void deleteRouteById(long id){
+
+    public void deleteRouteById(long id) {
         Route foundRout = findRouteById(id);
         routes.remove(foundRout);
     }
@@ -40,6 +42,7 @@ public class RouteService {
                 .findFirst()
                 .orElseThrow(() -> new RouteNotFoundException("Not found car with ID: %s".formatted(id)));
     }
+
     public void editRouteById(Long id, Route route) throws ParseException {
         Route routeToEdit = findRouteById(id);
 
@@ -53,11 +56,6 @@ public class RouteService {
         routeToEdit.setAvgRating(route.getAvgRating());
         routeToEdit.setType(route.getType());
         routeToEdit.setLength(route.getLength());
-/*        String datePattern="dd.MM.yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
-        System.out.println(route.getDate().toString());
-        Date date = simpleDateFormat.parse(route.getDate().toString());
-        routeToEdit.setDate(date);*/
         routeToEdit.setDate(route.getDate());
 
     }
@@ -65,6 +63,16 @@ public class RouteService {
     public void addRoute(Route route) {
         routes.add(route);
     }
+
+    public void saveRoutesToJson(){
+
+        Routes routesCopy = new Routes();
+        for (int i = 0; i <routes.size() ; i++) {
+            routesCopy.add(routes.get(i));
+        }
+        fileService.writeToJsonFile(routesCopy);
+    }
+
    /*    boolean status;
     Route newRoute;
     Date date = new Date();
