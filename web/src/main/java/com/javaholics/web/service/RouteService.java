@@ -2,20 +2,70 @@ package com.javaholics.web.service;
 
 import com.google.gson.JsonObject;
 import com.javaholics.web.controller.Menu;
+import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-import static com.javaholics.web.service.FileService.gson;
+import com.javaholics.web.repository.Route;
 @Service
-public class RouteService implements IdNumbers {
-    boolean status;
+public class RouteService {
+
+    private List<Route> routes;
+    private FileService fileService;
+
+    public RouteService(FileService fileService) {
+        this.fileService = fileService;
+        List<Route> routeList = fileService.readRoutesFromFile().getRoutes();
+        routes=routeList;
+    }
+
+    public List<Route> getRoutes() {
+        return routes;
+    }
+    public void deleteRouteById(long id){
+        Route foundRout = findRouteById(id);
+        routes.remove(foundRout);
+    }
+
+    public Route findRouteById(Long id) {
+        return routes.stream()
+                .filter(route -> route.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new RouteNotFoundException("Not found car with ID: %s".formatted(id)));
+    }
+    public void editRouteById(Long id, Route route) throws ParseException {
+        Route routeToEdit = findRouteById(id);
+
+        routeToEdit.setName(route.getName());
+        routeToEdit.setLocality(route.getLocality());
+        routeToEdit.setPlaceStart(route.getPlaceStart());
+        routeToEdit.setPlaceStop(route.getPlaceStop());
+        routeToEdit.setDifficulty(route.getDifficulty());
+        routeToEdit.setRouteFile(route.getRouteFile());
+        routeToEdit.setUserId(route.getUserId());
+        routeToEdit.setAvgRating(route.getAvgRating());
+        routeToEdit.setType(route.getType());
+        routeToEdit.setLength(route.getLength());
+/*        String datePattern="dd.MM.yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datePattern);
+        System.out.println(route.getDate().toString());
+        Date date = simpleDateFormat.parse(route.getDate().toString());
+        routeToEdit.setDate(date);*/
+        routeToEdit.setDate(route.getDate());
+
+    }
+
+    public void addRoute(Route route) {
+        routes.add(route);
+    }
+   /*    boolean status;
     Route newRoute;
     Date date = new Date();
     InputMechanics input = new InputMechanics();
@@ -244,5 +294,6 @@ public class RouteService implements IdNumbers {
         iDsNumbers.setIpRoute(idRoute+1);
         fileUtils.saveIdsToJsonFile(iDsNumbers);
         return idRoute;
-    }
+    }*/
+
 }

@@ -1,9 +1,10 @@
 package com.javaholics.web.repository;
 
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 import java.util.Objects;
-
 public class Route {
 
     private long id;

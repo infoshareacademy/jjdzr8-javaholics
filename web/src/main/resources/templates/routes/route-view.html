@@ -38,15 +38,26 @@
             <p th:case="'MEDIUM'" th:text="#{difficulty.medium}"></p>
             <p th:case="'HARD'" th:text="#{difficulty.hard}"></p>
             <p th:case="'EXTREME'" th:text="#{difficulty.extreme}"></p>
+            <p th:case="*" th:text="#{difficulty.unknown}"></p>
         </td>
         <td th:text="${route.routeFile}"></td>
         <td th:text="${route.userId}"></td>
         <td th:text="${route.avgRating}"></td>
         <td th:text="${route.type}"></td>
         <td th:text="${route.length}"></td>
-        <td th:text="${route.date}"></td>
+        <td th:text="${#dates.format(route.date, 'yyyy-MM-dd')}"></td>
+        <td>
+            <a th:href="@{/routes/delete-route/{id}(id=${route.id})}" class="btn btn-danger">
+                DELETE
+            </a>
+                    <a th:href="@{/routes/{routeId}(routeId=${route.id})}" class="btn btn-primary">
+                        EDIT
+                    </a>
+        </td>
     </tr>
     </tbody>
 </table>
-</body>
+<a th:href="@{/routes/create}" class="btn btn-success">
+    CREATE NEW ROUTE
+</a>
 </html>
