@@ -15,7 +15,7 @@
         <p>Lokalizacja: <input type="text" th:field="*{locality}"/></p>
         <p>Miejsce startu: <input type="text" th:field="*{placeStart}"/></p>
         <p>Miejsce zakończenia: <input type="text" th:field="*{placeStop}"/></p>
-        <p>Trudność: <select>
+        <p>Trudność: <select th:field="*{difficulty}">
             <option value="0" th:text="#{route.select-difficulty}"/>
             <option th:each="difficulty : ${T(com.javaholics.web.repository.RouteDifficulty).values()}" th:value="${difficulty}" th:text="${difficulty}"/>
         </select></p>

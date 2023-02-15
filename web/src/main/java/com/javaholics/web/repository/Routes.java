@@ -22,6 +22,10 @@ public class Routes {
         routes.add(route);
         System.out.println("Nowa trasa dodana: " + route.toString());
     }
+
+    public void setRoutes(List<Route> routes) {
+        this.routes = routes;
+    }
 }
 
 

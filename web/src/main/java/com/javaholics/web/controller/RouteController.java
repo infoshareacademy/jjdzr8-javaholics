@@ -23,6 +23,7 @@ public class RouteController {
     private RouteService routeService;
     private Routes routes;
 
+
     public RouteController(FileService fileService, RouteService routeService, Routes routes) {
         this.fileService = fileService;
         this.routeService = routeService;
@@ -56,7 +57,8 @@ public class RouteController {
 
     @GetMapping("/routes/create")
     public String showCreateForm(Model model) {
-        model.addAttribute("route", new Route(1,"routeName"));
+        Long id = routeService.getCurrentIdWithSaveNextIdToJson();
+        model.addAttribute("route", new Route(id,"routeName"));
         return "routes/addroute";
     }
 
