@@ -1,6 +1,5 @@
 package com.javaholics.web.service;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.javaholics.web.repository.Event;
 import com.javaholics.web.repository.Events;
 import com.javaholics.web.repository.Routes;
@@ -8,8 +7,12 @@ import com.javaholics.web.repository.Users;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
 
 @Service
@@ -31,7 +34,19 @@ public class FileService {
     }
 
     // inicjalizacja Gson
-    public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public static final Gson gson;
+
+    static {
+
+        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+            @Override
+            public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                Instant instant = Instant.ofEpochMilli(json.getAsJsonPrimitive().getAsLong());
+                return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+            }
+        }).create();
+
+    }
 
     // metody zapisu
     public static String toJson(Object objectToJson){
@@ -42,12 +57,8 @@ public class FileService {
         eventsFromJson.simpleAdd(eventToAdd);
         writeToJsonFile(eventsFromJson);
     }
-//    public void addNewRouteToDatabase(Route routeToAdd){
-//        Routes routesFromJson = readRoutesFromFile();
-//
-//        //routesFromJson.simpleAdd(routeToAdd);
-//        writeToJsonFile(routesFromJson);
-//    }
+
+
 
     public void writeToJsonFile(final Routes routes) {
         writeObjectToJsonFile(routes, pathRoutesFile);

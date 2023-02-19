@@ -1,8 +1,7 @@
 package com.javaholics.web.repository;
 
 
-import org.springframework.stereotype.Component;
-
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 public class Route {
@@ -18,13 +17,14 @@ public class Route {
     private double avgRating;
     private String type;
     private double length;
-    private Date date;
 
-    public Date getDate() {
+    private LocalDateTime date;
+
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

@@ -19,9 +19,9 @@ import java.util.List;
 @Controller
 public class RouteController {
 
-    private FileService fileService;
-    private RouteService routeService;
-    private Routes routes;
+    private final FileService fileService;
+    private final RouteService routeService;
+    private final Routes routes;
 
 
     public RouteController(FileService fileService, RouteService routeService, Routes routes) {
@@ -44,7 +44,7 @@ public class RouteController {
         return "routes/modifyroute";
     }
     @PostMapping("/routes/{routeId}/edit")
-    public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute Route route, Model model) throws ParseException {
+    public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute Route route, Model model) {
         routeService.editRouteById(routeId, route);
         return "redirect:/routes";
     }

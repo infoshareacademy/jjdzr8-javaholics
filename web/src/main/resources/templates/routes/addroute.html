@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:hh="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
@@ -21,11 +21,11 @@
         <p>User Id: <input type="text" th:field="*{userId}"/></p>
         <p>Typ: <input type="text" th:field="*{type}"/></p>
         <p>Długość: <input type="text" th:field="*{length}"/></p>
-        <p>Data: <input type="text" th:field="*{date}"/></p>
+        <p>Data: <input type="date" th:field="*{date.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"))}"/></p>
         <ul th:if="${#fields.hasErrors('*')}">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
         </ul>
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/><a href="http://localhost:8080/routes"><input type="button" value="Strona główna"></a></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/><a th:href="@{/}"><input type="button" value="Strona główna"></a></p>
     </form>
 </div>
 </body>
