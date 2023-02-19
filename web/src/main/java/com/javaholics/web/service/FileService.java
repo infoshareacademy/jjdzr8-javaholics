@@ -37,15 +37,10 @@ public class FileService {
     public static final Gson gson;
 
     static {
-
-        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
-            @Override
-            public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-                Instant instant = Instant.ofEpochMilli(json.getAsJsonPrimitive().getAsLong());
-                return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-            }
-        }).create();
-
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
+        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeserializer());
+        gson = gsonBuilder.setPrettyPrinting().create();
     }
 
     // metody zapisu
