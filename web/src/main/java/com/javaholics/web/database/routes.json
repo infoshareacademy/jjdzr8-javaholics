@@ -107,6 +107,20 @@
       "type": "Rower",
       "length": 15.0,
       "date": "2023-02-19 13:02:52"
+    },
+    {
+      "id": 9,
+      "name": "Bieg po zdrowie",
+      "locality": "World",
+      "placeStart": "Gdzieś",
+      "placeStop": "Gdziekolwiek",
+      "difficulty": "HARD",
+      "routeFile": "",
+      "userId": 111,
+      "avgRating": 0.0,
+      "type": "Bieg",
+      "length": 11.0,
+      "date": "2023-02-28 12:40:00"
     }
   ]
 }

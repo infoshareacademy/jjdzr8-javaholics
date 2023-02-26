@@ -11,24 +11,24 @@
 <div>
     <form action="#" th:action="@{/routes/{routeId}/edit(routeId=${route.id})}" th:object="${route}" method="post">
         <p>Id: <input  type="text" th:field="*{id}"/></p>
-        <p>Nazwa: <input type="text" th:field="*{name}"/></p>
-        <p>Lokalizacja: <input type="text" th:field="*{locality}"/></p>
-        <p>Miejsce startu: <input type="text" th:field="*{placeStart}"/></p>
-        <p>Miejsce zakończenia: <input type="text" th:field="*{placeStop}"/></p>
+        <p>Nazwa: <input type="text" th:field="*{name}"/>
+            <span th:if="${#fields.hasErrors('name')}" th:text="#{error.route.name}"></span></p>
+        <p>Lokalizacja: <input type="text" th:field="*{locality}"/>
+            <span th:if="${#fields.hasErrors('locality')}" th:text="#{error.route.locality}"></span></p>
+        <p>Miejsce startu: <input type="text" th:field="*{placeStart}"/><span th:if="${#fields.hasErrors('placeStart')}" th:text="#{error.route.placeStart}"></span></p>
+        <p>Miejsce zakończenia: <input type="text" th:field="*{placeStop}"/><span th:if="${#fields.hasErrors('placeStop')}" th:text="#{error.route.placeStop}"></span></p>
         <p>Trudność: <select th:field="*{difficulty}">
             <option value="0" th:text="#{route.select-difficulty}"/>
-            <option th:each="difficulty : ${T(com.javaholics.web.repository.RouteDifficulty).values()}" th:value="${difficulty}" th:text="${difficulty}"/>
-        </select></p>
-        <p>Plik: <input type="text" th:field="*{routeFile}"/></p>
+            <option th:each="difficulty : ${T(com.javaholics.web.repository.RouteDifficulty).values()}" th:value="${difficulty}" th:text="${difficulty.getDifficulty()}"/>
+        </select>
+            <span th:if="${#fields.hasErrors('difficulty')}" th:text="#{error.route.difficulty}"></span></p>
+        <p>Plik: <input type="text" th:field="*{routeFile}"/>
+        </p>
         <p>User Id: <input type="text" th:field="*{userId}"/></p>
-        <p>Typ: <input type="text" th:field="*{type}"/></p>
-        <p>Długość: <input type="text" th:field="*{length}"/></p>
-        <p>Data: <input type="text" th:field="*{date}"/></p>
-        <!--    <p>Is available?<input type="checkbox" th:checked="*{available}" th:field="*{available}"/></p>-->
-        <ul th:if="${#fields.hasErrors('*')}">
-            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
-        </ul>
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/><a href="http://localhost:8080/routes"><input type="button" value="Strona główna"></a></p>
+        <p>Typ: <input type="text" th:field="*{type}"/><span th:if="${#fields.hasErrors('type')}" th:text="#{error.route.type}"></span></p>
+        <p>Długość: <input type="text" th:field="*{length}"/><span th:if="${#fields.hasErrors('length')}" th:text="#{error.route.lenght}"></span></p>
+        <p>Data: <input type="datetime-local" th:field="*{date}"/><span th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/><a th:href="@{/}"><input type="button" value="Strona główna"></a></p>
     </form>
 </div>
 </body>
