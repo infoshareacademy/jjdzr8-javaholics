@@ -4,13 +4,11 @@ import com.javaholics.web.repository.Route;
 import com.javaholics.web.repository.Routes;
 import com.javaholics.web.service.FileService;
 import com.javaholics.web.service.RouteService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -29,10 +27,22 @@ public class RouteController {
         this.routeService = routeService;
         this.routes = routes;
     }
+//    @GetMapping("/routes/{routeAre}")
+//    public String routeSearch(@PathVariable("routeAre") String are, Model model) {
+//        List<Route> routeListSearch = routeService.searchRoute(are);
+//        model.addAttribute("searchRoutes", routeListSearch);
+//        return "/routes/{routeAre}";
+//    }
+        @GetMapping("/routes/{dif}")
+        public List<Route> searchRoute (@PathVariable String dif, Model model){
+        List<Route> routeList = routeService.searchRoute(dif);
+        model.addAttribute("routes", routeList);
+            return routeService.searchRoute(dif);
+}
 
     @GetMapping("/routes")
-    public String showRoutes(Model model) {
-        List<Route> routeList = routeService.getRoutes();
+    public String showRoutes(@RequestParam(required = false) String keyword, Model model) {
+        List<Route> routeList = routeService.getRoutes(keyword);
         model.addAttribute("routes", routeList);
         return "routes/routes";
     }
