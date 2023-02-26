@@ -20,7 +20,7 @@ public class EventService implements IdNumbers {
         System.out.println("Wciśnij dowolny przycisk by wrócić do menu");
         scanner.nextLine();
         Menu menu = new Menu();
-        menu.printMenu();
+        //menu.printMenu();
     }
 
     public Date getDate() {

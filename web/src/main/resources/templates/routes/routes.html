@@ -45,25 +45,25 @@
         <td th:text="${route.avgRating}"></td>
         <td th:text="${route.type}"></td>
         <td th:text="${route.length}"></td>
-        <td th:text="${#dates.format(route.date, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#temporals.format(route.date, 'yyyy-MM-dd HH:mm')}"></td>
         <td>
             <a th:href="@{/routes/delete-route/{id}(id=${route.id})}" class="btn btn-danger">
-                DELETE
+                Usuń
             </a>
             <a th:href="@{/routes/{routeId}(routeId=${route.id})}" class="btn btn-primary">
-                EDIT
+                Edytuj
             </a>
         </td>
     </tr>
     </tbody>
 </table>
-<div><a href="http://localhost:8080" class="btn ">
+<div><a th:href="@{/}" class="btn btn-secondary">
     Strona główna
 </a>
 <a th:href="@{/routes/create}" class="btn btn-success">
-    CREATE NEW ROUTE
+    Utwórz nową trasę
 </a>
-    <a th:href="@{/routes/save}" class="btn btn-success">
+    <a th:href="@{/routes/save}" class="btn btn-warning">
         Zapisz trasy
     </a></div>
 

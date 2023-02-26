@@ -40,10 +40,10 @@ public class RouteService implements IdNumbers{
         return routes.stream()
                 .filter(route -> route.getId() == id)
                 .findFirst()
-                .orElseThrow(() -> new RouteNotFoundException("Not found car with ID: %s".formatted(id)));
+                .orElseThrow(() -> new RouteNotFoundException("Not found route with ID: %s".formatted(id)));
     }
 
-    public void editRouteById(Long id, Route route) throws ParseException {
+    public void editRouteById(Long id, Route route) {
         Route routeToEdit = findRouteById(id);
 
         routeToEdit.setName(route.getName());

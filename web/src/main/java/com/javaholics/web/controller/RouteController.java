@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.text.ParseException;
 import java.util.List;
 
 @Controller
 public class RouteController {
 
-    private FileService fileService;
-    private RouteService routeService;
-    private Routes routes;
+    private final FileService fileService;
+    private final RouteService routeService;
+    private final Routes routes;
 
 
     public RouteController(FileService fileService, RouteService routeService, Routes routes) {
@@ -44,7 +43,11 @@ public class RouteController {
         return "routes/modifyroute";
     }
     @PostMapping("/routes/{routeId}/edit")
-    public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute Route route, Model model) throws ParseException {
+    public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute Route route,  BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "routes/modifyroute";
+        }
+
         routeService.editRouteById(routeId, route);
         return "redirect:/routes";
     }
@@ -65,7 +68,7 @@ public class RouteController {
     @PostMapping("/routes")
     public String createRoute(@Valid @ModelAttribute Route route, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "routes/routes";
+            return "routes/addroute";
         }
         routeService.addRoute(route);
         return "redirect:/routes";
