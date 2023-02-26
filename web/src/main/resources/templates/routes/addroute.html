@@ -21,7 +21,7 @@
         <p>User Id: <input type="text" th:field="*{userId}"/></p>
         <p>Typ: <input type="text" th:field="*{type}"/></p>
         <p>Długość: <input type="text" th:field="*{length}"/></p>
-        <p>Data: <input type="date" th:field="*{date.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"))}"/></p>
+        <p>Data: <input type="text" th:field="*{date}"/></p>
         <ul th:if="${#fields.hasErrors('*')}">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
         </ul>
