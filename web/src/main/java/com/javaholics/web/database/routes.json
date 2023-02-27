@@ -12,7 +12,7 @@
       "avgRating": 0.0,
       "type": "Trasa rowerowa",
       "length": 15.5,
-      "date": "Feb 24, 2022, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
       "avgRating": 2.3,
       "type": "Trasa rowerowa",
       "length": 35.0,
-      "date": "Feb 24, 2022, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
     },
     {
       "id": 3,
@@ -38,7 +38,7 @@
       "avgRating": 3.3,
       "type": "Trasa rowerowa",
       "length": 25.0,
-      "date": "Feb 24, 2022, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
     },
     {
       "id": 4,
@@ -51,7 +51,7 @@
       "avgRating": 6.0,
       "type": "Trasa rowerowa",
       "length": 5.0,
-      "date": "Feb 24, 2022, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
     },
     {
       "id": 5,
@@ -64,7 +64,7 @@
       "avgRating": 2.3,
       "type": "Trasa rowerowa",
       "length": 5.0,
-      "date": "Feb 24, 2022, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
     },
     {
       "id": 6,
@@ -78,7 +78,7 @@
       "avgRating": 0.0,
       "type": "Piesza wycieczka",
       "length": 2.0,
-      "date": "May 2, 2023, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
     },
     {
       "id": 7,
@@ -92,7 +92,7 @@
       "avgRating": 0.0,
       "type": "Bieg",
       "length": 25.2,
-      "date": "Apr 25, 2023, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
     },
     {
       "id": 8,
@@ -106,7 +106,21 @@
       "avgRating": 0.0,
       "type": "Rower",
       "length": 15.0,
-      "date": "Jul 5, 2023, 12:00:00 AM"
+      "date": "2023-02-19 13:02:52"
+    },
+    {
+      "id": 9,
+      "name": "Bieg po zdrowie",
+      "locality": "World",
+      "placeStart": "Gdzieś",
+      "placeStop": "Gdziekolwiek",
+      "difficulty": "HARD",
+      "routeFile": "",
+      "userId": 111,
+      "avgRating": 0.0,
+      "type": "Bieg",
+      "length": 11.0,
+      "date": "2023-02-28 12:40:00"
     }
   ]
 }

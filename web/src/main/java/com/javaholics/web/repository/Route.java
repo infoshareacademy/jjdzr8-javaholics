@@ -1,30 +1,43 @@
 package com.javaholics.web.repository;
 
 
-import org.springframework.stereotype.Component;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 public class Route {
 
     private long id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String locality;
+    @NotBlank
     private String placeStart;
+    @NotBlank
     private String placeStop;
     private RouteDifficulty difficulty;
     private String routeFile;
     private long userId;
     private double avgRating;
+    @NotBlank
     private String type;
-    private double length;
-    private Date date;
 
-    public Date getDate() {
+    @Min(value = 1)
+    @Max(value = 1000)
+    private double length;
+
+    @FutureOrPresent()
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime date;
+
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
