@@ -27,23 +27,11 @@ public class RouteController {
         this.routeService = routeService;
         this.routes = routes;
     }
-//    @GetMapping("/routes/{routeAre}")
-//    public String routeSearch(@PathVariable("routeAre") String are, Model model) {
-//        List<Route> routeListSearch = routeService.searchRoute(are);
-//        model.addAttribute("searchRoutes", routeListSearch);
-//        return "/routes/{routeAre}";
-//    }
-        @GetMapping("/routes/{dif}")
-        public List<Route> searchRoute (@PathVariable String dif, Model model){
-        List<Route> routeList = routeService.searchRoute(dif);
-        model.addAttribute("routes", routeList);
-            return routeService.searchRoute(dif);
-}
-
     @GetMapping("/routes")
     public String showRoutes(@RequestParam(required = false) String keyword, Model model) {
-        List<Route> routeList = routeService.getRoutes(keyword);
+        List<Route> routeList = routeService.getRoutesSearch(keyword);
         model.addAttribute("routes", routeList);
+        model.addAttribute("keyword", keyword);
         return "routes/routes";
     }
 

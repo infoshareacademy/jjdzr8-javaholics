@@ -29,29 +29,20 @@ public class RouteService implements IdNumbers{
         List<Route> routeList = fileService.readRoutesFromFile().getRoutes();
         routes = routeList;
     }
+    public List<Route> getRoutes() {
+        return routes;
+    }
 
-    public List<Route> getRoutes(String key) {
+    public List<Route> getRoutesSearch(String key) {
         if (key == null) {
             return routes;
         }
         return routes.stream()
-                .filter(route -> StringUtils.containsIgnoreCase( route.getType(), key) || StringUtils.containsIgnoreCase( route.getDifficulty().name(), key)).collect(Collectors.toList() );
-
+                .filter(route -> StringUtils.containsIgnoreCase( route.getType(), key)
+                        || StringUtils.containsIgnoreCase( route.getDifficulty().name(), key )
+                        || StringUtils.containsIgnoreCase(route.getLocality(), key))
+                        .collect(Collectors.toList() );
     }
-
-    public List<Route> searchRoute(String dif){
-        List<Route> routes1 = new ArrayList<>();
-        CharSequence word = dif;
-        for (int i = 0; i<routes.size(); i++){
-            boolean value = routes.get(i).getLocality().contains(word);
-            if (value == true) {
-                        routes1.add(routes.get(i));
-                    }
-        }
-        System.out.println(routes1);
-        return routes1;
-    }
-
     public void deleteRouteById(long id) {
         Route foundRout = findRouteById(id);
         routes.remove(foundRout);

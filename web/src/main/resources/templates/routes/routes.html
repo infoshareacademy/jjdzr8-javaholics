@@ -66,5 +66,13 @@
     <a th:href="@{/routes/save}" class="btn btn-success">
         Zapisz trasy
     </a></div>
+<div>
+    <form th:action="@{/routes}">
+    <p>Filter:  <input type="text" name="keyword" th:value="${keyword}" />
+        &nbsp;
+        <input type="submit" value="Search" />
+    </p>
+    </form>
+</div>
 
 </html>
