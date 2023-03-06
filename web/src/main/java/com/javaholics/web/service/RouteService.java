@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.javaholics.web.controller.Menu;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.repository.*;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -12,6 +14,7 @@ import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.javaholics.web.repository.Route;
 
@@ -26,11 +29,20 @@ public class RouteService implements IdNumbers{
         List<Route> routeList = fileService.readRoutesFromFile().getRoutes();
         routes = routeList;
     }
-
     public List<Route> getRoutes() {
         return routes;
     }
 
+    public List<Route> getRoutesSearch(String key) {
+        if (key == null) {
+            return routes;
+        }
+        return routes.stream()
+                .filter(route -> StringUtils.containsIgnoreCase( route.getType(), key)
+                        || StringUtils.containsIgnoreCase( route.getDifficulty().name(), key )
+                        || StringUtils.containsIgnoreCase(route.getLocality(), key))
+                        .collect(Collectors.toList() );
+    }
     public void deleteRouteById(long id) {
         Route foundRout = findRouteById(id);
         routes.remove(foundRout);
