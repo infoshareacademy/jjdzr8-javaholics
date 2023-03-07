@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Meet2gether - Eventy</title>
+    <title>Events</title>
     <meta content="Jest to aplikacja pozwalająca na spotykanie się ze znajomymi na wspólnych aktywanościach na zewnątrz. Wygodna wyszukiwarka tras i ewentów."
           name="description">
 
@@ -54,8 +54,8 @@
 </head>
 
 <body>
-    <table class="table table-striped">
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
                 <th th:text="#{event.id}">Id</th>
                 <th th:text="#{event.eventName}">Name</th>
@@ -68,7 +68,7 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="even-row-color">
             <tr th:each="event,iterStat: ${events}">
 
                 <td th:text="${iterStat.count}"></td>
@@ -86,6 +86,8 @@
 
     <div>
         <a href="http://localhost:8080" class="btn btn-outline-primary">Strona główna</a>
+        <a th:href="@{/events/create}" class="btn btn-success">Utwórz nowe wydarzenie</a>
+
     </div>
 
 </body>

@@ -1,16 +1,9 @@
 package com.javaholics.web.service;
-import com.google.gson.JsonObject;
-import com.javaholics.web.controller.Menu;
 import com.javaholics.web.exception.EventNotFoundException;
 import com.javaholics.web.repository.*;
 import org.springframework.stereotype.Service;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.text.ParseException;
 import java.util.*;
-import static com.javaholics.web.service.FileService.gson;
 
 import com.javaholics.web.repository.Event;
 
@@ -18,9 +11,8 @@ import com.javaholics.web.repository.Event;
 @Service
 public class EventService implements IdNumbers {
 
-
     private final List<Event> events;
-    private FileService fileService;
+    private final FileService fileService;
 
 
     public EventService(FileService fileService) {
@@ -53,6 +45,10 @@ public class EventService implements IdNumbers {
 
     }
 
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
     public void saveEventToJson() {
         Events eventsCopy = new Events();
         for (Event event : events) {
@@ -63,9 +59,8 @@ public class EventService implements IdNumbers {
 
     @Override
     public long getCurrentIdNoSaveToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
+        IDsNumbers iDsNumbers = fileUtils.readIdsFromJsonFile();
         long idRoute = iDsNumbers.getIpRoute();
         iDsNumbers.setIpRoute(idRoute+1);
         fileUtils.saveIdsToJsonFile(iDsNumbers);
