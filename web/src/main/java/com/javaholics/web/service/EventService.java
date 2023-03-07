@@ -1,282 +1,83 @@
 package com.javaholics.web.service;
 import com.google.gson.JsonObject;
 import com.javaholics.web.controller.Menu;
+import com.javaholics.web.exception.EventNotFoundException;
 import com.javaholics.web.repository.*;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.ParseException;
 import java.util.*;
 import static com.javaholics.web.service.FileService.gson;
+
+import com.javaholics.web.repository.Event;
+
+
+@Service
 public class EventService implements IdNumbers {
 
 
-    private Map<Long, Event> events;
+    private final List<Event> events;
     private FileService fileService;
 
 
     public EventService(FileService fileService) {
         this.fileService = fileService;
-        Map<Long, Event> eventMap = fileService.readEventsFromFile().getEvents();
-        events = eventMap;
+        events = fileService.readEventsFromFile().getEvents();
     }
 
-    public Map<Long, Event> getEvents() {
+    public List<Event> getEvents() {
         return events;
+    }
+
+
+
+    public Event findEventById(Long id) {
+        return events.stream()
+                .filter(event -> event.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new EventNotFoundException("Not found: %s".formatted(id)));
+    }
+    public void editEventById(Long id, Event event) throws ParseException {
+        Event eventToEdit = findEventById(id);
+
+        eventToEdit.setId(event.getId());
+        eventToEdit.setEventName(event.getEventName());
+        eventToEdit.setOwnerOfEvent(event.getOwnerOfEvent());
+        eventToEdit.setDescription(event.getDescription());
+        eventToEdit.setPlace(event.getPlace());
+        eventToEdit.setRegion(event.getRegion());
+        eventToEdit.setUsersCount(event.getUsersCount());
+
+    }
+
+    public void saveEventToJson() {
+        Events eventsCopy = new Events();
+        for (Event event : events) {
+            eventsCopy.simpleAdd(event);
+        }
+        fileService.writeToJsonFile(eventsCopy);
     }
 
     @Override
     public long getCurrentIdNoSaveToJson() {
-        return 0;
+        IDsNumbers iDsNumbers = new IDsNumbers();
+        FileUtils fileUtils = new FileUtils();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
+        long idRoute = iDsNumbers.getIpRoute();
+        iDsNumbers.setIpRoute(idRoute+1);
+        fileUtils.saveIdsToJsonFile(iDsNumbers);
+        return idRoute;
     }
 
     @Override
     public long getCurrentIdWithSaveNextIdToJson() {
-        return 0;
+        IDsNumbers iDsNumbers = new IDsNumbers();
+        FileUtils fileUtils = new FileUtils();
+        iDsNumbers = fileUtils.readIdsFromJsonFile();
+        return iDsNumbers.getIpRoute();
     }
-
-
-//
-//    Users user = new Users();
-//    InputMechanics input = new InputMechanics();
-//    User user1 = new User(111L, "Jan1", "login1");
-//    Event newEvent;
-//    Date date = new Date();
-//    Scanner scanner = new Scanner(System.in);
-//    public void menuReturn() {
-//        System.out.println("Wciśnij dowolny przycisk by wrócić do menu");
-//        scanner.nextLine();
-////        Menu menu = new Menu();
-////        menu.printMenu();
-//    }
-//
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void eventInitializeStart() {
-//        getCurrentIdWithSaveNextIdToJson();
-//        long id = getCurrentIdNoSaveToJson();
-//        System.out.println(Instructions.getSeparator());
-//        System.out.print("Podaj nazwę eventu: ");
-//        String nameFromScanner = input.getInputShort();
-//
-//        newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
-//
-//        System.out.println("Wprowadzone parametry eventu: ");
-//        System.out.println("Nazwa eventu : " + newEvent.getEventName());
-//        System.out.println("Id eventu : " + newEvent.getId());
-////        System.out.println("Data eventu : " + newEvent.getDate());
-////        System.out.println("Godzina rozpoczęcia eventu : " + newEvent.getTime());
-//    }
-//    public void eventInitializeEdit() {
-//        boolean error = false;
-//        long id = 0;
-//        do {
-//            error = false;
-//            try {
-//                System.out.print("Podaj numer Id eventu: ");
-//                id = Long.parseLong(scanner.nextLine());
-//                while (id < 0 || id == 0) {
-//                    System.out.println("Podaj poprawną wartość");
-//                    id = Long.parseLong(scanner.nextLine());
-//                }
-//            } catch (InputMismatchException e) {
-//                System.out.println("Podaj poprawny numer ID:");
-//                error = true;
-//                scanner.nextLine();
-//            }
-//        } while (error);
-//        System.out.println(Instructions.getSeparator());
-//        System.out.println("Podaj nazwę eventu: ");
-//        String nameFromScanner = input.getInputShort();
-//
-//        newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
-//
-//        System.out.println("Wprowadzone parametry eventu: ");
-//        System.out.print("Nazwa eventu : " + newEvent.getEventName());
-//        System.out.print("Id eventu : " + newEvent.getId());
-//        System.out.print("Data eventu : " + newEvent.getDate());
-//        System.out.print("Godzina rozpoczęcia eventu : " + newEvent.getTime());
-//    }
-//
-//    public void eventDetails() {
-//        boolean error = false;
-//        System.out.print("podaj miejsce eventu: ");
-//        newEvent.setPlace(scanner.nextLine());
-//        System.out.print("podaj region eventu: ");
-//        newEvent.setRegion(scanner.nextLine());
-//        System.out.print("Opis wydarzenia: ");
-//        newEvent.setDescription(scanner.nextLine());
-//        do {
-//            error = false;
-//            try {
-//                System.out.print("Ile będzie uczestników: ");
-//                newEvent.setUsersCount(scanner.nextInt());
-//                while (newEvent.getUsersCount() < 0 || newEvent.getUsersCount() == 0) {
-//                    System.out.println("Podaj poprawną wartość");
-//                    newEvent.setUsersCount(scanner.nextInt());
-//                }
-//            } catch (InputMismatchException e) {
-//                System.out.println("Podaj poprawne dane, ile będzie uczestników.");
-//                error = true;
-//                scanner.nextLine();
-//            }
-//        } while (error);
-//
-//        System.out.println("Data eventu: " + getDate());
-//        newEvent.setOwnerOfEvent(user1);
-//        System.out.println("Nick oraz e-mail organizatora: " + newEvent.getOwnerOfEvent() + " oraz garnki i pieczarki");
-//    }
-//
-//    public void saveEvent() {
-//        FileService fileService = new FileService();
-//        fileService.addNewEventToDatabase(newEvent);
-//    }
-//
-//    public void startEvent() {
-//        eventInitializeStart();
-//        eventDetails();
-//        saveEvent();
-//        menuReturn();
-//    }
-//    public void editEvent(){
-//        FileService fileService = new FileService();
-//        try {
-//            Events events = new Events();
-//            events = fileService.readEventsFromFile();
-//            BufferedReader br = new BufferedReader(new FileReader("database/events.json"));
-//            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
-//            String stringResponse = jsonObject.get("events").toString();
-//            System.out.println(stringResponse);
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//        eventInitializeEdit();
-//        eventDetails();
-//        saveEvent();
-//        menuReturn();
-//    }
-//
-//    public long getCurrentIdNoSaveToJson() {
-//        IDsNumbers iDsNumbers = new IDsNumbers();
-//        FileUtils fileUtils = new FileUtils();
-//        iDsNumbers = fileUtils.readIdsFromJsonFile();
-//        return iDsNumbers.getIpEvent();
-//    }
-//
-//    public long getCurrentIdWithSaveNextIdToJson() {
-//        IDsNumbers iDsNumbers = new IDsNumbers();
-//        FileUtils fileUtils = new FileUtils();
-//        iDsNumbers = fileUtils.readIdsFromJsonFile();
-//        long idEvent = iDsNumbers.getIpEvent();
-//        iDsNumbers.setIpEvent(idEvent + 1);
-//        fileUtils.saveIdsToJsonFile(iDsNumbers);
-//        return idEvent;
-//    }
-//
-//    public void displaySortedEventsByRegionAndPalce() {
-//        Events events = new Events();
-//        FileService fileService = new FileService();
-//        events = fileService.readEventsFromFile();
-//        Map<String, Map<String, List<Event>>> regionAndPlaceMap = new TreeMap<>();
-//        List<Event> onlyPlaces = new ArrayList<>();
-//        for (Map.Entry<Long, Event> pair : events.getEvents().entrySet()) {
-//            String keyRegion = pair.getValue().getRegion();
-//            String keyPlace = pair.getValue().getPlace();
-//
-//            onlyPlaces.add(pair.getValue());
-//
-//            if (!regionAndPlaceMap.containsKey(keyRegion)) {
-//                regionAndPlaceMap.put(keyRegion, new TreeMap<>());
-//                regionAndPlaceMap.get(keyRegion).put(keyPlace, new ArrayList<>());
-//                regionAndPlaceMap.get(keyRegion).get(keyPlace).add(pair.getValue());
-//            } else {
-//                if (!regionAndPlaceMap.get(keyRegion).containsKey(keyPlace)) {
-//                    regionAndPlaceMap.get(keyRegion).put(keyPlace, new ArrayList<>());
-//                    regionAndPlaceMap.get(keyRegion).get(keyPlace).add(pair.getValue());
-//                } else {
-//                    regionAndPlaceMap.get(keyRegion).get(keyPlace).add(pair.getValue());
-//                }
-//            }
-//
-//        }
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Podaj region wyszukiwania");
-//
-//        System.out.println(regionAndPlaceMap.keySet());
-//
-//        String region;
-//        boolean allPlaces = false;
-//
-//        do {
-//            System.out.println("Wpisz właściwy region lub *, aby wszystkie lokalizacje !");
-//            region = scanner.nextLine();
-//        } while (!(regionAndPlaceMap.containsKey(region) || (region.equals("*"))));
-//        if (!region.equals("*")) {
-//            System.out.println("Jest " + regionAndPlaceMap.get(region).size() + " miejscowości w tym regionie !");
-//
-//            System.out.println(regionAndPlaceMap.get(region).keySet());
-//
-//        } else {
-//            allPlaces = true;
-//
-//        }
-//        String place = "";
-//
-//        if (!allPlaces) {
-//            do {
-//                System.out.println("Wpisz właściwą miejscowość lub *, aby wszystkie z danego regionu!");
-//                place = scanner.nextLine();
-//            } while (!(regionAndPlaceMap.get(region).containsKey(place) || (place.equals("*"))));
-//        }
-//        if (place.equals("*")) {
-//            allPlaces=true;
-//            onlyPlaces.clear();
-//            for (String key : regionAndPlaceMap.get(region).keySet()) {
-//                onlyPlaces.addAll(regionAndPlaceMap.get(region).get(key));
-//            }
-//        }
-//        int arraySize;
-//        int sizeLoop;
-//        if (!allPlaces) {
-//            arraySize = regionAndPlaceMap.get(region).get(place).size();
-//            sizeLoop = regionAndPlaceMap.get(region).get(place).size();
-//        } else {
-//            arraySize = onlyPlaces.size();
-//            sizeLoop = arraySize;
-//        }
-//        Event[] preSortedEvents = new Event[arraySize];
-//        for (int i = 0; i < sizeLoop; i++) {
-//            if ((allPlaces)) {
-//                preSortedEvents[i] = onlyPlaces.get(i);
-//            } else {
-//                preSortedEvents[i] = regionAndPlaceMap.get(region).get(place).get(i);
-//            }
-//        }
-//        Event[] sortedEvents = new Event[arraySize];
-//        sortedEvents = sortArrayEvent(preSortedEvents);
-//
-//        for (Event sortedEvent : sortedEvents) {
-//            System.out.println(sortedEvent);
-//        }
-//        menuReturn();
-//    }
-//
-//    public Event[] sortArrayEvent(Event[] event) {
-//        Event temp;
-//        for (int j = 0; j < event.length; j++) {
-//
-//            for (int i = 0; i < event.length - 1; i++) {
-//
-//                if (event[i].getDate().compareTo(event[i + 1].getDate()) > 0) {
-//                    temp = event[i + 1];
-//                    event[i + 1] = event[i];
-//                    event[i] = temp;
-//                }
-//            }
-//        }
-//        return event;
-//    }
 
 }

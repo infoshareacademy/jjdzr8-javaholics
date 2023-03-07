@@ -18,14 +18,77 @@
     <!-- Template Main CSS File -->
     <link rel="stylesheet" href="../static/css/style.css">
 
+    <title>Events</title>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">Meet2gether</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/routes">Trasy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/events}">Eventy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">O Aplikacji</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/team}">Zespół</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj trasy" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+        </div>
+    </nav>
+
 </head>
+
 <body>
-    Hello
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th th:text="#{event.id}">Id</th>
+                <th th:text="#{event.eventName}">Name</th>
+                <th th:text="#{event.date}">Data</th>
+                <th th:text="#{event.place}">Miejsce</th>
+                <th th:text="#{event.region}">Region</th>
+                <th th:text="#{event.ownerOfEvent}">Założyciel eventu</th>
+                <th th:text="#{event.description}">Opis eventu</th>
+                <th th:text="#{event.usersCount}">Ilość Uczestników</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="event,iterStat: ${events}">
+
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${event.id}"></td>
+                <td th:text="${event.eventName}"></td>
+                <td th:text="${event.place}"></td>
+                <td th:text="${event.region}"></td>
+                <td th:text="${event.ownerOfEvent}"></td>
+                <td th:text="${event.description}"></td>
+                <td th:text="${event.usersCount}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a href="http://localhost:8080" class="btn btn-outline-primary">Strona główna</a>
+    </div>
+
 </body>
-
-
-
-    <!--    <div th:insert="~{sections/footer :: footer}"></div>-->
 </html>
 
 

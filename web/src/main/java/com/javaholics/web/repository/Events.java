@@ -1,24 +1,27 @@
 package com.javaholics.web.repository;
 
 import com.javaholics.web.repository.Event;
+import org.springframework.stereotype.Component;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.awt.image.BufferedImageOp;
+import java.util.ArrayList;
+import java.util.List;
 
+@Component
 public class Events {
 
-    private Map<Long, Event> events = new TreeMap<>();
+    private List<Event> events = new ArrayList<>();
 
-    public Map<Long, Event> getEvents() {
+    public List<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(Map<Long, Event> events) {
+    public void setEvents(List<Event> events) {
         this.events = events;
     }
 
     public void simpleAdd(Event event) {
-        events.put(event.getId(), event);
+        events.add(event);
         System.out.println("Nowy event dodany: " + event.toString());
     }
 }
