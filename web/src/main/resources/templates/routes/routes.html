@@ -18,7 +18,7 @@
           type="text/css"/>
 
     <!-- Template Main CSS File -->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 
 </head>
 
@@ -111,6 +111,7 @@
 </table>
 </div>
 <div>
+    <br>
 <a th:href="@{/routes/create}" class="btn btn-success">
     Utwórz nową trasę
 </a>
@@ -118,6 +119,7 @@
         Zapisz trasy
     </a></div>
 <div>
+    <br>
     <form th:action="@{/routes}">
     <p>Filter:  <input type="text" name="keyword" th:value="${keyword}" />
         &nbsp;
