@@ -3,7 +3,7 @@
     "1": {
       "id": 1,
       "eventName": "Wystrzałowy",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Katowice",
       "region": "Pomorskie",
@@ -18,7 +18,7 @@
     "2": {
       "id": 2,
       "eventName": "Wyzwanie",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Katowice",
       "region": "Pomorskie",
@@ -33,7 +33,7 @@
     "3": {
       "id": 3,
       "eventName": "Event_3",
-      "date": "Feb 1, 2023, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Oława",
       "region": "Dolnośląskie",
@@ -48,7 +48,7 @@
     "4": {
       "id": 4,
       "eventName": "Event_4_edit",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Kraków",
       "region": "Centrum",
@@ -63,7 +63,7 @@
     "5": {
       "id": 5,
       "eventName": "Event_5",
-      "date": "Dec 1, 2023, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Gdańsk",
       "region": "Pomorskie",
@@ -78,7 +78,7 @@
     "6": {
       "id": 6,
       "eventName": "Event_6",
-      "date": "Jun 19, 2023, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "7:00",
       "place": "Wrocław",
       "region": "Dolnośląskie",
@@ -93,7 +93,7 @@
     "7": {
       "id": 7,
       "eventName": "Juvenalia",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Wrocław",
       "region": "Dolnośląskie",
@@ -108,7 +108,7 @@
     "8": {
       "id": 8,
       "eventName": "Wakacje",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "MorskieOko",
       "region": "Pomorskie",
@@ -123,7 +123,7 @@
     "111": {
       "id": 111,
       "eventName": "Wariatkow",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Wroclaw",
       "region": "Dolnośląskie",
@@ -138,7 +138,7 @@
     "9": {
       "id": 9,
       "eventName": "Katowice",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Rzeka",
       "region": "Dolnośląskie",
@@ -153,7 +153,7 @@
     "11": {
       "id": 11,
       "eventName": "Nocna",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Gliwice",
       "region": "Śląsk",
@@ -168,7 +168,7 @@
     "12": {
       "id": 12,
       "eventName": "Sylwester",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Warszawa",
       "region": "Pomorskie",
@@ -183,7 +183,7 @@
     "15": {
       "id": 15,
       "eventName": "Projekt",
-      "date": "Jan 1, 1970, 1:00:01 AM",
+      "date": "2023-02-19 13:02:52",
       "time": "17:00",
       "place": "Wrocław",
       "region": "Centrum",

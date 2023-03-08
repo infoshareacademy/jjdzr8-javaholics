@@ -22,13 +22,13 @@ import java.util.Map;
 @Controller
 public class EventController {
 
-    private FileService fileService;
+//    private FileService fileService;
     private EventService eventService;
     private Events events;
 
     @Autowired
     public EventController(FileService fileService, EventService eventService, Events events) {
-        this.fileService = fileService;
+//        this.fileService = fileService;
         this.eventService = eventService;
         this.events = events;
     }

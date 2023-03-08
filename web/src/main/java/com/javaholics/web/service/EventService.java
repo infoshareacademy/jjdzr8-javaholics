@@ -17,7 +17,7 @@ public class EventService implements IdNumbers {
 
     public EventService(FileService fileService) {
         this.fileService = fileService;
-        events = fileService.readEventsFromFile().getEvents();
+        events = new ArrayList<Event>(fileService.readEventsFromFile().getEvents().values());
     }
 
     public List<Event> getEvents() {
