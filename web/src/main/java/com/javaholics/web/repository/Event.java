@@ -3,6 +3,8 @@ package com.javaholics.web.repository;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -11,12 +13,17 @@ import java.util.Objects;
 public class Event {
 
     private Long id;
+    @NotBlank
     private String eventName;
     private String time;
+    @NotBlank
     private String place;
+    @NotBlank
     private String region;
+    @NotBlank
     private User ownerOfEvent;
     private String description;
+    @Min(value = 1)
     private Integer usersCount;
     @FutureOrPresent()
     @NotNull
@@ -24,8 +31,6 @@ public class Event {
     private LocalDateTime date;
 
     // constructors
-
-
     public String getEventName() {
         return eventName;
     }

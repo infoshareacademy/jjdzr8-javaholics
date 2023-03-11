@@ -75,4 +75,9 @@ public class EventService implements IdNumbers {
         return iDsNumbers.getIpRoute();
     }
 
+    public void deleteEventById(long id) {
+        Event event = findEventById(id);
+        events.remove(event);
+    }
+
 }

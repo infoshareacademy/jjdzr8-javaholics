@@ -57,39 +57,44 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>#</th>
                 <th th:text="#{event.id}">Id</th>
                 <th th:text="#{event.eventName}">Name</th>
-                <th th:text="#{event.date}">Data</th>
+<!--                <th th:text="#{event.date}">Data</th>-->
                 <th th:text="#{event.place}">Miejsce</th>
                 <th th:text="#{event.region}">Region</th>
                 <th th:text="#{event.ownerOfEvent}">Założyciel eventu</th>
                 <th th:text="#{event.description}">Opis eventu</th>
                 <th th:text="#{event.usersCount}">Ilość Uczestników</th>
+                <th>Zarządzanie</th>
             </tr>
         </thead>
 
         <tbody class="even-row-color">
             <tr th:each="event,iterStat: ${events}">
 
-                <td th:text="${iterStat.count}"></td>
-                <td th:text="${event.id}"></td>
-                <td th:text="${event.eventName}"></td>
-                <td th:text="${#temporals.format(event.date, 'yyyy-MM-dd HH:mm')}"></td>
-                <td th:text="${event.place}"></td>
-                <td th:text="${event.region}"></td>
-                <td th:text="${event.ownerOfEvent.id}"></td>
-                <td th:text="${event.description}"></td>
-                <td th:text="${event.usersCount}"></td>
+<!--                <td th:text="${iterStat.count}"/>-->
+                <td th:text="${event.id}"/>
+                <td th:text="${event.eventName}"/>
+                <td th:text="${event.place}"/>
+                <td th:text="${event.region}"/>
+                <td th:text="${event.ownerOfEvent}"/>
+                <td th:text="${event.description}"/>
+                <td th:text="${event.usersCount}"/>
+                <td>
+                    <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success btn-sm">Edytuj</a>
+                    <a th:href="@{/events/delete-event/{id}(id=${event.id})}" class="btn btn-danger btn-sm">Usuń</a>
 
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <div>
-        <a href="http://localhost:8080" class="btn btn-outline-primary">Strona główna</a>
+    <div class="button">
         <a th:href="@{/events/create}" class="btn btn-success">Utwórz nowe wydarzenie</a>
-
+        <a th:href="@{/events/save}" class="btn btn-success">Zapisz wydarzenia do pliku</a>
+        </br>
+        </br>
+        <a href="http://localhost:8080" class="btn btn-outline-primary ">Strona główna</a>
     </div>
 
 </body>

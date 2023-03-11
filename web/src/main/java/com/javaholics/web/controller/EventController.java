@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -53,6 +54,18 @@ public class EventController {
             return "events/events";
         }
         eventService.addEvent(event);
+        return "redirect:/events";
+    }
+
+    @GetMapping("events/save")
+    public String saveRoutes(){
+        eventService.saveEventToJson();
+        return "redirect:/events";
+    }
+
+    @GetMapping("events/delete-event/{id}")
+    public String deleteEvent(@PathVariable long id) {
+        eventService.deleteEventById(id);
         return "redirect:/events";
     }
 }
