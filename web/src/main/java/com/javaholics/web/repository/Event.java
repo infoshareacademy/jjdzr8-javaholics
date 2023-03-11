@@ -20,7 +20,6 @@ public class Event {
     private String place;
     @NotBlank
     private String region;
-    @NotBlank
     private User ownerOfEvent;
     private String description;
     @Min(value = 1)

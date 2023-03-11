@@ -62,14 +62,14 @@
 <!--                <th th:text="#{event.date}">Data</th>-->
                 <th th:text="#{event.place}">Miejsce</th>
                 <th th:text="#{event.region}">Region</th>
-                <th th:text="#{event.ownerOfEvent}">Założyciel eventu</th>
-                <th th:text="#{event.description}">Opis eventu</th>
-                <th th:text="#{event.usersCount}">Ilość Uczestników</th>
+                <th th:text="#{event.ownerOfEvent}">Założyciel wydarzenia</th>
+                <th th:text="#{event.description}">Opis wydarzenia</th>
+                <th th:text="#{event.usersCount}">Ilość uczestników</th>
                 <th>Zarządzanie</th>
             </tr>
         </thead>
 
-        <tbody class="even-row-color">
+        <tbody class="">
             <tr th:each="event,iterStat: ${events}">
 
 <!--                <td th:text="${iterStat.count}"/>-->
@@ -83,18 +83,25 @@
                 <td>
                     <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success btn-sm">Edytuj</a>
                     <a th:href="@{/events/delete-event/{id}(id=${event.id})}" class="btn btn-danger btn-sm">Usuń</a>
-
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <div class="button">
+    <div id="button">
+        <a href="http://localhost:8080" class="btn btn-outline-primary ">Strona główna</a>
         <a th:href="@{/events/create}" class="btn btn-success">Utwórz nowe wydarzenie</a>
         <a th:href="@{/events/save}" class="btn btn-success">Zapisz wydarzenia do pliku</a>
-        </br>
-        </br>
-        <a href="http://localhost:8080" class="btn btn-outline-primary ">Strona główna</a>
+        <br/>
+        <br/>
+        <form th:action="@{/events}">
+            <p>
+                <label for="filter">Filtruj</label>
+                <input id="filter" type="text" name="filter" th:value="${filter}">
+
+                <input type="submit" value="Szukaj">
+            </p>
+        </form>
     </div>
 
 </body>

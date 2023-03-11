@@ -41,6 +41,23 @@ public class EventController {
         return "events/events";
     }
 
+    @GetMapping("/events/{eventId}")
+    public String getEventById(@PathVariable("eventId") Long eventId, Model model) {
+        Event event = eventService.findEventById(eventId);
+        model.addAttribute("event", event);
+        return "events/modifyevent";
+    }
+
+    @PostMapping("/events/{eventId}/edit")
+    public String editEvent(@PathVariable("eventId") Long eventId, @Valid @ModelAttribute Event event, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "events/modifyevent";
+        }
+
+        eventService.editEventById(eventId, event);
+        return "redirect:/events";
+    }
+
     @GetMapping("/events/create")
     public String showCreateEvent(Model model) {
         Long id = eventService.getCurrentIdNoSaveToJson();
@@ -58,7 +75,7 @@ public class EventController {
     }
 
     @GetMapping("events/save")
-    public String saveRoutes(){
+    public String saveEvents(){
         eventService.saveEventToJson();
         return "redirect:/events";
     }

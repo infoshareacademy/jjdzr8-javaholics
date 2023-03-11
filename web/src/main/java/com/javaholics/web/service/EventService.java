@@ -2,7 +2,6 @@ package com.javaholics.web.service;
 import com.javaholics.web.exception.EventNotFoundException;
 import com.javaholics.web.repository.*;
 import org.springframework.stereotype.Service;
-import java.text.ParseException;
 import java.util.*;
 
 import com.javaholics.web.repository.Event;
@@ -32,7 +31,7 @@ public class EventService implements IdNumbers {
                 .findFirst()
                 .orElseThrow(() -> new EventNotFoundException("Not found: %s".formatted(id)));
     }
-    public void editEventById(Long id, Event event) throws ParseException {
+    public void editEventById(Long id, Event event) {
         Event eventToEdit = findEventById(id);
 
         eventToEdit.setId(event.getId());
@@ -61,10 +60,10 @@ public class EventService implements IdNumbers {
     public long getCurrentIdNoSaveToJson() {
         FileUtils fileUtils = new FileUtils();
         IDsNumbers iDsNumbers = fileUtils.readIdsFromJsonFile();
-        long idRoute = iDsNumbers.getIpRoute();
-        iDsNumbers.setIpRoute(idRoute+1);
+        long idEvent = iDsNumbers.getIpEvent();
+        iDsNumbers.setIpEvent(idEvent+1);
         fileUtils.saveIdsToJsonFile(iDsNumbers);
-        return idRoute;
+        return idEvent;
     }
 
     @Override
@@ -72,7 +71,7 @@ public class EventService implements IdNumbers {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
         iDsNumbers = fileUtils.readIdsFromJsonFile();
-        return iDsNumbers.getIpRoute();
+        return iDsNumbers.getIpEvent();
     }
 
     public void deleteEventById(long id) {
