@@ -68,8 +68,14 @@
     </a></div>
 <div>
     <form th:action="@{/routes}">
-    <p>Filter:  <input type="text" name="keyword" th:value="${keyword}" />
-        &nbsp;
+        <p>Filter:  <input type="text" name="keyword" th:value="${keyword}" />
+        <p>Filter:  <input type="text" name="typeWord" th:value="${typeWord}" />
+        <p>Filter:  <select type="text" name="difficulty" th:value="${difficulty}"/>
+            <option></option>
+            <option>EASY</option>
+            <option>MEDIUM</option>
+            <option>HARD</option>
+            <option>EXTREME</option>
         <input type="submit" value="Search" />
     </p>
     </form>

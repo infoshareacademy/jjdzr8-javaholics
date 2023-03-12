@@ -1,10 +1,10 @@
 package com.javaholics.web.controller;
 
 import com.javaholics.web.repository.Route;
+import com.javaholics.web.repository.RouteDifficulty;
 import com.javaholics.web.repository.Routes;
 import com.javaholics.web.service.FileService;
 import com.javaholics.web.service.RouteService;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,10 +27,12 @@ public class RouteController {
         this.routes = routes;
     }
     @GetMapping("/routes")
-    public String showRoutes(@RequestParam(required = false) String keyword, Model model) {
-        List<Route> routeList = routeService.getRoutesSearch(keyword);
+    public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam (required = false) String typeWord, @RequestParam (required = false) String difficulty, Model model) {
+        List<Route> routeList = routeService.getRoutesSearch(keyword, typeWord, difficulty);
         model.addAttribute("routes", routeList);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("typeWord", typeWord);
+        model.addAttribute("difficulty", difficulty);
         return "routes/routes";
     }
 
@@ -83,3 +85,6 @@ public class RouteController {
     }
 
 }
+
+
+

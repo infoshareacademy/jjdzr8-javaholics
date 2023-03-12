@@ -1,18 +1,10 @@
 package com.javaholics.web.service;
 
-import com.google.gson.JsonObject;
-import com.javaholics.web.controller.Menu;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.repository.*;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,15 +25,30 @@ public class RouteService implements IdNumbers{
         return routes;
     }
 
-    public List<Route> getRoutesSearch(String key) {
-        if (key == null) {
+    public List<Route> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
+        if (lokalKey == null && typeKey == null && difficulty == null) {
             return routes;
         }
+           return routes.stream()
+                    .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
+                    .filter(route -> StringUtils.containsIgnoreCase(route.getType(), typeKey))
+                    .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(),difficulty))
+                    .collect(Collectors.toList());
+    }
+    public List<Route> getRoutesSearchType(String typeKey) {
         return routes.stream()
-                .filter(route -> StringUtils.containsIgnoreCase( route.getType(), key)
-                        || StringUtils.containsIgnoreCase( route.getDifficulty().name(), key )
-                        || StringUtils.containsIgnoreCase(route.getLocality(), key))
-                        .collect(Collectors.toList() );
+                .filter(route -> StringUtils.containsIgnoreCase( route.getType(), typeKey))
+                .collect(Collectors.toList() );
+    }
+    public List<Route> getRoutesSearchLocality(String locKey) {
+        return routes.stream()
+                .filter(route -> StringUtils.containsIgnoreCase( route.getLocality(), locKey ))
+                .collect(Collectors.toList() );
+    }
+    public List<Route> getRoutesSearchDifficulty(String difficulty) {
+        return routes.stream()
+                .filter(route -> StringUtils.containsIgnoreCase( route.getDifficulty().name(), difficulty ))
+                .collect(Collectors.toList() );
     }
     public void deleteRouteById(long id) {
         Route foundRout = findRouteById(id);
