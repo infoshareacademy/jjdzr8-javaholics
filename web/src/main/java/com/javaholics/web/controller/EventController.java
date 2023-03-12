@@ -5,19 +5,13 @@ import com.javaholics.web.repository.Events;
 import com.javaholics.web.service.EventService;
 import com.javaholics.web.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
-
 
 
 @Controller
@@ -35,9 +29,12 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public String showEvents(Model model) {
-        List<Event> eventList = eventService.getEvents();
+    public String showEvents(@RequestParam(required = false) String localWord,@RequestParam(required = false) String nameWord,@RequestParam(required = false) String descriptionWord, Model model) {
+        List<Event> eventList = eventService.getEventSearch(localWord, nameWord, descriptionWord);
         model.addAttribute("events", eventList);
+        model.addAttribute("localKey", localWord);
+        model.addAttribute("nameWord", nameWord);
+        model.addAttribute("descriptionWord", descriptionWord);
         return "events/events";
     }
 

@@ -95,11 +95,10 @@
         <br/>
         <br/>
         <form th:action="@{/events}">
-            <p>
-                <label for="filter">Filtruj</label>
-                <input id="filter" type="text" name="filter" th:value="${filter}">
-
-                <input type="submit" value="Szukaj">
+            <p>Filtr lokalizacji:  <input type="text" name="localWord" th:value="${localWord}" />
+            <p>Filtr lokalizacji:  <input type="text" name="nameWord" th:value="${nameWord}" />
+            <p>Filtr lokalizacji:  <input type="text" name="descriptionWord" th:value="${descriptionWord}" />
+                <input type="submit" value="Search" />
             </p>
         </form>
     </div>

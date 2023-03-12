@@ -122,12 +122,17 @@
         Zapisz trasy
     </a></div>
 <div>
-    <br>
     <form th:action="@{/routes}">
-    <p>Filter:  <input type="text" name="keyword" th:value="${keyword}" />
-        &nbsp;
-        <input type="submit" value="Search" />
-    </p>
+        <p>Filtr lokalizacji:  <input type="text" name="keyword" th:value="${keyword}" />
+        <p>Filtr typu trasy:  <input type="text" name="typeWord" th:value="${typeWord}" />
+        <p>Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
+            <option></option>
+            <option th:value="'EASY'" th:text="Łatwy"/>
+            <option th:value="'MEDIUM'" th:text="Średni"/>
+            <option th:value="'HARD'" th:text="Trudny"/>
+            <option th:value="'EXTREME'" th:text="Zaawansowany"/>
+            <input type="submit" value="Search" />
+        </p>
     </form>
 </div>
 
