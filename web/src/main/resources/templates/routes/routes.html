@@ -68,14 +68,14 @@
     </a></div>
 <div>
     <form th:action="@{/routes}">
-        <p>Filter:  <input type="text" name="keyword" th:value="${keyword}" />
-        <p>Filter:  <input type="text" name="typeWord" th:value="${typeWord}" />
-        <p>Filter:  <select type="text" name="difficulty" th:value="${difficulty}"/>
+        <p>Filtr lokalizacji:  <input type="text" name="keyword" th:value="${keyword}" />
+        <p>Filtr typu trasy:  <input type="text" name="typeWord" th:value="${typeWord}" />
+        <p>Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
             <option></option>
-            <option>EASY</option>
-            <option>MEDIUM</option>
-            <option>HARD</option>
-            <option>EXTREME</option>
+            <option th:value="'EASY'" th:text="Łatwy"/>
+            <option th:value="'MEDIUM'" th:text="Średni"/>
+            <option th:value="'HARD'" th:text="Trudny"/>
+            <option th:value="'EXTREME'" th:text="Zaawansowany"/>
         <input type="submit" value="Search" />
     </p>
     </form>
