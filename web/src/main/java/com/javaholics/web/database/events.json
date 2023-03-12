@@ -3,31 +3,19 @@
     "1": {
       "id": 1,
       "eventName": "Wystrzałowy",
-      "time": "17:00",
       "place": "Katowice",
       "region": "Pomorskie",
       "ownerOfEventId": 1,
-      "ownerOfEvent": {
-        "id": 111,
-        "name": "Janusz",
-        "login": "login1"
-      },
       "description": "Tak",
       "usersCount": 100,
       "date": "2023-02-19 13:02:52"
     },
     "2": {
-      "id": 1,
+      "id": 2,
       "eventName": "Granie planszowe",
-      "time": "17:00",
       "place": "Wrocław",
       "region": "Dolnośląskie",
       "ownerOfEventId": 2,
-      "ownerOfEvent": {
-        "id": 4,
-        "name": "Kejmil",
-        "login": "login2"
-      },
       "description": "Tak",
       "usersCount": 12,
       "date": "2023-02-19 13:02:52"

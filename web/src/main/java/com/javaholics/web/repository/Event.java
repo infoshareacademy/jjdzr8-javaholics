@@ -96,12 +96,6 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
-//    public Route getEventRoute() {
-//        return eventRoute;
-//    }
-//    public void setEventRoute(Route eventRoute) {
-//        this.eventRoute = eventRoute;
-//    }
     public Integer getUsersCount() {
         return usersCount;
     }
@@ -118,7 +112,6 @@ public class Event {
                 ", time='" + time + '\'' +
                 ", place='" + place + '\'' +
                 ", region='" + region + '\'' +
-                ", ownerOfEvent=" + ownerOfEvent +
                 ", ownerOfEventId=" + ownerOfEventId + '\'' +
                 ", description='" + description + '\'' +
                 '}';
@@ -129,7 +122,7 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(id, event.id) && Objects.equals(eventName, event.eventName) && Objects.equals(date, event.date) && Objects.equals(time, event.time) && Objects.equals(place, event.place) && Objects.equals(region, event.region) && Objects.equals(ownerOfEvent, event.ownerOfEvent) && Objects.equals(ownerOfEventId, event.ownerOfEventId) && Objects.equals(description, event.description) && Objects.equals(usersCount, event.usersCount);
+        return Objects.equals(id, event.id) && Objects.equals(eventName, event.eventName) && Objects.equals(date, event.date) && Objects.equals(time, event.time) && Objects.equals(place, event.place) && Objects.equals(region, event.region) && Objects.equals(ownerOfEventId, event.ownerOfEventId) && Objects.equals(description, event.description) && Objects.equals(usersCount, event.usersCount);
     }
 
     @Override

@@ -4,12 +4,10 @@ import com.javaholics.web.repository.Route;
 import com.javaholics.web.repository.Routes;
 import com.javaholics.web.service.FileService;
 import com.javaholics.web.service.RouteService;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -46,7 +44,6 @@ public class RouteController {
         if (bindingResult.hasErrors()) {
             return "routes/modifyroute";
         }
-
         routeService.editRouteById(routeId, route);
         return "redirect:/routes";
     }
@@ -72,11 +69,13 @@ public class RouteController {
         routeService.addRoute(route);
         return "redirect:/routes";
     }
+
     @GetMapping("/routes/get-error")
     public String getRouteWithWrongIdAndThrowError() {
         routeService.findRouteById(-1L);
         return "routes/routes";
     }
+
     @GetMapping("routes/save")
     public String saveRoutes(){
         routeService.saveRoutesToJson();

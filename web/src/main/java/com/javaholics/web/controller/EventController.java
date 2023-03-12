@@ -5,31 +5,25 @@ import com.javaholics.web.repository.Events;
 import com.javaholics.web.service.EventService;
 import com.javaholics.web.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
-
 
 
 @Controller
 public class EventController {
 
-//    private FileService fileService;
+    private FileService fileService;
     private EventService eventService;
     private Events events;
 
     @Autowired
     public EventController(FileService fileService, EventService eventService, Events events) {
-//        this.fileService = fileService;
+        this.fileService = fileService;
         this.eventService = eventService;
         this.events = events;
     }
@@ -53,30 +47,7 @@ public class EventController {
         if (bindingResult.hasErrors()) {
             return "events/modifyevent";
         }
-
         eventService.editEventById(eventId, event);
-        return "redirect:/events";
-    }
-
-    @GetMapping("/events/create")
-    public String showCreateEvent(Model model) {
-        Long id = eventService.getCurrentIdNoSaveToJson();
-        model.addAttribute("event", new Event(id, "eventName"));
-        return "events/addevent";
-    }
-
-    @PostMapping("/events")
-    public String creatEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "events/events";
-        }
-        eventService.addEvent(event);
-        return "redirect:/events";
-    }
-
-    @GetMapping("events/save")
-    public String saveEvents(){
-        eventService.saveEventToJson();
         return "redirect:/events";
     }
 
@@ -85,4 +56,33 @@ public class EventController {
         eventService.deleteEventById(id);
         return "redirect:/events";
     }
+
+    @GetMapping("/events/create")
+    public String showCreateFormEvent(Model model) {
+        Long id = eventService.getCurrentIdWithSaveNextIdToJson();
+        model.addAttribute("event", new Event(id, "eventName"));
+        return "events/addevent";
+    }
+
+    @PostMapping("/events")
+    public String createEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "events/events";
+        }
+        eventService.addEvent(event);
+        return "redirect:/events";
+    }
+
+    @GetMapping("/events/get-error")
+    public String getEventWithWrongIdAndThrowError() {
+        eventService.findEventById(-1L);
+        return "events/events";
+    }
+
+    @GetMapping("events/save")
+    public String saveEvents(){
+        eventService.saveEventToJson();
+        return "redirect:/events";
+    }
+
 }

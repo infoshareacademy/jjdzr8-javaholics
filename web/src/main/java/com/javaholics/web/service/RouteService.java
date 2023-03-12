@@ -1,21 +1,11 @@
 package com.javaholics.web.service;
 
-import com.google.gson.JsonObject;
-import com.javaholics.web.controller.Menu;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.repository.*;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
-
 import com.javaholics.web.repository.Route;
 
 @Service
@@ -26,8 +16,7 @@ public class RouteService implements IdNumbers{
 
     public RouteService(FileService fileService) {
         this.fileService = fileService;
-        List<Route> routeList = fileService.readRoutesFromFile().getRoutes();
-        routes = routeList;
+        routes = fileService.readRoutesFromFile().getRoutes();
     }
     public List<Route> getRoutes() {
         return routes;
