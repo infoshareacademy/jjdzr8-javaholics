@@ -19,7 +19,7 @@ import java.util.Objects;
 public class FileService {
     // definicja ścieżek do plików bazy
     private static final Path pathUsersFile = Path.of("database", "users.json");
-    private static final Path pathEventsFile = Path.of("database", "events.json");
+    private static final Path pathEventsFile = Path.of("web","src","main","java","com","javaholics","web","database","events.json");
     private static final Path pathRoutesFile = Path.of("web","src","main","java","com","javaholics","web","database","routes.json");
 
     // gettery do ścieżek

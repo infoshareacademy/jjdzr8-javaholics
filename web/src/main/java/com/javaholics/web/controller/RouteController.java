@@ -40,6 +40,7 @@ public class RouteController {
         model.addAttribute("route", route);
         return "routes/modifyroute";
     }
+
     @PostMapping("/routes/{routeId}/edit")
     public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute Route route,  BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Meet2gether - Eventy</title>
+    <title>Events</title>
     <meta content="Jest to aplikacja pozwalająca na spotykanie się ze znajomymi na wspólnych aktywanościach na zewnątrz. Wygodna wyszukiwarka tras i ewentów."
           name="description">
 
@@ -18,96 +18,91 @@
     <!-- Template Main CSS File -->
     <link rel="stylesheet" href="../static/css/style.css">
 
+    <title>Events</title>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">Meet2gether</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/routes">Trasy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/events}">Eventy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">O Aplikacji</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/team}">Zespół</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj trasy" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+        </div>
+    </nav>
+
 </head>
 
 <body>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th th:text="#{event.id}">Id</th>
+                <th th:text="#{event.eventName}">Name</th>
+<!--                <th th:text="#{event.date}">Data</th>-->
+                <th th:text="#{event.place}">Miejsce</th>
+                <th th:text="#{event.region}">Region</th>
+                <th th:text="#{event.ownerOfEvent}">Założyciel wydarzenia</th>
+                <th th:text="#{event.description}">Opis wydarzenia</th>
+                <th th:text="#{event.usersCount}">Ilość uczestników</th>
+                <th>Zarządzanie</th>
+            </tr>
+        </thead>
 
-<div th:insert="~{sections/navbar :: header}"></div>
+        <tbody class="">
+            <tr th:each="event,iterStat: ${events}">
 
-<main>
+<!--                <td th:text="${iterStat.count}"/>-->
+                <td th:text="${event.id}"/>
+                <td th:text="${event.eventName}"/>
+                <td th:text="${event.place}"/>
+                <td th:text="${event.region}"/>
+                <td th:text="${event.ownerOfEvent}"/>
+                <td th:text="${event.description}"/>
+                <td th:text="${event.usersCount}"/>
+                <td>
+                    <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success btn-sm">Edytuj</a>
+                    <a th:href="@{/events/delete-event/{id}(id=${event.id})}" class="btn btn-danger btn-sm">Usuń</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <div class="container"></div>
+    <div id="button">
+        <a href="http://localhost:8080" class="btn btn-outline-primary ">Strona główna</a>
+        <a th:href="@{/events/create}" class="btn btn-success">Utwórz nowe wydarzenie</a>
+        <a th:href="@{/events/save}" class="btn btn-success">Zapisz wydarzenia do pliku</a>
+        <br/>
+        <br/>
+        <form th:action="@{/events}">
+            <p>
+                <label for="filter">Filtruj</label>
+                <input id="filter" type="text" name="filter" th:value="${filter}">
 
-    <div class="jumbotron">
-        <h1>Eventy</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
-            includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
+                <input type="submit" value="Szukaj">
+            </p>
+        </form>
     </div>
-
-    </div>
-
-</main>
-
-<div th:insert="~{sections/footer :: footer}"></div>
 
 </body>
 </html>

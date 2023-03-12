@@ -1,10 +1,12 @@
 package com.javaholics.web.repository;
 
 import com.javaholics.web.repository.Event;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.TreeMap;
 
+@Repository
 public class Events {
 
     private Map<Long, Event> events = new TreeMap<>();

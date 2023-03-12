@@ -79,8 +79,8 @@ public class RouteService implements IdNumbers{
     public void saveRoutesToJson(){
 
         Routes routesCopy = new Routes();
-        for (int i = 0; i <routes.size() ; i++) {
-            routesCopy.add(routes.get(i));
+        for (Route route : routes) {
+            routesCopy.add(route);
         }
         fileService.writeToJsonFile(routesCopy);
     }
@@ -103,6 +103,5 @@ public class RouteService implements IdNumbers{
         iDsNumbers.setIpRoute(idRoute+1);
         fileUtils.saveIdsToJsonFile(iDsNumbers);
         return idRoute;
-
 }
 }

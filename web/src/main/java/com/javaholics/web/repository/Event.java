@@ -1,24 +1,35 @@
 package com.javaholics.web.repository;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class Event {
 
     private Long id;
+    @NotBlank
     private String eventName;
-    private Date date;
     private String time;
+    @NotBlank
     private String place;
+    @NotBlank
     private String region;
     private User ownerOfEvent;
     private String description;
+    @Min(value = 1)
     private Integer usersCount;
-
+    @FutureOrPresent()
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime date;
 
     // constructors
-
-
     public String getEventName() {
         return eventName;
     }
@@ -27,12 +38,9 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public Event(String eventName, Long id, Date date, String time, User ownerOfEvent) {
+    public Event(Long id,String eventName) {
         this.eventName = eventName;
         this.id = id;
-        this.date = date;
-        this.time = time;
-        this.ownerOfEvent = ownerOfEvent;
     }
 
     // getters and setters
@@ -43,10 +51,10 @@ public class Event {
     public void setId(Long id) {
         this.id = id;
     }
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
     public String getTime() {
