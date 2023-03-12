@@ -6,118 +6,30 @@
       "time": "17:00",
       "place": "Katowice",
       "region": "Pomorskie",
+      "ownerOfEventId": 1,
       "ownerOfEvent": {
         "id": 111,
-        "name": "Jan1",
+        "name": "Janusz",
         "login": "login1"
       },
       "description": "Tak",
-      "usersCount": 12,
-      "date": "2023-02-19 13:02:52"
-    },
-    "3": {
-      "id": 3,
-      "eventName": "Event_3",
-      "time": "17:00",
-      "place": "Oława",
-      "region": "Dolnośląskie",
-      "ownerOfEvent": {
-        "id": 3,
-        "name": "Kamil",
-        "login": "login3"
-      },
-      "description": "blblabla",
-      "usersCount": 3,
-      "date": "2023-02-19 13:02:52"
-    },
-    "4": {
-      "id": 4,
-      "eventName": "Event_4_edit",
-      "time": "17:00",
-      "place": "Kraków",
-      "region": "Centrum",
-      "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
-        "login": "login1"
-      },
-      "description": "Kawa",
-      "usersCount": 5,
-      "date": "2023-02-19 13:02:52"
-    },
-    "7": {
-      "id": 7,
-      "eventName": "Juvenalia",
-      "time": "17:00",
-      "place": "Wrocław",
-      "region": "Dolnośląskie",
-      "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
-        "login": "login1"
-      },
-      "description": "ImprezaStudencka",
-      "usersCount": 12,
-      "date": "2023-02-19 13:02:52"
-    },
-    "11": {
-      "id": 11,
-      "eventName": "Nocna",
-      "time": "17:00",
-      "place": "Gliwice",
-      "region": "Śląsk",
-      "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
-        "login": "login1"
-      },
-      "description": "Cięzko",
-      "usersCount": 12,
-      "date": "2023-02-19 13:02:52"
-    },
-    "12": {
-      "id": 12,
-      "eventName": "Sylwester",
-      "time": "17:00",
-      "place": "Warszawa",
-      "region": "Pomorskie",
-      "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
-        "login": "login1"
-      },
-      "description": "Sylwester",
-      "usersCount": 12,
-      "date": "2023-02-19 13:02:52"
-    },
-    "15": {
-      "id": 15,
-      "eventName": "Projekt",
-      "time": "17:00",
-      "place": "Wrocław",
-      "region": "Centrum",
-      "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
-        "login": "login1"
-      },
-      "description": "Odpoczynek",
-      "usersCount": 4,
-      "date": "2023-02-19 13:02:52"
-    },
-    "111": {
-      "id": 111,
-      "eventName": "Wariatkow",
-      "time": "17:00",
-      "place": "Wroclaw",
-      "region": "Dolnośląskie",
-      "ownerOfEvent": {
-        "id": 111,
-        "name": "Jan1",
-        "login": "login1"
-      },
-      "description": "gkjn",
       "usersCount": 100,
+      "date": "2023-02-19 13:02:52"
+    },
+    "2": {
+      "id": 1,
+      "eventName": "Granie planszowe",
+      "time": "17:00",
+      "place": "Wrocław",
+      "region": "Dolnośląskie",
+      "ownerOfEventId": 2,
+      "ownerOfEvent": {
+        "id": 4,
+        "name": "Kejmil",
+        "login": "login2"
+      },
+      "description": "Tak",
+      "usersCount": 12,
       "date": "2023-02-19 13:02:52"
     }
   }
