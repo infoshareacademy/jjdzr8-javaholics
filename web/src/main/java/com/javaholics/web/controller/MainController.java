@@ -14,17 +14,17 @@ public class MainController {
 
     @GetMapping("/about")
     public String getAbout() {
-        return "about";
+        return "other/about";
     }
 
     @GetMapping("/team")
     public String getTeam() {
-        return "team";
+        return "other/team";
     }
 
     @GetMapping("/login")
     public String getLogin() {
-        return "login";
+        return "users/login";
     }
 
 }
