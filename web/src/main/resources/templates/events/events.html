@@ -17,7 +17,25 @@
             height: 20vh;">
 </div>
 
-<body>
+<form th:action="@{/events}">
+    <div class="d-flex justify-content-center">
+        <div class="p-2">Filtr lokalizacji:  <input type="text" name="localWord" th:value="${localWord}" /></div>
+        <div class="p-2">Filtr nazwy:   <input type="text" name="nameWord" th:value="${nameWord}" /></div>
+        <div class="p-2">Szukaj w opisie:  <input type="text" name="descriptionWord" th:value="${descriptionWord}" /></div>
+        <div class="p-2">  </div>
+        <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
+    </div>
+</form>
+
+<div>
+    <a th:href="@{/events/create}" class="btn btn-success">
+        <i class="fas fa-plus"></i> Utwórz nowy event
+    </a>
+    <a th:href="@{/events/save}" class="btn btn-warning">
+        <i class="fas fa-save"></i> Zapisz eventy do JSON
+    </a>
+</div>
+<div class="mt-2">
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -51,21 +69,15 @@
             </tr>
         </tbody>
     </table>
-
+</div>
     <div id="button">
-        <a href="http://localhost:8080" class="btn btn-outline-primary ">Strona główna</a>
-        <a th:href="@{/events/create}" class="btn btn-success">Utwórz nowe wydarzenie</a>
-        <a th:href="@{/events/save}" class="btn btn-success">Zapisz wydarzenia do pliku</a>
-        <br/>
-        <br/>
-        <form th:action="@{/events}">
-            <p>Filtr lokalizacji:  <input type="text" name="localWord" th:value="${localWord}" />
-            <p>Filtr lokalizacji:  <input type="text" name="nameWord" th:value="${nameWord}" />
-            <p>Filtr lokalizacji:  <input type="text" name="descriptionWord" th:value="${descriptionWord}" />
-                <input type="submit" value="Search" />
-            </p>
-        </form>
-    </div>
+        <a th:href="@{/events/create}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Utwórz nowy event
+        </a>
+        <a th:href="@{/events/save}" class="btn btn-warning">
+            <i class="fas fa-save"></i> Zapisz eventy do JSON
+        </a>
+
 
     <div th:insert="~{/../sections/footer :: footer}"></div>
 
