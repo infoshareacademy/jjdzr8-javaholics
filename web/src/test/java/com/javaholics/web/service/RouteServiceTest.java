@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,6 +21,8 @@ class RouteServiceTest {
         Route route3 = new Route(3, "Dla wytrzymałych");
         Route route4 = new Route(4, "Kardio rowerowe");
         Route route5 = new Route(5, "Szybka trasa zakupowa");
+
+
 
     @Test
     void getRoutesSearchLocalityEqualsWarszawa_shouldReturnSize1(){

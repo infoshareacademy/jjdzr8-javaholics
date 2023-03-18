@@ -93,7 +93,7 @@ public class EventService implements IdNumbers {
     public List<Event> getEventSearchPlace(String placeKey) {
         return events.stream()
                 .filter(event -> StringUtils.containsAnyIgnoreCase(event.getPlace(),placeKey))
-                .collect(Collectors.toList() );
+                .collect(Collectors.toList());
     }
     public List<Event> getEventSearchName(String nameKey) {
         return events.stream()
