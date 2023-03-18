@@ -7,9 +7,9 @@ import com.javaholics.web.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -17,13 +17,13 @@ import java.util.List;
 @Controller
 public class EventController {
 
-//    private FileService fileService;
+    private FileService fileService;
     private EventService eventService;
     private Events events;
 
     @Autowired
     public EventController(FileService fileService, EventService eventService, Events events) {
-//        this.fileService = fileService;
+        this.fileService = fileService;
         this.eventService = eventService;
         this.events = events;
     }
@@ -50,8 +50,13 @@ public class EventController {
         if (bindingResult.hasErrors()) {
             return "events/modifyevent";
         }
-
         eventService.editEventById(eventId, event);
+        return "redirect:/events";
+    }
+
+    @GetMapping("events/delete-event/{id}")
+    public String deleteEvent(@PathVariable long id) {
+        eventService.deleteEventById(id);
         return "redirect:/events";
     }
 
@@ -63,12 +68,18 @@ public class EventController {
     }
 
     @PostMapping("/events")
-    public String creatEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
+    public String createEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "events/events";
+            return "events/addevent";
         }
         eventService.addEvent(event);
         return "redirect:/events";
+    }
+
+    @GetMapping("/events/get-error")
+    public String getEventWithWrongIdAndThrowError() {
+        eventService.findEventById(-1L);
+        return "events/events";
     }
 
     @GetMapping("events/save")
@@ -77,9 +88,4 @@ public class EventController {
         return "redirect:/events";
     }
 
-    @GetMapping("events/delete-event/{id}")
-    public String deleteEvent(@PathVariable long id) {
-        eventService.deleteEventById(id);
-        return "redirect:/events";
-    }
 }

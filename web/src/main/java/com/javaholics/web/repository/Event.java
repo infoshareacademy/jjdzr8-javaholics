@@ -7,7 +7,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 public class Event {
@@ -20,7 +19,7 @@ public class Event {
     private String place;
     @NotBlank
     private String region;
-    private User ownerOfEvent;
+    private long ownerOfEvent;
     private String description;
     @Min(value = 1)
     private Integer usersCount;
@@ -38,7 +37,7 @@ public class Event {
         this.eventName = eventName;
     }
 
-    public Event(Long id,String eventName) {
+    public Event(Long id, String eventName) {
         this.eventName = eventName;
         this.id = id;
     }
@@ -75,10 +74,10 @@ public class Event {
     public void setRegion(String region) {
         this.region = region;
     }
-    public User getOwnerOfEvent() {
+    public long getOwnerOfEvent() {
         return ownerOfEvent;
     }
-    public void setOwnerOfEvent(User ownerOfEvent) {
+    public void setOwnerOfEvent(long ownerOfEvent) {
         this.ownerOfEvent = ownerOfEvent;
     }
     public String getDescription() {
@@ -87,12 +86,6 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
-//    public Route getEventRoute() {
-//        return eventRoute;
-//    }
-//    public void setEventRoute(Route eventRoute) {
-//        this.eventRoute = eventRoute;
-//    }
     public Integer getUsersCount() {
         return usersCount;
     }
@@ -109,7 +102,7 @@ public class Event {
                 ", time='" + time + '\'' +
                 ", place='" + place + '\'' +
                 ", region='" + region + '\'' +
-                ", ownerOfEvent=" + ownerOfEvent +
+                ", ownerOfEvent='" + ownerOfEvent + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
@@ -119,7 +112,7 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(id, event.id) && Objects.equals(eventName, event.eventName) && Objects.equals(date, event.date) && Objects.equals(time, event.time) && Objects.equals(place, event.place) && Objects.equals(region, event.region) && Objects.equals(ownerOfEvent, event.ownerOfEvent) && Objects.equals(description, event.description) && Objects.equals(usersCount, event.usersCount);
+        return Objects.equals(id, event.id) && Objects.equals(eventName, event.eventName) && Objects.equals(date, event.date) && Objects.equals(time, event.time) && Objects.equals(place, event.place) && Objects.equals(region, event.region)  && Objects.equals(ownerOfEvent, event.ownerOfEvent) && Objects.equals(description, event.description) && Objects.equals(usersCount, event.usersCount);
     }
 
     @Override

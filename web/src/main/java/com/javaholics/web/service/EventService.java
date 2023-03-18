@@ -4,8 +4,6 @@ import com.javaholics.web.repository.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.*;
-import java.util.stream.Collectors;
-
 import com.javaholics.web.repository.Event;
 
 
@@ -26,10 +24,9 @@ public class EventService implements IdNumbers {
     }
 
 
-
     public Event findEventById(Long id) {
         return events.stream()
-                .filter(event -> event.getId() == id)
+                .filter(event -> Objects.equals(event.getId(), id))
                 .findFirst()
                 .orElseThrow(() -> new EventNotFoundException("Not found: %s".formatted(id)));
     }
@@ -43,7 +40,7 @@ public class EventService implements IdNumbers {
         eventToEdit.setPlace(event.getPlace());
         eventToEdit.setRegion(event.getRegion());
         eventToEdit.setUsersCount(event.getUsersCount());
-
+        eventToEdit.setDate(event.getDate());
     }
 
     public void addEvent(Event event) {
@@ -57,6 +54,12 @@ public class EventService implements IdNumbers {
         }
         fileService.writeToJsonFile(eventsCopy);
     }
+
+    public void deleteEventById(long id) {
+        Event event = findEventById(id);
+        events.remove(event);
+    }
+
 
     @Override
     public long getCurrentIdNoSaveToJson() {

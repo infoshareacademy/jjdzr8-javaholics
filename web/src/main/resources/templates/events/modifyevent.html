@@ -53,9 +53,14 @@
                 <label for="usersCount">Ilość uczestników:</label>
                 <input id="usersCount" type="text" th:field="*{usersCount}">
             </p>
+
+            <p>
+                <label for="date">Data:</label>
+                <input id="date" type="datetime-local" th:field="*{date}">
+            </p>
             <br/>
-            <input id="submit" type="submit" value="Zapisz zmiany">
-            <input id="reset" type="reset" value="Resetuj zmiany">
+            <input id="submit" type="submit" value="Zapisz zmiany"/>
+            <input id="reset" type="reset" value="Resetuj zmiany"/>
             <a th:href="@{/events}"><input type="button" value="Przejdź do wydarzeń"></a>
             <a th:href="@{/}"><input type="button" value="Strona główna"></a>
 
