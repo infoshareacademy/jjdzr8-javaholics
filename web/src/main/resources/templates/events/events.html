@@ -62,10 +62,10 @@
                 <th th:text="#{event.date}">Data</th>
                 <th th:text="#{event.place}">Miejsce</th>
                 <th th:text="#{event.region}">Region</th>
-                <th th:text="#{event.ownerOfEventId}">Id założyciela eventu</th>
-<!--                <th th:text="#{event.ownerOfEvent}">Założyciel wydarzenia</th>-->
+                <th th:text="#{event.ownerOfEvent}">Założyciel wydarzenia</th>
                 <th th:text="#{event.description}">Opis wydarzenia</th>
                 <th th:text="#{event.usersCount}">Ilość uczestników</th>
+
                 <th>Zarządzanie</th>
             </tr>
         </thead>
@@ -78,10 +78,10 @@
                 <td th:text="${event.date}"/>
                 <td th:text="${event.place}"/>
                 <td th:text="${event.region}"/>
-                <td th:text="${event.ownerOfEventId}"/>
-<!--                <td th:text="${event.ownerOfEvent.name}"/>-->
+                <td th:text="${event.ownerOfEvent}"/>
                 <td th:text="${event.description}"/>
                 <td th:text="${event.usersCount}"/>
+
                 <td>
                     <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success btn-sm">Edytuj</a>
                     <a th:href="@{/events/delete-event/{id}(id=${event.id})}" class="btn btn-danger btn-sm">Usuń</a>

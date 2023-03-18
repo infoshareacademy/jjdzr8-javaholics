@@ -58,8 +58,8 @@ public class EventController {
     }
 
     @GetMapping("/events/create")
-    public String showCreateFormEvent(Model model) {
-        Long id = eventService.getCurrentIdWithSaveNextIdToJson();
+    public String showCreateEvent(Model model) {
+        Long id = eventService.getCurrentIdNoSaveToJson();
         model.addAttribute("event", new Event(id, "eventName"));
         return "events/addevent";
     }
@@ -67,7 +67,7 @@ public class EventController {
     @PostMapping("/events")
     public String createEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "events/events";
+            return "events/addevent";
         }
         eventService.addEvent(event);
         return "redirect:/events";

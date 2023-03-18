@@ -30,13 +30,9 @@
                 <input id="region" type="text" th:field="*{region}">
             </p>
 
-<!--            <p>-->
-<!--                <label for="ownerOfEvent">Założyciel wydarzenia:</label>-->
-<!--                <input id="ownerOfEvent" type="text" th:field="*{ownerOfEvent}">-->
-<!--            </p>-->
             <p>
-                <label for="ownerOfEventId">ownerOfEventId:</label>
-                <input id="ownerOfEventId" type="text" th:field="*{ownerOfEventId}">
+                <label for="ownerOfEvent">Założyciel wydarzenia:</label>
+                <input id="ownerOfEvent" type="text" th:field="*{ownerOfEvent}">
             </p>
 
             <p>
@@ -48,9 +44,14 @@
                 <label for="usersCount">Ilość uczestników:</label>
                 <input id="usersCount" type="text" th:field="*{usersCount}">
             </p>
+
+            <p>
+                <label for="date">Data:</label>
+                <input id="date" type="datetime-local" th:field="*{date}">
+            </p>
             <br/>
-            <input id="submit" type="submit" value="Zapisz zmiany">
-            <input id="reset" type="reset" value="Resetuj zmiany">
+            <input id="submit" type="submit" value="Zapisz zmiany"/>
+            <input id="reset" type="reset" value="Resetuj zmiany"/>
             <a th:href="@{/events}"><input type="button" value="Przejdź do wydarzeń"></a>
             <a th:href="@{/}"><input type="button" value="Strona główna"></a>
 

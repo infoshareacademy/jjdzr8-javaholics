@@ -11,13 +11,15 @@
 
         <form method="POST" action="#" th:action="@{/events}" th:object="${event}">
             <p>Id: <input type="text" th:field="*{id}"/></p>
-            <p>Id: <input type="date" th:field="*{date}"/></p>
+            <p>Nazwa: <input type="text" th:field="*{eventName}"/></p>
             <p>Miejsce: <input type="text" th:field="*{place}"/></p>
             <p>Region: <input type="text" th:field="*{region}"/></p>
-<!--            <p>Zalozyciel: <input type="text" th:field="*{ownerOfEvent}"/></p>-->
-            <p>Zalozyciel eventu ID: <input type="text" th:field="*{ownerOfEventId}"/></p>
+            <p>Zalozyciel: <input type="text" th:field="*{ownerOfEvent}"/></p>
             <p>Opis: <input type="text" th:field="*{description}"/></p>
             <p>Ilosc uzytkownikow: <input type="text" th:field="*{usersCount}"/></p>
+            <p>Data: <input type="datetime-local" th:field="*{date}"/>
+                <span th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span>
+            </p>
 
             <ul th:if="${#fields.hasErrors('*')}">
                 <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>

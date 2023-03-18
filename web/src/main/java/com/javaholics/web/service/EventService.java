@@ -34,8 +34,7 @@ public class EventService implements IdNumbers {
 
         eventToEdit.setId(event.getId());
         eventToEdit.setEventName(event.getEventName());
-//        eventToEdit.setOwnerOfEvent(event.getOwnerOfEvent());
-        eventToEdit.setOwnerOfEventId(event.getOwnerOfEventId());
+        eventToEdit.setOwnerOfEvent(event.getOwnerOfEvent());
         eventToEdit.setDescription(event.getDescription());
         eventToEdit.setPlace(event.getPlace());
         eventToEdit.setRegion(event.getRegion());
