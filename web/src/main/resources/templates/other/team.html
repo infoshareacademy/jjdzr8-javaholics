@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Meet2gether - Team</title>
+
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{sections/navbar :: header}"></div>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+
+<div class="container m-4">
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+
+        <h1 class="bd-title" id="content">Team</h1>
+        <p class="bd-lead">Oto pomysłodawcy i twócy kodu Meet2gether.</p>
+
+        <p>Meet2gether jest napisane przez zespół projektowy "Javaholics" w ramach kursu Info Share Academy - grupę
+            kursantów stawiających pierwsze kroki w świecie Java.</p>
+
+        <div class="list-group mb-3" style="background-color: #EDF5E1;">
+
+            <a class="list-group-item list-group-item-action d-flex align-items-center" style="background-color: #EDF5E1;"
+               href="https://github.com/michalgolombiewski">
+                <img alt="@michalgolombiewski" class="rounded mr-2" height="32"
+                     src="https://github.com/michalgolombiewski.png" width="32"/>
+                <span>
+        <strong>Michał Gołombiewski</strong> @michalgolombiewski
+      </span>
+            </a>
+
+            <a class="list-group-item list-group-item-action d-flex align-items-center" style="background-color: #EDF5E1;"
+               href="https://github.com/kokoszja">
+                <img alt="@kokoszja" class="rounded mr-2" height="32" src="https://github.com/kokoszja.png" width="32"/>
+                <span>
+        <strong>JKuba Kokoszka</strong> @kokoszja
+      </span>
+            </a>
+
+            <a class="list-group-item list-group-item-action d-flex align-items-center" style="background-color: #EDF5E1;"
+               href="https://github.com/kamkol">
+                <img alt="@kamkol" class="rounded mr-2" height="32" src="https://github.com/kamkol.png" width="32"/>
+                <span>
+        <strong>Kamil Koltan</strong> @kamkol
+      </span>
+            </a>
+
+            <a class="list-group-item list-group-item-action d-flex align-items-center" style="background-color: #EDF5E1;"
+               href="https://github.com/karolpikiel">
+                <img alt="@karolpikiel" class="rounded mr-2" height="32" src="https://github.com/karolpikiel.png"
+                     width="32"/>
+                <span>
+        <strong>Karol Pikiel</strong> @karolpikiel
+      </span>
+            </a>
+
+        </div>
+    </main>
+</div>
+
+<div th:insert="~{sections/footer :: footer}"></div>
+
+</body>
+</html>
+
+

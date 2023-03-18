@@ -29,9 +29,12 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public String showEvents(Model model) {
-        List<Event> eventList = eventService.getEvents();
+    public String showEvents(@RequestParam(required = false) String localWord,@RequestParam(required = false) String nameWord,@RequestParam(required = false) String descriptionWord, Model model) {
+        List<Event> eventList = eventService.getEventSearch(localWord, nameWord, descriptionWord);
         model.addAttribute("events", eventList);
+        model.addAttribute("localKey", localWord);
+        model.addAttribute("nameWord", nameWord);
+        model.addAttribute("descriptionWord", descriptionWord);
         return "events/events";
     }
 
