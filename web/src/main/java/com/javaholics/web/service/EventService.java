@@ -4,6 +4,8 @@ import com.javaholics.web.repository.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.*;
+import java.util.stream.Collectors;
+
 import com.javaholics.web.repository.Event;
 
 
@@ -79,10 +81,6 @@ public class EventService implements IdNumbers {
         return iDsNumbers.getIpEvent();
     }
 
-    public void deleteEventById(long id) {
-        Event event = findEventById(id);
-        events.remove(event);
-    }
     public List<Event> getEventSearch(String placeKey, String nameKey, String descriptionKey) {
         if (placeKey == null && nameKey == null && descriptionKey == null) {
             return events;
