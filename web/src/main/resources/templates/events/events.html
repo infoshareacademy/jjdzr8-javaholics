@@ -26,7 +26,7 @@
         <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
     </div>
 </form>
-
+<br/>
 <div>
     <a th:href="@{/events/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nowy event
@@ -48,7 +48,7 @@
                 <th th:text="#{event.description}">Opis wydarzenia</th>
                 <th th:text="#{event.usersCount}">Ilość uczestników</th>
 
-                <th>Zarządzanie</th>
+                <th>Kasowanie/Edycja</th>
             </tr>
         </thead>
 
@@ -65,8 +65,41 @@
                 <td th:text="${event.usersCount}"/>
 
                 <td>
-                    <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success btn-sm">Edytuj</a>
-                    <a th:href="@{/events/delete-event/{id}(id=${event.id})}" class="btn btn-danger btn-sm">Usuń</a>
+                    <button class="btn btn-outline-danger"
+                            data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${event.id}"><i
+                            class="far fa-trash-alt "
+                    ></i></button>
+
+                    <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
+                        Edytuj
+                    </a>
+
+                    <!-- The Modal -->
+                    <div class="modal fade" th:attr="id='recordDeleteModal'+${event.id}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Usunie to bezpowrotnie rekord. Usunąć?</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">Anuluj
+                                    </button>
+                                    <a th:attr="href='/events/delete-event/'+${event.id}">
+                                        <button
+                                                type="button" class="btn btn-danger">Usuń
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </td>
             </tr>
         </tbody>

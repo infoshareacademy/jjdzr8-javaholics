@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <head>
     <meta charset="UTF-8">
     <title>Add event</title>
@@ -17,18 +15,41 @@
             background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
             height: 20vh;">
 </div>
-<body>
-    <h3>Welcome, Enter The Event Details!</h3>
 
         <form method="POST" action="#" th:action="@{/events}" th:object="${event}">
-            <p>Id: <input type="text" th:field="*{id}"/></p>
-            <p>Nazwa: <input type="text" th:field="*{eventName}"/></p>
-            <p>Miejsce: <input type="text" th:field="*{place}"/></p>
-            <p>Region: <input type="text" th:field="*{region}"/></p>
-            <p>Zalozyciel: <input type="text" th:field="*{ownerOfEvent}"/></p>
-            <p>Opis: <input type="text" th:field="*{description}"/></p>
-            <p>Ilosc uzytkownikow: <input type="text" th:field="*{usersCount}"/></p>
-            <p>Data: <input type="datetime-local" th:field="*{date}"/>
+            <div class="container">
+                <h2>Kreator tworzenia nowego eventu</h2>
+                <p>Uzupełnij dane wydarzenia jakie chcesz utworzyć. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="id">Id</label>
+                <input type="number" id="id" th:field="*{id}" class="form-control" />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="eventName">Nazwa eventu*</label>
+                <input type="text"  id="eventName" th:field="*{eventName}" class="form-control" />
+            </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="miejsce">Miejsce*</label>
+                    <input type="text"  id="miejsce" th:field="*{place}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="region">Region*</label>
+                    <input type="text"  id="region" th:field="*{region}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="owner">Twórca*</label>
+                    <input type="number"  id="owner" th:field="*{ownerOfEvent}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="opis">Opis</label>
+                    <input type="text"  id="opis" th:field="*{description}" class="form-control" rows="3"/>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="usercount">Możliwa ilość uczestników*</label>
+                    <input type="number"  id="usercount" th:field="*{usersCount}" class="form-control" />
+                </div>
+
+            <p>Data:* <input type="datetime-local" th:field="*{date}"/>
                 <span th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span>
             </p>
 
@@ -37,11 +58,13 @@
             </ul>
 
             <p>
-                <input type="submit" class="button" name="submit" value="Zarejestruj wydarzenie"/>
-                <input type="reset" name="reset" value="Reset"/>
-                <a th:href="@{/}"><input type="button" value="Strona główna"></a>
+                <button type="submit" class="btn btn-success btn-block mb-4">Dodaj event</button>
+                <button th:href="@{/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
             </p>
+            </div>
         </form>
+
+
 
 
     <div th:insert="~{sections/footer :: footer}"></div>
