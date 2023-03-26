@@ -39,12 +39,14 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th th:text="#{event.id}">Id</th>
+                <th >#</th>
+                <th th:text="#{event.id}" style="display: none">Id</th>
                 <th th:text="#{event.eventName}">Name</th>
-                <th th:text="#{event.date}">Data</th>
+<!--                <th th:text="#{event.date}">Data</th>-->
                 <th th:text="#{event.place}">Miejsce</th>
                 <th th:text="#{event.region}">Region</th>
                 <th th:text="#{event.ownerOfEvent}">Założyciel wydarzenia</th>
+                <th th:text="#{event.organizerOfEvent}">Organizator wydarzenia</th>
                 <th th:text="#{event.description}">Opis wydarzenia</th>
                 <th th:text="#{event.usersCount}">Ilość uczestników</th>
 
@@ -54,13 +56,14 @@
 
         <tbody class="">
             <tr th:each="event,iterStat: ${events}">
-
-                <td th:text="${event.id}"/>
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${event.id}" style="display: none"/>
                 <td th:text="${event.eventName}"/>
-                <td th:text="${event.date}"/>
+<!--                <td th:text="${event.date}"/>-->
                 <td th:text="${event.place}"/>
                 <td th:text="${event.region}"/>
                 <td th:text="${event.ownerOfEvent}"/>
+                <td th:text="${event.organizerOfEvent}"/>
                 <td th:text="${event.description}"/>
                 <td th:text="${event.usersCount}"/>
 

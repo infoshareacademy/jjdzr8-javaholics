@@ -55,12 +55,8 @@
         <th th:text="#{route.placeStart}">Start place</th>
         <th th:text="#{route.placeStop}">Stop place</th>
         <th th:text="#{route.difficulty}">Difficulty</th>
-<!--        <th th:text="#{route.routeFile}">File</th>-->
-<!--        <th th:text="#{route.userId}">User Id</th>-->
-<!--        <th th:text="#{route.avgRating}">Avg rate</th>-->
         <th th:text="#{route.type}">Type</th>
         <th th:text="#{route.length}">Lenght</th>
-<!--        <th th:text="#{route.date}">Date</th>-->
         <th th:text="#{gui.actions}">Actions</th>
     </tr>
     </thead>
@@ -78,12 +74,9 @@
             <p th:case="'EXTREME'" th:text="#{difficulty.extreme}"></p>
             <p th:case="*" th:text="#{difficulty.unknown}"></p>
         </td>
-<!--        <td th:text="${route.routeFile}"></td>-->
-<!--        <td th:text="${route.userId}"></td>-->
-<!--        <td th:text="${route.avgRating}"></td>-->
+
         <td th:text="${route.type}"></td>
         <td th:text="${route.length}"></td>
-<!--        <td th:text="${#temporals.format(route.date, 'yyyy-MM-dd HH:mm')}"></td>-->
 
         <td>
             <button class="btn btn-outline-danger"

@@ -20,7 +20,7 @@
             <div class="container">
                 <h2>Kreator tworzenia nowego eventu</h2>
                 <p>Uzupełnij dane wydarzenia jakie chcesz utworzyć. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
-            <div class="form-outline mb-4">
+            <div class="form-outline mb-4" style="display: none">
                 <label class="form-label" for="id">Id</label>
                 <input type="number" id="id" th:field="*{id}" class="form-control" />
             </div>
@@ -41,6 +41,10 @@
                     <input type="number"  id="owner" th:field="*{ownerOfEvent}" class="form-control" />
                 </div>
                 <div class="form-outline mb-4">
+                    <label class="form-label" for="owner">Organizator*</label>
+                    <input type="text"  id="organizer" th:field="*{organizerOfEvent}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
                     <label class="form-label" for="opis">Opis</label>
                     <input type="text"  id="opis" th:field="*{description}" class="form-control" rows="3"/>
                 </div>
@@ -49,9 +53,9 @@
                     <input type="number"  id="usercount" th:field="*{usersCount}" class="form-control" />
                 </div>
 
-            <p>Data:* <input type="datetime-local" th:field="*{date}"/>
-                <span th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span>
-            </p>
+<!--            <p>Data:* <input type="datetime-local" th:field="*{date}"/>-->
+<!--                <span th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span>-->
+<!--            </p>-->
 
             <ul th:if="${#fields.hasErrors('*')}">
                 <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>

@@ -20,6 +20,7 @@ public class Event {
     @NotBlank
     private String region;
     private long ownerOfEvent;
+    private String organizerOfEvent;
     private String description;
     @Min(value = 1)
     private Integer usersCount;
@@ -43,6 +44,15 @@ public class Event {
     }
 
     // getters and setters
+
+
+    public String getOrganizerOfEvent() {
+        return organizerOfEvent;
+    }
+
+    public void setOrganizerOfEvent(String organizerOfEvent) {
+        this.organizerOfEvent = organizerOfEvent;
+    }
 
     public Long getId() {
         return id;
@@ -103,6 +113,7 @@ public class Event {
                 ", place='" + place + '\'' +
                 ", region='" + region + '\'' +
                 ", ownerOfEvent='" + ownerOfEvent + '\'' +
+                ", ownerOfEvent='" + organizerOfEvent + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
@@ -112,12 +123,12 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(id, event.id) && Objects.equals(eventName, event.eventName) && Objects.equals(date, event.date) && Objects.equals(time, event.time) && Objects.equals(place, event.place) && Objects.equals(region, event.region)  && Objects.equals(ownerOfEvent, event.ownerOfEvent) && Objects.equals(description, event.description) && Objects.equals(usersCount, event.usersCount);
+        return Objects.equals(id, event.id) && Objects.equals(eventName, event.eventName) && Objects.equals(date, event.date) && Objects.equals(time, event.time) && Objects.equals(place, event.place) && Objects.equals(region, event.region)  && Objects.equals(ownerOfEvent, event.ownerOfEvent) && Objects.equals(organizerOfEvent, event.organizerOfEvent) && Objects.equals(description, event.description) && Objects.equals(usersCount, event.usersCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, eventName, date, time, place, region, ownerOfEvent, description, usersCount);
+        return Objects.hash(id, eventName, date, time, place, region, ownerOfEvent, organizerOfEvent, description, usersCount);
     }
 }
 
