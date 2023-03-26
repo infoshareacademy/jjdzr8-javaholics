@@ -10,7 +10,7 @@ import java.io.*;
 public class FileUtils {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final String IDS_JSON_FILE = "src/main/resources/IdNumbers.json";
+    private static final String IDS_JSON_FILE = "web/src/main/java/com/javaholics/web/database/IdNumbers.json";
 
     public void saveIdsToJsonFile(IDsNumbers ipsNumbers) {
         try (Writer writer = new FileWriter(IDS_JSON_FILE)) {

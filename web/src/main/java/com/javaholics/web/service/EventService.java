@@ -1,260 +1,110 @@
 package com.javaholics.web.service;
-import com.google.gson.JsonObject;
-import com.javaholics.web.controller.Menu;
+import com.javaholics.web.exception.EventNotFoundException;
 import com.javaholics.web.repository.*;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 import java.util.*;
-import static com.javaholics.web.service.FileService.gson;
+import java.util.stream.Collectors;
+
+import com.javaholics.web.repository.Event;
+
+
+@Service
 public class EventService implements IdNumbers {
 
-    Users user = new Users();
-    InputMechanics input = new InputMechanics();
-    User user1 = new User(111L, "Jan1", "login1");
-    Event newEvent;
-    Date date = new Date();
-    Scanner scanner = new Scanner(System.in);
-    public void menuReturn() {
-        System.out.println("Wciśnij dowolny przycisk by wrócić do menu");
-        scanner.nextLine();
-        Menu menu = new Menu();
-        menu.printMenu();
+    private final List<Event> events;
+    private final FileService fileService;
+
+
+    public EventService(FileService fileService) {
+        this.fileService = fileService;
+        events = new ArrayList<Event>(fileService.readEventsFromFile().getEvents().values());
     }
 
-    public Date getDate() {
-        return date;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void eventInitializeStart() {
-        getCurrentIdWithSaveNextIdToJson();
-        long id = getCurrentIdNoSaveToJson();
-        System.out.println(Instructions.getSeparator());
-        System.out.print("Podaj nazwę eventu: ");
-        String nameFromScanner = input.getInputShort();
 
-        newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
-
-        System.out.println("Wprowadzone parametry eventu: ");
-        System.out.println("Nazwa eventu : " + newEvent.getEventName());
-        System.out.println("Id eventu : " + newEvent.getId());
-//        System.out.println("Data eventu : " + newEvent.getDate());
-//        System.out.println("Godzina rozpoczęcia eventu : " + newEvent.getTime());
+    public Event findEventById(Long id) {
+        return events.stream()
+                .filter(event -> Objects.equals(event.getId(), id))
+                .findFirst()
+                .orElseThrow(() -> new EventNotFoundException("Not found: %s".formatted(id)));
     }
-    public void eventInitializeEdit() {
-        boolean error = false;
-        long id = 0;
-        do {
-            error = false;
-            try {
-                System.out.print("Podaj numer Id eventu: ");
-                id = Long.parseLong(scanner.nextLine());
-                while (id < 0 || id == 0) {
-                    System.out.println("Podaj poprawną wartość");
-                    id = Long.parseLong(scanner.nextLine());
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Podaj poprawny numer ID:");
-                error = true;
-                scanner.nextLine();
-            }
-        } while (error);
-        System.out.println(Instructions.getSeparator());
-        System.out.println("Podaj nazwę eventu: ");
-        String nameFromScanner = input.getInputShort();
+    public void editEventById(Long id, Event event) {
+        Event eventToEdit = findEventById(id);
 
-        newEvent = new Event(nameFromScanner, id, new Date(2022 - 12 - 29), "17:00", user1);
-
-        System.out.println("Wprowadzone parametry eventu: ");
-        System.out.print("Nazwa eventu : " + newEvent.getEventName());
-        System.out.print("Id eventu : " + newEvent.getId());
-        System.out.print("Data eventu : " + newEvent.getDate());
-        System.out.print("Godzina rozpoczęcia eventu : " + newEvent.getTime());
+        eventToEdit.setId(event.getId());
+        eventToEdit.setEventName(event.getEventName());
+        eventToEdit.setOwnerOfEvent(event.getOwnerOfEvent());
+        eventToEdit.setDescription(event.getDescription());
+        eventToEdit.setPlace(event.getPlace());
+        eventToEdit.setRegion(event.getRegion());
+        eventToEdit.setUsersCount(event.getUsersCount());
+        eventToEdit.setDate(event.getDate());
     }
 
-    public void eventDetails() {
-        boolean error = false;
-        System.out.print("podaj miejsce eventu: ");
-        newEvent.setPlace(scanner.nextLine());
-        System.out.print("podaj region eventu: ");
-        newEvent.setRegion(scanner.nextLine());
-        System.out.print("Opis wydarzenia: ");
-        newEvent.setDescription(scanner.nextLine());
-        do {
-            error = false;
-            try {
-                System.out.print("Ile będzie uczestników: ");
-                newEvent.setUsersCount(scanner.nextInt());
-                while (newEvent.getUsersCount() < 0 || newEvent.getUsersCount() == 0) {
-                    System.out.println("Podaj poprawną wartość");
-                    newEvent.setUsersCount(scanner.nextInt());
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Podaj poprawne dane, ile będzie uczestników.");
-                error = true;
-                scanner.nextLine();
-            }
-        } while (error);
-
-        System.out.println("Data eventu: " + getDate());
-        newEvent.setOwnerOfEvent(user1);
-        System.out.println("Nick oraz e-mail organizatora: " + newEvent.getOwnerOfEvent() + " oraz garnki i pieczarki");
+    public void addEvent(Event event) {
+        events.add(event);
     }
 
-    public void saveEvent() {
-        FileService fileService = new FileService();
-        fileService.addNewEventToDatabase(newEvent);
-    }
-
-    public void startEvent() {
-        eventInitializeStart();
-        eventDetails();
-        saveEvent();
-        menuReturn();
-    }
-    public void editEvent(){
-        FileService fileService = new FileService();
-        try {
-            Events events = new Events();
-            events = fileService.readEventsFromFile();
-            BufferedReader br = new BufferedReader(new FileReader("database/events.json"));
-            JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
-            String stringResponse = jsonObject.get("events").toString();
-            System.out.println(stringResponse);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+    public void saveEventToJson() {
+        Events eventsCopy = new Events();
+        for (Event event : events) {
+            eventsCopy.simpleAdd(event);
         }
-        eventInitializeEdit();
-        eventDetails();
-        saveEvent();
-        menuReturn();
+        fileService.writeToJsonFile(eventsCopy);
     }
 
+    public void deleteEventById(long id) {
+        Event event = findEventById(id);
+        events.remove(event);
+    }
+
+
+    @Override
     public long getCurrentIdNoSaveToJson() {
+        FileUtils fileUtils = new FileUtils();
+        IDsNumbers iDsNumbers = fileUtils.readIdsFromJsonFile();
+        long idEvent = iDsNumbers.getIpEvent();
+        iDsNumbers.setIpEvent(idEvent+1);
+        fileUtils.saveIdsToJsonFile(iDsNumbers);
+        return idEvent;
+    }
+
+    @Override
+    public long getCurrentIdWithSaveNextIdToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
         iDsNumbers = fileUtils.readIdsFromJsonFile();
         return iDsNumbers.getIpEvent();
     }
 
-    public long getCurrentIdWithSaveNextIdToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        long idEvent = iDsNumbers.getIpEvent();
-        iDsNumbers.setIpEvent(idEvent + 1);
-        fileUtils.saveIdsToJsonFile(iDsNumbers);
-        return idEvent;
+    public List<Event> getEventSearch(String placeKey, String nameKey, String descriptionKey) {
+        if (placeKey == null && nameKey == null && descriptionKey == null) {
+            return events;
+        }
+        return events.stream()
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getPlace(),placeKey))
+                .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
+                .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
+                .collect(Collectors.toList());
+    }
+    public List<Event> getEventSearchPlace(String placeKey) {
+        return events.stream()
+                .filter(event -> StringUtils.containsAnyIgnoreCase(event.getPlace(),placeKey))
+                .collect(Collectors.toList());
+    }
+    public List<Event> getEventSearchName(String nameKey) {
+        return events.stream()
+                .filter(event -> StringUtils.containsIgnoreCase( event.getEventName(), nameKey ))
+                .collect(Collectors.toList() );
+    }
+    public List<Event> getEventSearchDescription(String descriptionKey) {
+        return events.stream()
+                .filter(event -> StringUtils.containsIgnoreCase( event.getDescription(), descriptionKey ))
+                .collect(Collectors.toList() );
     }
 
-    public void displaySortedEventsByRegionAndPalce() {
-        Events events = new Events();
-        FileService fileService = new FileService();
-        events = fileService.readEventsFromFile();
-        Map<String, Map<String, List<Event>>> regionAndPlaceMap = new TreeMap<>();
-        List<Event> onlyPlaces = new ArrayList<>();
-        Iterator<Map.Entry<Long, Event>> event = events.getEvents().entrySet().iterator();
-        while (event.hasNext()) {
-            Map.Entry<Long, Event> pair = event.next();
-            String keyRegion = pair.getValue().getRegion();
-            String keyPlace = pair.getValue().getPlace();
-
-            onlyPlaces.add(pair.getValue());
-
-            if (!regionAndPlaceMap.containsKey(keyRegion)) {
-                regionAndPlaceMap.put(keyRegion, new TreeMap<>());
-                regionAndPlaceMap.get(keyRegion).put(keyPlace, new ArrayList<>());
-                regionAndPlaceMap.get(keyRegion).get(keyPlace).add(pair.getValue());
-            } else {
-                if (!regionAndPlaceMap.get(keyRegion).containsKey(keyPlace)) {
-                    regionAndPlaceMap.get(keyRegion).put(keyPlace, new ArrayList<>());
-                    regionAndPlaceMap.get(keyRegion).get(keyPlace).add(pair.getValue());
-                } else {
-                    regionAndPlaceMap.get(keyRegion).get(keyPlace).add(pair.getValue());
-                }
-            }
-
-        }
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj region wyszukiwania");
-
-        System.out.println(regionAndPlaceMap.keySet());
-
-        String region;
-        boolean allPlaces = false;
-
-        do {
-            System.out.println("Wpisz właściwy region lub *, aby wszystkie lokalizacje !");
-            region = scanner.nextLine();
-        } while (!(regionAndPlaceMap.containsKey(region) || (region.equals("*"))));
-        if (!region.equals("*")) {
-            System.out.println("Jest " + regionAndPlaceMap.get(region).size() + " miejscowości w tym regionie !");
-
-            System.out.println(regionAndPlaceMap.get(region).keySet());
-
-        } else {
-            allPlaces = true;
-
-        }
-        String place = "";
-
-        if (!allPlaces) {
-            do {
-                System.out.println("Wpisz właściwą miejscowość lub *, aby wszystkie z danego regionu!");
-                place = scanner.nextLine();
-            } while (!(regionAndPlaceMap.get(region).containsKey(place) || (place.equals("*"))));
-        }
-        if (place.equals("*")) {
-            allPlaces=true;
-            onlyPlaces.clear();
-            Iterator<String> itr = regionAndPlaceMap.get(region).keySet().iterator();
-            while (itr.hasNext()) {
-                String key = itr.next();
-                for (int i = 0; i < regionAndPlaceMap.get(region).get(key).size(); i++) {
-                    onlyPlaces.add(regionAndPlaceMap.get(region).get(key).get(i));
-                }
-            }
-        }
-        int arraySize;
-        int sizeLoop;
-        if (!allPlaces) {
-            arraySize = regionAndPlaceMap.get(region).get(place).size();
-            sizeLoop = regionAndPlaceMap.get(region).get(place).size();
-        } else {
-            arraySize = onlyPlaces.size();
-            sizeLoop = arraySize;
-        }
-        Event[] preSortedEvents = new Event[arraySize];
-        for (int i = 0; i < sizeLoop; i++) {
-            if ((allPlaces)) {
-                preSortedEvents[i] = onlyPlaces.get(i);
-            } else {
-                preSortedEvents[i] = regionAndPlaceMap.get(region).get(place).get(i);
-            }
-        }
-        Event[] sortedEvents = new Event[arraySize];
-        sortedEvents = sortArrayEvent(preSortedEvents);
-
-        for (int i = 0; i < sortedEvents.length; i++) {
-            System.out.println(sortedEvents[i]);
-        }
-        menuReturn();
-    }
-
-    public Event[] sortArrayEvent(Event[] event) {
-        Event temp;
-        for (int j = 0; j < event.length; j++) {
-
-            for (int i = 0; i < event.length - 1; i++) {
-
-                if (event[i].getDate().compareTo(event[i + 1].getDate()) > 0) {
-                    temp = event[i + 1];
-                    event[i + 1] = event[i];
-                    event[i] = temp;
-                }
-            }
-        }
-        return event;
-    }
 }

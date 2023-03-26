@@ -1,0 +1,104 @@
+{
+  "events": {
+    "1": {
+      "id": 1,
+      "eventName": "Rowerowe Szaleństwa",
+      "place": "Katowice",
+      "region": "Śląskiego",
+      "ownerOfEvent": 4,
+      "description": "Tak",
+      "usersCount": 100,
+      "date": "2023-02-19 07:15:00"
+    },
+    "2": {
+      "id": 2,
+      "eventName": "Wycieczka spacerowa",
+      "place": "Wrocław",
+      "region": "Dolnośląskie",
+      "ownerOfEvent": 31,
+      "description": "Wycieczka po rynku oraz zwiedzanie zabytków",
+      "usersCount": 30,
+      "date": "2023-03-30 10:30:00"
+    },
+    "3": {
+      "id": 3,
+      "eventName": "Zwiedzanie Stalag Luft III",
+      "place": "Żagań",
+      "region": "Lubuskie",
+      "ownerOfEvent": 111,
+      "description": "Zwiedzanie tuneli Henry oraz stalagu Luft III",
+      "usersCount": 50,
+      "date": "2023-10-10 13:00:00"
+    },
+    "4": {
+      "id": 4,
+      "eventName": "Wataha Ultra Race",
+      "place": "Skarżysko-Kamienna",
+      "region": "Pomorskie",
+      "ownerOfEvent": 3,
+      "description": "Zimowe, ekstremalne wyzwanie zostało opracowane w ten sposób, aby pozwolić na dynamiczną jazdę, co minimalizuje ryzyko wychłodzenia",
+      "usersCount": 300,
+      "date": "2023-06-01 10:20:00"
+    },
+    "5": {
+      "id": 5,
+      "eventName": "Bałtyk 600",
+      "place": "Szczecin",
+      "region": "Zachodnio-Pomorskie",
+      "ownerOfEvent": 11,
+      "description": "To idealny wyścig dla osób ceniących trasy bez większych przewyższeń, chcących jednocześnie słuchać relaksującego szumu fal niemal przez cały wyścig.",
+      "usersCount": 300,
+      "date": "2023-06-01 17:20:00"
+    },
+    "6": {
+      "id": 6,
+      "eventName": "Ultra Lajkonik",
+      "place": "Bartkowa",
+      "region": "Małopolskie i podkarpacie",
+      "ownerOfEvent": 7,
+      "description": "Chcesz spędzić długi majowy weekend w górach? Ultra Lajkonik pozwoli Ci na aktywne zwiedzanie małopolski i podkarpacia.",
+      "usersCount": 450,
+      "date": "2023-05-25 22:07:00"
+    },
+    "7": {
+      "id": 7,
+      "eventName": "Baltic Bike Challenge",
+      "place": "Świnoujście",
+      "region": "Zachodniopomorskie",
+      "ownerOfEvent": 87,
+      "description": "Baltic Bike Challenge to niesamowite kolarskie wyzwanie.",
+      "usersCount": 1000,
+      "date": "2023-10-16 22:30:00"
+    },
+    "8": {
+      "id": 8,
+      "eventName": "Ultramaraton - Ułan 600",
+      "place": "Grudziądz",
+      "region": "Kujawsko-Pomorskie",
+      "ownerOfEvent": 41,
+      "description": "Ekscytująca podróż przez trzy województwa, w tym: Bory Tucholskie, Wdecki Park Krajobrazowy, Pojezierze Iławskie i Brodnickie.",
+      "usersCount": 400,
+      "date": "2029-10-10 16:00:00"
+    },
+    "9": {
+      "id": 9,
+      "eventName": " Gravel po łódzku",
+      "place": "Plichtów",
+      "region": "Łódzkie",
+      "ownerOfEvent": 5,
+      "description": "Najciekawsze szutry w aglomeracji łódzkiej będziesz mógł zobaczyć, decydując się na start w wyścigu rowerowym Gravel po łódzku.",
+      "usersCount": 300,
+      "date": "2023-05-10 10:10:00"
+    },
+    "10": {
+      "id": 10,
+      "eventName": " Mały Tour Szutrowy",
+      "place": "Kaletyróżne lokalizacje",
+      "region": "Śląskie",
+      "ownerOfEvent": 874,
+      "description": "Mały Tour Szutrowy to cykl czterech amatorskich wyścigów dedykowanych osobom jeżdżącym na gravelach i MTB.",
+      "usersCount": 1007,
+      "date": "2023-09-24 11:13:00"
+    }
+  }
+}

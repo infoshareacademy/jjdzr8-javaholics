@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Events</title>
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{/../sections/navbar :: header}"></div>
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+
+<form th:action="@{/events}">
+    <div class="d-flex justify-content-center">
+        <div class="p-2">Filtr lokalizacji:  <input type="text" name="localWord" th:value="${localWord}" /></div>
+        <div class="p-2">Filtr nazwy:   <input type="text" name="nameWord" th:value="${nameWord}" /></div>
+        <div class="p-2">Szukaj w opisie:  <input type="text" name="descriptionWord" th:value="${descriptionWord}" /></div>
+        <div class="p-2">  </div>
+        <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
+    </div>
+</form>
+<br/>
+<div>
+    <a th:href="@{/events/create}" class="btn btn-success">
+        <i class="fas fa-plus"></i> Utwórz nowy event
+    </a>
+    <a th:href="@{/events/save}" class="btn btn-warning">
+        <i class="fas fa-save"></i> Zapisz eventy do JSON
+    </a>
+</div>
+<div class="mt-2">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th th:text="#{event.id}">Id</th>
+                <th th:text="#{event.eventName}">Name</th>
+                <th th:text="#{event.date}">Data</th>
+                <th th:text="#{event.place}">Miejsce</th>
+                <th th:text="#{event.region}">Region</th>
+                <th th:text="#{event.ownerOfEvent}">Założyciel wydarzenia</th>
+                <th th:text="#{event.description}">Opis wydarzenia</th>
+                <th th:text="#{event.usersCount}">Ilość uczestników</th>
+
+                <th>Kasowanie/Edycja</th>
+            </tr>
+        </thead>
+
+        <tbody class="">
+            <tr th:each="event,iterStat: ${events}">
+
+                <td th:text="${event.id}"/>
+                <td th:text="${event.eventName}"/>
+                <td th:text="${event.date}"/>
+                <td th:text="${event.place}"/>
+                <td th:text="${event.region}"/>
+                <td th:text="${event.ownerOfEvent}"/>
+                <td th:text="${event.description}"/>
+                <td th:text="${event.usersCount}"/>
+
+                <td>
+                    <button class="btn btn-outline-danger"
+                            data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${event.id}"><i
+                            class="far fa-trash-alt "
+                    ></i></button>
+
+                    <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
+                        Edytuj
+                    </a>
+
+                    <!-- The Modal -->
+                    <div class="modal fade" th:attr="id='recordDeleteModal'+${event.id}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Usunie to bezpowrotnie rekord. Usunąć?</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success"
+                                            data-dismiss="modal">Anuluj
+                                    </button>
+                                    <a th:attr="href='/events/delete-event/'+${event.id}">
+                                        <button
+                                                type="button" class="btn btn-danger">Usuń
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <div id="button">
+        <a th:href="@{/events/create}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Utwórz nowy event
+        </a>
+        <a th:href="@{/events/save}" class="btn btn-warning">
+            <i class="fas fa-save"></i> Zapisz eventy do JSON
+        </a>
+
+
+    <div th:insert="~{/../sections/footer :: footer}"></div>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
+
+

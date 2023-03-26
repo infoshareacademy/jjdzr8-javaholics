@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:hh="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Meet2gether - Edycja Trasy</title>
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{sections/navbar :: header}"></div>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+<div>
+        <form action="#" th:action="@{/routes/{routeId}/edit(routeId=${route.id})}" th:object="${route}" method="post">
+        <div class="container">
+            <h2>Edycja trasy</h2>
+            <p>Modyfikuje dane trasy. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="id">Id</label>
+                <input type="number" id="id" th:field="*{id}" class="form-control" />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="nazwa" >Nazwa*</label>
+                <input type="text" id="nazwa" th:field="*{name}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('name')}" th:text="#{error.route.name}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="lokalizacja" >Lokalizacja*</label>
+                <input type="text" id="lokalizacja" th:field="*{locality}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('locality')}" th:text="#{error.route.locality}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="start" >Miejsce startu*</label>
+                <input type="text" id="start" th:field="*{placeStart}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('placeStart')}" th:text="#{error.route.placeStart}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="stop" >Miejsce zakończenia*</label>
+                <input type="text" id="stop" th:field="*{placeStop}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('placeStop')}" th:text="#{error.route.placeStop}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="file" >Plik GPS trasy</label>
+                <input type="text" id="file" th:field="*{routeFile}" class="form-control" />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="user" >User Id</label>
+                <input type="number" id="user" th:field="*{userId}" class="form-control" />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="typ" >Typ trasy*</label>
+                <input type="text" id="typ" th:field="*{type}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('type')}" th:text="#{error.route.type}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <p>Trudność*: <select th:field="*{difficulty}">
+                    <option value="0" th:text="#{route.select-difficulty}"/>
+                    <option th:each="difficulty : ${T(com.javaholics.web.repository.RouteDifficulty).values()}" th:value="${difficulty}" th:text="${difficulty.getDifficulty()}"/>
+                </select>
+                    <span class="error" th:if="${#fields.hasErrors('difficulty')}" th:text="#{error.route.difficulty}">
+        </span></p>
+
+                <p>Długość:* <input type="number" th:field="*{length}"/>
+                    <span class="error" th:if="${#fields.hasErrors('length')}" th:text="#{error.route.lenght}">
+        </span>
+
+                </p>
+                <p>Data:* <input type="datetime-local" th:field="*{date}"/>
+                    <span class="error" th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span>
+                </p>
+                <p>
+                    <button type="submit" class="btn btn-success btn-block mb-4">Zmień trasę</button>
+                    <button th:href="@{/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+<div th:insert="~{sections/footer :: footer}"></div>
+
+</body>
+</html>

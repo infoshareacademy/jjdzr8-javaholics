@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Meet2gether - Wspólne trasy, eventy i przygody</title>
+    <meta content="Jest to aplikacja pozwalająca na spotykanie się ze znajomymi na wspólnych aktywanościach na zewnątrz. Wygodna wyszukiwarka tras i ewentów." name="description">
+
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+<header>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #05386B; text-decoration-color: #05386B">
+        <a class="navbar-brand" th:href="@{/}">Meet2gether</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/routes}">Trasy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/events}">Eventy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">O Aplikacji</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/team}">Zespół</a>
+                </li>
+            </ul>
+<!--            <form class="form-inline my-2 my-lg-0">-->
+<!--                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj trasy lub eventu..." aria-label="Search">-->
+<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>-->
+<!--            </form>-->
+
+            <a th:href="@{/login}"><button type="button" class="btn btn-success ml-5">
+                Login
+            </button></a>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero ">
+    <div class="hero-inner">
+        <h1 style="font-weight: bolder;
+    text-align: center;
+    font-size: 66px;
+    letter-spacing: 3px;">Meet2gether</h1>
+        <h2 style="font-size: 40px;">Zacznij już dziś przygodę w terenie.</br>
+            Nie ważne jak pokonujesz trasę, poznawaj nowych ludzi <br>i uczestnicz we wspólnych eventach.</h2>
+        </div>
+</section>
+<!-- Hero -->
+<main>
+
+
+
+
+</main>
+<div th:insert="~{sections/footer :: footer}"></div>
+</body>
+</html>

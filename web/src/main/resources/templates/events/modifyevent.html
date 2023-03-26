@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modify event</title>
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{/../sections/navbar :: header}"></div>
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+    <div>
+        <form action="#" th:action="@{/events/{eventId}/edit(eventId=${event.id})}" th:object="${event}" method="post">
+            <div class="container">
+                <h2>Edycja eventu</h2>
+                <p>Modyfikuje dane wydarzenia. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="id">Id</label>
+                <input type="number" id="id" th:field="*{id}" class="form-control" />
+            </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="eventName">Nazwa eventu*</label>
+                    <input type="text"  id="eventName" th:field="*{eventName}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="miejsce">Miejsce*</label>
+                    <input type="text"  id="miejsce" th:field="*{place}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="region">Region*</label>
+                    <input type="text"  id="region" th:field="*{region}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="owner">Twórca*</label>
+                    <input type="number"  id="owner" th:field="*{ownerOfEvent}" class="form-control" />
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="opis">Opis</label>
+                    <input type="text"  id="opis" th:field="*{description}" class="form-control" rows="3"/>
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="usercount">Możliwa ilość uczestników*</label>
+                    <input type="number"  id="usercount" th:field="*{usersCount}" class="form-control" />
+                </div>
+
+                <p>Data:* <input type="datetime-local" th:field="*{date}"/>
+                    <span th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span>
+                </p>
+
+                <ul th:if="${#fields.hasErrors('*')}">
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+                </ul>
+                <button type="submit" class="btn btn-success btn-block mb-4">Zmień event</button>
+                <button th:href="@{/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+
+        </form>
+    </div>
+
+
+<div th:insert="~{sections/footer :: footer}"></div>
+
+</body>
+</html>
