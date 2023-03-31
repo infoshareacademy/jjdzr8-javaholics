@@ -17,6 +17,7 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("/public")
 public class EventController {
 
 

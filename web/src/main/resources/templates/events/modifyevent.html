@@ -17,7 +17,7 @@
             height: 20vh;">
 </div>
     <div>
-        <form action="#" th:action="@{/events/{eventId}/edit(eventId=${event.id})}" th:object="${event}" method="post">
+        <form action="#" th:action="@{/public/events/{eventId}/edit(eventId=${event.id})}" th:object="${event}" method="post">
             <div class="container">
                 <h2>Edycja eventu</h2>
                 <p>Modyfikuje dane wydarzenia. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
