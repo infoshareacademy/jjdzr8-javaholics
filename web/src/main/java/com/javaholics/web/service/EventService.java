@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.javaholics.web.repository.Event;
+import com.javaholics.web.domain.Event;
 
 
 @Service

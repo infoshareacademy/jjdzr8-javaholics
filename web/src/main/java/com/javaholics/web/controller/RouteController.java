@@ -1,6 +1,6 @@
 package com.javaholics.web.controller;
 
-import com.javaholics.web.repository.Route;
+import com.javaholics.web.domain.Route;
 import com.javaholics.web.repository.Routes;
 import com.javaholics.web.service.FileService;
 import com.javaholics.web.service.RouteService;

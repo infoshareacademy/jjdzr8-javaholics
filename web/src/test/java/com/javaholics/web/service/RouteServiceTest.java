@@ -1,13 +1,10 @@
 package com.javaholics.web.service;
 
-import com.javaholics.web.repository.Route;
-import com.javaholics.web.repository.RouteDifficulty;
+import com.javaholics.web.domain.Route;
+import com.javaholics.web.domain.RouteDifficulty;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.springframework.scheduling.config.Task;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;

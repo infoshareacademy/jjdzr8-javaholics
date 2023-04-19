@@ -1,6 +1,6 @@
 package com.javaholics.web.repository;
 
-import com.javaholics.web.repository.User;
+import com.javaholics.web.domain.User;
 
 import java.util.ArrayList;
 import java.util.List;

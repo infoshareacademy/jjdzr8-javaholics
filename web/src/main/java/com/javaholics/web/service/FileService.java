@@ -1,18 +1,15 @@
 package com.javaholics.web.service;
 import com.google.gson.*;
-import com.javaholics.web.repository.Event;
+import com.javaholics.web.domain.Event;
 import com.javaholics.web.repository.Events;
 import com.javaholics.web.repository.Routes;
 import com.javaholics.web.repository.Users;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Objects;
 
 @Service

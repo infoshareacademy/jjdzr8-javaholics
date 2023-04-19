@@ -1,6 +1,6 @@
 package com.javaholics.web.repository;
 
-import com.javaholics.web.repository.Event;
+import com.javaholics.web.domain.Event;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;

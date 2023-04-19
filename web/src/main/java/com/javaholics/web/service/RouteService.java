@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
-import com.javaholics.web.repository.Route;
+import com.javaholics.web.domain.Route;
 
 @Service
 public class RouteService implements IdNumbers{

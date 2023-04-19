@@ -1,8 +1,7 @@
 package com.javaholics.web.repository;
 
-import com.javaholics.web.repository.Route;
+import com.javaholics.web.domain.Route;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
