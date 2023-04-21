@@ -1,10 +1,9 @@
 package com.javaholics.web.repository;
 
 import com.javaholics.web.domain.Event;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
 @Repository

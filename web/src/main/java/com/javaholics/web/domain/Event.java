@@ -1,15 +1,10 @@
 package com.javaholics.web.domain;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -22,12 +17,12 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "route_id")
-    private Route route;
-
-    @ManyToMany(mappedBy = "events")
-    private List<User> users;
+    //    @ManyToOne
+    //    @JoinColumn(name = "route_id")
+    //    private Route route;
+    //
+    //    @ManyToMany(mappedBy = "events")
+    //    private List<User> users;
 
     @NotBlank
     @Column(name = "event_name")
@@ -50,11 +45,11 @@ public class Event {
     @Column(name = "users_count")
     private Integer usersCount;
 
-    @FutureOrPresent()
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Column(name = "date")
-    private LocalDateTime date;
+    //    @FutureOrPresent()
+    //    @NotNull
+    //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    //    @Column(name = "date")
+    //    private LocalDateTime date;
 
     @Column(name = "time")
     private String time;

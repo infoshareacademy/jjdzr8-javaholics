@@ -4,8 +4,6 @@ import com.javaholics.web.domain.User;
 import com.javaholics.web.repository.*;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @Service
 public class UserService {
