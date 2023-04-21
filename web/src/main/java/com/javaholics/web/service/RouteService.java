@@ -9,9 +9,11 @@ import java.util.stream.Collectors;
 import com.javaholics.web.domain.Route;
 
 @Service
-public class RouteService implements IdNumbers{
+public class RouteService{
 
-    private List<Route> routes;
+    private Dao<Route> routeDao;
+
+  /*  private List<Route> routes;
     private FileService fileService;
 
     public RouteService(FileService fileService) {
@@ -107,5 +109,5 @@ public class RouteService implements IdNumbers{
         iDsNumbers.setIpRoute(idRoute+1);
         fileUtils.saveIdsToJsonFile(iDsNumbers);
         return idRoute;
-}
+}*/
 }

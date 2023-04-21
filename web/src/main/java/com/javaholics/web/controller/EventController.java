@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 public class EventController {
 
-    private FileService fileService;
+    /*private FileService fileService;
     private EventService eventService;
     private Events events;
 
@@ -85,6 +85,6 @@ public class EventController {
     public String saveEvents(){
         eventService.saveEventToJson();
         return "redirect:/events";
-    }
+    }*/
 
 }

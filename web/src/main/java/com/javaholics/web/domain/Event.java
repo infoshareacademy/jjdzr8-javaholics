@@ -12,12 +12,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "EVENTS", schema = "meet2gether")
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@Builder
+@AllArgsConstructor
+@Data
+@Table(name = "EVENTS", schema = "meet2gether")
 public class Event {
 
     @Id

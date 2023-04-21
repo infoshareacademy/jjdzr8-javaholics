@@ -1,7 +1,11 @@
 package com.javaholics.web.service;
+import com.javaholics.web.domain.RouteDifficulty;
+import com.javaholics.web.dto.EventDto;
 import com.javaholics.web.exception.EventNotFoundException;
 import com.javaholics.web.repository.*;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,9 +14,19 @@ import com.javaholics.web.domain.Event;
 
 
 @Service
-public class EventService implements IdNumbers {
+@AllArgsConstructor
+public class EventService {
 
-    private final List<Event> events;
+    private Dao<Event> eventDao;
+
+    public Collection<Event> getAllEvents(){
+
+        return List.of();
+    }
+    public void addEvent(EventDto eventDto) {
+
+    }
+    /*private final List<Event> events;
     private final FileService fileService;
 
 
@@ -106,5 +120,5 @@ public class EventService implements IdNumbers {
                 .filter(event -> StringUtils.containsIgnoreCase( event.getDescription(), descriptionKey ))
                 .collect(Collectors.toList() );
     }
-
+*/
 }
