@@ -34,7 +34,7 @@ public class RouteService{
         routeRepository.save(routeMapper.fromDto(routeDto));
     }
 
-    public void editRouteById(Long id, RouteDto routeDto) {
+    public void editRouteById(RouteDto routeDto) {
         Route routeToEdit = routeRepository.findById(routeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Cant find product by given id"));
 
@@ -52,6 +52,11 @@ public class RouteService{
         routeRepository.save(routeToEdit);
 
     }
+
+    public void deleteRouteById(long id) {
+        routeRepository.deleteById(id);
+    }
+
 
   /*
 
@@ -79,29 +84,6 @@ public class RouteService{
         return routes.stream()
                 .filter(route -> StringUtils.containsIgnoreCase( route.getDifficulty().name(), difficulty ))
                 .collect(Collectors.toList() );
-    }
-    public void deleteRouteById(long id) {
-        Route foundRout = findRouteById(id);
-        routes.remove(foundRout);
-    }
-
-
-
-    public void editRouteById(Long id, Route route) {
-        Route routeToEdit = findRouteById(id);
-
-        routeToEdit.setName(route.getName());
-        routeToEdit.setLocality(route.getLocality());
-        routeToEdit.setPlaceStart(route.getPlaceStart());
-        routeToEdit.setPlaceStop(route.getPlaceStop());
-        routeToEdit.setDifficulty(route.getDifficulty());
-        routeToEdit.setRouteFile(route.getRouteFile());
-        routeToEdit.setUserId(route.getUserId());
-        routeToEdit.setAvgRating(route.getAvgRating());
-        routeToEdit.setType(route.getType());
-        routeToEdit.setLength(route.getLength());
-        routeToEdit.setDate(route.getDate());
-
     }
 
 

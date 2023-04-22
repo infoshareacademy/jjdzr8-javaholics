@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -18,12 +19,9 @@ public class RouteController {
 
     private final RouteService routeService;
 
-
-
     public RouteController(RouteService routeService) {
         this.routeService = routeService;
     }
-
 
     @GetMapping("/routes")
     public String showRoutes(Model model) {
@@ -46,26 +44,16 @@ public class RouteController {
         model.addAttribute("route", new RouteDto());
         return "routes/addroute";
     }
-    /*
-    @GetMapping("/routes")
-    public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam (required = false) String typeWord, @RequestParam (required = false) String difficulty, Model model) {
-        List<Route> routeList = routeService.getRoutesSearch(keyword, typeWord, difficulty);
-        model.addAttribute("routes", routeList);
-        model.addAttribute("keyword", keyword);
-        model.addAttribute("typeWord", typeWord);
-        model.addAttribute("difficulty", difficulty);
-        return "routes/routes";
-    }
 
     @GetMapping("/routes/{routeId}")
     public String getRouteById(@PathVariable("routeId") Long routeId, Model model) {
-        Route route = routeService.findRouteById(routeId);
+        RouteDto route = routeService.findRouteById(routeId);
         model.addAttribute("route", route);
         return "routes/modifyroute";
     }
 
     @PostMapping("/routes/{routeId}/edit")
-    public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute Route route,  BindingResult bindingResult) {
+    public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute RouteDto route, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "routes/modifyroute";
         }
@@ -79,20 +67,22 @@ public class RouteController {
         return "redirect:/routes";
     }
 
-
-
-
-
     @GetMapping("/routes/get-error")
     public String getRouteWithWrongIdAndThrowError() {
         routeService.findRouteById(-1L);
         return "routes/routes";
     }
-
-    @GetMapping("routes/save")
-    public String saveRoutes(){
-        routeService.saveRoutesToJson();
-        return "redirect:/routes";
+}
+    /*
+    @GetMapping("/routes")
+    public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam (required = false) String typeWord, @RequestParam (required = false) String difficulty, Model model) {
+        List<Route> routeList = routeService.getRoutesSearch(keyword, typeWord, difficulty);
+        model.addAttribute("routes", routeList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("typeWord", typeWord);
+        model.addAttribute("difficulty", difficulty);
+        return "routes/routes";
     }*/
 
-}
+
+

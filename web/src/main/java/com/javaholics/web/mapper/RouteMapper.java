@@ -18,6 +18,7 @@ public class RouteMapper {
                 .avgRating(routeDto.getAvgRating())
                 .difficulty(routeDto.getDifficulty())
                 .type(routeDto.getType())
+                .routeOwner(routeDto.getRouteOwner())
                 .build();
     }
 
@@ -32,6 +33,7 @@ public class RouteMapper {
                 .avgRating(route.getAvgRating())
                 .difficulty(route.getDifficulty())
                 .type(route.getType())
+                .routeOwner(route.getRouteOwner())
                 .build();
     }
 }
