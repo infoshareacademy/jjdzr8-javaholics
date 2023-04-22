@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS", schema = "meet2gether")
+@Table(name = "USERS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,18 +18,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    //    @JoinTable(
-    //            name = "user_event_jointable",
-    //            joinColumns = @JoinColumn(name = "user_id"),
-    //            inverseJoinColumns = @JoinColumn(name = "event_id")
-    //    )
-    //    private List<Event> events;
+        @ManyToMany
+        @JoinTable(
+                name = "user_event_jointable",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "event_id")
+        )
+        private List<Event> events;
 
-//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
-//    private List<Route> routes;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Route> routes;
 
-    @Column(name = "user_name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "last_name")

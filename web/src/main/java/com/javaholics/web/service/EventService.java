@@ -2,7 +2,10 @@ package com.javaholics.web.service;
 import com.javaholics.web.domain.RouteDifficulty;
 import com.javaholics.web.dto.EventDto;
 import com.javaholics.web.exception.EventNotFoundException;
+import com.javaholics.web.mapper.EventMapper;
 import com.javaholics.web.repository.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +20,12 @@ import com.javaholics.web.domain.Event;
 @AllArgsConstructor
 public class EventService {
 
-    private Dao<Event> eventDao;
+    private EventRepository eventRepository;
+    private EventMapper eventMapper;
 
+//    private Dao<Event> eventDao;
+//    @PersistenceContext
+//    private EntityManager entityManager;
     public Collection<Event> getAllEvents(){
 
         return List.of();
@@ -26,6 +33,14 @@ public class EventService {
     public void addEvent(EventDto eventDto) {
 
     }
+
+    public List<EventDto> getEvents() {
+        return eventRepository.findAll()
+                .stream()
+                .map(eventMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
     /*private final List<Event> events;
     private final FileService fileService;
 
@@ -35,9 +50,7 @@ public class EventService {
         events = new ArrayList<Event>(fileService.readEventsFromFile().getEvents().values());
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
+
 
 
     public Event findEventById(Long id) {
@@ -77,23 +90,6 @@ public class EventService {
     }
 
 
-    @Override
-    public long getCurrentIdNoSaveToJson() {
-        FileUtils fileUtils = new FileUtils();
-        IDsNumbers iDsNumbers = fileUtils.readIdsFromJsonFile();
-        long idEvent = iDsNumbers.getIpEvent();
-        iDsNumbers.setIpEvent(idEvent+1);
-        fileUtils.saveIdsToJsonFile(iDsNumbers);
-        return idEvent;
-    }
-
-    @Override
-    public long getCurrentIdWithSaveNextIdToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        return iDsNumbers.getIpEvent();
-    }
 
     public List<Event> getEventSearch(String placeKey, String nameKey, String descriptionKey) {
         if (placeKey == null && nameKey == null && descriptionKey == null) {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private Dao<User> userDao;
+    private UserRepository userRepository;
 
 
 

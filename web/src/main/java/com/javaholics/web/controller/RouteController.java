@@ -1,29 +1,33 @@
 package com.javaholics.web.controller;
 
-import com.javaholics.web.domain.Route;
-import com.javaholics.web.repository.Routes;
-import com.javaholics.web.service.FileService;
+import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.service.RouteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.List;
 
 @Controller
 public class RouteController {
-/*
-    private final FileService fileService;
+
+
     private final RouteService routeService;
-    private final Routes routes;
 
 
-    public RouteController(FileService fileService, RouteService routeService, Routes routes) {
-        this.fileService = fileService;
+
+    public RouteController(RouteService routeService) {
         this.routeService = routeService;
-        this.routes = routes;
     }
+
+
+    @GetMapping("/routes")
+    public String showRoutes(Model model) {
+        List<RouteDto> routeList = routeService.getRoutes();
+        model.addAttribute("routes", routeList);
+        return "routes/routes";
+    }
+    /*
     @GetMapping("/routes")
     public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam (required = false) String typeWord, @RequestParam (required = false) String difficulty, Model model) {
         List<Route> routeList = routeService.getRoutesSearch(keyword, typeWord, difficulty);

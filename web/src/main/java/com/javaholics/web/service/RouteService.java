@@ -1,7 +1,10 @@
 package com.javaholics.web.service;
 
+import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
+import com.javaholics.web.mapper.RouteMapper;
 import com.javaholics.web.repository.*;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.*;
@@ -9,9 +12,18 @@ import java.util.stream.Collectors;
 import com.javaholics.web.domain.Route;
 
 @Service
+@AllArgsConstructor
 public class RouteService{
 
-    private Dao<Route> routeDao;
+    private RouteRepository routeRepository;
+    private RouteMapper routeMapper;
+
+    public List<RouteDto> getRoutes() {
+        return routeRepository.findAll()
+                .stream()
+                .map(routeMapper::toDto)
+                .collect(Collectors.toList());
+    }
 
   /*  private List<Route> routes;
     private FileService fileService;
@@ -20,9 +32,7 @@ public class RouteService{
         this.fileService = fileService;
         routes = fileService.readRoutesFromFile().getRoutes();
     }
-    public List<Route> getRoutes() {
-        return routes;
-    }
+
 
     public List<Route> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
         if (lokalKey == null && typeKey == null && difficulty == null) {

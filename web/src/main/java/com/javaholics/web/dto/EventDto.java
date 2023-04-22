@@ -1,6 +1,7 @@
 package com.javaholics.web.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class EventDto {
 
     private Long id;
@@ -39,4 +41,5 @@ public class EventDto {
     private LocalDateTime date;
 
     private String time;
+
 }

@@ -2,6 +2,7 @@ package com.javaholics.web.dto;
 import com.javaholics.web.domain.RouteDifficulty;
 import com.javaholics.web.domain.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,13 +12,14 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class RouteDto {
 
     private long id;
 
     private String name;
 
-    private User routeOwner;
+    private Long routeOwner;
 
     private String locality;
 
