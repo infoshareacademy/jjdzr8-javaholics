@@ -14,7 +14,10 @@ public class EventMapper {
                 .place(eventDto.getPlace())
                 .description(eventDto.getDescription())
                 .time(eventDto.getTime())
+                .date(eventDto.getDate())
                 .region(eventDto.getRegion())
+                .usersCount(eventDto.getUsersCount())
+                .ownerOfEvent(eventDto.getOwnerOfEvent())
                 .build();
     }
 
@@ -26,6 +29,9 @@ public class EventMapper {
                 .description(event.getDescription())
                 .time(event.getTime())
                 .region(event.getRegion())
+                .date(event.getDate())
+                .usersCount(event.getUsersCount())
+                .ownerOfEvent(event.getOwnerOfEvent())
                 .build();
     }
 

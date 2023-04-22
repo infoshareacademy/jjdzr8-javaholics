@@ -23,9 +23,7 @@ public class EventService {
     private EventRepository eventRepository;
     private EventMapper eventMapper;
 
-//    private Dao<Event> eventDao;
-//    @PersistenceContext
-//    private EntityManager entityManager;
+
     public Collection<Event> getAllEvents(){
 
         return List.of();

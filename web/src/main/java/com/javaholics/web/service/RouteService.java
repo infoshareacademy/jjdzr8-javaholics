@@ -25,14 +25,35 @@ public class RouteService{
                 .collect(Collectors.toList());
     }
 
-  /*  private List<Route> routes;
-    private FileService fileService;
-
-    public RouteService(FileService fileService) {
-        this.fileService = fileService;
-        routes = fileService.readRoutesFromFile().getRoutes();
+    public RouteDto findRouteById(Long id) {
+        Route route = routeRepository.findById(id)
+                .orElseThrow(() -> new RouteNotFoundException("Not found route with ID: %s".formatted(id)));
+        return routeMapper.toDto(route);
+    }
+    public void addRoute(RouteDto routeDto) {
+        routeRepository.save(routeMapper.fromDto(routeDto));
     }
 
+    public void editRouteById(Long id, RouteDto routeDto) {
+        Route routeToEdit = routeRepository.findById(routeDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Cant find product by given id"));
+
+        routeToEdit.setName(routeToEdit.getName());
+        routeToEdit.setLocality(routeToEdit.getLocality());
+        routeToEdit.setPlaceStart(routeToEdit.getPlaceStart());
+        routeToEdit.setPlaceStop(routeToEdit.getPlaceStop());
+        routeToEdit.setDifficulty(routeToEdit.getDifficulty());
+        routeToEdit.setRouteFile(routeToEdit.getRouteFile());
+        routeToEdit.setUserId(routeToEdit.getUserId());
+        routeToEdit.setAvgRating(routeToEdit.getAvgRating());
+        routeToEdit.setType(routeToEdit.getType());
+        routeToEdit.setLength(routeToEdit.getLength());
+        routeToEdit.setDate(routeToEdit.getDate());
+        routeRepository.save(routeToEdit);
+
+    }
+
+  /*
 
     public List<Route> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
         if (lokalKey == null && typeKey == null && difficulty == null) {
@@ -64,12 +85,7 @@ public class RouteService{
         routes.remove(foundRout);
     }
 
-    public Route findRouteById(Long id) {
-        return routes.stream()
-                .filter(route -> route.getId() == id)
-                .findFirst()
-                .orElseThrow(() -> new RouteNotFoundException("Not found route with ID: %s".formatted(id)));
-    }
+
 
     public void editRouteById(Long id, Route route) {
         Route routeToEdit = findRouteById(id);
@@ -88,36 +104,7 @@ public class RouteService{
 
     }
 
-    public void addRoute(Route route) {
-        routes.add(route);
-    }
-
-    public void saveRoutesToJson(){
-
-        Routes routesCopy = new Routes();
-        for (Route route : routes) {
-            routesCopy.add(route);
-        }
-        fileService.writeToJsonFile(routesCopy);
-    }
 
 
-    @Override
-    public long getCurrentIdNoSaveToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        return iDsNumbers.getIpRoute();
-    }
-
-    @Override
-    public long getCurrentIdWithSaveNextIdToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        long idRoute = iDsNumbers.getIpRoute();
-        iDsNumbers.setIpRoute(idRoute+1);
-        fileUtils.saveIdsToJsonFile(iDsNumbers);
-        return idRoute;
 }*/
 }

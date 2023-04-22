@@ -2,9 +2,13 @@ package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.service.RouteService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -26,6 +30,21 @@ public class RouteController {
         List<RouteDto> routeList = routeService.getRoutes();
         model.addAttribute("routes", routeList);
         return "routes/routes";
+    }
+
+    @PostMapping("/routes")
+    public String createRoute(@Valid @ModelAttribute RouteDto routeDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "routes/addroute";
+        }
+        routeService.addRoute(routeDto);
+        return "redirect:/routes";
+    }
+
+    @GetMapping("/routes/create")
+    public String addRoute(Model model) {
+        model.addAttribute("route", new RouteDto());
+        return "routes/addroute";
     }
     /*
     @GetMapping("/routes")
@@ -60,21 +79,9 @@ public class RouteController {
         return "redirect:/routes";
     }
 
-    @GetMapping("/routes/create")
-    public String showCreateForm(Model model) {
-        Long id = routeService.getCurrentIdWithSaveNextIdToJson();
-        model.addAttribute("route", new Route(id,"routeName"));
-        return "routes/addroute";
-    }
 
-    @PostMapping("/routes")
-    public String createRoute(@Valid @ModelAttribute Route route, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "routes/addroute";
-        }
-        routeService.addRoute(route);
-        return "redirect:/routes";
-    }
+
+
 
     @GetMapping("/routes/get-error")
     public String getRouteWithWrongIdAndThrowError() {

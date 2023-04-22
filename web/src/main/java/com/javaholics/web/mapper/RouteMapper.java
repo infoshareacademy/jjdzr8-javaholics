@@ -17,6 +17,7 @@ public class RouteMapper {
                 .placeStop(routeDto.getPlaceStop())
                 .avgRating(routeDto.getAvgRating())
                 .difficulty(routeDto.getDifficulty())
+                .type(routeDto.getType())
                 .build();
     }
 
@@ -30,6 +31,7 @@ public class RouteMapper {
                 .placeStop(route.getPlaceStop())
                 .avgRating(route.getAvgRating())
                 .difficulty(route.getDifficulty())
+                .type(route.getType())
                 .build();
     }
 }

@@ -42,7 +42,8 @@ public class Event {
     @Column(name = "region")
     private String region;
 
-    //private long ownerOfEvent;
+    @Column(name = "owner_event")
+    private long ownerOfEvent;
 
     @Column(name = "description")
     private String description;
