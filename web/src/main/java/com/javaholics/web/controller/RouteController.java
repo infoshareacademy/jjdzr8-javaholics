@@ -53,11 +53,11 @@ public class RouteController {
     }
 
     @PostMapping("/routes/{routeId}/edit")
-    public String editRoute(@PathVariable("routeId") Long routeId, @Valid @ModelAttribute RouteDto route, BindingResult bindingResult) {
+    public String editRoute(@PathVariable("routeId")@Valid @ModelAttribute RouteDto route, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "routes/modifyroute";
         }
-        routeService.editRouteById(routeId, route);
+        routeService.editRouteById(route);
         return "redirect:/routes";
     }
 

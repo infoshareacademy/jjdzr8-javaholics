@@ -58,7 +58,7 @@
                 <td th:text="${event.id}"/>
                 <td th:text="${event.eventName}"/>
 <!--                <td th:text="${event.date}"/>-->
-                <td th:text="${#temporals.format(event.date, 'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${#temporals.format(event.getEventDateTime(), 'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${event.place}"/>
                 <td th:text="${event.region}"/>
                 <td th:text="${event.ownerOfEvent}"/>

@@ -1,13 +1,25 @@
 package com.javaholics.web.mapper;
 
 import com.javaholics.web.domain.Route;
+import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.RouteDto;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 @Service
+@Data
 public class RouteMapper {
 
-    public Route fromDto(RouteDto routeDto){
+//    @PersistenceContext
+//    private final EntityManager entityManager=null;
+//    User user = entityManager.find(User.class,1);
+
+
+    public Route fromDto(RouteDto routeDto,User user){
+
+
         return Route.builder()
                 .id(routeDto.getId())
                 .name(routeDto.getName())
@@ -18,7 +30,9 @@ public class RouteMapper {
                 .avgRating(routeDto.getAvgRating())
                 .difficulty(routeDto.getDifficulty())
                 .type(routeDto.getType())
-                .routeOwner(routeDto.getRouteOwner())
+                .createDate(routeDto.getCreateDate())
+//                .routeOwner(routeDto.getRouteOwner())
+                .routeOwner(user)
                 .build();
     }
 
@@ -33,7 +47,9 @@ public class RouteMapper {
                 .avgRating(route.getAvgRating())
                 .difficulty(route.getDifficulty())
                 .type(route.getType())
-                .routeOwner(route.getRouteOwner())
+//                .routeOwner(route.getRouteOwner())
+                .routeOwner(1)
+//                .createDate(route.getCreateDate())
                 .build();
     }
 }

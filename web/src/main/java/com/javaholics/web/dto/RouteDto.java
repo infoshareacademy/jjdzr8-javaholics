@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -21,7 +22,7 @@ public class RouteDto {
 
     private String name;
 
-    private Long routeOwner;
+    private Integer routeOwner;
 
     private String locality;
 
@@ -47,8 +48,7 @@ public class RouteDto {
     @FutureOrPresent()
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime date;
+    private LocalDate createDate;
 
-    private String time;
 
 }

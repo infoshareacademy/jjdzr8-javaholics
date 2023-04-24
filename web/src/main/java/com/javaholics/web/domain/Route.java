@@ -5,7 +5,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -23,16 +23,13 @@ public class Route {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
     private List<Event> events;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User routeOwner;
 
     @NotBlank
     @Column(name = "route_name")
     private String name;
-
-    @Transient
-    private Long routeOwner;
 
     @NotBlank
     @Column(name = "locality")
@@ -53,9 +50,6 @@ public class Route {
     @Column(name = "file")
     private String routeFile;
 
-    @Transient
-    private long userId;
-
     @Column(name = "avg_rating")
     private double avgRating;
 
@@ -71,11 +65,9 @@ public class Route {
     @FutureOrPresent()
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Transient
-    private LocalDateTime date;
 
-    @Transient
-    private String time;
+    @Column(name="create_date")
+    private LocalDate createDate;
 
 }
 

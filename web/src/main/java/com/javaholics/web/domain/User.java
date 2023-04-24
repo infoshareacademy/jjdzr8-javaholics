@@ -26,7 +26,8 @@ public class User {
         )
         private List<Event> events;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+
+    @OneToMany(mappedBy = "routeOwner")
     private List<Route> routes;
 
     @Column(name = "name")

@@ -1,5 +1,6 @@
 package com.javaholics.web.dto;
 
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,8 +41,8 @@ public class EventDto {
     @FutureOrPresent()
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime date;
+    private LocalDateTime eventDateTime;
 
-    private String time;
+    private LocalDateTime createDate;
 
 }

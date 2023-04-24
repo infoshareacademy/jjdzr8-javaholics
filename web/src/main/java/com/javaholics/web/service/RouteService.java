@@ -17,11 +17,13 @@ public class RouteService{
 
     private RouteRepository routeRepository;
     private RouteMapper routeMapper;
+    private UserRepository userRepository;
+
 
     public List<RouteDto> getRoutes() {
         return routeRepository.findAll()
                 .stream()
-                .map(routeMapper::toDto)
+                .map(routeMapper::toDto)//FIXME
                 .collect(Collectors.toList());
     }
 
@@ -31,7 +33,8 @@ public class RouteService{
         return routeMapper.toDto(route);
     }
     public void addRoute(RouteDto routeDto) {
-        routeRepository.save(routeMapper.fromDto(routeDto));
+        //FIXME wrzuca zawsze usera no.1 do zmiany kiedy security
+        routeRepository.save(routeMapper.fromDto(routeDto,userRepository.getReferenceById(1l)));
     }
 
     public void editRouteById(RouteDto routeDto) {
@@ -44,11 +47,12 @@ public class RouteService{
         routeToEdit.setPlaceStop(routeToEdit.getPlaceStop());
         routeToEdit.setDifficulty(routeToEdit.getDifficulty());
         routeToEdit.setRouteFile(routeToEdit.getRouteFile());
-        routeToEdit.setUserId(routeToEdit.getUserId());
+        routeToEdit.setRouteOwner(routeToEdit.getRouteOwner());
+//        routeToEdit.setRouteOwner(userRepository.getReferenceById(1l));
         routeToEdit.setAvgRating(routeToEdit.getAvgRating());
         routeToEdit.setType(routeToEdit.getType());
         routeToEdit.setLength(routeToEdit.getLength());
-        routeToEdit.setDate(routeToEdit.getDate());
+        routeToEdit.setCreateDate(routeToEdit.getCreateDate());
         routeRepository.save(routeToEdit);
 
     }

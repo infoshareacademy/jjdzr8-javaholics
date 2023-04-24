@@ -55,11 +55,11 @@ public class Event {
     @FutureOrPresent()
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Column(name = "date")
-    private LocalDateTime date;
+    @Column(name = "event_date_time")
+    private LocalDateTime eventDateTime;
 
-    @Column(name = "time")
-    private String time;
+    @Column(name="create_date")
+    private LocalDateTime createDate;
 
 }
 
