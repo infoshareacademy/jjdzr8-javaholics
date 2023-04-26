@@ -5,7 +5,6 @@ import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.RouteMapper;
 import com.javaholics.web.repository.*;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,23 +36,19 @@ public class RouteService{
         routeRepository.save(routeMapper.fromDto(routeDto,userRepository.getReferenceById(1l)));
     }
 
-    public void editRouteById(RouteDto routeDto) {
-        Route routeToEdit = routeRepository.findById(routeDto.getId())
+    public void updateRoute(RouteDto routeDto) {
+        Route routeToUpdate = routeRepository.findById(routeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Cant find product by given id"));
 
-        routeToEdit.setName(routeToEdit.getName());
-        routeToEdit.setLocality(routeToEdit.getLocality());
-        routeToEdit.setPlaceStart(routeToEdit.getPlaceStart());
-        routeToEdit.setPlaceStop(routeToEdit.getPlaceStop());
-        routeToEdit.setDifficulty(routeToEdit.getDifficulty());
-        routeToEdit.setRouteFile(routeToEdit.getRouteFile());
-        routeToEdit.setRouteOwner(routeToEdit.getRouteOwner());
-//        routeToEdit.setRouteOwner(userRepository.getReferenceById(1l));
-        routeToEdit.setAvgRating(routeToEdit.getAvgRating());
-        routeToEdit.setType(routeToEdit.getType());
-        routeToEdit.setLength(routeToEdit.getLength());
-        routeToEdit.setCreateDate(routeToEdit.getCreateDate());
-        routeRepository.save(routeToEdit);
+        routeToUpdate.setName(routeToUpdate.getName());
+        routeToUpdate.setLocality(routeToUpdate.getLocality());
+        routeToUpdate.setPlaceStart(routeToUpdate.getPlaceStart());
+        routeToUpdate.setPlaceStop(routeToUpdate.getPlaceStop());
+        routeToUpdate.setDifficulty(routeToUpdate.getDifficulty());
+        routeToUpdate.setRouteFile(routeToUpdate.getRouteFile());
+        routeToUpdate.setType(routeToUpdate.getType());
+        routeToUpdate.setLength(routeToUpdate.getLength());
+        routeRepository.save(routeToUpdate);
 
     }
 

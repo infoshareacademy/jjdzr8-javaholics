@@ -30,6 +30,12 @@ public class RouteController {
         return "routes/routes";
     }
 
+    @GetMapping("/routes/create")
+    public String addRoute(Model model) {
+        model.addAttribute("route", new RouteDto());
+        return "routes/addroute";
+    }
+
     @PostMapping("/routes")
     public String createRoute(@Valid @ModelAttribute RouteDto routeDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -39,11 +45,7 @@ public class RouteController {
         return "redirect:/routes";
     }
 
-    @GetMapping("/routes/create")
-    public String addRoute(Model model) {
-        model.addAttribute("route", new RouteDto());
-        return "routes/addroute";
-    }
+
 
     @GetMapping("/routes/{routeId}")
     public String getRouteById(@PathVariable("routeId") Long routeId, Model model) {
@@ -52,12 +54,12 @@ public class RouteController {
         return "routes/modifyroute";
     }
 
-    @PostMapping("/routes/{routeId}/edit")
-    public String editRoute(@PathVariable("routeId")@Valid @ModelAttribute RouteDto route, BindingResult bindingResult) {
+    @PostMapping("/routes/edit")
+    public String editRoute(@ModelAttribute RouteDto route, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "routes/modifyroute";
         }
-        routeService.editRouteById(route);
+        routeService.updateRoute(route);
         return "redirect:/routes";
     }
 
