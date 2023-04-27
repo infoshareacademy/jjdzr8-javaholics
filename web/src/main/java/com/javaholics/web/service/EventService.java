@@ -1,7 +1,10 @@
 package com.javaholics.web.service;
+import com.javaholics.web.domain.Route;
 import com.javaholics.web.domain.RouteDifficulty;
 import com.javaholics.web.dto.EventDto;
+import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.EventNotFoundException;
+import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.EventMapper;
 import com.javaholics.web.repository.*;
 import jakarta.persistence.EntityManager;
@@ -24,19 +27,20 @@ public class EventService {
     private EventMapper eventMapper;
 
 
-    public Collection<Event> getAllEvents(){
-
-        return List.of();
-    }
-    public void addEvent(EventDto eventDto) {
-
-    }
-
     public List<EventDto> getEvents() {
         return eventRepository.findAll()
                 .stream()
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public EventDto findRouteById(Long id) {
+        Event event = eventRepository.findById(id)
+                .orElseThrow(() -> new RouteNotFoundException("Not found event with ID: %s".formatted(id)));
+        return eventMapper.toDto(event);
+    }
+    public void addEvent(EventDto eventDto) {
+        eventRepository.save(eventMapper.fromDto(eventDto));
     }
 
     /*private final List<Event> events;

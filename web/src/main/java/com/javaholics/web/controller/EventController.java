@@ -2,10 +2,14 @@ package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.EventDto;
 import com.javaholics.web.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 import java.util.List;
@@ -29,7 +33,20 @@ public class EventController {
         return "events/events";
     }
 
+    @GetMapping("/events/create")
+    public String showCreateEvent(Model model) {
+        model.addAttribute("event", new EventDto());
+        return "events/addevent";
+    }
 
+    @PostMapping("/events")
+    public String createEvents(@Valid @ModelAttribute EventDto eventDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "events/addevent";
+        }
+        eventService.addEvent(eventDto);
+        return "redirect:/events";
+    }
 //    @GetMapping("/events")
 //    public String showEvents(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
 //        List<EventDto> eventList = eventService.getEventSearch(localWord, nameWord, descriptionWord);
@@ -62,21 +79,7 @@ public class EventController {
 //        return "redirect:/events";
 //    }
 //
-//    @GetMapping("/events/create")
-//    public String showCreateEvent(Model model) {
-//        Long id = eventService.getCurrentIdNoSaveToJson();
-//        model.addAttribute("event", new Event(id, "eventName"));
-//        return "events/addevent";
-//    }
-//
-//    @PostMapping("/events")
-//    public String createEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "events/addevent";
-//        }
-//        eventService.addEvent(event);
-//        return "redirect:/events";
-//    }
+
 //
 //    @GetMapping("/events/get-error")
 //    public String getEventWithWrongIdAndThrowError() {

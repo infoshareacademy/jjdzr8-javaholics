@@ -6,10 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,7 +43,6 @@ public class RouteController {
     }
 
 
-
     @GetMapping("/routes/{routeId}")
     public String getRouteById(@PathVariable("routeId") Long routeId, Model model) {
         RouteDto route = routeService.findRouteById(routeId);
@@ -74,17 +70,17 @@ public class RouteController {
         routeService.findRouteById(-1L);
         return "routes/routes";
     }
-}
-    /*
-    @GetMapping("/routes")
-    public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam (required = false) String typeWord, @RequestParam (required = false) String difficulty, Model model) {
-        List<Route> routeList = routeService.getRoutesSearch(keyword, typeWord, difficulty);
+
+/*    @GetMapping("/routes")
+    public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam(required = false) String typeWord, @RequestParam(required = false) String difficulty, Model model) {
+        List<RouteDto> routeList = routeService.getRoutesSearch(keyword, typeWord, difficulty);
         model.addAttribute("routes", routeList);
         model.addAttribute("keyword", keyword);
         model.addAttribute("typeWord", typeWord);
         model.addAttribute("difficulty", difficulty);
         return "routes/routes";
     }*/
+}
 
 
 

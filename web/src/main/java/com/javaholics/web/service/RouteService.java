@@ -4,7 +4,9 @@ import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.RouteMapper;
 import com.javaholics.web.repository.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,7 +37,7 @@ public class RouteService{
         //FIXME wrzuca zawsze usera no.1 do zmiany kiedy security
         routeRepository.save(routeMapper.fromDto(routeDto,userRepository.getReferenceById(1l)));
     }
-
+@Transactional
     public void updateRoute(RouteDto routeDto) {
         Route routeToUpdate = routeRepository.findById(routeDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Cant find product by given id"));
@@ -49,6 +51,7 @@ public class RouteService{
         routeToUpdate.setType(routeToUpdate.getType());
         routeToUpdate.setLength(routeToUpdate.getLength());
         routeRepository.save(routeToUpdate);
+        routeRepository.saveAndFlush(routeToUpdate);
 
     }
 
@@ -57,24 +60,24 @@ public class RouteService{
     }
 
 
-  /*
 
-    public List<Route> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
+/*    public List<RouteDto> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
         if (lokalKey == null && typeKey == null && difficulty == null) {
-            return routes;
+            return getRoutes();
         }
-        return routes.stream()
+        return getRoutes().stream()
                 .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
                 .filter(route -> StringUtils.containsIgnoreCase(route.getType(), typeKey))
                 .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(),difficulty))
                 .collect(Collectors.toList());
-    }
-    public List<Route> getRoutesSearchType(String typeKey) {
-        return routes.stream()
-                .filter(route -> StringUtils.containsIgnoreCase( route.getType(), typeKey))
-                .collect(Collectors.toList() );
-    }
-    public List<Route> getRoutesSearchLocality(String locKey) {
+    }*/
+/*    public List<RouteDto> getRoutesSearchType(String typeKey) {
+        return routeRepository.findRoutesByTypeIgnoreCase(typeKey)
+                .stream()
+                .map(routeMapper::toDto)
+                .collect(Collectors.toList());
+    }*/
+/*    public List<RouteDto> getRoutesSearchLocality(String locKey) {
         return routes.stream()
                 .filter(route -> StringUtils.containsIgnoreCase( route.getLocality(), locKey ))
                 .collect(Collectors.toList() );
@@ -83,9 +86,8 @@ public class RouteService{
         return routes.stream()
                 .filter(route -> StringUtils.containsIgnoreCase( route.getDifficulty().name(), difficulty ))
                 .collect(Collectors.toList() );
-    }
+    }*/
 
 
 
-}*/
 }

@@ -23,7 +23,7 @@ public class Route {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
     private List<Event> events;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User routeOwner;
 
