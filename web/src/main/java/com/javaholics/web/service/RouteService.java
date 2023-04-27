@@ -51,7 +51,6 @@ public class RouteService{
         routeToUpdate.setType(routeToUpdate.getType());
         routeToUpdate.setLength(routeToUpdate.getLength());
         routeRepository.save(routeToUpdate);
-        routeRepository.saveAndFlush(routeToUpdate);
 
     }
 
