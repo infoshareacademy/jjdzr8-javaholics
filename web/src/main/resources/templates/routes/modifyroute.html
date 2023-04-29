@@ -23,7 +23,7 @@
             <p>Modyfikuje dane trasy. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
             <div class="form-outline mb-4">
                 <label class="form-label" for="id">Id</label>
-                <input type="number" id="id" th:field="*{id}" class="form-control" />
+                <input readonly type="number" id="id" th:field="*{id}" class="form-control" />
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="nazwa" >Nazwa*</label>
@@ -51,12 +51,15 @@
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="user" >User Id</label>
-                <input type="number" id="user" th:field="*{routeOwner}" class="form-control" />
+                <input readonly type="number" id="user" th:field="*{routeOwner}" class="form-control" />
             </div>
             <div class="form-outline mb-4">
-                <label class="form-label" for="typ" >Typ trasy*</label>
-                <input type="text" id="typ" th:field="*{type}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('type')}" th:text="#{error.route.type}"></span>
+                <p>Typ*: <select th:field="*{type}">
+                    <option value="0" th:text="#{route.select-type}"/>
+                    <option th:each="type : ${T(com.javaholics.web.domain.RouteType).values()}" th:value="${type}" th:text="${type.getTypeOfRoute()}"/>
+                </select>
+                    <span class="error" th:if="${#fields.hasErrors('type')}" th:text="#{error.route.type}">
+        </span></p>
             </div>
             <div class="form-outline mb-4">
                 <p>Trudność*: <select th:field="*{difficulty}">

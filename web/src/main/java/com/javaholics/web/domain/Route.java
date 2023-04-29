@@ -55,7 +55,8 @@ public class Route {
 
     @NotBlank
     @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private RouteType routeType;
 
     @Min(value = 1)
     @Max(value = 1000)

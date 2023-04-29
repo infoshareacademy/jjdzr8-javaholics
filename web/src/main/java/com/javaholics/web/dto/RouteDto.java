@@ -1,6 +1,7 @@
 package com.javaholics.web.dto;
+
 import com.javaholics.web.domain.RouteDifficulty;
-import com.javaholics.web.domain.User;
+import com.javaholics.web.domain.RouteType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Data
@@ -39,7 +39,7 @@ public class RouteDto {
     private double avgRating;
 
     @NotBlank
-    private String type;
+    private RouteType type;
 
     @Min(value = 1)
     @Max(value = 1000)

@@ -1,16 +1,16 @@
 package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.EventDto;
+import com.javaholics.web.repository.RouteRepository;
 import com.javaholics.web.service.EventService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 
 import java.util.List;
 
@@ -20,10 +20,11 @@ public class EventController {
 
 
     private EventService eventService;
+    private RouteRepository routeRepository;
 
-    @Autowired
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService, RouteRepository routeRepository) {
         this.eventService = eventService;
+        this.routeRepository = routeRepository;
     }
 
     @GetMapping("/events")
@@ -36,6 +37,7 @@ public class EventController {
     @GetMapping("/events/create")
     public String showCreateEvent(Model model) {
         model.addAttribute("event", new EventDto());
+        model.addAttribute("routes",routeRepository.findAll());
         return "events/addevent";
     }
 
@@ -57,27 +59,27 @@ public class EventController {
 //        return "events/events";
 //    }
 
-//    @GetMapping("/events/{eventId}")
-//    public String getEventById(@PathVariable("eventId") Long eventId, Model model) {
-//        Event event = eventService.findEventById(eventId);
-//        model.addAttribute("event", event);
-//        return "events/modifyevent";
-//    }
-//
-//    @PostMapping("/events/{eventId}/edit")
-//    public String editEvent(@PathVariable("eventId") Long eventId, @Valid @ModelAttribute Event event, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "events/modifyevent";
-//        }
-//        eventService.editEventById(eventId, event);
-//        return "redirect:/events";
-//    }
-//
-//    @GetMapping("events/delete-event/{id}")
-//    public String deleteEvent(@PathVariable long id) {
-//        eventService.deleteEventById(id);
-//        return "redirect:/events";
-//    }
+    @GetMapping("/events/{eventId}")
+    public String getEventById(@PathVariable("eventId") Long eventId, Model model) {
+        EventDto event = eventService.findEventById(eventId);
+        model.addAttribute("event", event);
+        return "events/modifyevent";
+    }
+
+    @PostMapping("/events/{eventId}/edit")
+    public String editEvent(@PathVariable("eventId") Long eventId, @Valid @ModelAttribute EventDto event, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "events/modifyevent";
+        }
+        eventService.updateEvent(event);
+        return "redirect:/events";
+    }
+
+    @GetMapping("events/delete-event/{id}")
+    public String deleteEvent(@PathVariable long id) {
+        eventService.deleteEventById(id);
+        return "redirect:/events";
+    }
 //
 
 //

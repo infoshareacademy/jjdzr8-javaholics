@@ -3,8 +3,6 @@ package com.javaholics.web.mapper;
 import com.javaholics.web.domain.Route;
 import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.RouteDto;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +27,7 @@ public class RouteMapper {
                 .placeStop(routeDto.getPlaceStop())
                 .avgRating(routeDto.getAvgRating())
                 .difficulty(routeDto.getDifficulty())
-                .type(routeDto.getType())
+                .routeType(routeDto.getType())
                 .createDate(routeDto.getCreateDate())
 //                .routeOwner(routeDto.getRouteOwner())
                 .routeOwner(user)
@@ -46,7 +44,7 @@ public class RouteMapper {
                 .placeStop(route.getPlaceStop())
                 .avgRating(route.getAvgRating())
                 .difficulty(route.getDifficulty())
-                .type(route.getType())
+                .type(route.getRouteType())
 //                .routeOwner(route.getRouteOwner())
                 .routeOwner(1)
 //                .createDate(route.getCreateDate())

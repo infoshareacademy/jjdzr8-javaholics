@@ -19,9 +19,9 @@
             height: 20vh;">
 </div>
 
-<form th:action="@{/routes}">
+<form th:action="@{/routes/search}">
 <div class="d-flex justify-content-center">
-    <div class="p-2">Filtr lokalizacji:  <input type="text" name="keyword" th:value="${keyword}" /></div>
+    <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" /></div>
     <div class="p-2">Filtr typu trasy:  <input type="text" name="typeWord" th:value="${typeWord}" /></div>
     <div class="p-2">Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
         <option></option>
@@ -40,9 +40,9 @@
     <a th:href="@{/routes/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nową trasę
     </a>
-    <a th:href="@{/routes/save}" class="btn btn-warning">
+<!--    <a th:href="@{/routes/save}" class="btn btn-warning">
         <i class="fas fa-save"></i> Zapisz trasy do JSON
-    </a>
+    </a>-->
 </div>
 
 <div class="mt-2">
@@ -81,7 +81,13 @@
 <!--        <td th:text="${route.routeFile}"></td>-->
 <!--        <td th:text="${route.userId}"></td>-->
 <!--        <td th:text="${route.avgRating}"></td>-->
-        <td th:text="${route.type}"></td>
+        <td th:switch="${route.type.name()}">
+            <p th:case="'WALKING'" th:text="#{type.walking}"></p>
+            <p th:case="'RUNNING'" th:text="#{type.running}"></p>
+            <p th:case="'BIKE'" th:text="#{type.bike}"></p>
+            <p th:case="'OTHER'" th:text="#{type.other}"></p>
+            <p th:case="*" th:text="#{difficulty.unknown}"></p>
+        </td>
         <td th:text="${route.length}"></td>
 <!--        <td th:text="${#temporals.format(route.date, 'yyyy-MM-dd HH:mm')}"></td>-->
 
@@ -132,9 +138,9 @@
 <a th:href="@{/routes/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nową trasę
 </a>
-    <a th:href="@{/routes/save}" class="btn btn-warning">
+<!--    <a th:href="@{/routes/save}" class="btn btn-warning">
         <i class="fas fa-save"></i> Zapisz trasy do JSON
-    </a>
+    </a>-->
 </div>
 <br>
 

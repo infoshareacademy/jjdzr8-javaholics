@@ -1,16 +1,17 @@
 package com.javaholics.web.service;
 
+import com.javaholics.web.domain.Route;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.RouteMapper;
-import com.javaholics.web.repository.*;
+import com.javaholics.web.repository.RouteRepository;
+import com.javaholics.web.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import java.util.List;
 import java.util.stream.Collectors;
-import com.javaholics.web.domain.Route;
 
 @Service
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class RouteService{
     public List<RouteDto> getRoutes() {
         return routeRepository.findAll()
                 .stream()
-                .map(routeMapper::toDto)//FIXME
+                .map(routeMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -40,16 +41,15 @@ public class RouteService{
 @Transactional
     public void updateRoute(RouteDto routeDto) {
         Route routeToUpdate = routeRepository.findById(routeDto.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Cant find product by given id"));
-
-        routeToUpdate.setName(routeToUpdate.getName());
-        routeToUpdate.setLocality(routeToUpdate.getLocality());
-        routeToUpdate.setPlaceStart(routeToUpdate.getPlaceStart());
-        routeToUpdate.setPlaceStop(routeToUpdate.getPlaceStop());
-        routeToUpdate.setDifficulty(routeToUpdate.getDifficulty());
-        routeToUpdate.setRouteFile(routeToUpdate.getRouteFile());
-        routeToUpdate.setType(routeToUpdate.getType());
-        routeToUpdate.setLength(routeToUpdate.getLength());
+                .orElseThrow(() -> new IllegalArgumentException("Cant find route by given id"));
+        routeToUpdate.setName(routeDto.getName());
+        routeToUpdate.setLocality(routeDto.getLocality());
+        routeToUpdate.setPlaceStart(routeDto.getPlaceStart());
+        routeToUpdate.setPlaceStop(routeDto.getPlaceStop());
+        routeToUpdate.setDifficulty(routeDto.getDifficulty());
+        routeToUpdate.setRouteFile(routeDto.getRouteFile());
+        routeToUpdate.setRouteType(routeDto.getType());
+        routeToUpdate.setLength(routeDto.getLength());
         routeRepository.save(routeToUpdate);
 
     }
@@ -58,7 +58,16 @@ public class RouteService{
         routeRepository.deleteById(id);
     }
 
-
+//    public List<RouteDto> filtrByLocalityTypeAndDifficulty(String locality,String typeKey) {
+//
+//        if (typeKey.isBlank() && locality.isBlank()) {
+//            return getRoutes();
+//        }
+//        return routeRepository.findRoutesByLocalityIgnoreCaseOrTypeIgnoreCase(locality,typeKey)
+//                .stream()
+//                .map(routeMapper::toDto)
+//                .collect(Collectors.toList());
+//    }
 
 /*    public List<RouteDto> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
         if (lokalKey == null && typeKey == null && difficulty == null) {

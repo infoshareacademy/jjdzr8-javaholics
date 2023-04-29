@@ -13,7 +13,6 @@ import java.util.List;
 @Controller
 public class RouteController {
 
-
     private final RouteService routeService;
 
     public RouteController(RouteService routeService) {
@@ -70,6 +69,17 @@ public class RouteController {
         routeService.findRouteById(-1L);
         return "routes/routes";
     }
+
+//    @GetMapping("/routes/search")
+//    public String showRoutes(@RequestParam(required = false) String locality,@RequestParam(required = false) String typeWord, Model model) {
+//        List<RouteDto> routeList = routeService.filtrByLocalityTypeAndDifficulty(locality,typeWord);
+//        model.addAttribute("routes", routeList);
+//        model.addAttribute("typeWord", typeWord);
+//        model.addAttribute("locality", locality);
+//
+//        return "routes/routes";
+//    }
+
 
 /*    @GetMapping("/routes")
     public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam(required = false) String typeWord, @RequestParam(required = false) String difficulty, Model model) {

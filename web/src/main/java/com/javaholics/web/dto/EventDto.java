@@ -1,6 +1,5 @@
 package com.javaholics.web.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +25,7 @@ public class EventDto {
     private String eventName;
 
     @NotBlank
-    private String place;
+    private long route;
 
     @NotBlank
     private String region;

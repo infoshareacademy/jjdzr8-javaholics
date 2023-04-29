@@ -26,7 +26,7 @@ public class Event {
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "route_id")
         private Route route;
-    //
+
         @ManyToMany(mappedBy = "events")
         private List<User> users;
 
@@ -34,16 +34,17 @@ public class Event {
     @Column(name = "event_name")
     private String eventName;
 
-    @NotBlank
-    @Column(name = "place")
-    private String place;
+//    @NotBlank
+//    @Column(name = "place")
+//    private String place;
 
     @NotBlank
     @Column(name = "region")
     private String region;
 
-    @Column(name = "owner_event")
-    private long ownerOfEvent;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User ownerOfEvent;
 
     @Column(name = "description")
     private String description;
