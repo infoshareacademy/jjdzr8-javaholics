@@ -6,14 +6,11 @@ import com.javaholics.web.dto.RouteDto;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @Data
 public class RouteMapper {
-
-//    @PersistenceContext
-//    private final EntityManager entityManager=null;
-//    User user = entityManager.find(User.class,1);
-
 
     public Route fromDto(RouteDto routeDto,User user){
 
@@ -28,7 +25,7 @@ public class RouteMapper {
                 .avgRating(routeDto.getAvgRating())
                 .difficulty(routeDto.getDifficulty())
                 .routeType(routeDto.getType())
-                .createDate(routeDto.getCreateDate())
+                .createDate(LocalDateTime.now())
 //                .routeOwner(routeDto.getRouteOwner())
                 .routeOwner(user)
                 .build();
@@ -46,8 +43,8 @@ public class RouteMapper {
                 .difficulty(route.getDifficulty())
                 .type(route.getRouteType())
 //                .routeOwner(route.getRouteOwner())
+                .createDate(route.getCreateDate())
                 .routeOwner(1)
-//                .createDate(route.getCreateDate())
                 .build();
     }
 }

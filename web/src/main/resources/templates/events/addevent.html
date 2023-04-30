@@ -21,8 +21,6 @@
                 <h2>Kreator tworzenia nowego eventu</h2>
                 <p>Uzupełnij dane wydarzenia jakie chcesz utworzyć. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
             <div class="form-outline mb-4">
-<!--                <label class="form-label" for="id">Id</label>-->
-<!--                <input type="number" id="id" th:field="*{id}" class="form-control" />-->
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="eventName">Nazwa eventu*</label>
@@ -55,7 +53,7 @@
                     <input type="number"  id="usercount" th:field="*{usersCount}" class="form-control" />
                 </div>
 
-            <p>Data:* <input type="datetime-local" th:field="*{eventDateTime}"/>
+            <p>Data i godzina eventu:* <input type="datetime-local" th:field="*{eventDateTime}"/>
                 <span th:if="${#fields.hasErrors('eventDateTime')}" th:text="#{error.route.date}"></span>
             </p>
 

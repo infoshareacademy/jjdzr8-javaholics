@@ -50,7 +50,7 @@
                     <input type="number"  id="usercount" th:field="*{usersCount}" class="form-control" />
                 </div>
 
-                <p>Data:* <input type="datetime-local" th:field="*{eventDateTime}"/>
+                <p>Data i godzina eventu:* <input type="datetime-local" th:field="*{eventDateTime}"/>
                     <span th:if="${#fields.hasErrors('eventDateTime')}" th:text="#{error.route.date}"></span>
                 </p>
 

@@ -17,10 +17,11 @@
             height: 20vh;">
 </div>
 
-<form th:action="@{/events}">
+<form th:action="@{/events/search}">
     <div class="d-flex justify-content-center">
-        <div class="p-2">Filtr lokalizacji:  <input type="text" name="localWord" th:value="${localWord}" /></div>
         <div class="p-2">Filtr nazwy:   <input type="text" name="nameWord" th:value="${nameWord}" /></div>
+        <div class="p-2">Filtr regionu:  <input type="text" name="localWord" th:value="${localWord}" /></div>
+
         <div class="p-2">Szukaj w opisie:  <input type="text" name="descriptionWord" th:value="${descriptionWord}" /></div>
         <div class="p-2">  </div>
         <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
@@ -30,9 +31,6 @@
 <div>
     <a th:href="@{/events/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nowy event
-    </a>
-    <a th:href="@{/events/save}" class="btn btn-warning">
-        <i class="fas fa-save"></i> Zapisz eventy do JSON
     </a>
 </div>
 <div class="mt-2">
@@ -57,7 +55,6 @@
 
                 <td th:text="${event.id}"/>
                 <td th:text="${event.eventName}"/>
-<!--                <td th:text="${event.date}"/>-->
                 <td th:text="${#temporals.format(event.getEventDateTime(), 'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${event.route}"/>
                 <td th:text="${event.region}"/>
@@ -110,10 +107,6 @@
         <a th:href="@{/events/create}" class="btn btn-success">
             <i class="fas fa-plus"></i> Utwórz nowy event
         </a>
-        <a th:href="@{/events/save}" class="btn btn-warning">
-            <i class="fas fa-save"></i> Zapisz eventy do JSON
-        </a>
-
 
     <div th:insert="~{/../sections/footer :: footer}"></div>
 

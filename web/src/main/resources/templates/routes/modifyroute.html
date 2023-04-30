@@ -74,8 +74,8 @@
         </span>
 
                 </p>
-                <p>Data:* <input type="datetime-local" th:field="*{createDate}"/>
-                    <span class="error" th:if="${#fields.hasErrors('createDate')}" th:text="#{error.route.date}"></span>
+                <p>Data utworzenia:
+                    <span th:text="${#temporals.format(route.createDate, 'yyyy-MM-dd HH:mm')}"></span>
                 </p>
                 <p>
                     <button type="submit" class="btn btn-success btn-block mb-4">Zmień trasę</button>

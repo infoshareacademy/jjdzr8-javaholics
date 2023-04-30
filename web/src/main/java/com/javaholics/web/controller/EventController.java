@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,15 +50,15 @@ public class EventController {
         eventService.addEvent(eventDto);
         return "redirect:/events";
     }
-//    @GetMapping("/events")
-//    public String showEvents(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
-//        List<EventDto> eventList = eventService.getEventSearch(localWord, nameWord, descriptionWord);
-//        model.addAttribute("events", eventList);
-//        model.addAttribute("localKey", localWord);
-//        model.addAttribute("nameWord", nameWord);
-//        model.addAttribute("descriptionWord", descriptionWord);
-//        return "events/events";
-//    }
+    @GetMapping("/events/search")
+    public String showEvents(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
+        List<EventDto> eventList = eventService.getEventSearch(localWord, nameWord, descriptionWord);
+        model.addAttribute("events", eventList);
+        model.addAttribute("localKey", localWord);
+        model.addAttribute("nameWord", nameWord);
+        model.addAttribute("descriptionWord", descriptionWord);
+        return "events/events";
+    }
 
     @GetMapping("/events/{eventId}")
     public String getEventById(@PathVariable("eventId") Long eventId, Model model) {
@@ -80,19 +81,4 @@ public class EventController {
         eventService.deleteEventById(id);
         return "redirect:/events";
     }
-//
-
-//
-//    @GetMapping("/events/get-error")
-//    public String getEventWithWrongIdAndThrowError() {
-//        eventService.findEventById(-1L);
-//        return "events/events";
-//    }
-//
-//    @GetMapping("events/save")
-//    public String saveEvents(){
-//        eventService.saveEventToJson();
-//        return "redirect:/events";
-//    }
-
 }

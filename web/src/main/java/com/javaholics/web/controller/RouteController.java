@@ -70,26 +70,15 @@ public class RouteController {
         return "routes/routes";
     }
 
-//    @GetMapping("/routes/search")
-//    public String showRoutes(@RequestParam(required = false) String locality,@RequestParam(required = false) String typeWord, Model model) {
-//        List<RouteDto> routeList = routeService.filtrByLocalityTypeAndDifficulty(locality,typeWord);
-//        model.addAttribute("routes", routeList);
-//        model.addAttribute("typeWord", typeWord);
-//        model.addAttribute("locality", locality);
-//
-//        return "routes/routes";
-//    }
-
-
-/*    @GetMapping("/routes")
-    public String showRoutes(@RequestParam(required = false) String keyword, @RequestParam(required = false) String typeWord, @RequestParam(required = false) String difficulty, Model model) {
-        List<RouteDto> routeList = routeService.getRoutesSearch(keyword, typeWord, difficulty);
+    @GetMapping("/routes/search")
+    public String showRoutes(@RequestParam(required = false) String locality, @RequestParam(required = false) String typeWord, @RequestParam(required = false) String difficulty, Model model) {
+        List<RouteDto> routeList = routeService.getRoutesSearch(locality, typeWord, difficulty);
         model.addAttribute("routes", routeList);
-        model.addAttribute("keyword", keyword);
+        model.addAttribute("keyword", locality);
         model.addAttribute("typeWord", typeWord);
         model.addAttribute("difficulty", difficulty);
         return "routes/routes";
-    }*/
+    }
 }
 
 

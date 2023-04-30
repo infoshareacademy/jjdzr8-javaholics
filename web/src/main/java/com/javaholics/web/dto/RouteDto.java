@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -48,7 +48,7 @@ public class RouteDto {
     @FutureOrPresent()
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDate createDate;
+    private LocalDateTime createDate;
 
 
 }

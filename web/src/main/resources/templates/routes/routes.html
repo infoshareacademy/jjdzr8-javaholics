@@ -21,8 +21,16 @@
 
 <form th:action="@{/routes/search}">
 <div class="d-flex justify-content-center">
-    <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" /></div>
-    <div class="p-2">Filtr typu trasy:  <input type="text" name="typeWord" th:value="${typeWord}" /></div>
+    <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" ></div>
+    <div class="p-2">Filtr typu trasy:  <select type="text" name="typeWord" th:value="${typeWord}">
+    <option></option>
+    <option th:value="'WALKING'" th:text="Piesza"/>
+    <option th:value="'RUNNING'" th:text="Bieg"/>
+    <option th:value="'BIKE'" th:text="Rower"/>
+    <option th:value="'OTHER'" th:text="Inna"/></select></div>
+    <div class="p-2">  </div>
+
+
     <div class="p-2">Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
         <option></option>
         <option th:value="'EASY'" th:text="Łatwy"/>
@@ -55,12 +63,8 @@
         <th th:text="#{route.placeStart}">Start place</th>
         <th th:text="#{route.placeStop}">Stop place</th>
         <th th:text="#{route.difficulty}">Difficulty</th>
-<!--        <th th:text="#{route.routeFile}">File</th>-->
-<!--        <th th:text="#{route.userId}">User Id</th>-->
-<!--        <th th:text="#{route.avgRating}">Avg rate</th>-->
         <th th:text="#{route.type}">Type</th>
         <th th:text="#{route.length}">Lenght</th>
-<!--        <th th:text="#{route.date}">Date</th>-->
         <th th:text="#{gui.actions}">Actions</th>
     </tr>
     </thead>
@@ -78,9 +82,7 @@
             <p th:case="'EXTREME'" th:text="#{difficulty.extreme}"></p>
             <p th:case="*" th:text="#{difficulty.unknown}"></p>
         </td>
-<!--        <td th:text="${route.routeFile}"></td>-->
-<!--        <td th:text="${route.userId}"></td>-->
-<!--        <td th:text="${route.avgRating}"></td>-->
+
         <td th:switch="${route.type.name()}">
             <p th:case="'WALKING'" th:text="#{type.walking}"></p>
             <p th:case="'RUNNING'" th:text="#{type.running}"></p>
@@ -89,8 +91,6 @@
             <p th:case="*" th:text="#{difficulty.unknown}"></p>
         </td>
         <td th:text="${route.length}"></td>
-<!--        <td th:text="${#temporals.format(route.date, 'yyyy-MM-dd HH:mm')}"></td>-->
-
         <td>
             <button class="btn btn-outline-danger"
                     data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${route.id}"><i
@@ -138,9 +138,6 @@
 <a th:href="@{/routes/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nową trasę
 </a>
-<!--    <a th:href="@{/routes/save}" class="btn btn-warning">
-        <i class="fas fa-save"></i> Zapisz trasy do JSON
-    </a>-->
 </div>
 <br>
 
