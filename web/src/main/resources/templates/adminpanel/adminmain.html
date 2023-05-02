@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Meet2gether - Panel Administratora</title>
+
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{sections/navbar :: header}"></div>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+
+<main>
+
+    <div class="container marketing">
+
+       <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Szukaj nowych tras. <br><span class="text-white">Wszystkie w twojej okolicy.</span></h2>
+                <p class="lead">Aplikacja pozwala na wygodne szukanie tras w twoim regionie. Baza zawiera trasy piesze, rowerowe, o różnym stopniu trudności. Dodawaj nowe trasy i dziel się nimi z innymi użytkownikami.</p>
+                <a th:href="@{/public/routes}" class="btn btn-warning btn-lg">
+                    Zobacz trasy
+                </a>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 600px;" src="https://images.pexels.com/photos/590133/pexels-photo-590133.jpeg" data-holder-rendered="true">
+            </div>
+        </div>
+
+      <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">Wspólna aktywność? Tak! <br><span class="text-white">Poznaj nowych ludzi.</span></h2>
+                <p class="lead">Dodaj wydarzenie - daj znac innym użytkownikom portalu o ciekawych wydarzeniach sportowych, wspólnych spacerach i zajeciach an świeżym powietrzu.</p>
+                <a th:href="@{/public/events}" class="btn btn-warning btn-lg">
+                    Zobacz eventy
+                </a>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="https://images.pexels.com/photos/917510/pexels-photo-917510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" data-holder-rendered="true" style="width: 500px; height:600px;">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">To projekt grupowy. <br><span class="text-white">Napisany w Java.</span></h2>
+                <p class="lead">Aplikacja ta powstała jako projekt grupowy w ramach warsztatów programowania w Javie w ramach kursu Info Share Academy.</p>
+                <a th:href="@{/public/team}" class="btn btn-warning btn-lg">
+                    Poznaj zespół
+                </a>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="https://images.pexels.com/photos/3183148/pexels-photo-3183148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" data-holder-rendered="true" style="width: 500px; height: 600px;">
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <br>
+        <h1 class="featurette-heading text-white">Technologie</h1>
+        <br>
+        <div class="row">
+            <div class="col-lg-4">
+
+                <h2>JAVA</h2>
+                <p>W tle za wszystkie operacje odpowiada kod napisany w języku Java. Zastosowano wzorce projektowe MVC.</p>
+                <p></p>
+            </div>
+            <div class="col-lg-4">
+
+                <h2>Spring</h2>
+                <p>Aplikacja wykorzystuje framework Spring Boot wraz z Thymeleaf i zastoswanie basy danych MySQL</p>
+                <p></p>
+            </div>
+            <div class="col-lg-4">
+
+                <h2>Boostrap</h2>
+                <p>By aplikacja wyglądała jeszcze lepiej zastosowaliśmy rozwiązania dostarczone przez Bootstrap.</p>
+                <p></p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <br><br>
+    </div>
+
+</main>
+
+<div th:insert="~{sections/footer :: footer}"></div>
+
+</body>
+</html>
+
+
