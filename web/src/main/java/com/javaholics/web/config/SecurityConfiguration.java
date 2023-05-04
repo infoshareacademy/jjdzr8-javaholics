@@ -2,9 +2,12 @@ package com.javaholics.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,24 +18,38 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.Arrays;
 
 
-@Configuration
 @EnableWebSecurity
+@Configuration
+
 public class SecurityConfiguration {
+//
+//
+//    public PasswordEncoder getBcryptPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Bean
-    public PasswordEncoder getBcryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+    public InMemoryUserDetailsManager user() {
+        return new InMemoryUserDetailsManager(
+                User.withUsername("user")
+                        .password("{noop}user1234")
+                        .authorities("read")
+                        .build()
+        );
     }
+
 //
 //    @Bean
 //    public InMemoryUserDetailsManager get() {
-//        UserDetails user = User.withUsername("user")
-//                .password(getBcryptPasswordEncoder().encode("user1234"))
+//        UserDetails user =
+//                 User.withUsername("user")
+//                .password("{noop}user1234")
 //                .roles("ROLE_USER")
 //                .build();
 //
-//        UserDetails admin = User.withUsername("admin")
-//                .password(getBcryptPasswordEncoder().encode("admin1234"))
+//        UserDetails admin =
+//                 User.withUsername("admin")
+//                .password("{noop}admin1234")
 //                .roles("ROLE_ADMIN")
 //                .build();
 //
@@ -40,27 +57,35 @@ public class SecurityConfiguration {
 //    }
 
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests(auth->
-                        auth
-                                .antMatchers("/public/").permitAll()
-                                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-                                .antMatchers("/user/**").hasAuthority("ROLE_USER")
+                .csrf(csrf -> csrf.disable())
+                .authorizeRequests(auth -> {
+                                            auth.requestMatchers("/public/**").permitAll();
+                                            auth.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN");
+                                            auth.requestMatchers("/user/**").hasAuthority("ROLE_USER");
+                                            auth.anyRequest().authenticated();
+                                            }
                 )
-                .formLogin(formLogin ->
-                        formLogin
-                                .loginPage("/login.html").permitAll()
-                                .defaultSuccessUrl("/user/api", true)
-                                .failureUrl("/login.html?error=true")
-                )
-                .logout(logout ->
-                        logout
-                                .logoutUrl("user/logout")
-                                .logoutSuccessUrl("/public/logoutsucess").permitAll()
-                );
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+
+                .formLogin(Customizer.withDefaults())
+                .oauth2Login(Customizer.withDefaults())
+//                .loginPage("/login.html").permitAll()
+//                .defaultSuccessUrl("/user/api", true)
+//                .failureUrl("/login.html?error=true")
+//
+//                .and()
+//                .logout()
+//                .logoutUrl("public/logout")
+//                .logoutSuccessUrl("/public/logoutsucess").permitAll()
+
+
+                .httpBasic(Customizer.withDefaults());
 
         return http.build();
 
