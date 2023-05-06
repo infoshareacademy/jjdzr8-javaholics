@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin/api")
 public class AdminController {
 
+    //    @Secured("ROLE_ADMIN")
     @GetMapping
-    public String helloAdmin(){
-        return "Hello my master";
+    public String helloAdminSecuredContr(){
+        return "Hello admin of Meet2gether, this is secured controller for your eyes only";
     }
 }

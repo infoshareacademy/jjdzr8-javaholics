@@ -14,10 +14,5 @@ public class UserController {
         return "Hello user of Meet2gether";
     }
 
-    @Secured("ROLE_ADMIN")
-    @GetMapping(value = "/admin")
-    public String helloAdminSecuredContr(){
-        return "Hello admin of Meet2gether, this is secured controller for your eyes only";
-    }
 
 }

@@ -5,13 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -22,41 +18,25 @@ import java.util.Arrays;
 @Configuration
 
 public class SecurityConfiguration {
-//
-//
-//    public PasswordEncoder getBcryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     @Bean
-    public InMemoryUserDetailsManager user() {
-        return new InMemoryUserDetailsManager(
-                User.withUsername("user")
+    public UserDetailsService makeUsers() {
+        UserDetails user =
+                 User
+                        .withUsername("user")
                         .password("{noop}user1234")
-                        .authorities("read")
-                        .build()
-        );
+                        .roles("USER")
+                        .build();
+
+        UserDetails admin =
+                 User
+                        .withUsername("admin")
+                        .password("{noop}admin1234")
+                        .roles("ADMIN")
+                        .build();
+
+        return new InMemoryUserDetailsManager(Arrays.asList(user, admin));
     }
-
-//
-//    @Bean
-//    public InMemoryUserDetailsManager get() {
-//        UserDetails user =
-//                 User.withUsername("user")
-//                .password("{noop}user1234")
-//                .roles("ROLE_USER")
-//                .build();
-//
-//        UserDetails admin =
-//                 User.withUsername("admin")
-//                .password("{noop}admin1234")
-//                .roles("ROLE_ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(Arrays.asList(user, admin));
-//    }
-
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -66,26 +46,29 @@ public class SecurityConfiguration {
                                             auth.requestMatchers("/public/**").permitAll();
                                             auth.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN");
                                             auth.requestMatchers("/user/**").hasAuthority("ROLE_USER");
-                                            auth.anyRequest().authenticated();
+//                                            auth.anyRequest().authenticated();
                                             }
                 )
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
 
-                .formLogin(Customizer.withDefaults())
-                .oauth2Login(Customizer.withDefaults())
-//                .loginPage("/login.html").permitAll()
-//                .defaultSuccessUrl("/user/api", true)
-//                .failureUrl("/login.html?error=true")
-//
-//                .and()
-//                .logout()
-//                .logoutUrl("public/logout")
-//                .logoutSuccessUrl("/public/logoutsucess").permitAll()
+                .formLogin(formLoginConfigurer ->
+                                            formLoginConfigurer
+                                            .loginPage("/public/login")
+                                            .defaultSuccessUrl("/public", true)
+                                                    .failureForwardUrl("/public/login-error.html")
 
+                                            .permitAll())
 
-                .httpBasic(Customizer.withDefaults());
+                .logout(httpSecurityLogoutConfigurer ->
+                                            httpSecurityLogoutConfigurer
+                                            .logoutUrl("public/logout")
+                                            .logoutSuccessUrl("/public/logoutsucess")
+                                            .permitAll())
+
+                .oauth2Login(Customizer.withDefaults());
+//                .httpBasic(Customizer.withDefaults());
 
         return http.build();
 

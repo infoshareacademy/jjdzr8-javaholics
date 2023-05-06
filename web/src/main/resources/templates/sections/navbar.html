@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Navbar</title>
@@ -46,8 +46,8 @@
             <!--                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj trasy lub eventu..." aria-label="Search">-->
             <!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>-->
             <!--            </form>-->
-
-            <a th:href="@{/login}"><button type="button" class="btn btn-success ml-5">
+            <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>
+            <a th:href="@{/public/login}"><button type="button" class="btn btn-success ml-5">
                 Login
             </button></a>
         </div>
