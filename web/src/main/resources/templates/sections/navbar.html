@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Navbar</title>
@@ -27,9 +30,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/public/}">Home</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" th:href="@{/public/routes}">Trasy</a>
                 </li>
                 <li class="nav-item">
@@ -42,15 +42,9 @@
                     <a class="nav-link" th:href="@{/public/team}">Zespół</a>
                 </li>
             </ul>
-<!--            <form class="form-inline my-2 my-lg-0">-->
-            <!--                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj trasy lub eventu..." aria-label="Search">-->
-            <!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>-->
-            <!--            </form>-->
-            <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>
-            <a th:href="@{/public/login}"><button type="button" class="btn btn-success ml-5">
-                Login
-            </button></a>
-        </div>
+            <a th:href="@{/public/login}"><button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success ml-5">Zaloguj</button></a>
+            <a th:href="@{/public/logout}"><button sec:authorize="isAuthenticated()" type="button" class="btn btn-success ml-5">Wyloguj</button></a>
+            </div>
     </nav>
 </header>
 </body>

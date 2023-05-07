@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class SecurityConfiguration {
 
     @Bean
-    public UserDetailsService makeUsers() {
+    public InMemoryUserDetailsManager makeUsers() {
         UserDetails user =
                  User
                         .withUsername("user")
@@ -41,7 +41,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(auth -> {
                                             auth.requestMatchers("/public/**").permitAll();
                                             auth.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN");
@@ -56,19 +56,23 @@ public class SecurityConfiguration {
                 .formLogin(formLoginConfigurer ->
                                             formLoginConfigurer
                                             .loginPage("/public/login")
-                                            .defaultSuccessUrl("/public", true)
-                                                    .failureForwardUrl("/public/login-error.html")
-
+                                            .failureUrl("/login.html?error=true")
+                                            .defaultSuccessUrl("/", true)
+                                            //        .failureForwardUrl("/public/login-error.html")
                                             .permitAll())
 
                 .logout(httpSecurityLogoutConfigurer ->
                                             httpSecurityLogoutConfigurer
                                             .logoutUrl("public/logout")
                                             .logoutSuccessUrl("/public/logoutsucess")
-                                            .permitAll())
+                                            .permitAll()
+                                            .deleteCookies("JSESSIONID"))
 
-                .oauth2Login(Customizer.withDefaults());
-//                .httpBasic(Customizer.withDefaults());
+                .oauth2Login(Customizer.withDefaults())
+                .rememberMe()
+                //.key("BigSecret")
+                .tokenValiditySeconds(3600);
+//              .httpBasic(Customizer.withDefaults());
 
         return http.build();
 
