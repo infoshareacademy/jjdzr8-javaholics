@@ -1,4 +1,4 @@
-package com.javaholics.web.repository;
+package com.javaholics.web.domain;
 
 public enum SexChoice {
 

@@ -1,111 +1,84 @@
 package com.javaholics.web.service;
 
+import com.javaholics.web.domain.Route;
+import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
-import com.javaholics.web.repository.*;
+import com.javaholics.web.mapper.RouteMapper;
+import com.javaholics.web.repository.RouteRepository;
+import com.javaholics.web.repository.UserRepository;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import java.util.List;
 import java.util.stream.Collectors;
-import com.javaholics.web.repository.Route;
 
 @Service
-public class RouteService implements IdNumbers{
+@AllArgsConstructor
+public class RouteService {
 
-    private List<Route> routes;
-    private FileService fileService;
+    private RouteRepository routeRepository;
+    private RouteMapper routeMapper;
+    private UserRepository userRepository;
 
-    public RouteService(FileService fileService) {
-        this.fileService = fileService;
-        routes = fileService.readRoutesFromFile().getRoutes();
-    }
-    public List<Route> getRoutes() {
-        return routes;
-    }
 
-    public List<Route> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
-        if (lokalKey == null && typeKey == null && difficulty == null) {
-            return routes;
-        }
-        return routes.stream()
-                .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
-                .filter(route -> StringUtils.containsIgnoreCase(route.getType(), typeKey))
-                .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(),difficulty))
+    public List<RouteDto> getRoutes() {
+        return routeRepository.findAll()
+                .stream()
+                .map(routeMapper::toDto)
                 .collect(Collectors.toList());
     }
-    public List<Route> getRoutesSearchType(String typeKey) {
-        return routes.stream()
-                .filter(route -> StringUtils.containsIgnoreCase( route.getType(), typeKey))
-                .collect(Collectors.toList() );
-    }
-    public List<Route> getRoutesSearchLocality(String locKey) {
-        return routes.stream()
-                .filter(route -> StringUtils.containsIgnoreCase( route.getLocality(), locKey ))
-                .collect(Collectors.toList() );
-    }
-    public List<Route> getRoutesSearchDifficulty(String difficulty) {
-        return routes.stream()
-                .filter(route -> StringUtils.containsIgnoreCase( route.getDifficulty().name(), difficulty ))
-                .collect(Collectors.toList() );
-    }
-    public void deleteRouteById(long id) {
-        Route foundRout = findRouteById(id);
-        routes.remove(foundRout);
-    }
 
-    public Route findRouteById(Long id) {
-        return routes.stream()
-                .filter(route -> route.getId() == id)
-                .findFirst()
+    public RouteDto findRouteById(Long id) {
+        Route route = routeRepository.findById(id)
                 .orElseThrow(() -> new RouteNotFoundException("Not found route with ID: %s".formatted(id)));
+        return routeMapper.toDto(route);
     }
 
-    public void editRouteById(Long id, Route route) {
-        Route routeToEdit = findRouteById(id);
-
-        routeToEdit.setName(route.getName());
-        routeToEdit.setLocality(route.getLocality());
-        routeToEdit.setPlaceStart(route.getPlaceStart());
-        routeToEdit.setPlaceStop(route.getPlaceStop());
-        routeToEdit.setDifficulty(route.getDifficulty());
-        routeToEdit.setRouteFile(route.getRouteFile());
-        routeToEdit.setUserId(route.getUserId());
-        routeToEdit.setAvgRating(route.getAvgRating());
-        routeToEdit.setType(route.getType());
-        routeToEdit.setLength(route.getLength());
-        routeToEdit.setDate(route.getDate());
-
+    public void addRoute(RouteDto routeDto) {
+        //FIXME wrzuca zawsze usera no.1 do zmiany kiedy security
+        routeRepository.save(routeMapper.fromDto(routeDto, userRepository.getReferenceById(1l)));
     }
 
-    public void addRoute(Route route) {
-        routes.add(route);
+    @Transactional
+    public void updateRoute(RouteDto routeDto) {
+        Route routeToUpdate = routeRepository.findById(routeDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Cant find route by given id"));
+        routeToUpdate.setName(routeDto.getName());
+        routeToUpdate.setLocality(routeDto.getLocality());
+        routeToUpdate.setPlaceStart(routeDto.getPlaceStart());
+        routeToUpdate.setPlaceStop(routeDto.getPlaceStop());
+        routeToUpdate.setDifficulty(routeDto.getDifficulty());
+        routeToUpdate.setRouteFile(routeDto.getRouteFile());
+        routeToUpdate.setRouteType(routeDto.getType());
+        routeToUpdate.setLength(routeDto.getLength());
+        routeRepository.save(routeToUpdate);
     }
 
-    public void saveRoutesToJson(){
+    public void deleteRouteById(long id) {
+        routeRepository.deleteById(id);
+    }
 
-        Routes routesCopy = new Routes();
-        for (Route route : routes) {
-            routesCopy.add(route);
+    public List<RouteDto> filter(String locality) {
+
+        if (locality.isBlank()) {
+            return getRoutes();
         }
-        fileService.writeToJsonFile(routesCopy);
+        return routeRepository.findRoutesByLocality(locality)
+                .stream()
+                .map(routeMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-
-    @Override
-    public long getCurrentIdNoSaveToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        return iDsNumbers.getIpRoute();
+    public List<RouteDto> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
+        if (lokalKey == null && typeKey == null && difficulty == null) {
+            return getRoutes();
+        }
+        return getRoutes().stream()
+                .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getType().name(), typeKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
+                .collect(Collectors.toList());
     }
-
-    @Override
-    public long getCurrentIdWithSaveNextIdToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        long idRoute = iDsNumbers.getIpRoute();
-        iDsNumbers.setIpRoute(idRoute+1);
-        fileUtils.saveIdsToJsonFile(iDsNumbers);
-        return idRoute;
-}
 }

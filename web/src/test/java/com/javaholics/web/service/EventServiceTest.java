@@ -1,15 +1,11 @@
 package com.javaholics.web.service;
 
-import com.javaholics.web.repository.Event;
-import com.javaholics.web.repository.Route;
+import com.javaholics.web.domain.Event;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,10 +1,18 @@
 package com.javaholics.web.service;
 
+import com.javaholics.web.domain.User;
 import com.javaholics.web.repository.*;
+import org.springframework.stereotype.Service;
 
-public class UserService implements IdNumbers {
 
-    @Override
+@Service
+public class UserService {
+
+    private UserRepository userRepository;
+
+
+
+/*    @Override
     public long getCurrentIdNoSaveToJson() {
         IDsNumbers iDsNumbers = new IDsNumbers();
         FileUtils fileUtils = new FileUtils();
@@ -21,6 +29,6 @@ public class UserService implements IdNumbers {
         iDsNumbers.setIpUser(idUser+1);
         fileUtils.saveIdsToJsonFile(iDsNumbers);
         return idUser;
-    }
+    }*/
 
 }

@@ -1,36 +1,58 @@
 package com.javaholics.web.controller;
 
-import com.javaholics.web.repository.Event;
-import com.javaholics.web.repository.Events;
+import com.javaholics.web.dto.EventDto;
+import com.javaholics.web.repository.RouteRepository;
 import com.javaholics.web.service.EventService;
-import com.javaholics.web.service.FileService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+
 import java.util.List;
 
 
 @Controller
 public class EventController {
 
-    private FileService fileService;
-    private EventService eventService;
-    private Events events;
 
-    @Autowired
-    public EventController(FileService fileService, EventService eventService, Events events) {
-        this.fileService = fileService;
+    private EventService eventService;
+    private RouteRepository routeRepository;
+
+    public EventController(EventService eventService, RouteRepository routeRepository) {
         this.eventService = eventService;
-        this.events = events;
+        this.routeRepository = routeRepository;
     }
 
     @GetMapping("/events")
-    public String showEvents(@RequestParam(required = false) String localWord,@RequestParam(required = false) String nameWord,@RequestParam(required = false) String descriptionWord, Model model) {
-        List<Event> eventList = eventService.getEventSearch(localWord, nameWord, descriptionWord);
+    public String showEvents(Model model) {
+        List<EventDto> eventList = eventService.getEvents();
+        model.addAttribute("events", eventList);
+        return "events/events";
+    }
+
+    @GetMapping("/events/create")
+    public String showCreateEvent(Model model) {
+        model.addAttribute("event", new EventDto());
+        model.addAttribute("routes",routeRepository.findAll());
+        return "events/addevent";
+    }
+
+    @PostMapping("/events")
+    public String createEvents(@Valid @ModelAttribute EventDto eventDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "events/addevent";
+        }
+        eventService.addEvent(eventDto);
+        return "redirect:/events";
+    }
+    @GetMapping("/events/search")
+    public String showEvents(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
+        List<EventDto> eventList = eventService.getEventSearch(localWord, nameWord, descriptionWord);
         model.addAttribute("events", eventList);
         model.addAttribute("localKey", localWord);
         model.addAttribute("nameWord", nameWord);
@@ -40,17 +62,17 @@ public class EventController {
 
     @GetMapping("/events/{eventId}")
     public String getEventById(@PathVariable("eventId") Long eventId, Model model) {
-        Event event = eventService.findEventById(eventId);
+        EventDto event = eventService.findEventById(eventId);
         model.addAttribute("event", event);
         return "events/modifyevent";
     }
 
     @PostMapping("/events/{eventId}/edit")
-    public String editEvent(@PathVariable("eventId") Long eventId, @Valid @ModelAttribute Event event, BindingResult bindingResult) {
+    public String editEvent(@PathVariable("eventId") Long eventId, @Valid @ModelAttribute EventDto event, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "events/modifyevent";
         }
-        eventService.editEventById(eventId, event);
+        eventService.updateEvent(event);
         return "redirect:/events";
     }
 
@@ -59,33 +81,4 @@ public class EventController {
         eventService.deleteEventById(id);
         return "redirect:/events";
     }
-
-    @GetMapping("/events/create")
-    public String showCreateEvent(Model model) {
-        Long id = eventService.getCurrentIdNoSaveToJson();
-        model.addAttribute("event", new Event(id, "eventName"));
-        return "events/addevent";
-    }
-
-    @PostMapping("/events")
-    public String createEvents(@Valid @ModelAttribute Event event, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "events/addevent";
-        }
-        eventService.addEvent(event);
-        return "redirect:/events";
-    }
-
-    @GetMapping("/events/get-error")
-    public String getEventWithWrongIdAndThrowError() {
-        eventService.findEventById(-1L);
-        return "events/events";
-    }
-
-    @GetMapping("events/save")
-    public String saveEvents(){
-        eventService.saveEventToJson();
-        return "redirect:/events";
-    }
-
 }
