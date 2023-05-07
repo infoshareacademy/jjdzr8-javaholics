@@ -15,9 +15,13 @@ services:
       MYSQL_PASSWORD: superSecretPassword
     ports:
       - "3306:3306"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      interval: 5s
+      timeout: 5s
+      retries: 20
     networks:
       - backend
-
   app:
     image: meet2gether
     container_name: meet2gether_app
