@@ -1,0 +1,19 @@
+<Configuration status="warn">
+    <Appenders>
+        <RollingFile name="RollingFile" fileName="loghistory.log"
+                     filePattern="loghistory-%d{yyyy-MM-dd}-%i.json.gz">
+            <PatternLayout>
+                <Pattern>{"timestamp": "%d{yyyy-MM-dd HH:mm:ss,SSS}", "level": "%level", "logger": "%logger", "message": "%msg"}</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
