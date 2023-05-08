@@ -63,8 +63,8 @@ public class SecurityConfiguration {
 
                 .logout(httpSecurityLogoutConfigurer ->
                                             httpSecurityLogoutConfigurer
-                                            .logoutUrl("public/logout")
-                                            .logoutSuccessUrl("/public/logoutsucess")
+                                            .logoutUrl("/logout")
+                                            .logoutSuccessUrl("/public/logoutconfirm")
                                             .permitAll()
                                             .deleteCookies("JSESSIONID"))
 

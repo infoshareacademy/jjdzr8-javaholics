@@ -1,7 +1,8 @@
 package com.javaholics.web.service;
 
-import com.javaholics.web.domain.User;
-import com.javaholics.web.repository.*;
+import com.javaholics.web.dto.UserDto;
+import com.javaholics.web.mapper.UserMapper;
+import com.javaholics.web.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -9,6 +10,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private UserRepository userRepository;
+
+    private UserMapper userMapper;
+
+    public void addUser(UserDto userDto) {
+        userRepository.save(userMapper.fromDto(userDto));
+    }
 
 
 

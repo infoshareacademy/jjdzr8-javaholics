@@ -4,14 +4,16 @@
       xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+
+    <title>Meet2gether - Wylogowano</title>
 
     <link th:insert="~{sections/imports}">
 
 </head>
+
 <body>
 
-<div th:insert="~{/../sections/navbar :: header}"></div>
+<div th:insert="~{sections/navbar :: header}"></div>
 
 <div class="bg-color"
      style="background: rgb(5,56,107);
@@ -19,14 +21,20 @@
             height: 20vh;">
 </div>
 
-<div class="mt-5">
-<div class="container w-50 mt-4-3">
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout" />
-    </form>
-</div>
+<div class="container m-4">
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+        <h2 class="text-center">Wylogowano pomyślnie</h2>
+    </main>
 </div>
 
 <div th:insert="~{sections/footer :: footer}"></div>
+
 </body>
 </html>
+
+
+
+
+
+

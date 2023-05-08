@@ -40,7 +40,7 @@ public class RouteController {
             return "routes/addroute";
         }
         routeService.addRoute(routeDto);
-        return "redirect:/routes";
+        return "redirect:/public/routes";
     }
 
 
@@ -57,7 +57,7 @@ public class RouteController {
             return "routes/modifyroute";
         }
         routeService.updateRoute(route);
-        return "redirect:/routes";
+        return "redirect:/public/routes";
     }
 
     @GetMapping("routes/delete-route/{id}")

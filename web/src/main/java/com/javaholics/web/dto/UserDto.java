@@ -3,13 +3,18 @@ package com.javaholics.web.dto;
 import com.javaholics.web.domain.Event;
 import com.javaholics.web.domain.Route;
 import com.javaholics.web.domain.SexChoice;
+import com.javaholics.web.domain.UserProvider;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDto {
 
     private Long id;
@@ -26,12 +31,14 @@ public class UserDto {
 
     private SexChoice sex;
 
-    private String image;
+    private String email;
 
     private String location;
 
     private String prefferedRegionEvents;
 
-    private String dectription;
+    private String desctription;
+
+    private UserProvider loginProvider;
 
 }

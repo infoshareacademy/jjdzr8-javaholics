@@ -1,6 +1,8 @@
 package com.javaholics.web.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.util.List;
@@ -18,14 +20,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-        @ManyToMany
-        @JoinTable(
+    @ManyToMany
+    @JoinTable(
                 name = "user_event_jointable",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "event_id")
         )
-        private List<Event> events;
-
+    private List<Event> events;
 
     @OneToMany(mappedBy = "routeOwner")
     private List<Route> routes;
@@ -37,13 +38,15 @@ public class User {
     private String lastName;
 
     @Column(name = "login")
+    //@Column(nullable = false)
     private String login;
 
     @Enumerated(EnumType.STRING)
     private SexChoice sex;
 
-    @Column(name = "image")
-    private String image;
+    @Email
+    //@Column(nullable = false)
+    private String email;
 
     @Column(name = "location")
     private String location;
@@ -52,6 +55,13 @@ public class User {
     private String prefferedRegionEvents;
 
     @Column(name = "description")
-    private String dectription;
+    private String desctription;
+
+    @Enumerated(EnumType.STRING)
+    //@NotNull
+    private UserProvider loginProvider;
+
+    //@JsonIgnore
+    private String password;
 
 }
