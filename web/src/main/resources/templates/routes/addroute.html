@@ -21,7 +21,7 @@
 <div>
 
 
-    <form action="#" th:action="@{/routes}" th:object="${route}" method="post">
+    <form action="#" th:action="@{/public/routes}" th:object="${route}" method="post">
         <div class="container">
             <h2>Kreator tworzenia nowej trasy</h2>
             <p>Uzupełnij dane trasy jaką chcesz utworzyć. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
@@ -75,7 +75,7 @@
         </p>
             <p>
                 <button type="submit" class="btn btn-success btn-block mb-4">Dodaj trasę</button>
-                <button th:href="@{/routes}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+                <button th:href="@{/public/routes}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
             </p>
         </div>
         </div>

@@ -19,7 +19,7 @@
             height: 20vh;">
 </div>
 <div>
-        <form action="#" th:action="@{/routes/edit}" th:object="${route}" method="post">
+        <form action="#" th:action="@{/public/routes/edit}" th:object="${route}" method="post">
         <div class="container">
             <h2>Edycja trasy</h2>
             <p>Modyfikuje dane trasy. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
@@ -81,7 +81,7 @@
                 </p>
                 <p>
                     <button type="submit" class="btn btn-success btn-block mb-4">Zmień trasę</button>
-                    <button th:href="@{/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+                    <button th:href="@{/public/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
                 </p>
             </div>
         </div>
