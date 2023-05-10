@@ -81,4 +81,9 @@ public class RouteService {
                 .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
                 .collect(Collectors.toList());
     }
+//    public List<RouteDto> getRoutesSearchId(Long id) {
+//        return getRoutes().stream()
+//                .filter(route -> (int)route.getId(), id)
+//                .collect(Collectors.toList());
+//    }
 }
