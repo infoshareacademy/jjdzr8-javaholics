@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/infoshare/jjdzr8-javaholics/web/src/main/java/com/javaholics/web/database/loghistory.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+
+            <!--może nastąpić potrzeba dopisania absolute path?-->
+            <fileNamePattern>/infoshare/jjdzr8-javaholics/web/src/main/java/com/javaholics/web/database/loghistory.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
