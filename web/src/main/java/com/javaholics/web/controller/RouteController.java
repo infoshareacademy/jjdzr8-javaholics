@@ -86,14 +86,6 @@ public class RouteController {
         return "routes/routesdetails";
     }
 
-//    @PostMapping("/routes/details")
-//    public String editRouteId(@ModelAttribute RouteDto route, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "routes/routesdetails";
-//        }
-//        routeService.updateRoute(route);
-//        return "redirect:/routes";
-//    }
 
 }
 
