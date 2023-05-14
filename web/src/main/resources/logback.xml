@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/infoshare/jjdzr8-javaholics/web/src/main/java/com/javaholics/web/database/loghistory.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    <springProfile name="json-logging">
+        <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
 
-            <!--może nastąpić potrzeba dopisania absolute path?-->
-            <fileNamePattern>/infoshare/jjdzr8-javaholics/web/src/main/java/com/javaholics/web/database/loghistory.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
-            <maxHistory>10</maxHistory>
-        </rollingPolicy>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
-    </appender>
-
-    <root level="INFO">
-        <appender-ref ref="FILE"/>
-    </root>
+            <!--możliwe dodanie absolute path-->
+            <file>/infoshare/jjdzr8-javaholics/web/src/main/java/com/javaholics/web/database/loghistory.log</file>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="jsonConsoleAppender"/>
+            <appender-ref ref="fileAppender"/>
+        </root>
+    </springProfile>
+    <springProfile name="!json-logging">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    </springProfile>
 </configuration>
