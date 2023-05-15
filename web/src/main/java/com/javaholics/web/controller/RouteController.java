@@ -79,6 +79,14 @@ public class RouteController {
         model.addAttribute("difficulty", difficulty);
         return "routes/routes";
     }
+    @GetMapping("/routes/details/{routeId}")
+    public String getRouteByIdDetils(@PathVariable("routeId") Long routeId, Model model) {
+        RouteDto route = routeService.findRouteById(routeId);
+        model.addAttribute("route", route);
+        return "routes/routesdetails";
+    }
+
+
 }
 
 

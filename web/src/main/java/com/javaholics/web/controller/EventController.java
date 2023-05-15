@@ -1,6 +1,7 @@
 package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.EventDto;
+import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.repository.RouteRepository;
 import com.javaholics.web.service.EventService;
 import jakarta.validation.Valid;
@@ -80,5 +81,11 @@ public class EventController {
     public String deleteEvent(@PathVariable long id) {
         eventService.deleteEventById(id);
         return "redirect:/events";
+    }
+    @GetMapping("/events/details/{eventId}")
+    public String getEventByIdDetils(@PathVariable("eventId") Long eventId, Model model) {
+        EventDto event = eventService.findEventById(eventId);
+        model.addAttribute("events", event);
+        return "events/eventdetails";
     }
 }
