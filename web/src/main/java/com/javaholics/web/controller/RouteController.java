@@ -1,5 +1,6 @@
 package com.javaholics.web.controller;
 
+import com.javaholics.web.domain.RouteDifficulty;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.service.RouteService;
 import jakarta.validation.Valid;
@@ -24,6 +25,12 @@ public class RouteController {
         List<RouteDto> routeList = routeService.getRoutes();
         model.addAttribute("routes", routeList);
         return "routes/routes";
+    }
+    @GetMapping("/routes/myroutes")
+    public String showMyRoutes(Model model) {
+        List<RouteDto> routeList = routeService.findRouteByDofficulty(2L);
+        model.addAttribute("routes", routeList);
+        return "routes/myroutes";
     }
 
     @GetMapping("/routes/create")
