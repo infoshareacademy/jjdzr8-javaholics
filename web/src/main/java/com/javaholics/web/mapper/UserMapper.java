@@ -2,6 +2,7 @@ package com.javaholics.web.mapper;
 
 import com.javaholics.web.domain.Route;
 import com.javaholics.web.domain.User;
+import com.javaholics.web.domain.UserRoles;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.dto.UserDto;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class UserMapper {
                 .email(userDto.getEmail())
                 .location(userDto.getLocation())
                 .prefferedRegionEvents(userDto.getPrefferedRegionEvents())
+                .role(UserRoles.USER)
                 .desctription(userDto.getDesctription())
                 .loginProvider(userDto.getLoginProvider())
                 .build();

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meet2gether - Dodawanie Użytkownika</title>
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{sections/navbar :: header}"></div>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+<div>
+
+
+    <form action="#" th:action="@{/public/user}" th:object="${user}" method="post">
+        <div class="container">
+            <h2>Kreator tworzenia użytkownika</h2>
+            <p>Uzupełnij dane swoje konta na platformie Meet2gether<br/></p>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="login" >Nazwa użytkownika*</label>
+                <input type="text" id="login" th:field="*{login}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('login')}" th:text="#{error.route.name}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="imie" >Imię</label>
+                <input type="text" id="imie" th:field="*{name}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('name')}" th:text="#{error.route.name}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="nazwisko" >Nazwisko</label>
+                <input type="text" id="nazwisko" th:field="*{lastName}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('lastName')}" th:text="#{error.route.name}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <p>Płeć: <select th:field="*{sex}">
+                <option value="0" th:text="#{route.select-type}"/>
+                <option th:each="sex : ${T(com.javaholics.web.domain.SexChoice).values()}"
+                th:value="${sex}" th:text="${sex.getSex()}"/>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('sex')}" th:text="#{error.route.routeType}">
+                </span></p>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="lokalizacja" >Lokalizacja*</label>
+                <input type="text" id="lokalizacja" th:field="*{location}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('location')}" th:text="#{error.route.locality}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <p>Preferowana lokalizacja informacji o wydarzeniach: <select th:field="*{prefferedRegionEvents}">
+                    <option value="0" th:text="#{route.select-type}"/>
+                    <option th:each="refferedRegionEvents : ${T(com.javaholics.web.domain.Region).values()}"
+                            th:value="${refferedRegionEvents}" th:text="${refferedRegionEvents.getRegionName()}"/>
+                </select>
+                    <span class="error" th:if="${#fields.hasErrors('refferedRegionEvents')}" th:text="#{error.route.routeType}">
+                </span></p>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="email" >Email*</label>
+                <input type="text" id="email" th:field="*{email}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('email')}" th:text="#{error.route.locality}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="password" >Hasło*</label>
+                <input type="password" id="password" th:field="*{password}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('password')}" th:text="#{error.route.locality}"></span>
+            </div>
+            <p>
+                <button type="submit" class="btn btn-success btn-block mb-4">Dodaj trasę</button>
+                <button th:href="@{/public}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+            </p>
+        </div>
+    </form>
+</div>
+
+
+<div th:insert="~{sections/footer :: footer}"></div>
+
+</body>
+</html>
