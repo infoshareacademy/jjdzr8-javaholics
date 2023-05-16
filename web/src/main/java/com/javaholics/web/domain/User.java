@@ -3,16 +3,19 @@ package com.javaholics.web.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Table(name = "USERS")
 @Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -68,20 +71,27 @@ public class User implements UserDetails {
     //@JsonIgnore
     @Column(nullable = false)
     private String password;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private UserRoles role;
+    @Builder.Default
+    private UserRoles role = UserRoles.USER;
 
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
+        final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role.name());
+        return Collections.singletonList(simpleGrantedAuthority);
+    }
+    @Override
+    public String getPassword() {
+        return password;
+    }
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
     @Override

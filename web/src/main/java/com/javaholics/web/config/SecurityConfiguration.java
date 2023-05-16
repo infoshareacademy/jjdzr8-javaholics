@@ -1,25 +1,26 @@
 package com.javaholics.web.config;
 
 import com.javaholics.web.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.Arrays;
 
 
 @EnableWebSecurity
 @Configuration
+@AllArgsConstructor
 
 public class SecurityConfiguration {
+
+    private final UserService userService;
+
 
 //    @Bean
 //    public InMemoryUserDetailsManager makeUsers() {
@@ -39,13 +40,12 @@ public class SecurityConfiguration {
 //
 //        return new InMemoryUserDetailsManager(Arrays.asList(user, admin));
 //    }
+
+
     @Bean
-    public UserDetailsService makeAdmin(){
-
-        return new UserService()
-
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

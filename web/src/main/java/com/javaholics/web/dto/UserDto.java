@@ -1,9 +1,6 @@
 package com.javaholics.web.dto;
 
-import com.javaholics.web.domain.Event;
-import com.javaholics.web.domain.Route;
-import com.javaholics.web.domain.SexChoice;
-import com.javaholics.web.domain.UserProvider;
+import com.javaholics.web.domain.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,10 +32,14 @@ public class UserDto {
 
     private String location;
 
-    private String prefferedRegionEvents;
+    private Region prefferedRegionEvents;
 
     private String desctription;
 
     private UserProvider loginProvider;
+
+    private String password;
+
+    private UserRoles role;
 
 }

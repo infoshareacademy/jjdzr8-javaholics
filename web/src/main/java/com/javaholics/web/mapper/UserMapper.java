@@ -1,16 +1,15 @@
 package com.javaholics.web.mapper;
 
-import com.javaholics.web.domain.Route;
+import com.javaholics.web.config.SecurityConfiguration;
 import com.javaholics.web.domain.User;
 import com.javaholics.web.domain.UserRoles;
-import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.dto.UserDto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
+@AllArgsConstructor
 @Data
 public class UserMapper {
 
@@ -28,9 +27,10 @@ public class UserMapper {
                 .email(userDto.getEmail())
                 .location(userDto.getLocation())
                 .prefferedRegionEvents(userDto.getPrefferedRegionEvents())
-                .role(UserRoles.USER)
                 .desctription(userDto.getDesctription())
                 .loginProvider(userDto.getLoginProvider())
+                .password(security.encoder().encode(userDto.getPassword()))
+                .role(UserRoles.USER)
                 .build();
     }
 
@@ -48,6 +48,8 @@ public class UserMapper {
                 .prefferedRegionEvents(user.getPrefferedRegionEvents())
                 .desctription(user.getDesctription())
                 .loginProvider(user.getLoginProvider())
+                .password(user.getPassword())
+                .role(user.getRole())
                 .build();
     }
 }

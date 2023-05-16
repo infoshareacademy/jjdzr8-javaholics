@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/public")
-public class UserController {
+public class AddUserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public AddUserController(UserService userService) {
         this.userService = userService;
     }
 
