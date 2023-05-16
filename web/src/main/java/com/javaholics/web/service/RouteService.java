@@ -1,7 +1,6 @@
 package com.javaholics.web.service;
 
 import com.javaholics.web.domain.Route;
-import com.javaholics.web.domain.RouteDifficulty;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.RouteMapper;
@@ -68,11 +67,21 @@ public class RouteService {
                 .map(routeMapper::toDto)
                 .collect(Collectors.toList());
     }
-    public List<RouteDto> findRouteByDofficulty(double length) {
-        return routeRepository.findRoutesByDifficulty(length)
+    public List<RouteDto> findRouteByLenght(double length) {
+        return routeRepository.findRoutesByLength(length)
                 .stream()
                 .filter(route -> (route.getLength()==length))
                 .map(routeMapper::toDto)
+                .collect(Collectors.toList());
+    }
+    public List<RouteDto> getMyRoutesSearch(String lokalKey, String typeKey, String difficulty, double length) {
+        if (lokalKey == null && typeKey == null && difficulty == null) {
+            return findRouteByLenght(length);
+        }
+        return findRouteByLenght(length).stream()
+                .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getType().name(), typeKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
                 .collect(Collectors.toList());
     }
 

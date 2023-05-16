@@ -4,6 +4,7 @@ import com.javaholics.web.domain.Event;
 import com.javaholics.web.domain.Route;
 import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.EventDto;
+import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.EventMapper;
 import com.javaholics.web.repository.EventRepository;
@@ -39,6 +40,30 @@ public class EventService {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new RouteNotFoundException("Not found event with ID: %s".formatted(id)));
         return eventMapper.toDto(event);
+    }
+    public List<EventDto> findEventByUserId(Long id) {
+        return eventRepository.findEventsByUserId(id)
+                .stream()
+                .filter(event -> event.getOwnerOfEvent().equals(id))
+                .map(eventMapper::toDto)
+                .collect(Collectors.toList());
+    }
+    public List<EventDto> findEventsByCount(int users_count) {
+        return eventRepository.findEventsByCount(users_count)
+                .stream()
+                .filter(event ->event.getUsersCount().equals(users_count))
+                .map(eventMapper::toDto)
+                .collect(Collectors.toList());
+    }
+    public List<EventDto> getMyEventSearch(String placeKey, String nameKey, String descriptionKey,Integer users_count) {
+        if (placeKey == null && nameKey == null && descriptionKey == null) {
+            return findEventsByCount(users_count);
+        }
+        return findEventsByCount(users_count).stream()
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
+                .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
+                .collect(Collectors.toList());
     }
     public void addEvent(EventDto eventDto) {
         eventRepository.save(eventMapper.fromDto(eventDto,userRepository.getReferenceById(1l),

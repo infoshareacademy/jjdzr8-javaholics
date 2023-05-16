@@ -13,7 +13,7 @@ public interface RouteRepository extends JpaRepository<Route,Long> {
     @Query(value = "SELECT * FROM routes WHERE user_id = :id ", nativeQuery = true)
     List<Route> findRoutesByUserId (@Param("id") Long id);
     @Query(value = "SELECT * FROM routes WHERE length = :length ", nativeQuery = true)
-    List<Route> findRoutesByDifficulty (@Param("length") double length);
+    List<Route> findRoutesByLength(@Param("length") double length);
 
 
     List<Route> findRoutesByLocality(String locality);

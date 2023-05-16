@@ -18,8 +18,28 @@
             background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
             height: 20vh;">
 </div>
+<form th:action="@{/routes/mysearch}">
+    <div class="d-flex justify-content-center">
+        <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" ></div>
+        <div class="p-2">Filtr typu trasy:  <select type="text" name="typeWord" th:value="${typeWord}">
+            <option></option>
+            <option th:value="'WALKING'" th:text="Piesza"/>
+            <option th:value="'RUNNING'" th:text="Bieg"/>
+            <option th:value="'BIKE'" th:text="Rower"/>
+            <option th:value="'OTHER'" th:text="Inna"/></select></div>
+        <div class="p-2">  </div>
 
-<form th:action="@{/routes/myroutes}">
+
+        <div class="p-2">Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
+            <option></option>
+            <option th:value="'EASY'" th:text="Łatwy"/>
+            <option th:value="'MEDIUM'" th:text="Średni"/>
+            <option th:value="'HARD'" th:text="Trudny"/>
+            <option th:value="'EXTREME'" th:text="Zaawansowany"/>
+        </div>
+        <div class="p-2">  </div>
+        <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
+    </div>
 </form>
 
 <div>

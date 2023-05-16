@@ -35,6 +35,21 @@ public class EventController {
         model.addAttribute("events", eventList);
         return "events/events";
     }
+    @GetMapping("/events/myevents")
+    public String showMyRoutes(Model model) {
+        List<EventDto> eventList = eventService.findEventsByCount(12);
+        model.addAttribute("events", eventList);
+        return "events/myevents";
+    }
+    @GetMapping("/events/mysearch")
+    public String showMyEventsFilter(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
+        List<EventDto> eventList = eventService.getMyEventSearch(localWord, nameWord, descriptionWord,12);
+        model.addAttribute("events", eventList);
+        model.addAttribute("localKey", localWord);
+        model.addAttribute("nameWord", nameWord);
+        model.addAttribute("descriptionWord", descriptionWord);
+        return "events/myevents";
+    }
 
     @GetMapping("/events/create")
     public String showCreateEvent(Model model) {

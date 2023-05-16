@@ -1,6 +1,5 @@
 package com.javaholics.web.controller;
 
-import com.javaholics.web.domain.RouteDifficulty;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.service.RouteService;
 import jakarta.validation.Valid;
@@ -28,8 +27,17 @@ public class RouteController {
     }
     @GetMapping("/routes/myroutes")
     public String showMyRoutes(Model model) {
-        List<RouteDto> routeList = routeService.findRouteByDofficulty(2L);
+        List<RouteDto> routeList = routeService.findRouteByLenght(1L);
         model.addAttribute("routes", routeList);
+        return "routes/myroutes";
+    }
+    @GetMapping("/routes/mysearch")
+    public String showMyRoutesFilter(@RequestParam(required = false) String locality, @RequestParam(required = false) String typeWord, @RequestParam(required = false) String difficulty, Model model) {
+        List<RouteDto> routeList = routeService.getMyRoutesSearch(locality, typeWord, difficulty, 1l);
+        model.addAttribute("routes", routeList);
+        model.addAttribute("keyword", locality);
+        model.addAttribute("typeWord", typeWord);
+        model.addAttribute("difficulty", difficulty);
         return "routes/myroutes";
     }
 
