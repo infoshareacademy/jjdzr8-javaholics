@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
@@ -17,7 +19,7 @@
             height: 20vh;">
 </div>
 
-<form th:action="@{/events/search}">
+<form th:action="@{/public/events/search}">
     <div class="d-flex justify-content-center">
         <div class="p-2">Filtr nazwy:   <input type="text" name="nameWord" th:value="${nameWord}" /></div>
         <div class="p-2">Filtr regionu:  <input type="text" name="localWord" th:value="${localWord}" /></div>
@@ -29,7 +31,7 @@
 </form>
 <br/>
 <div>
-    <a th:href="@{/events/create}" class="btn btn-success">
+    <a th:href="@{/public/events/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nowy event
     </a>
 </div>
@@ -68,10 +70,10 @@
                             class="far fa-trash-alt "
                     ></i></button>
 
-                    <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
+                    <a th:href="@{/public/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
                         Edytuj
                     </a>
-                    <a th:href="@{/events/details/{eventId}(eventId=${event.id})}" class="btn btn-success">
+                    <a th:href="@{/public/events/details/{eventId}(eventId=${event.id})}" class="btn btn-success">
                         Szczegóły
                     </a>
 
@@ -91,7 +93,7 @@
                                     <button type="button" class="btn btn-success"
                                             data-dismiss="modal">Anuluj
                                     </button>
-                                    <a th:attr="href='/events/delete-event/'+${event.id}">
+                                    <a th:attr="href='/public/events/delete-event/'+${event.id}">
                                         <button
                                                 type="button" class="btn btn-danger">Usuń
                                         </button>
@@ -107,7 +109,7 @@
     </table>
 </div>
     <div id="button">
-        <a th:href="@{/events/create}" class="btn btn-success">
+        <a th:href="@{/public/events/create}" class="btn btn-success">
             <i class="fas fa-plus"></i> Utwórz nowy event
         </a>
 

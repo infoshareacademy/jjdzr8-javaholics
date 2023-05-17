@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Routes</title>
@@ -19,7 +21,7 @@
             height: 20vh;">
 </div>
 
-<form th:action="@{/routes/search}">
+<form th:action="@{/public/routes/search}">
 <div class="d-flex justify-content-center">
     <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" ></div>
     <div class="p-2">Filtr typu trasy:  <select type="text" name="typeWord" th:value="${typeWord}">
@@ -45,7 +47,7 @@
 
 <div>
     <br>
-    <a th:href="@{/routes/create}" class="btn btn-success">
+    <a th:href="@{/public/routes/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nową trasę
     </a>
 <!--    <a th:href="@{/routes/save}" class="btn btn-warning">
@@ -97,10 +99,10 @@
                     class="far fa-trash-alt "
             ></i></button>
 
-            <a th:href="@{/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
+            <a th:href="@{/public/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
                 Edytuj
             </a>
-            <a th:href="@{/routes/details/{routeId}(routeId=${route.id})}" class="btn btn-success">
+            <a th:href="@{/public/routes/details/{routeId}(routeId=${route.id})}" class="btn btn-success">
                 Szczegóły
             </a>
 
@@ -120,7 +122,7 @@
                             <button type="button" class="btn btn-success"
                                     data-dismiss="modal">Anuluj
                             </button>
-                            <a th:attr="href='/routes/delete-route/'+${route.id}">
+                            <a th:attr="href='/public/routes/delete-route/'+${route.id}">
                                 <button
                                         type="button" class="btn btn-danger">Usuń
                                 </button>
@@ -138,7 +140,7 @@
 </div>
 <div>
     <br>
-<a th:href="@{/routes/create}" class="btn btn-success">
+<a th:href="@{/public/routes/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nową trasę
 </a>
 </div>

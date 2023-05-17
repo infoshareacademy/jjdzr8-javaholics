@@ -18,11 +18,12 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("/public")
 public class EventController {
 
 
-    private EventService eventService;
-    private RouteRepository routeRepository;
+    private final EventService eventService;
+    private final RouteRepository routeRepository;
 
     public EventController(EventService eventService, RouteRepository routeRepository) {
         this.eventService = eventService;
@@ -64,7 +65,7 @@ public class EventController {
             return "events/addevent";
         }
         eventService.addEvent(eventDto);
-        return "redirect:/events";
+        return "redirect:/public/events";
     }
     @GetMapping("/events/search")
     public String showEvents(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
@@ -89,13 +90,13 @@ public class EventController {
             return "events/modifyevent";
         }
         eventService.updateEvent(event);
-        return "redirect:/events";
+        return "redirect:/public/events";
     }
 
     @GetMapping("events/delete-event/{id}")
     public String deleteEvent(@PathVariable long id) {
         eventService.deleteEventById(id);
-        return "redirect:/events";
+        return "redirect:/public/events";
     }
     @GetMapping("/events/details/{eventId}")
     public String getEventByIdDetils(@PathVariable("eventId") Long eventId, Model model) {
