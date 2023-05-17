@@ -1,11 +1,11 @@
 package com.javaholics.web.service;
 
-import com.javaholics.web.config.SecurityConfiguration;
 import com.javaholics.web.domain.User;
 import com.javaholics.web.domain.UserRoles;
 import com.javaholics.web.dto.UserDto;
 import com.javaholics.web.mapper.UserMapper;
 import com.javaholics.web.repository.UserRepository;
+import com.javaholics.web.utilities.PassEncoderBinding;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +24,8 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     private UserMapper userMapper;
+
+    private PassEncoderBinding passEncoderBinding;
 
     @Override
     public UserDetails loadUserByUsername(String email) {
@@ -53,8 +55,8 @@ public class UserService implements UserDetailsService {
             userRepository.save(
                     User.builder()
                             .login("admin")
-                            .email(security.encoder().encode("admin@admin.pl"))
-                            .password("admin1234")
+                            .email("admin@admin.pl")
+                            .password(passEncoderBinding.encoder().encode("admin1234"))
                             .role(UserRoles.ADMIN)
                             .build()
             );
@@ -62,8 +64,8 @@ public class UserService implements UserDetailsService {
 
 
     }
-    private boolean emailExists(final String email) {
-        return userRepository.findByEmail(email) != null;
+    private boolean emailExists(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 
 }

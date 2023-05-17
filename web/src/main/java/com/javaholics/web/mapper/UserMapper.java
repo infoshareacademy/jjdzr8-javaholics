@@ -1,9 +1,9 @@
 package com.javaholics.web.mapper;
 
-import com.javaholics.web.config.SecurityConfiguration;
 import com.javaholics.web.domain.User;
 import com.javaholics.web.domain.UserRoles;
 import com.javaholics.web.dto.UserDto;
+import com.javaholics.web.utilities.PassEncoderBinding;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Data
 public class UserMapper {
+
+    private PassEncoderBinding passEncoderBinding;
 
     public User fromDto(UserDto userDto){
 
@@ -29,7 +31,7 @@ public class UserMapper {
                 .prefferedRegionEvents(userDto.getPrefferedRegionEvents())
                 .desctription(userDto.getDesctription())
                 .loginProvider(userDto.getLoginProvider())
-                .password(security.encoder().encode(userDto.getPassword()))
+                .password(passEncoderBinding.encoder().encode(userDto.getPassword()))
                 .role(UserRoles.USER)
                 .build();
     }

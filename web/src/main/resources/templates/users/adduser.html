@@ -60,7 +60,7 @@
                     <option th:each="refferedRegionEvents : ${T(com.javaholics.web.domain.Region).values()}"
                             th:value="${refferedRegionEvents}" th:text="${refferedRegionEvents.getRegionName()}"/>
                 </select>
-                    <span class="error" th:if="${#fields.hasErrors('refferedRegionEvents')}" th:text="#{error.user.generic}">
+                    <span class="error" th:if="${#fields.hasErrors('prefferedRegionEvents')}" th:text="#{error.user.generic}">
                 </span></p>
             </div>
             <div class="form-outline mb-4">

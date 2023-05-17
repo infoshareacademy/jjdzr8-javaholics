@@ -26,7 +26,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
                 name = "user_event_jointable",
                 joinColumns = @JoinColumn(name = "user_id"),
@@ -34,7 +34,8 @@ public class User implements UserDetails {
         )
     private List<Event> events;
 
-    @OneToMany(mappedBy = "routeOwner")
+    @OneToMany(mappedBy = "routeOwner",
+    fetch = FetchType.EAGER)
     private List<Route> routes;
 
     @Column(name = "name")
