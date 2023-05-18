@@ -1,16 +1,9 @@
 package com.javaholics.web.controller;
 
-import com.javaholics.web.dto.RouteDto;
-import com.javaholics.web.dto.UserDto;
-import com.javaholics.web.service.RouteService;
 import com.javaholics.web.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -34,6 +27,11 @@ public class LogingController {
             return "login";
         }
 
+    @GetMapping("/successlogin")
+    public String getLoginSuccessWindow() {
+        return "login-success";
+    }
+
     @GetMapping("/logout")
     public String getLogoutForm() {
         return "logout";
@@ -44,14 +42,6 @@ public class LogingController {
         return "logoutconfirm";
     }
 
-    @PostMapping("/register")
-    public String createUser(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-        userService.addUser(userDto);
-        return "redirect:/user/api";
-    }
 
 //    @GetMapping("/registration")
 //    public String getRegistrationForm(WebRequest request, Model model) {

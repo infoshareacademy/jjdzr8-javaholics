@@ -34,7 +34,7 @@ public class AddUserController {
             return "users/adduser";
         }
         userService.addUser(userDto);
-        return "redirect:/public/routes";
+        return "redirect:/user/create-success";
     }
 
     @GetMapping("/user/create-success")
