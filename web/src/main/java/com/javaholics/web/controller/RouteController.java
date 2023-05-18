@@ -35,7 +35,8 @@ public class RouteController {
         Long id;
         String email = routeService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<RouteDto> routeList = routeService.findRouteByUserId(id);
+//        List<RouteDto> routeList = routeService.findRouteByUserId(id);
+        List<RouteDto> routeList = routeService.findRouteByLenght(12);
         model.addAttribute("routes", routeList);
         return "routes/myroutes";
     }
@@ -44,7 +45,7 @@ public class RouteController {
         Long id;
         String email = routeService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<RouteDto> routeList = routeService.getMyRoutesSearch(locality, typeWord, difficulty, id);
+        List<RouteDto> routeList = routeService.getMyRoutesSearchTest(locality, typeWord, difficulty, id.doubleValue());
         model.addAttribute("routes", routeList);
         model.addAttribute("keyword", locality);
         model.addAttribute("typeWord", typeWord);
@@ -71,7 +72,7 @@ public class RouteController {
             return "routes/addroute";
         }
         routeService.addRoute(routeDto);
-        return "redirect:/public/routes";
+        return "redirect:/public/routes/myroutes";
     }
 
 
@@ -88,13 +89,13 @@ public class RouteController {
             return "routes/modifyroute";
         }
         routeService.updateRoute(route);
-        return "redirect:/public/routes";
+        return "redirect:/public/routes/myroutes";
     }
 
     @GetMapping("routes/delete-route/{id}")
     public String deleteRoute(@PathVariable long id) {
         routeService.deleteRouteById(id);
-        return "redirect:/public/routes";
+        return "redirect:/public/routes/myroutes";
     }
 
     @GetMapping("/routes/get-error")

@@ -87,6 +87,16 @@ public class RouteService {
                 .map(routeMapper::toDto)
                 .collect(Collectors.toList());
     }
+    public List<RouteDto> getMyRoutesSearchTest(String lokalKey, String typeKey, String difficulty, double length) {
+        if (lokalKey == null && typeKey == null && difficulty == null) {
+            return findRouteByLenght(length);
+        }
+        return findRouteByLenght(length).stream()
+                .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getType().name(), typeKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
+                .collect(Collectors.toList());
+    }
     public List<RouteDto> getMyRoutesSearch(String lokalKey, String typeKey, String difficulty, Long id) {
         if (lokalKey == null && typeKey == null && difficulty == null) {
             return findRouteByUserId(id);
