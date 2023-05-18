@@ -118,6 +118,11 @@ public class RouteController {
         RouteDto route = routeService.findRouteById(routeId);
         model.addAttribute("route", route);
         return "routes/routesdetails";
+    }@GetMapping("/routes/detailsmain/{routeId}")
+    public String getRouteByIdDetilsMain(@PathVariable("routeId") Long routeId, Model model) {
+        RouteDto route = routeService.findRouteById(routeId);
+        model.addAttribute("route", route);
+        return "routes/routesdetailsmain";
     }
 
 

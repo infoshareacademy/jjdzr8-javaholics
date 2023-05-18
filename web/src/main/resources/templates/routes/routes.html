@@ -67,6 +67,7 @@
         <th th:text="#{route.difficulty}">Difficulty</th>
         <th th:text="#{route.type}">Type</th>
         <th th:text="#{route.length}">Lenght</th>
+        <th>Szczegóły</th>
         <th th:text="#{gui.actions}">Actions</th>
     </tr>
     </thead>
@@ -94,6 +95,11 @@
         </td>
         <td th:text="${route.length}"></td>
         <td>
+            <a th:href="@{/public/routes/detailsmain/{routeId}(routeId=${route.id})}" class="btn btn-success">
+                Szczegóły
+            </a>
+        </td>
+        <td>
             <button class="btn btn-outline-danger"
                     data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${route.id}"><i
                     class="far fa-trash-alt "
@@ -102,10 +108,6 @@
             <a th:href="@{/public/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
                 Edytuj
             </a>
-            <a th:href="@{/public/routes/details/{routeId}(routeId=${route.id})}" class="btn btn-success">
-                Szczegóły
-            </a>
-
             <!-- The Modal -->
             <div class="modal fade" th:attr="id='recordDeleteModal'+${route.id}">
                 <div class="modal-dialog">
