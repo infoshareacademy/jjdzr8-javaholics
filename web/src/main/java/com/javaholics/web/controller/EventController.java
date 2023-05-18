@@ -1,17 +1,12 @@
 package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.EventDto;
-import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.repository.RouteRepository;
 import com.javaholics.web.service.EventService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,7 +41,7 @@ public class EventController {
     @PostMapping("/events")
     public String createEvents(@Valid @ModelAttribute EventDto eventDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "events/addevent";
+            return "redirect:/events";
         }
         eventService.addEvent(eventDto);
         return "redirect:/events";

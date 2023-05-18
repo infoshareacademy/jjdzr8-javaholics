@@ -35,7 +35,7 @@ public class RouteController {
     @PostMapping("/routes")
     public String createRoute(@Valid @ModelAttribute RouteDto routeDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "routes/addroute";
+            return "redirect:/routes";
         }
         routeService.addRoute(routeDto);
         return "redirect:/routes";
