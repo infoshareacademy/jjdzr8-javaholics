@@ -1,9 +1,10 @@
 package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.EventDto;
-import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.repository.RouteRepository;
+import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.service.EventService;
+import com.javaholics.web.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +25,13 @@ public class EventController {
 
     private final EventService eventService;
     private final RouteRepository routeRepository;
+    private final UserRepository userRepository;
+    UserService userService;
 
-    public EventController(EventService eventService, RouteRepository routeRepository) {
+    public EventController(EventService eventService, RouteRepository routeRepository, UserRepository userRepository) {
         this.eventService = eventService;
         this.routeRepository = routeRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/events")
@@ -38,13 +42,19 @@ public class EventController {
     }
     @GetMapping("/events/myevents")
     public String showMyRoutes(Model model) {
-        List<EventDto> eventList = eventService.findEventsByCount(12);
+        Long id;
+        String email = eventService.useridName();
+        id = userRepository.findByEmail(email).get().getId();
+        List<EventDto> eventList = eventService.findEventsByCount(id.intValue());
         model.addAttribute("events", eventList);
         return "events/myevents";
     }
     @GetMapping("/events/mysearch")
     public String showMyEventsFilter(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
-        List<EventDto> eventList = eventService.getMyEventSearch(localWord, nameWord, descriptionWord,12);
+        Long id;
+        String email = eventService.useridName();
+        id = userRepository.findByEmail(email).get().getId();
+        List<EventDto> eventList = eventService.getMyEventSearchTest(localWord, nameWord, descriptionWord,id.intValue());
         model.addAttribute("events", eventList);
         model.addAttribute("localKey", localWord);
         model.addAttribute("nameWord", nameWord);

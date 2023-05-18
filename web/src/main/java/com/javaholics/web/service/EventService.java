@@ -13,6 +13,8 @@ import com.javaholics.web.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +37,16 @@ public class EventService {
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
     }
+    public String useridName() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            return username = ((UserDetails) principal).getUsername();
+        } else {
+            return username = principal.toString();
+        }
+    }
 
     public EventDto findEventById(Long id) {
         Event event = eventRepository.findById(id)
@@ -55,7 +67,17 @@ public class EventService {
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
     }
-    public List<EventDto> getMyEventSearch(String placeKey, String nameKey, String descriptionKey,Integer users_count) {
+    public List<EventDto> getMyEventSearch(String placeKey, String nameKey, String descriptionKey,Long id) {
+        if (placeKey == null && nameKey == null && descriptionKey == null) {
+            return findEventByUserId(id);
+        }
+        return findEventByUserId(id).stream()
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
+                .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
+                .collect(Collectors.toList());
+    }
+    public List<EventDto> getMyEventSearchTest(String placeKey, String nameKey, String descriptionKey,Integer users_count) {
         if (placeKey == null && nameKey == null && descriptionKey == null) {
             return findEventsByCount(users_count);
         }
