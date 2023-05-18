@@ -32,12 +32,16 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/public/about}">O Aplikacji</a>
                 </li>
+                <div sec:authorize="isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/public/routes/myroutes}">Moje trasy</a>
                 </li>
+                </div>
+                <div sec:authorize="isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{public/events/myevents}">Moje eventy</a>
                 </li>
+                </div>
                 <li class="nav-item">
 
                     <a class="nav-link" th:href="@{/public/team}">Zespół</a>

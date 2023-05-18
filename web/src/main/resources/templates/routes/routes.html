@@ -68,7 +68,9 @@
         <th th:text="#{route.type}">Type</th>
         <th th:text="#{route.length}">Lenght</th>
         <th>Szczegóły</th>
+        <div sec:authorize="hasRole('ADMIN')">
         <th th:text="#{gui.actions}">Actions</th>
+        </div>
     </tr>
     </thead>
     <tbody>
@@ -99,6 +101,7 @@
                 Szczegóły
             </a>
         </td>
+        <div sec:authorize="hasRole('ADMIN')">
         <td>
             <button class="btn btn-outline-danger"
                     data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${route.id}"><i
@@ -135,7 +138,7 @@
             </div>
 
         </td>
-
+        </div>
     </tr>
     </tbody>
 </table>
