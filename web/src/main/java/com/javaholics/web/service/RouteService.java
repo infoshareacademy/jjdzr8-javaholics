@@ -1,6 +1,7 @@
 package com.javaholics.web.service;
 
 import com.javaholics.web.domain.Route;
+import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.RouteMapper;
@@ -9,9 +10,12 @@ import com.javaholics.web.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,7 +63,16 @@ public class RouteService {
     public void deleteRouteById(long id) {
         routeRepository.deleteById(id);
     }
+    public String useridName() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
 
+        if (principal instanceof UserDetails) {
+            return username = ((UserDetails) principal).getUsername();
+        } else {
+            return username = principal.toString();
+        }
+    }
     public List<RouteDto> findRouteByUserId(Long id) {
         return routeRepository.findRoutesByUserId(id)
                 .stream()
@@ -74,11 +87,11 @@ public class RouteService {
                 .map(routeMapper::toDto)
                 .collect(Collectors.toList());
     }
-    public List<RouteDto> getMyRoutesSearch(String lokalKey, String typeKey, String difficulty, double length) {
+    public List<RouteDto> getMyRoutesSearch(String lokalKey, String typeKey, String difficulty, Long id) {
         if (lokalKey == null && typeKey == null && difficulty == null) {
-            return findRouteByLenght(length);
+            return findRouteByUserId(id);
         }
-        return findRouteByLenght(length).stream()
+        return findRouteByUserId(id).stream()
                 .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
                 .filter(route -> StringUtils.containsIgnoreCase(route.getType().name(), typeKey))
                 .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
@@ -101,4 +114,14 @@ public class RouteService {
 //                .filter(route -> (int)route.getId(), id)
 //                .collect(Collectors.toList());
 //    }
+    public String findbyname() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            return username = ((UserDetails) principal).getUsername();
+        } else {
+            return username = principal.toString();
+        }
+    }
 }

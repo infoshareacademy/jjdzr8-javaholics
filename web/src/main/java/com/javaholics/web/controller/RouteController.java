@@ -1,6 +1,7 @@
 package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.RouteDto;
+import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.service.RouteService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,11 @@ import java.util.List;
 public class RouteController {
 
     private final RouteService routeService;
+    private final UserRepository userRepository;
 
-    public RouteController(RouteService routeService) {
+    public RouteController(RouteService routeService, UserRepository userRepository) {
         this.routeService = routeService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/routes")
@@ -29,18 +32,31 @@ public class RouteController {
     }
     @GetMapping("/routes/myroutes")
     public String showMyRoutes(Model model) {
-        List<RouteDto> routeList = routeService.findRouteByLenght(1L);
+        Long id;
+        String email = routeService.useridName();
+        id = userRepository.findByEmail(email).get().getId();
+        List<RouteDto> routeList = routeService.findRouteByUserId(id);
         model.addAttribute("routes", routeList);
         return "routes/myroutes";
     }
     @GetMapping("/routes/mysearch")
     public String showMyRoutesFilter(@RequestParam(required = false) String locality, @RequestParam(required = false) String typeWord, @RequestParam(required = false) String difficulty, Model model) {
-        List<RouteDto> routeList = routeService.getMyRoutesSearch(locality, typeWord, difficulty, 1l);
+        Long id;
+        String email = routeService.useridName();
+        id = userRepository.findByEmail(email).get().getId();
+        List<RouteDto> routeList = routeService.getMyRoutesSearch(locality, typeWord, difficulty, id);
         model.addAttribute("routes", routeList);
         model.addAttribute("keyword", locality);
         model.addAttribute("typeWord", typeWord);
         model.addAttribute("difficulty", difficulty);
         return "routes/myroutes";
+    }
+    @GetMapping("/routes/test")
+    public String test(){
+        Long id;
+        String email = routeService.useridName();
+        id = userRepository.findByEmail(email).get().getId();
+        return email;
     }
 
     @GetMapping("/routes/create")
@@ -78,7 +94,7 @@ public class RouteController {
     @GetMapping("routes/delete-route/{id}")
     public String deleteRoute(@PathVariable long id) {
         routeService.deleteRouteById(id);
-        return "redirect:/routes";
+        return "redirect:/public/routes";
     }
 
     @GetMapping("/routes/get-error")

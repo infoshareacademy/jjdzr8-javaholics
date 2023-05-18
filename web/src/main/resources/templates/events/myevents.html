@@ -16,7 +16,7 @@
             background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
             height: 20vh;">
 </div>
-<form th:action="@{/events/mysearch}">
+<form th:action="@{/public/events/mysearch}">
     <div class="d-flex justify-content-center">
         <div class="p-2">Filtr nazwy:   <input type="text" name="nameWord" th:value="${nameWord}" /></div>
         <div class="p-2">Filtr regionu:  <input type="text" name="localWord" th:value="${localWord}" /></div>
@@ -27,7 +27,7 @@
     </div>
 </form>
 <div>
-    <a th:href="@{/events/create}" class="btn btn-success">
+    <a th:href="@{/public/events/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nowy event
     </a>
 </div>
@@ -66,10 +66,10 @@
                         class="far fa-trash-alt "
                 ></i></button>
 
-                <a th:href="@{/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
+                <a th:href="@{/public/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
                     Edytuj
                 </a>
-                <a th:href="@{/events/details/{eventId}(eventId=${event.id})}" class="btn btn-success">
+                <a th:href="@{/public/events/details/{eventId}(eventId=${event.id})}" class="btn btn-success">
                     Szczegóły
                 </a>
 

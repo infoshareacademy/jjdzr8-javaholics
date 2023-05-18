@@ -17,7 +17,7 @@
             height: 10vh;">
         </div>
         <div>
-            <form th:action="@{/events/details/{eventId}(eventId=${events.id})}" th:object="${events}">
+            <form th:action="@{/public/events/details/{eventId}(eventId=${events.id})}" th:object="${events}">
                 <div class="container">
                 <h2>Szczegóły trasy</h2>
                     <div class="form-outline mb-4">
