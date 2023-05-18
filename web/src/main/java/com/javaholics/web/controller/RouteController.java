@@ -3,6 +3,7 @@ package com.javaholics.web.controller;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.service.RouteService;
+import com.javaholics.web.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ public class RouteController {
 
     private final RouteService routeService;
     private final UserRepository userRepository;
+    UserService userService;
 
     public RouteController(RouteService routeService, UserRepository userRepository) {
         this.routeService = routeService;
@@ -35,8 +37,7 @@ public class RouteController {
         Long id;
         String email = routeService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-//        List<RouteDto> routeList = routeService.findRouteByUserId(id);
-        List<RouteDto> routeList = routeService.findRouteByLenght(12);
+        List<RouteDto> routeList = routeService.findRouteByUserId(1l);
         model.addAttribute("routes", routeList);
         return "routes/myroutes";
     }
@@ -45,7 +46,7 @@ public class RouteController {
         Long id;
         String email = routeService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<RouteDto> routeList = routeService.getMyRoutesSearchTest(locality, typeWord, difficulty, id.doubleValue());
+        List<RouteDto> routeList = routeService.getMyRoutesSearch(locality, typeWord, difficulty, 1l);
         model.addAttribute("routes", routeList);
         model.addAttribute("keyword", locality);
         model.addAttribute("typeWord", typeWord);

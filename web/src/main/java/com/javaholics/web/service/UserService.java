@@ -8,11 +8,13 @@ import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.utilities.PassEncoderBinding;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.swing.plaf.PanelUI;
 import java.text.MessageFormat;
 import java.util.Optional;
 
@@ -26,6 +28,20 @@ public class UserService implements UserDetailsService {
     private UserMapper userMapper;
 
     private PassEncoderBinding passEncoderBinding;
+    public String useridName() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            return username = ((UserDetails) principal).getUsername();
+        } else {
+            return username = principal.toString();
+        }
+    }
+    public Long userId(){
+        Long userId = userRepository.findByEmail(useridName()).get().getId();
+        return userId;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) {
