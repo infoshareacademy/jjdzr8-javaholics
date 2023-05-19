@@ -58,7 +58,7 @@ public class SecurityConfiguration {
                 .formLogin(formLoginConfigurer ->
                                             formLoginConfigurer
                                             .loginPage("/public/login")
-                                            .failureUrl("/login.html?error=true")
+                                            .failureUrl("/public/login")
                                             .defaultSuccessUrl("/public/successlogin", true)
                                             //        .failureForwardUrl("/public/login-error.html")
                                             .permitAll())
@@ -71,9 +71,9 @@ public class SecurityConfiguration {
                                             .deleteCookies("JSESSIONID"))
 
                 .oauth2Login(Customizer.withDefaults())
-                .rememberMe()
+                .rememberMe();
                 //.key("BigSecret")
-                .tokenValiditySeconds(3600);
+
 //              .httpBasic(Customizer.withDefaults());
 
         return http.build();

@@ -20,8 +20,6 @@ public class UserMapper {
 
         return User.builder()
                 .id(userDto.getId())
-                .events(userDto.getEvents())
-                .routes(userDto.getRoutes())
                 .name(userDto.getName())
                 .lastName(userDto.getLastName())
                 .login(userDto.getLogin())
@@ -29,7 +27,7 @@ public class UserMapper {
                 .email(userDto.getEmail())
                 .location(userDto.getLocation())
                 .prefferedRegionEvents(userDto.getPrefferedRegionEvents())
-                .desctription(userDto.getDesctription())
+ //               .desctription(userDto.getDesctription())
                 .loginProvider(userDto.getLoginProvider())
                 .password(passEncoderBinding.encoder().encode(userDto.getPassword()))
                 .role(UserRoles.USER)
