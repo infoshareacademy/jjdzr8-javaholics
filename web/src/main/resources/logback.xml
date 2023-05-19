@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProfile name="json-logging">
+        <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+
+            <!--możliwe dodanie absolute path-->
+            <file>/home/jakub/Desktop/Projekt/jjdzr8-javaholics/web/src/main/resources/logs/loghistory.log</file>
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+        <root level="INFO">
+            <appender-ref ref="jsonConsoleAppender"/>
+            <appender-ref ref="fileAppender"/>
+        </root>
+    </springProfile>
+    <springProfile name="!json-logging">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    </springProfile>
+</configuration>

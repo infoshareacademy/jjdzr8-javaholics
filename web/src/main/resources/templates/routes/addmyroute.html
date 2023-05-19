@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meet2gether - Dodawanie Trasy</title>
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{sections/navbar :: header}"></div>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+<div>
+
+
+    <form action="#" th:action="@{/public/routes/myroutes}" th:object="${route}" method="post">
+        <div class="container">
+            <h2>Kreator tworzenia nowej trasy</h2>
+            <p>Uzupełnij dane trasy jaką chcesz utworzyć. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="nazwa" >Nazwa*</label>
+                <input type="text" id="nazwa" th:field="*{name}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('name')}" th:text="#{error.route.name}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="lokalizacja" >Lokalizacja*</label>
+                <input type="text" id="lokalizacja" th:field="*{locality}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('locality')}" th:text="#{error.route.locality}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="start" >Miejsce startu*</label>
+                <input type="text" id="start" th:field="*{placeStart}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('placeStart')}" th:text="#{error.route.placeStart}"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="stop" >Miejsce zakończenia*</label>
+                <input type="text" id="stop" th:field="*{placeStop}" class="form-control" />
+                <span class="error" th:if="${#fields.hasErrors('placeStop')}" th:text="#{error.route.placeStop}"></span>
+            </div>
+<!--            <div class="form-outline mb-4">-->
+<!--                <label class="form-label" for="file" >Plik GPS trasy</label>-->
+<!--                <input type="text" id="file" th:field="*{routeFile}" class="form-control" />-->
+<!--            </div>-->
+            <div class="form-outline mb-4">
+                <p>Typ: <select th:field="*{type}">
+                <option value="0" th:text="#{route.select-type}"/>
+                <option th:each="routeType : ${T(com.javaholics.web.domain.RouteType).values()}"
+                        th:value="${routeType}" th:text="${routeType.getTypeOfRoute()}"/>
+            </select>
+                <span class="error" th:if="${#fields.hasErrors('type')}" th:text="#{error.route.routeType}">
+        </span></p>
+            </div>
+
+            <div class="form-outline mb-4">
+        <p>Trudność: <select th:field="*{difficulty}">
+            <option value="0" th:text="#{route.select-difficulty}"/>
+            <option th:each="difficulty : ${T(com.javaholics.web.domain.RouteDifficulty).values()}"
+                    th:value="${difficulty}" th:text="${difficulty.getDifficulty()}"/>
+        </select>
+            <span class="error" th:if="${#fields.hasErrors('difficulty')}" th:text="#{error.route.difficulty}">
+        </span></p>
+
+        <p>Długość:* <input type="number" th:field="*{length}"/>
+            <span class="error" th:if="${#fields.hasErrors('length')}" th:text="#{error.route.lenght}">
+        </span>
+
+        </p>
+            <p>
+                <button type="submit" class="btn btn-success btn-block mb-4">Dodaj trasę</button>
+                <button th:href="@{/public/routes/myroutes}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+            </p>
+        </div>
+        </div>
+    </form>
+</div>
+</div>
+
+<div th:insert="~{sections/footer :: footer}"></div>
+
+</body>
+</html>

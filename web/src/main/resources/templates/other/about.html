@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
@@ -27,7 +29,7 @@
             <div class="col-md-7">
                 <h2 class="featurette-heading">Szukaj nowych tras. <br><span class="text-white">Wszystkie w twojej okolicy.</span></h2>
                 <p class="lead">Aplikacja pozwala na wygodne szukanie tras w twoim regionie. Baza zawiera trasy piesze, rowerowe, o różnym stopniu trudności. Dodawaj nowe trasy i dziel się nimi z innymi użytkownikami.</p>
-                <a th:href="@{/routes}" class="btn btn-warning btn-lg">
+                <a th:href="@{/public/routes}" class="btn btn-warning btn-lg">
                     Zobacz trasy
                 </a>
             </div>
@@ -42,7 +44,7 @@
             <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading">Wspólna aktywność? Tak! <br><span class="text-white">Poznaj nowych ludzi.</span></h2>
                 <p class="lead">Dodaj wydarzenie - daj znac innym użytkownikom portalu o ciekawych wydarzeniach sportowych, wspólnych spacerach i zajeciach an świeżym powietrzu.</p>
-                <a th:href="@{/events}" class="btn btn-warning btn-lg">
+                <a th:href="@{/public/events}" class="btn btn-warning btn-lg">
                     Zobacz eventy
                 </a>
             </div>
@@ -57,7 +59,7 @@
             <div class="col-md-7">
                 <h2 class="featurette-heading">To projekt grupowy. <br><span class="text-white">Napisany w Java.</span></h2>
                 <p class="lead">Aplikacja ta powstała jako projekt grupowy w ramach warsztatów programowania w Javie w ramach kursu Info Share Academy.</p>
-                <a th:href="@{/team}" class="btn btn-warning btn-lg">
+                <a th:href="@{/public/team}" class="btn btn-warning btn-lg">
                     Poznaj zespół
                 </a>
             </div>

@@ -1,0 +1,11 @@
+INSERT INTO users (description, name, last_name, location, login , preffered_region_event,sex)
+VALUES ('wesołek z Pomorza', 'Jacek','Borowiecki', 'Gdańsk',  'user1','pomorskie','Man'),
+ ('user z Pomorza', 'Michał','Gajda', 'Elbląg',  'user2','warmińsko-mazurskie','Man');
+
+
+INSERT INTO routes (avg_rating, difficulty, length, locality, route_name , place_start,place_stop, type, user_id)
+VALUES('0.0','EASY','12.5','Gdańsk','runda po Gdańsku','dworzec PKP','Oliwa','trasa rowerowa','1');
+
+
+INSERT INTO events (event_name,place,region,date,time,users_count,route_id,description,owner_event)
+VALUES('na Gdańsk','Gdańsk','pomorskie','2023-06-01','10:00','25','1','mała rundka po znanych miejscach','1');

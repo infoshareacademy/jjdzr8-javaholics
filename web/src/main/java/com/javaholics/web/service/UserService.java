@@ -1,26 +1,91 @@
 package com.javaholics.web.service;
 
-import com.javaholics.web.repository.*;
+import com.javaholics.web.domain.*;
+import com.javaholics.web.dto.UserDto;
+import com.javaholics.web.mapper.UserMapper;
+import com.javaholics.web.repository.UserRepository;
+import com.javaholics.web.utilities.PassEncoderBinding;
+import jakarta.annotation.PostConstruct;
+import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-public class UserService implements IdNumbers {
+import java.text.MessageFormat;
+import java.util.Optional;
 
-    @Override
-    public long getCurrentIdNoSaveToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        return iDsNumbers.getIpUser();
+
+@Service
+@AllArgsConstructor
+public class UserService implements UserDetailsService {
+
+    private UserRepository userRepository;
+
+    private UserMapper userMapper;
+
+    private PassEncoderBinding passEncoderBinding;
+    public String useridName() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            return username = ((UserDetails) principal).getUsername();
+        } else {
+            return username = principal.toString();
+        }
+    }
+    public Long userId(){
+        Long userId = userRepository.findByEmail(useridName()).get().getId();
+        return userId;
     }
 
     @Override
-    public long getCurrentIdWithSaveNextIdToJson() {
-        IDsNumbers iDsNumbers = new IDsNumbers();
-        FileUtils fileUtils = new FileUtils();
-        iDsNumbers = fileUtils.readIdsFromJsonFile();
-        long idUser = iDsNumbers.getIpUser();
-        iDsNumbers.setIpUser(idUser+1);
-        fileUtils.saveIdsToJsonFile(iDsNumbers);
-        return idUser;
+    public UserDetails loadUserByUsername(String email) {
+
+        final Optional<User> optionalUser = userRepository.findByEmail(email);
+
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        }
+        else {
+            throw new UsernameNotFoundException(MessageFormat.format("User with email {0} cannot be found.", email));
+        }
+    }
+
+    public void addUser(UserDto userDto) {
+        if (emailExists(userDto.getEmail())) {
+            throw new IllegalArgumentException("Istnieja konto z tym adresem email: " + userDto.getEmail());
+        }
+        else {
+            userRepository.save(userMapper.fromDto(userDto));
+        }
+    }
+    @PostConstruct
+    public void addAdminIfNotPresent(){
+
+        if(userRepository.findFirstByRole(UserRoles.ADMIN).isEmpty()){
+            userRepository.save(
+                    User.builder()
+                            .login("admin")
+                            .sex(SexChoice.OTHER)
+                            .loginProvider(UserProvider.LOCAL)
+                            .name("Administrator")
+                            .location("Polska")
+                            .prefferedRegionEvents(Region.SLASKIE)
+                            .lastName("Administrator")
+                            .email("admin@admin.pl")
+                            .password(passEncoderBinding.encoder().encode("admin1234"))
+                            .role(UserRoles.ADMIN)
+                            .build()
+            );
+        }
+
+
+    }
+    private boolean emailExists(String email) {
+        return userRepository.findByEmail(email).isPresent();
     }
 
 }

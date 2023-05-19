@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Routes</title>
+
+    <title>Meet2gether - Trasy</title>
+
+    <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{/../sections/navbar :: header}"></div>
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+<form th:action="@{/public/routes/mysearch}">
+    <div class="d-flex justify-content-center">
+        <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" ></div>
+        <div class="p-2">Filtr typu trasy:  <select type="text" name="typeWord" th:value="${typeWord}">
+            <option></option>
+            <option th:value="'WALKING'" th:text="Piesza"/>
+            <option th:value="'RUNNING'" th:text="Bieg"/>
+            <option th:value="'BIKE'" th:text="Rower"/>
+            <option th:value="'OTHER'" th:text="Inna"/></select></div>
+        <div class="p-2">  </div>
+
+
+        <div class="p-2">Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
+            <option></option>
+            <option th:value="'EASY'" th:text="Łatwy"/>
+            <option th:value="'MEDIUM'" th:text="Średni"/>
+            <option th:value="'HARD'" th:text="Trudny"/>
+            <option th:value="'EXTREME'" th:text="Zaawansowany"/>
+        </div>
+        <div class="p-2">  </div>
+        <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
+    </div>
+</form>
+
+<div>
+    <br>
+    <a th:href="@{/public/routes/myroutes/create}" class="btn btn-success">
+        <i class="fas fa-plus"></i> Utwórz nową trasę
+    </a>
+<!--    <a th:href="@{/routes/save}" class="btn btn-warning">
+        <i class="fas fa-save"></i> Zapisz trasy do JSON
+    </a>-->
+</div>
+
+<div class="mt-2">
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th >#</th>
+        <th th:text="#{route.name}">Name</th>
+        <th th:text="#{route.locality}">Locality</th>
+        <th th:text="#{route.placeStart}">Start place</th>
+        <th th:text="#{route.placeStop}">Stop place</th>
+        <th th:text="#{route.difficulty}">Difficulty</th>
+        <th th:text="#{route.type}">Type</th>
+        <th th:text="#{route.length}">Lenght</th>
+        <th>Kasowanie/Edycja/Szczegóły</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="route,iterStat: ${routes}">
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${route.name}"></td>
+        <td th:text="${route.locality}"></td>
+        <td th:text="${route.placeStart}"></td>
+        <td th:text="${route.placeStop}"></td>
+        <td th:switch="${route.difficulty.name()}">
+            <p th:case="'EASY'" th:text="#{difficulty.easy}"></p>
+            <p th:case="'MEDIUM'" th:text="#{difficulty.medium}"></p>
+            <p th:case="'HARD'" th:text="#{difficulty.hard}"></p>
+            <p th:case="'EXTREME'" th:text="#{difficulty.extreme}"></p>
+            <p th:case="*" th:text="#{difficulty.unknown}"></p>
+        </td>
+
+        <td th:switch="${route.type.name()}">
+            <p th:case="'WALKING'" th:text="#{type.walking}"></p>
+            <p th:case="'RUNNING'" th:text="#{type.running}"></p>
+            <p th:case="'BIKE'" th:text="#{type.bike}"></p>
+            <p th:case="'OTHER'" th:text="#{type.other}"></p>
+            <p th:case="*" th:text="#{difficulty.unknown}"></p>
+        </td>
+        <td th:text="${route.length}"></td>
+        <td>
+            <button class="btn btn-outline-danger"
+                    data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${route.id}"><i
+                    class="far fa-trash-alt "
+            ></i></button>
+
+            <a th:href="@{/public/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
+                Edytuj
+            </a>
+            <a th:href="@{/public/routes/details/{routeId}(routeId=${route.id})}" class="btn btn-success">
+                Szczegóły
+            </a>
+
+            <!-- The Modal -->
+            <div class="modal fade" th:attr="id='recordDeleteModal'+${route.id}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Usunie to bezpowrotnie rekord. Usunąć?</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success"
+                                    data-dismiss="modal">Anuluj
+                            </button>
+                            <a th:attr="href='/public/routes/delete-route/'+${route.id}">
+                                <button
+                                        type="button" class="btn btn-danger">Usuń
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+</div>
+<div>
+    <br>
+<a th:href="@{/routes/myroutes/create}" class="btn btn-success">
+        <i class="fas fa-plus"></i> Utwórz nową trasę
+</a>
+</div>
+<br>
+
+<div th:insert="~{/../sections/footer :: footer}"></div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

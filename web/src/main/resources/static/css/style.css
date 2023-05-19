@@ -28,6 +28,9 @@ html {
 body {
     background-color: #5CDB85 !important;
 }
+.row_1 {
+    justify-content: center ;
+}
 
 
 

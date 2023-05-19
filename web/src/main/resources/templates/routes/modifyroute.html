@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:hh="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Meet2gether - Edycja Trasy</title>
@@ -17,13 +19,13 @@
             height: 20vh;">
 </div>
 <div>
-        <form action="#" th:action="@{/routes/{routeId}/edit(routeId=${route.id})}" th:object="${route}" method="post">
+        <form action="#" th:action="@{/public/routes/edit}" th:object="${route}" method="post">
         <div class="container">
             <h2>Edycja trasy</h2>
             <p>Modyfikuje dane trasy. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
             <div class="form-outline mb-4">
                 <label class="form-label" for="id">Id</label>
-                <input type="number" id="id" th:field="*{id}" class="form-control" />
+                <input readonly type="number" id="id" th:field="*{id}" class="form-control" />
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="nazwa" >Nazwa*</label>
@@ -51,17 +53,20 @@
             </div>
             <div class="form-outline mb-4">
                 <label class="form-label" for="user" >User Id</label>
-                <input type="number" id="user" th:field="*{userId}" class="form-control" />
+                <input readonly type="number" id="user" th:field="*{routeOwner}" class="form-control" />
             </div>
             <div class="form-outline mb-4">
-                <label class="form-label" for="typ" >Typ trasy*</label>
-                <input type="text" id="typ" th:field="*{type}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('type')}" th:text="#{error.route.type}"></span>
+                <p>Typ*: <select th:field="*{type}">
+                    <option value="0" th:text="#{route.select-type}"/>
+                    <option th:each="type : ${T(com.javaholics.web.domain.RouteType).values()}" th:value="${type}" th:text="${type.getTypeOfRoute()}"/>
+                </select>
+                    <span class="error" th:if="${#fields.hasErrors('type')}" th:text="#{error.route.type}">
+        </span></p>
             </div>
             <div class="form-outline mb-4">
                 <p>Trudność*: <select th:field="*{difficulty}">
                     <option value="0" th:text="#{route.select-difficulty}"/>
-                    <option th:each="difficulty : ${T(com.javaholics.web.repository.RouteDifficulty).values()}" th:value="${difficulty}" th:text="${difficulty.getDifficulty()}"/>
+                    <option th:each="difficulty : ${T(com.javaholics.web.domain.RouteDifficulty).values()}" th:value="${difficulty}" th:text="${difficulty.getDifficulty()}"/>
                 </select>
                     <span class="error" th:if="${#fields.hasErrors('difficulty')}" th:text="#{error.route.difficulty}">
         </span></p>
@@ -71,12 +76,12 @@
         </span>
 
                 </p>
-                <p>Data:* <input type="datetime-local" th:field="*{date}"/>
-                    <span class="error" th:if="${#fields.hasErrors('date')}" th:text="#{error.route.date}"></span>
+                <p>Data utworzenia:
+                    <span th:text="${#temporals.format(route.createDate, 'yyyy-MM-dd HH:mm')}"></span>
                 </p>
                 <p>
                     <button type="submit" class="btn btn-success btn-block mb-4">Zmień trasę</button>
-                    <button th:href="@{/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+                    <button th:href="@{/public/routes}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
                 </p>
             </div>
         </div>
