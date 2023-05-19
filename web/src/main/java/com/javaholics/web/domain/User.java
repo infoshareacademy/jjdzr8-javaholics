@@ -21,12 +21,14 @@ import java.util.List;
 @Builder
 public class User implements UserDetails {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch =  FetchType.EAGER)
     @JoinTable(
+
                 name = "user_event_jointable",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "event_id")

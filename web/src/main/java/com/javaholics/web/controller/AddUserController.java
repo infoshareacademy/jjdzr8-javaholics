@@ -31,7 +31,7 @@ public class AddUserController {
     @PostMapping("/user")
     public String createUser(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "users/adduser";
+            return "redirect:users/adduser";
         }
         userService.addUser(userDto);
         return "redirect:/user/create-success";
