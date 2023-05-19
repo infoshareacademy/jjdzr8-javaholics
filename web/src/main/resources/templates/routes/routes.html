@@ -79,7 +79,7 @@
         <td th:text="${iterStat.count}"></td>
         <td th:text="${route.name}"></td>
         <td th:text="${route.locality}"></td>
-        <td th:text="${route.region}"></td>
+        <td th:text="${route.region.getRegionName()}"></td>
         <td th:text="${route.placeStart}"></td>
         <td th:text="${route.placeStop}"></td>
         <td th:switch="${route.difficulty.name()}">

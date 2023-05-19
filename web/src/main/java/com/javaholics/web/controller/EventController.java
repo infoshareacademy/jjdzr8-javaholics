@@ -41,7 +41,7 @@ public class EventController {
         Long id;
         String email = eventService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<EventDto> eventList = eventService.findEventsByCount(id.intValue());
+        List<EventDto> eventList = eventService.findEventByUserId(id);
         model.addAttribute("events", eventList);
         return "events/myevents";
     }
@@ -50,7 +50,7 @@ public class EventController {
         Long id;
         String email = eventService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<EventDto> eventList = eventService.getMyEventSearchTest(localWord, nameWord, descriptionWord,id.intValue());
+        List<EventDto> eventList = eventService.getMyEventSearch(localWord, nameWord, descriptionWord,id);
         model.addAttribute("events", eventList);
         model.addAttribute("localKey", localWord);
         model.addAttribute("nameWord", nameWord);

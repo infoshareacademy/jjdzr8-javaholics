@@ -34,7 +34,7 @@ public class EventMapper {
                 .route(event.getRoute().getId())
                 .description(event.getDescription())
                 .eventDateTime(event.getEventDateTime())
-//                .createDate(event.getCreateDate())
+                .createDate(event.getCreateDate())
                 .region(event.getRegion())
                 .usersCount(event.getUsersCount())
                 .ownerOfEvent(event.getOwnerOfEvent().getId())

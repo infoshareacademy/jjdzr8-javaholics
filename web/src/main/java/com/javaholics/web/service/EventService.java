@@ -58,7 +58,7 @@ public class EventService {
     public List<EventDto> findEventByUserId(Long id) {
         return eventRepository.findEventsByUserId(id)
                 .stream()
-                .filter(event -> event.getOwnerOfEvent().equals(id))
+                .filter(event -> event.getOwnerOfEvent().getId()==id)
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
     }
@@ -74,7 +74,7 @@ public class EventService {
             return findEventByUserId(id);
         }
         return findEventByUserId(id).stream()
-//                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
@@ -84,7 +84,7 @@ public class EventService {
             return findEventsByCount(users_count);
         }
         return findEventsByCount(users_count).stream()
-//                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
