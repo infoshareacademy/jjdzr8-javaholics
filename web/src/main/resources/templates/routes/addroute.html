@@ -45,10 +45,10 @@
                 <input type="text" id="stop" th:field="*{placeStop}" class="form-control" />
                 <span class="error" th:if="${#fields.hasErrors('placeStop')}" th:text="#{error.route.placeStop}"></span>
             </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="file" >Plik GPS trasy</label>
-                <input type="text" id="file" th:field="*{routeFile}" class="form-control" />
-            </div>
+<!--            <div class="form-outline mb-4">-->
+<!--                <label class="form-label" for="file" >Plik GPS trasy</label>-->
+<!--                <input type="text" id="file" th:field="*{routeFile}" class="form-control" />-->
+<!--            </div>-->
             <div class="form-outline mb-4">
                 <p>Typ: <select th:field="*{type}">
                 <option value="0" th:text="#{route.select-type}"/>

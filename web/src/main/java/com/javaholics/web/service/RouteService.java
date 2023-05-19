@@ -42,7 +42,9 @@ public class RouteService {
 
     public void addRoute(RouteDto routeDto) {
         //FIXME wrzuca zawsze usera no.1 do zmiany kiedy security
-        routeRepository.save(routeMapper.fromDto(routeDto, userRepository.getReferenceById(1l)));
+        String email = useridName();
+        Long id = userRepository.findByEmail(email).get().getId();
+        routeRepository.save(routeMapper.fromDto(routeDto, userRepository.getReferenceById(id)));
     }
 
     @Transactional

@@ -37,7 +37,7 @@ public class RouteController {
         Long id;
         String email = routeService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<RouteDto> routeList = routeService.findRouteByUserId(1l);
+        List<RouteDto> routeList = routeService.findRouteByUserId(id);
         model.addAttribute("routes", routeList);
         return "routes/myroutes";
     }
