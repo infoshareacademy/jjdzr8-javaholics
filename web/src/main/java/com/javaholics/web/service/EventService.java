@@ -91,7 +91,9 @@ public class EventService {
                 .collect(Collectors.toList());
     }
     public void addEvent(EventDto eventDto) {
-        eventRepository.save(eventMapper.fromDto(eventDto,userRepository.getReferenceById(1l),
+        String email = useridName();
+        Long id = userRepository.findByEmail(email).get().getId();
+        eventRepository.save(eventMapper.fromDto(eventDto,userRepository.getReferenceById(id),
                 routeRepository.getReferenceById(eventDto.getRoute())));
     }
 

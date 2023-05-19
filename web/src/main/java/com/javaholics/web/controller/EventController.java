@@ -41,7 +41,7 @@ public class EventController {
         Long id;
         String email = eventService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<EventDto> eventList = eventService.findEventsByCount(id.intValue());
+        List<EventDto> eventList = eventService.findEventByUserId(id);
         model.addAttribute("events", eventList);
         return "events/myevents";
     }
@@ -50,7 +50,7 @@ public class EventController {
         Long id;
         String email = eventService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<EventDto> eventList = eventService.getMyEventSearchTest(localWord, nameWord, descriptionWord,id.intValue());
+        List<EventDto> eventList = eventService.getMyEventSearch(localWord, nameWord, descriptionWord,id);
         model.addAttribute("events", eventList);
         model.addAttribute("localKey", localWord);
         model.addAttribute("nameWord", nameWord);
@@ -69,6 +69,21 @@ public class EventController {
     public String createEvents(@Valid @ModelAttribute EventDto eventDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "redirect:/events";
+        }
+        eventService.addEvent(eventDto);
+        return "redirect:/public/events";
+    }
+    @GetMapping("/events/myevents/create")
+    public String showCreatemyEvent(Model model) {
+        model.addAttribute("event", new EventDto());
+        model.addAttribute("routes",routeRepository.findAll());
+        return "events/addmyevent";
+    }
+
+    @PostMapping("/events/myevents")
+    public String createMyEvents(@Valid @ModelAttribute EventDto eventDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/events/myevents";
         }
         eventService.addEvent(eventDto);
         return "redirect:/public/events/myevents";
