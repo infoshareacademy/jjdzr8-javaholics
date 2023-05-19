@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +19,7 @@
             height: 20vh;">
 </div>
     <div>
-        <form action="#" th:action="@{/events/{eventId}/edit(eventId=${event.id})}" th:object="${event}" method="post">
+        <form action="#" th:action="@{/public/events/{eventId}/edit(eventId=${event.id})}" th:object="${event}" method="post">
             <div class="container">
                 <h2>Edycja eventu</h2>
                 <p>Modyfikuje dane wydarzenia. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
@@ -58,8 +60,8 @@
                     <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
                 </ul>
                 <button type="submit" class="btn btn-success btn-block mb-4">Zmień event</button>
-                <button th:href="@{/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
-
+                <button th:href="@{/public/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+            </div>
         </form>
     </div>
 

@@ -2,7 +2,9 @@ package com.javaholics.web.controller;
 
 import com.javaholics.web.dto.EventDto;
 import com.javaholics.web.repository.RouteRepository;
+import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.service.EventService;
+import com.javaholics.web.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +15,19 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping("/public")
 public class EventController {
 
 
-    private EventService eventService;
-    private RouteRepository routeRepository;
+    private final EventService eventService;
+    private final RouteRepository routeRepository;
+    private final UserRepository userRepository;
+    UserService userService;
 
-    public EventController(EventService eventService, RouteRepository routeRepository) {
+    public EventController(EventService eventService, RouteRepository routeRepository, UserRepository userRepository) {
         this.eventService = eventService;
         this.routeRepository = routeRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/events")
@@ -29,6 +35,27 @@ public class EventController {
         List<EventDto> eventList = eventService.getEvents();
         model.addAttribute("events", eventList);
         return "events/events";
+    }
+    @GetMapping("/events/myevents")
+    public String showMyRoutes(Model model) {
+        Long id;
+        String email = eventService.useridName();
+        id = userRepository.findByEmail(email).get().getId();
+        List<EventDto> eventList = eventService.findEventsByCount(id.intValue());
+        model.addAttribute("events", eventList);
+        return "events/myevents";
+    }
+    @GetMapping("/events/mysearch")
+    public String showMyEventsFilter(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
+        Long id;
+        String email = eventService.useridName();
+        id = userRepository.findByEmail(email).get().getId();
+        List<EventDto> eventList = eventService.getMyEventSearchTest(localWord, nameWord, descriptionWord,id.intValue());
+        model.addAttribute("events", eventList);
+        model.addAttribute("localKey", localWord);
+        model.addAttribute("nameWord", nameWord);
+        model.addAttribute("descriptionWord", descriptionWord);
+        return "events/myevents";
     }
 
     @GetMapping("/events/create")
@@ -44,7 +71,7 @@ public class EventController {
             return "redirect:/events";
         }
         eventService.addEvent(eventDto);
-        return "redirect:/events";
+        return "redirect:/public/events/myevents";
     }
     @GetMapping("/events/search")
     public String showEvents(@RequestParam(required = false) String localWord, @RequestParam(required = false) String nameWord, @RequestParam(required = false) String descriptionWord, Model model) {
@@ -69,18 +96,24 @@ public class EventController {
             return "events/modifyevent";
         }
         eventService.updateEvent(event);
-        return "redirect:/events";
+        return "redirect:/public/events/myevents";
     }
 
     @GetMapping("events/delete-event/{id}")
     public String deleteEvent(@PathVariable long id) {
         eventService.deleteEventById(id);
-        return "redirect:/events";
+        return "redirect:/public/events/myevents";
     }
     @GetMapping("/events/details/{eventId}")
     public String getEventByIdDetils(@PathVariable("eventId") Long eventId, Model model) {
         EventDto event = eventService.findEventById(eventId);
         model.addAttribute("events", event);
         return "events/eventdetails";
+    }
+    @GetMapping("/events/detailsmain/{eventId}")
+    public String getEventByIdDetilsMain(@PathVariable("eventId") Long eventId, Model model) {
+        EventDto event = eventService.findEventById(eventId);
+        model.addAttribute("events", event);
+        return "events/eventdetailsmain";
     }
 }

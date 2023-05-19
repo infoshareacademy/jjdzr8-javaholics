@@ -17,7 +17,7 @@
             height: 10vh;">
         </div>
         <div>
-            <form th:action="@{/public/events/details/{eventId}(eventId=${events.id})}" th:object="${events}">
+            <form th:action="@{/public/events/detailsmain/{eventId}(eventId=${events.id})}" th:object="${events}">
                 <div class="container">
                 <h2>Szczegóły trasy</h2>
                     <div class="form-outline mb-4">
@@ -57,7 +57,7 @@
                         <input readonly type="text" id="date2" th:field="*{createDate}" class="form-control" />
                     </div>
                     <p>
-                        <a th:href="@{/public/events/myevents}"><button type="button" class="btn btn-success ml-5">
+                        <a th:href="@{/public/events}"><button type="button" class="btn btn-success ml-5">
                             Powrót do tabeli głównej eventów
                         </button></a>
                     </p>

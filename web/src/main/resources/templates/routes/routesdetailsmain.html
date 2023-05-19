@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:hh="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Meet2gether - Edycja Trasy</title>
+  <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<div th:insert="~{sections/navbar :: header}"></div>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 10vh;">
+</div>
+<div>
+  <form th:action="@{/routes/detailsmain/{routeId}(routeId=${route.id})}" th:object="${route}">
+    <div class="container">
+      <h2>Szczegóły trasy</h2>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id">Id trasy</label>
+        <input readonly type="number" id="id" th:field="*{id}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="nazwa" >Nazwa trasy</label>
+        <input readonly type="text" id="nazwa" th:field="*{name}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="lokalizacja" >Lokalizacja</label>
+        <input readonly type="text" id="lokalizacja" th:field="*{locality}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="start" >Miejsce startu</label>
+        <input readonly type="text" id="start" th:field="*{placeStart}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="stop" >Miejsce zakończenia</label>
+        <input readonly type="text" id="stop" th:field="*{placeStop}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="file" >Plik GPS trasy</label>
+        <input readonly type="text" id="file" th:field="*{routeFile}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="user" >User Id</label>
+        <input readonly type="number" id="user" th:field="*{routeOwner}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="file" >Data utworzenia</label>
+        <input readonly type="text" id="date" th:field="*{createDate}" class="form-control" />
+      </div>
+      <div class="row_1">
+        <label class="row_1" for="file" >Poziom trudności</label>
+        <input readonly type="text" id="difficulty" th:field="*{difficulty}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="file" >Typ trasy</label>
+        <input readonly type="text" id="type" th:field="*{type}" class="form-control" />
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="user" >Długość trasy [km]</label>
+        <input readonly type="number" id="length" th:field="*{length}" class="form-control" />
+      </div>
+      <p>
+        <a th:href="@{/public/routes}"><button type="button" class="btn btn-success ml-5">
+          Powrót do tabeli głónej tras
+        </button></a>
+      </p>
+    </div>
+  </form>
+</div>
+<div th:insert="~{sections/footer :: footer}"></div>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add event</title>
@@ -16,7 +18,7 @@
             height: 20vh;">
 </div>
 
-        <form method="POST" action="#" th:action="@{/events}" th:object="${event}">
+        <form method="POST" action="#" th:action="@{/public/events}" th:object="${event}">
             <div class="container">
                 <h2>Kreator tworzenia nowego eventu</h2>
                 <p>Uzupełnij dane wydarzenia jakie chcesz utworzyć. Pamiętaj, że pola oznaczone * sa wymagane.<br/></p>
@@ -63,7 +65,7 @@
 
             <p>
                 <button type="submit" class="btn btn-success btn-block mb-4">Dodaj event</button>
-                <button th:href="@{/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
+                <button th:href="@{/public/events}" class="btn btn-warning btn-block mb-4">Anuluj i wróć</button>
             </p>
             </div>
         </form>
