@@ -12,6 +12,7 @@ import com.javaholics.web.repository.RouteRepository;
 import com.javaholics.web.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class EventService {
 
     private EventRepository eventRepository;
@@ -32,6 +34,7 @@ public class EventService {
 
 
     public List<EventDto> getEvents() {
+        log.info("Pokaż wszystkie eventy.");
         return eventRepository.findAll()
                 .stream()
                 .map(eventMapper::toDto)
@@ -94,6 +97,7 @@ public class EventService {
 
     @Transactional
     public void updateEvent(EventDto eventDto) {
+        log.debug("Aktualizuj event: {}", eventDto);
         Event eventToUpdate = eventRepository.findById(eventDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Cant find event by given id"));
         User user = userRepository.findById(eventDto.getOwnerOfEvent())
@@ -108,12 +112,14 @@ public class EventService {
         eventToUpdate.setRegion(eventDto.getRegion());
         eventToUpdate.setUsersCount(eventDto.getUsersCount());
         eventToUpdate.setEventDateTime(eventDto.getEventDateTime());
-
         eventRepository.save(eventToUpdate);
+        log.info("Event dodany z sukcesem!");
     }
 
     public void deleteEventById(long id) {
+        log.debug("Usuwanie eventu: {}", id);
         eventRepository.deleteById(id);
+        log.info("Event usunięty z sukcesem!");
     }
 
     public List<EventDto> getEventSearch(String placeKey, String nameKey, String descriptionKey) {

@@ -4,7 +4,6 @@
 //import com.javaholics.web.domain.RouteDifficulty;
 //import org.apache.commons.lang3.StringUtils;
 //import org.junit.jupiter.api.Test;
-//
 //import java.util.List;
 //import java.util.stream.Collectors;
 //import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;

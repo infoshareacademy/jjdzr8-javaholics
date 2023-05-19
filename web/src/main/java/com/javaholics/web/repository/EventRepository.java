@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event,Long> {
+
     @Query(value = "SELECT * FROM events WHERE user_id = :id ", nativeQuery = true)
     List<Event> findEventsByUserId (@Param("id") Long id);
     @Query(value = "SELECT * FROM events WHERE users_count = :users_count ", nativeQuery = true)
