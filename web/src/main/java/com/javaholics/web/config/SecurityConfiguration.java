@@ -59,7 +59,7 @@ public class SecurityConfiguration {
                                             formLoginConfigurer
                                             .loginPage("/public/login")
                                             .failureUrl("/login.html?error=true")
-                                            .defaultSuccessUrl("/", true)
+                                            .defaultSuccessUrl("/public/successlogin", true)
                                             //        .failureForwardUrl("/public/login-error.html")
                                             .permitAll())
 

@@ -25,53 +25,75 @@
         <div class="container">
             <h2>Kreator tworzenia użytkownika</h2>
             <p>Uzupełnij dane swoje konta na platformie Meet2gether<br/></p>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="login" >Nazwa użytkownika (widzoczna dla innych użytkowników)*</label>
-                <input type="text" id="login" th:field="*{login}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('login')}" th:text="#{error.user.name}"></span>
+            <div class="row mb-3">
+                <label for="inputEmail" class="col-sm-4 col-form-label">Email* (login do aplikacji)</label>
+                <div class="col-sm-8">
+                    <input th:field="*{email}" type="email" class="form-control" id="inputEmail" placeholder="example@google.com">
+                    <span class="error" th:if="${#fields.hasErrors('email')}" th:text="#{error.user.email}"></span>
+                </div>
             </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="imie" >Imię</label>
-                <input type="text" id="imie" th:field="*{name}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('name')}" th:text="#{error.user.generic}"></span>
+            <div class="row mb-3">
+                <label for="password" class="col-sm-4 col-form-label">Hasło*</label>
+                <div class="col-sm-8">
+                    <input th:field="*{password}" type="password" class="form-control" id="password">
+                    <span class="error" th:if="${#fields.hasErrors('password')}" th:text="#{error.user.generic}"></span>
+                </div>
             </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="nazwisko" >Nazwisko</label>
-                <input type="text" id="nazwisko" th:field="*{lastName}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('lastName')}" th:text="#{error.user.generic}"></span>
+            <div class="row mb-3">
+                <label for="password2" class="col-sm-4 col-form-label">Potwierdź hasło*</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" id="password2">
             </div>
-            <div class="form-outline mb-4">
-                <p>Płeć <select th:field="*{sex}">
-                <option value="0" th:text="#{route.select-type}"/>
-                <option th:each="sex : ${T(com.javaholics.web.domain.SexChoice).values()}"
-                th:value="${sex}" th:text="${sex.getSex()}"/>
-                </select>
-                <span class="error" th:if="${#fields.hasErrors('sex')}" th:text="#{error.user.generic}">
-                </span></p>
             </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="lokalizacja" >Twoja miejscowość</label>
-                <input type="text" id="lokalizacja" th:field="*{location}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('location')}" th:text="#{error.user.generic}"></span>
+            <div class="row mb-3">
+                <label for="login" class="col-sm-4 col-form-label">Nazwa użytkownika (widoczna dla innych)</label>
+                <div class="col-sm-8">
+                    <input th:field="*{login}" type="text" class="form-control" id="login">
+                    <span class="error" th:if="${#fields.hasErrors('login')}" th:text="#{error.user.generic}"></span>
+                </div>
             </div>
-            <div class="form-outline mb-4">
-                <p>Preferowana lokalizacja informacji o wydarzeniach* <select th:field="*{prefferedRegionEvents}">
-                    <option value="0" th:text="#{route.select-type}"/>
-                    <option th:each="refferedRegionEvents : ${T(com.javaholics.web.domain.Region).values()}"
-                            th:value="${refferedRegionEvents}" th:text="${refferedRegionEvents.getRegionName()}"/>
-                </select>
-                    <span class="error" th:if="${#fields.hasErrors('prefferedRegionEvents')}" th:text="#{error.user.generic}">
-                </span></p>
+            <div class="row mb-3">
+                <label for="imie" class="col-sm-4 col-form-label">Imię</label>
+                <div class="col-sm-8">
+                    <input th:field="*{name}" type="text" class="form-control" id="imie">
+                    <span class="error" th:if="${#fields.hasErrors('name')}" th:text="#{error.user.generic}"></span>
+                </div>
             </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="email" >Email*</label>
-                <input type="text" id="email" th:field="*{email}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('email')}" th:text="#{error.user.email}"></span>
+            <div class="row mb-3">
+                <label for="nazwisko" class="col-sm-4 col-form-label">Nazwisko</label>
+                <div class="col-sm-8">
+                    <input th:field="*{lastName}" type="text" class="form-control" id="nazwisko">
+                    <span class="error" th:if="${#fields.hasErrors('lastName')}" th:text="#{error.user.generic}"></span>
+                </div>
             </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="password" >Hasło*</label>
-                <input type="password" id="password" th:field="*{password}" class="form-control" />
-                <span class="error" th:if="${#fields.hasErrors('password')}" th:text="#{error.user.generic}"></span>
+            <div class="row mb-3">
+                <label for="sex" class="col-sm-4 col-form-label">Płeć</label>
+                <div class="col-sm-8">
+                    <select th:field="*{sex}" id="sex">
+                    <option value="0" th:text="#{user.select-type}"/>
+                    <option th:each="sex : ${T(com.javaholics.web.domain.SexChoice).values()}"
+                     th:value="${sex}" th:text="${sex.getSex()}"/>
+                    </select>
+                    <span class="error" th:if="${#fields.hasErrors('sex')}" th:text="#{error.user.generic}"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="lokalizacja" class="col-sm-4 col-form-label">Twoja miejscowość</label>
+                <div class="col-sm-8">
+                    <input th:field="*{location}" type="text" class="form-control" id="lokalizacja">
+                    <span class="error" th:if="${#fields.hasErrors('location')}" th:text="#{error.user.generic}"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="region" class="col-sm-4 col-form-label">Preferowany region eventów*</label>
+                <div class="col-sm-8">
+                    <select th:field="*{prefferedRegionEvents}" id="region">
+                        <option value="0" th:text="#{user.select-type-region}"/>
+                        <option th:each="refferedRegionEvents : ${T(com.javaholics.web.domain.Region).values()}"
+                                th:value="${refferedRegionEvents}" th:text="${refferedRegionEvents.getRegionName()}"/>
+                    </select>
+                    <span class="error" th:if="${#fields.hasErrors('prefferedRegionEvents')}" th:text="#{error.user.generic}"></span>
+                </div>
             </div>
             <p>
                 <button type="submit" class="btn btn-success btn-block mb-4">Dodaj użytkownika</button>
