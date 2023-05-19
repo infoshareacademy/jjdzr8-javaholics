@@ -37,7 +37,7 @@ public class EventController {
         return "events/events";
     }
     @GetMapping("/events/myevents")
-    public String showMyRoutes(Model model) {
+    public String showMyEvent(Model model) {
         Long id;
         String email = eventService.useridName();
         id = userRepository.findByEmail(email).get().getId();
