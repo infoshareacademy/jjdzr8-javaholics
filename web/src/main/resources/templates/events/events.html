@@ -30,7 +30,7 @@
     </div>
 </form>
 <br/>
-<div>
+<div sec:authorize="isAuthenticated()">
     <a th:href="@{/public/events/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nowy event
     </a>
@@ -110,17 +110,17 @@
         </tbody>
     </table>
 </div>
-    <div id="button">
+    <div id="button" sec:authorize="isAuthenticated()">
         <a th:href="@{/public/events/create}" class="btn btn-success">
             <i class="fas fa-plus"></i> Utwórz nowy event
         </a>
-
+    </div>
     <div th:insert="~{/../sections/footer :: footer}"></div>
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    </div>
+
 </body>
 </html>
 
