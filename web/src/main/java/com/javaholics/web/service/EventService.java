@@ -74,7 +74,7 @@ public class EventService {
             return findEventByUserId(id);
         }
         return findEventByUserId(id).stream()
-                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
@@ -90,9 +90,8 @@ public class EventService {
                 .collect(Collectors.toList());
     }
     public void addEvent(EventDto eventDto) {
-        Long id;
         String email = useridName();
-        id = userRepository.findByEmail(email).get().getId();
+        Long id = userRepository.findByEmail(email).get().getId();
         eventRepository.save(eventMapper.fromDto(eventDto,userRepository.getReferenceById(id),
                 routeRepository.getReferenceById(eventDto.getRoute())));
     }
@@ -111,7 +110,7 @@ public class EventService {
         eventToUpdate.setOwnerOfEvent(user);
         eventToUpdate.setDescription(eventDto.getDescription());
         eventToUpdate.setRoute(route);
-//        eventToUpdate.setRegion(eventDto.getRegion());
+        eventToUpdate.setRegion(eventDto.getRegion());
         eventToUpdate.setUsersCount(eventDto.getUsersCount());
         eventToUpdate.setEventDateTime(eventDto.getEventDateTime());
         eventRepository.save(eventToUpdate);
@@ -129,7 +128,7 @@ public class EventService {
             return getEvents();
         }
         return getEvents().stream()
-//                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());

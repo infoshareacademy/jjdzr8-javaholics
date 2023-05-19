@@ -46,7 +46,7 @@ public class RouteController {
         Long id;
         String email = routeService.useridName();
         id = userRepository.findByEmail(email).get().getId();
-        List<RouteDto> routeList = routeService.getMyRoutesSearch(locality, typeWord, difficulty, 1l);
+        List<RouteDto> routeList = routeService.getMyRoutesSearch(locality, typeWord, difficulty, id);
         model.addAttribute("routes", routeList);
         model.addAttribute("keyword", locality);
         model.addAttribute("typeWord", typeWord);
@@ -64,7 +64,7 @@ public class RouteController {
     @GetMapping("/routes/create")
     public String addRoute(Model model) {
         model.addAttribute("route", new RouteDto());
-        return "routes/addroute";
+        return "routes/addroutemain";
     }
 
     @PostMapping("/routes")
@@ -73,8 +73,23 @@ public class RouteController {
             return "redirect:/routes";
         }
         routeService.addRoute(routeDto);
+        return "redirect:/public/routes";
+    }
+    @GetMapping("/routes/myroutes/create")
+    public String addRouteMain(Model model) {
+        model.addAttribute("route", new RouteDto());
+        return "routes/addmyroute";
+    }
+
+    @PostMapping("/routes/myroutes")
+    public String createRouteMain(@Valid @ModelAttribute RouteDto routeDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/routes/myroutes";
+        }
+        routeService.addRoute(routeDto);
         return "redirect:/public/routes/myroutes";
     }
+
 
 
     @GetMapping("/routes/{routeId}")
@@ -119,7 +134,8 @@ public class RouteController {
         RouteDto route = routeService.findRouteById(routeId);
         model.addAttribute("route", route);
         return "routes/routesdetails";
-    }@GetMapping("/routes/detailsmain/{routeId}")
+    }
+    @GetMapping("/routes/detailsmain/{routeId}")
     public String getRouteByIdDetilsMain(@PathVariable("routeId") Long routeId, Model model) {
         RouteDto route = routeService.findRouteById(routeId);
         model.addAttribute("route", route);

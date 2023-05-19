@@ -71,6 +71,21 @@ public class EventController {
             return "redirect:/events";
         }
         eventService.addEvent(eventDto);
+        return "redirect:/public/events";
+    }
+    @GetMapping("/events/myevents/create")
+    public String showCreatemyEvent(Model model) {
+        model.addAttribute("event", new EventDto());
+        model.addAttribute("routes",routeRepository.findAll());
+        return "events/addmyevent";
+    }
+
+    @PostMapping("/events/myevents")
+    public String createMyEvents(@Valid @ModelAttribute EventDto eventDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/events/myevents";
+        }
+        eventService.addEvent(eventDto);
         return "redirect:/public/events/myevents";
     }
     @GetMapping("/events/search")
