@@ -27,6 +27,7 @@ public class RouteMapper {
                 .routeType(routeDto.getType())
                 .createDate(LocalDateTime.now())
 //                .routeOwner(routeDto.getRouteOwner())
+                .region(routeDto.getRegion())
                 .routeOwner(user)
                 .build();
     }
@@ -43,8 +44,9 @@ public class RouteMapper {
                 .difficulty(route.getDifficulty())
                 .type(route.getRouteType())
 //                .routeOwner(route.getRouteOwner())
+                .region(route.getRegion())
                 .createDate(route.getCreateDate())
-                .routeOwner(1)
+                .routeOwner(route.getRouteOwner().getId().intValue())
                 .build();
     }
 }

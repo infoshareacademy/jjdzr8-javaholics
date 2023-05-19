@@ -35,6 +35,20 @@
                 <input type="text" id="lokalizacja" th:field="*{locality}" class="form-control" />
                 <span class="error" th:if="${#fields.hasErrors('locality')}" th:text="#{error.route.locality}"></span>
             </div>
+
+            <div class="row mb-3">
+                <label for="region" class="col-sm-4 col-form-label">Województwo*</label>
+                <div class="col-sm-8">
+                    <select th:field="*{region}" id="region">
+                        <option value="0" th:text="#{route.select-type-region}"/>
+                        <option th:each="region : ${T(com.javaholics.web.domain.Region).values()}"
+                                th:value="${region}" th:text="${region.getRegionName()}"/>
+                    </select>
+                    <span class="error" th:if="${#fields.hasErrors('region')}" th:text="#{error.route.generic}"></span>
+                </div>
+            </div>
+
+
             <div class="form-outline mb-4">
                 <label class="form-label" for="start" >Miejsce startu*</label>
                 <input type="text" id="start" th:field="*{placeStart}" class="form-control" />

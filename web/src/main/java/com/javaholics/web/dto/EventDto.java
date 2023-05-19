@@ -1,5 +1,6 @@
 package com.javaholics.web.dto;
 
+import com.javaholics.web.domain.Region;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +29,7 @@ public class EventDto {
     private long route;
 
     @NotBlank
-    private String region;
+    private Region region;
 
     private long ownerOfEvent;
 

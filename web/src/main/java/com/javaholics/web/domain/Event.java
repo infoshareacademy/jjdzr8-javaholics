@@ -40,7 +40,8 @@ public class Event {
 
     @NotBlank
     @Column(name = "region")
-    private String region;
+    @Enumerated(EnumType.STRING)
+    private Region region;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

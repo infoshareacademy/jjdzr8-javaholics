@@ -38,6 +38,10 @@ public class Route {
     @Column(name = "locality")
     private String locality;
 
+    @Column(name = "region")
+    @Enumerated(EnumType.STRING)
+    private Region region;
+
     @NotBlank
     @Column(name = "place_start")
     private String placeStart;
