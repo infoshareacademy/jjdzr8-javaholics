@@ -37,6 +37,11 @@ public class AddUserController {
         return "redirect:/user/create-success";
     }
 
+    @GetMapping("/user")
+    public String goBack(Model model) {
+        return "index";
+    }
+
     @GetMapping("/user/create-success")
     public String successCreateUser() {
         return "users/create-success";

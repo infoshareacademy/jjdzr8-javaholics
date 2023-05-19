@@ -1,7 +1,6 @@
 package com.javaholics.web.service;
 
-import com.javaholics.web.domain.User;
-import com.javaholics.web.domain.UserRoles;
+import com.javaholics.web.domain.*;
 import com.javaholics.web.dto.UserDto;
 import com.javaholics.web.mapper.UserMapper;
 import com.javaholics.web.repository.UserRepository;
@@ -14,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.PanelUI;
 import java.text.MessageFormat;
 import java.util.Optional;
 
@@ -71,6 +69,12 @@ public class UserService implements UserDetailsService {
             userRepository.save(
                     User.builder()
                             .login("admin")
+                            .sex(SexChoice.OTHER)
+                            .loginProvider(UserProvider.LOCAL)
+                            .name("Administrator")
+                            .location("Polska")
+                            .prefferedRegionEvents(Region.SLASKIE)
+                            .lastName("Administrator")
                             .email("admin@admin.pl")
                             .password(passEncoderBinding.encoder().encode("admin1234"))
                             .role(UserRoles.ADMIN)
