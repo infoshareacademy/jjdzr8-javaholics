@@ -59,7 +59,7 @@ public class EventService {
     public List<EventDto> findEventByUserId(Long id) {
         return eventRepository.findEventsByUserId(id)
                 .stream()
-                .filter(event -> event.getOwnerOfEvent().equals(id))
+                .filter(event -> event.getOwnerOfEvent().getId()==id)
                 .map(eventMapper::toDto)
                 .collect(Collectors.toList());
     }
