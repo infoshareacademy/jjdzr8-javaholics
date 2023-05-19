@@ -1,6 +1,7 @@
 package com.javaholics.web.service;
 
 import com.javaholics.web.domain.Route;
+import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.RouteMapper;
@@ -10,9 +11,12 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,7 +47,12 @@ public class RouteService {
     public void addRoute(RouteDto routeDto) {
         log.debug("Dodaje trase: {}", routeDto);
         //FIXME wrzuca zawsze usera no.1 do zmiany kiedy security
-        routeRepository.save(routeMapper.fromDto(routeDto, userRepository.getReferenceById(1l)));
+//         routeRepository.save(routeMapper.fromDto(routeDto, userRepository.getReferenceById(1l)));
+//         log.info("Trasa dodana z sukcesem!");
+
+        String email = useridName();
+        Long id = userRepository.findByEmail(email).get().getId();
+        routeRepository.save(routeMapper.fromDto(routeDto, userRepository.getReferenceById(id)));
         log.info("Trasa dodana z sukcesem!");
     }
 
@@ -69,17 +78,51 @@ public class RouteService {
         routeRepository.deleteById(id);
         log.info("Trasa usunięta z sukcesem!");
     }
+    public String useridName() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
 
-    public List<RouteDto> filter(String locality) {
-
-        if (locality.isBlank()) {
-            return getRoutes();
+        if (principal instanceof UserDetails) {
+            return username = ((UserDetails) principal).getUsername();
+        } else {
+            return username = principal.toString();
         }
-        return routeRepository.findRoutesByLocality(locality)
+    }
+    public List<RouteDto> findRouteByUserId(Long id) {
+        return routeRepository.findRoutesByUserId(id)
                 .stream()
+                .filter(route -> route.getRouteOwner().getId().equals(id))
                 .map(routeMapper::toDto)
                 .collect(Collectors.toList());
     }
+    public List<RouteDto> findRouteByLenght(double length) {
+        return routeRepository.findRoutesByLength(length)
+                .stream()
+                .filter(route -> (route.getLength()==length))
+                .map(routeMapper::toDto)
+                .collect(Collectors.toList());
+    }
+    public List<RouteDto> getMyRoutesSearchTest(String lokalKey, String typeKey, String difficulty, double length) {
+        if (lokalKey == null && typeKey == null && difficulty == null) {
+            return findRouteByLenght(length);
+        }
+        return findRouteByLenght(length).stream()
+                .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getType().name(), typeKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
+                .collect(Collectors.toList());
+    }
+    public List<RouteDto> getMyRoutesSearch(String lokalKey, String typeKey, String difficulty, Long id) {
+        if (lokalKey == null && typeKey == null && difficulty == null) {
+            return findRouteByUserId(id);
+        }
+        return findRouteByUserId(id).stream()
+                .filter(route -> StringUtils.containsIgnoreCase(route.getLocality(), lokalKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getType().name(), typeKey))
+                .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
+                .collect(Collectors.toList());
+    }
+
 
     public List<RouteDto> getRoutesSearch(String lokalKey, String typeKey, String difficulty) {
         if (lokalKey == null && typeKey == null && difficulty == null) {
@@ -90,5 +133,20 @@ public class RouteService {
                 .filter(route -> StringUtils.containsIgnoreCase(route.getType().name(), typeKey))
                 .filter(route -> StringUtils.containsIgnoreCase(route.getDifficulty().name(), difficulty))
                 .collect(Collectors.toList());
+    }
+//    public List<RouteDto> getRoutesSearchId(Long id) {
+//        return getRoutes().stream()
+//                .filter(route -> (int)route.getId(), id)
+//                .collect(Collectors.toList());
+//    }
+    public String findbyname() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+
+        if (principal instanceof UserDetails) {
+            return username = ((UserDetails) principal).getUsername();
+        } else {
+            return username = principal.toString();
+        }
     }
 }
