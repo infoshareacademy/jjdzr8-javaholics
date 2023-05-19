@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+        <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:hh="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta charset="UTF-8">
+            <title>Meet2gether - Edycja Trasy</title>
+            <link th:insert="~{sections/imports}">
+
+        </head>
+
+        <body>
+
+        <div th:insert="~{sections/navbar :: header}"></div>
+
+        <div class="bg-color"
+             style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 10vh;">
+        </div>
+        <div>
+            <form th:action="@{/public/events/detailsmain/{eventId}(eventId=${events.id})}" th:object="${events}">
+                <div class="container">
+                <h2>Szczegóły trasy</h2>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="id">Id</label>
+                        <input readonly type="number" id="id" th:field="*{id}" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="eventName">Nazwa eventu*</label>
+                        <input readonly type="text"  id="eventName" th:field="*{eventName}" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="miejsce">Nr trasy*</label>
+                        <input readonly type="text"  id="miejsce" th:field="*{route}" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="region">Region*</label>
+                        <input readonly type="text"  id="region" th:field="*{region}" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="owner">Twórca*</label>
+                        <input readonly type="number"  id="owner" th:field="*{ownerOfEvent}" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="opis">Opis</label>
+                        <input readonly type="text"  id="opis" th:field="*{description}" class="form-control" rows="3"/>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="usercount">Możliwa ilość uczestników*</label>
+                        <input readonly type="number"  id="usercount" th:field="*{usersCount}" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="date" >Data wydarzena</label>
+                        <input readonly type="text" id="date" th:field="*{eventDateTime}" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="date2" >Data utworzenia</label>
+                        <input readonly type="text" id="date2" th:field="*{createDate}" class="form-control" />
+                    </div>
+                    <p>
+                        <a th:href="@{/public/events}"><button type="button" class="btn btn-success ml-5">
+                            Powrót do tabeli głównej eventów
+                        </button></a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div th:insert="~{sections/footer :: footer}"></div>
+
+        </body>
+</html>

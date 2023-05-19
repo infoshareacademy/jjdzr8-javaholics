@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
-      xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Routes</title>
@@ -20,29 +18,28 @@
             background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
             height: 20vh;">
 </div>
+<form th:action="@{/public/routes/mysearch}">
+    <div class="d-flex justify-content-center">
+        <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" ></div>
+        <div class="p-2">Filtr typu trasy:  <select type="text" name="typeWord" th:value="${typeWord}">
+            <option></option>
+            <option th:value="'WALKING'" th:text="Piesza"/>
+            <option th:value="'RUNNING'" th:text="Bieg"/>
+            <option th:value="'BIKE'" th:text="Rower"/>
+            <option th:value="'OTHER'" th:text="Inna"/></select></div>
+        <div class="p-2">  </div>
 
-<form th:action="@{/public/routes/search}">
-<div class="d-flex justify-content-center">
-    <div class="p-2">Filtr lokalizacji:  <input type="text" name="locality" th:value="${locality}" ></div>
-    <div class="p-2">Filtr typu trasy:  <select type="text" name="typeWord" th:value="${typeWord}">
-    <option></option>
-    <option th:value="'WALKING'" th:text="Piesza"/>
-    <option th:value="'RUNNING'" th:text="Bieg"/>
-    <option th:value="'BIKE'" th:text="Rower"/>
-    <option th:value="'OTHER'" th:text="Inna"/></select></div>
-    <div class="p-2">  </div>
 
-
-    <div class="p-2">Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
-        <option></option>
-        <option th:value="'EASY'" th:text="Łatwy"/>
-        <option th:value="'MEDIUM'" th:text="Średni"/>
-        <option th:value="'HARD'" th:text="Trudny"/>
-        <option th:value="'EXTREME'" th:text="Zaawansowany"/>
+        <div class="p-2">Filtr trudności:  <select type="text" name="difficulty" th:value="${difficulty}"/>
+            <option></option>
+            <option th:value="'EASY'" th:text="Łatwy"/>
+            <option th:value="'MEDIUM'" th:text="Średni"/>
+            <option th:value="'HARD'" th:text="Trudny"/>
+            <option th:value="'EXTREME'" th:text="Zaawansowany"/>
+        </div>
+        <div class="p-2">  </div>
+        <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
     </div>
-    <div class="p-2">  </div>
-    <div class="p-2">  <input class="btn btn-success" type="submit" value="Szukaj" />  </div>
-</div>
 </form>
 
 <div>
@@ -67,10 +64,7 @@
         <th th:text="#{route.difficulty}">Difficulty</th>
         <th th:text="#{route.type}">Type</th>
         <th th:text="#{route.length}">Lenght</th>
-        <th>Szczegóły</th>
-        <div sec:authorize="hasRole('ADMIN')">
-        <th th:text="#{gui.actions}">Actions</th>
-        </div>
+        <th>Kasowanie/Edycja/Szczegóły</th>
     </tr>
     </thead>
     <tbody>
@@ -97,12 +91,6 @@
         </td>
         <td th:text="${route.length}"></td>
         <td>
-            <a th:href="@{/public/routes/detailsmain/{routeId}(routeId=${route.id})}" class="btn btn-success">
-                Szczegóły
-            </a>
-        </td>
-        <div sec:authorize="hasRole('ADMIN')">
-        <td>
             <button class="btn btn-outline-danger"
                     data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${route.id}"><i
                     class="far fa-trash-alt "
@@ -111,6 +99,10 @@
             <a th:href="@{/public/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
                 Edytuj
             </a>
+            <a th:href="@{/public/routes/details/{routeId}(routeId=${route.id})}" class="btn btn-success">
+                Szczegóły
+            </a>
+
             <!-- The Modal -->
             <div class="modal fade" th:attr="id='recordDeleteModal'+${route.id}">
                 <div class="modal-dialog">
@@ -138,14 +130,14 @@
             </div>
 
         </td>
-        </div>
+
     </tr>
     </tbody>
 </table>
 </div>
 <div>
     <br>
-<a th:href="@{/public/routes/create}" class="btn btn-success">
+<a th:href="@{/routes/create}" class="btn btn-success">
         <i class="fas fa-plus"></i> Utwórz nową trasę
 </a>
 </div>

@@ -13,7 +13,54 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+<header>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #05386B; text-decoration-color: #05386B">
+        <a class="navbar-brand" th:href="@{/}">Meet2gether</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/public/routes}">Trasy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/public/events}">Eventy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/public/about}">O Aplikacji</a>
+                </li>
+                <div sec:authorize="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/public/routes/myroutes}">Moje trasy</a>
+                </li>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{public/events/myevents}">Moje eventy</a>
+                </li>
+                </div>
+                <li class="nav-item">
+
+                    <a class="nav-link" th:href="@{/public/team}">Zespół</a>
+                </li>
+            </ul>
+<!--            <form class="form-inline my-2 my-lg-0">-->
+<!--                <input class="form-control mr-sm-2" type="search" placeholder="Szukaj trasy lub eventu..." aria-label="Search">-->
+<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>-->
+<!--            </form>-->
+
+            <a th:href="@{/login}"><button type="button" class="btn btn-success ml-5">
+                Login
+            </button></a>
+        </div>
+    </nav>
+</header>
+
 <div th:insert="~{sections/navbar :: header}"></div>
+
 
 <!-- Hero -->
 <section class="hero ">
