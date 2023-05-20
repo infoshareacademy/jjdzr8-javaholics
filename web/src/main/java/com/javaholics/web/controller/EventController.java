@@ -6,6 +6,7 @@ import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.service.EventService;
 import com.javaholics.web.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -130,5 +131,12 @@ public class EventController {
         EventDto event = eventService.findEventById(eventId);
         model.addAttribute("events", event);
         return "events/eventdetailsmain";
+    }
+
+    @PostMapping("/events/{eventId}/adduser/{userId}")
+    @PreAuthorize("isAuthenticated()")
+    public String addUserToEvent(@PathVariable("eventId") Long eventId, @PathVariable("userId") Long userId) {
+        eventService.addUserToEvent(eventId, userId);
+        return "redirect:/public/events/details/" + eventId;
     }
 }
