@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Meet2gether - PANEL ADMINISTRACJI</title>
+  <meta content="Jest to aplikacja pozwalająca na spotykanie się ze znajomymi na wspólnych aktywanościach na zewnątrz. Wygodna wyszukiwarka tras i ewentów." name="description">
+
+  <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<header>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #05386B; text-decoration-color: #05386B">
+    <a class="navbar-brand" th:href="@{/}">Meet2gether</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/}">Powrót do aplikacji</a>
+    </div>
+  </nav>
+</header>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+<main>
+  <div class="row mb-12 justify-content-center">
+    <a th:href="@{/admin/routes}" class="btn btn-success mr-2">
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj trasami
+    </a>
+    <a th:href="@{/admin/events}" class="btn btn-success mr-2">
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj eventami
+    </a>
+    <a th:href="@{/admin/users}" class="btn btn-success mr-2" >
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj użytkownikami
+    </a>
+    <br/>
+    <br/>
+  </div>
+  <div class="mt-2">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th th:text="#{event.id}">Id</th>
+        <th th:text="#{event.eventName}">Name</th>
+        <th th:text="#{event.date}">Data</th>
+        <th th:text="#{event.route}">Trasa</th>
+        <th th:text="#{event.region}">Region</th>
+        <th th:text="#{event.ownerOfEvent}">Założyciel wydarzenia</th>
+        <th th:text="#{event.description}">Opis wydarzenia</th>
+        <th th:text="#{event.usersCount}">Ilość uczestników</th>
+        <th>Szczegóły</th>
+        <th>Kasowanie/Edycja</th>
+      </tr>
+      </thead>
+
+      <tbody class="">
+      <tr th:each="event,iterStat: ${events}">
+
+        <td th:text="${event.id}"/>
+        <td th:text="${event.eventName}"/>
+        <td th:text="${#temporals.format(event.getEventDateTime(), 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${event.route}"/>
+        <td th:text="${event.region}"/>
+        <td th:text="${event.ownerOfEvent}"/>
+        <td th:text="${event.description}"/>
+        <td th:text="${event.usersCount}"/>
+        <td>
+          <a th:href="@{/public/events/detailsmain/{eventId}(eventId=${event.id})}" class="btn btn-success">
+            Szczegóły
+          </a>
+        <td>
+
+            <button class="btn btn-outline-danger"
+                    data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${event.id}"><i
+                    class="far fa-trash-alt "
+            ></i></button>
+
+            <a th:href="@{/admin/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
+              Edytuj
+            </a>
+            <!-- The Modal -->
+            <div class="modal fade" th:attr="id='recordDeleteModal'+${event.id}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Usunie to bezpowrotnie rekord. Usunąć?</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success"
+                            data-dismiss="modal">Anuluj
+                    </button>
+                    <a th:attr="href='/admin/events/delete-event/'+${event.id}">
+                      <button
+                              type="button" class="btn btn-danger">Usuń
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+</main>
+  <div th:insert="~{/../sections/footer :: footer}"></div>
+
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

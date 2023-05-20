@@ -7,6 +7,7 @@ import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.utilities.PassEncoderBinding;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,11 +15,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
@@ -26,6 +30,14 @@ public class UserService implements UserDetailsService {
     private UserMapper userMapper;
 
     private PassEncoderBinding passEncoderBinding;
+
+    public List<UserDto> getUsers() {
+        log.info("Pokaż wszystkich Userów");
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
+    }
     public String useridName() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
@@ -88,4 +100,9 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).isPresent();
     }
 
+    public void deleteUserById(long id) {
+        log.debug("Usuwanie usera: {}", id);
+        userRepository.deleteById(id);
+        log.info("User usunięty z sukcesem!");
+    }
 }
