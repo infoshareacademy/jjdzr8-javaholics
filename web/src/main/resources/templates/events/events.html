@@ -48,6 +48,7 @@
                 <th th:text="#{event.description}">Opis wydarzenia</th>
                 <th th:text="#{event.usersCount}">Ilość uczestników</th>
                 <th>Szczegóły</th>
+                <th>Dołącz do eventu</th>
                 <div sec:authorize="hasRole('ADMIN')">
                 <th>Kasowanie/Edycja</th>
                 </div>
@@ -105,6 +106,11 @@
                         </div>
                     </div>
                 </div>
+                </td>
+                <td>
+                    <a th:href="@{/public/events/join/{eventId}(eventId=${event.id})}" class="btn btn-primary">
+                        Dołącz do eventu
+                    </a>
                 </td>
             </tr>
         </tbody>
