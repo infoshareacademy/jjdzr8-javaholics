@@ -6,12 +6,12 @@ import com.javaholics.web.dto.UserDto;
 import com.javaholics.web.service.EventService;
 import com.javaholics.web.service.RouteService;
 import com.javaholics.web.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +31,14 @@ public class AdminController {
 
     @Secured("ADMIN")
     @GetMapping("/api")
-    public String getAdminPanel(){
+    public String getAdminPanel(Model model1, Model model2, Model model3){
+        List<RouteDto> routeList = routeService.getRoutes();
+        model1.addAttribute("routes", routeList);
+        List<EventDto> eventList = eventService.getEvents();
+        model2.addAttribute("events", eventList);
+        List<UserDto> userList = userService.getUsers();
+        model3.addAttribute("users", userList);
+
         return "adminpanel/adminmain";
     }
 
@@ -43,11 +50,42 @@ public class AdminController {
         return "adminpanel/adminroutes";
     }
     @Secured("ADMIN")
+    @GetMapping("routes/delete-route/{id}")
+    public String deleteRoute(@PathVariable long id) {
+        routeService.deleteRouteById(id);
+        return "redirect:/admin/routes";
+    }
+    @Secured("ADMIN")
+    @PostMapping("/routes/edit")
+    public String editRoute(@ModelAttribute RouteDto route, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "routes/modifyroute";
+        }
+        routeService.updateRoute(route);
+        return "redirect:/admin/routes";
+    }
+
+    @Secured("ADMIN")
     @GetMapping("/events")
     public String showEvents(Model model) {
         List<EventDto> eventList = eventService.getEvents();
         model.addAttribute("events", eventList);
         return "adminpanel/adminevents";
+    }
+    @Secured("ADMIN")
+    @PostMapping("/events/{eventId}/edit")
+    public String editEvent(@PathVariable("eventId") Long eventId, @Valid @ModelAttribute EventDto event, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "events/modifyevent";
+        }
+        eventService.updateEvent(event);
+        return "redirect:/admin/events";
+    }
+    @Secured("ADMIN")
+    @GetMapping("events/delete-event/{id}")
+    public String deleteEvent(@PathVariable long id) {
+        eventService.deleteEventById(id);
+        return "redirect:/admin/events";
     }
 
     @Secured("ADMIN")

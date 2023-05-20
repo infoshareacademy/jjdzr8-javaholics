@@ -45,6 +45,30 @@
     <br/>
     <br/>
   </div>
+  <h2 class="featurette-heading">Statystyki<br><span class="text-white">dane liczbowe aplikacji</span></h2>
+
+  <div class="row mb-3">
+    <span for="trasy" class="col-sm-4 col-form-label">Liczba tras: </span>
+    <div class="col-sm-8">
+      <p style="display: block" th:text="${routes.size()}"></p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <span for="eventy" class="col-sm-4 col-form-label">Liczba eventów: </span>
+    <div class="col-sm-8">
+      <p style="display: block" th:text="${events.size()}"></p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <span for="user" class="col-sm-4 col-form-label">Liczba użytkowników: </span>
+    <div class="col-sm-8">
+      <p style="display: block" th:text="${users.size()}"></p>
+    </div>
+  </div>
+
+
 </main>
 <div th:insert="~{sections/footer :: footer}"></div>
 </body>

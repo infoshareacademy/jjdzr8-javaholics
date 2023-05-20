@@ -99,7 +99,7 @@
                     class="far fa-trash-alt "
             ></i></button>
 
-            <a th:href="@{/public/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
+            <a th:href="@{/admin/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
               Edytuj
             </a>
             <!-- The Modal -->
@@ -118,7 +118,7 @@
                     <button type="button" class="btn btn-success"
                             data-dismiss="modal">Anuluj
                     </button>
-                    <a th:attr="href='/public/routes/delete-route/'+${route.id}">
+                    <a th:attr="href='/admin/routes/delete-route/'+${route.id}">
                       <button
                               type="button" class="btn btn-danger">Usuń
                       </button>

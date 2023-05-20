@@ -84,7 +84,7 @@
                     class="far fa-trash-alt "
             ></i></button>
 
-            <a th:href="@{/public/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
+            <a th:href="@{/admin/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
               Edytuj
             </a>
             <!-- The Modal -->
@@ -103,7 +103,7 @@
                     <button type="button" class="btn btn-success"
                             data-dismiss="modal">Anuluj
                     </button>
-                    <a th:attr="href='/public/events/delete-event/'+${event.id}">
+                    <a th:attr="href='/admin/events/delete-event/'+${event.id}">
                       <button
                               type="button" class="btn btn-danger">Usuń
                       </button>
