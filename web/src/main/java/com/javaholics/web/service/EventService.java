@@ -137,7 +137,6 @@ public class EventService {
 
     public void addUserToEvent(Long eventId, Long userId) {
         log.debug("Dopisz się na event.");
-
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new RouteNotFoundException("Nie znaleziono event z ID: %s".formatted(eventId)));
 
