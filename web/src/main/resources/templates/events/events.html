@@ -83,7 +83,7 @@
                 <td th:text="${event.eventName}"/>
                 <td th:text="${#temporals.format(event.getEventDateTime(), 'yyyy-MM-dd HH:mm')}"></td>
                 <td th:text="${event.route}"/>
-                <td th:text="${event.region}"/>
+                <td th:text="${event.region.getRegionName()}"/>
                 <td th:text="${event.ownerOfEvent}"/>
                 <td th:text="${event.description}"/>
                 <td th:text="${event.usersCount}"/>

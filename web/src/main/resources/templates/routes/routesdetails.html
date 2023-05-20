@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="file" >Region</label>
-                        <input readonly type="text" id="file" th:field="*{region}" class="form-control" />
+                        <input readonly type="text" id="file" th:field="*{region.getRegionName()}" class="form-control" />
                     </div>
                     <div class="form-outline mb-4">
                         <label class="form-label" for="user" >User Id</label>
