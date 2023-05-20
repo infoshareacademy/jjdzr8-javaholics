@@ -67,8 +67,8 @@ public class User implements UserDetails {
     private String desctription;
 
     @Enumerated(EnumType.STRING)
-    //@NotNull
-    private UserProvider loginProvider;
+    @Builder.Default
+    private UserProvider loginProvider = UserProvider.LOCAL;
 
     //@JsonIgnore
     @Column(nullable = false)

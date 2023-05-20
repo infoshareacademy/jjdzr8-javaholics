@@ -32,15 +32,19 @@
             height: 20vh;">
 </div>
 <main>
-  <a th:href="@{/admin/routes}" class="btn btn-success">
-    <i class="fas fa-screwdriwer-wrench"></i> Administruj trasami
-  </a>
-  <a th:href="@{/admin/events}" class="btn btn-success">
-    <i class="fas fa-screwdriwer-wrench"></i> Administruj eventami
-  </a>
-  <a th:href="@{/admin/users}" class="btn btn-success">
-    <i class="fas fa-screwdriwer-wrench"></i> Administruj użytkownikami
-  </a>
+  <div class="row mb-12 justify-content-center">
+    <a th:href="@{/admin/routes}" class="btn btn-success mr-2">
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj trasami
+    </a>
+    <a th:href="@{/admin/events}" class="btn btn-success mr-2">
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj eventami
+    </a>
+    <a th:href="@{/admin/users}" class="btn btn-success mr-2" >
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj użytkownikami
+    </a>
+    <br/>
+    <br/>
+  </div>
   <div class="mt-2">
     <table class="table">
       <thead class="thead-dark">
@@ -114,12 +118,7 @@
       </tbody>
     </table>
   </div>
-  <div sec:authorize="isAuthenticated()">
-    <br>
-    <a th:href="@{/public/routes/create}" class="btn btn-success">
-      <i class="fas fa-plus"></i> Utwórz nową trasę
-    </a>
-  </div>
+
   <br>
 </main>
   <div th:insert="~{/../sections/footer :: footer}"></div>
