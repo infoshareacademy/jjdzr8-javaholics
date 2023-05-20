@@ -1,7 +1,6 @@
 package com.javaholics.web.service;
 
 import com.javaholics.web.domain.Route;
-import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.RouteMapper;
@@ -16,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,6 +61,7 @@ public class RouteService {
                 .orElseThrow(() -> new IllegalArgumentException("Cant find route by given id"));
         routeToUpdate.setName(routeDto.getName());
         routeToUpdate.setLocality(routeDto.getLocality());
+        routeToUpdate.setRegion(routeDto.getRegion());
         routeToUpdate.setPlaceStart(routeDto.getPlaceStart());
         routeToUpdate.setPlaceStop(routeDto.getPlaceStop());
         routeToUpdate.setDifficulty(routeDto.getDifficulty());
