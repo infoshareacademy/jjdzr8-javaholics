@@ -71,12 +71,14 @@
                         Szczegóły
                     </a>
                 <td>
+                <td>
+                    <a th:href="@{/public/events}" class="btn btn-primary">
+                        Dołącz do eventu
+                    </a>
+                </td>
                 <div sec:authorize="hasRole('ADMIN')">
                     <button class="btn btn-outline-danger"
-                            data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${event.id}"><i
-                            class="far fa-trash-alt "
-                    ></i></button>
-
+                            data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${event.id}"><i class="far fa-trash-alt "></i></button>
                     <a th:href="@{/public/events/{eventId}(eventId=${event.id})}" class="btn btn-success">
                         Edytuj
                     </a>
@@ -106,11 +108,6 @@
                         </div>
                     </div>
                 </div>
-                </td>
-                <td>
-                    <a th:href="@{/public/events/join/{eventId}(eventId=${event.id})}" class="btn btn-primary">
-                        Dołącz do eventu
-                    </a>
                 </td>
             </tr>
         </tbody>

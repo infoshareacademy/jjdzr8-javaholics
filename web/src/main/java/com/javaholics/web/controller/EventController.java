@@ -137,6 +137,6 @@ public class EventController {
     @PreAuthorize("isAuthenticated()")
     public String addUserToEvent(@PathVariable("eventId") Long eventId, @PathVariable("userId") Long userId) {
         eventService.addUserToEvent(eventId, userId);
-        return "redirect:/public/events/details/" + eventId;
+        return "redirect:/public/events/" + eventId;
     }
 }
