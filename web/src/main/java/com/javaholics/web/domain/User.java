@@ -21,12 +21,14 @@ import java.util.List;
 @Builder
 public class User implements UserDetails {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch =  FetchType.EAGER)
     @JoinTable(
+
                 name = "user_event_jointable",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "event_id")
@@ -65,8 +67,8 @@ public class User implements UserDetails {
     private String desctription;
 
     @Enumerated(EnumType.STRING)
-    //@NotNull
-    private UserProvider loginProvider;
+    @Builder.Default
+    private UserProvider loginProvider = UserProvider.LOCAL;
 
     //@JsonIgnore
     @Column(nullable = false)
@@ -82,7 +84,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role.name());
+        final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(role.toString());
         return Collections.singletonList(simpleGrantedAuthority);
     }
     @Override

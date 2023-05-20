@@ -31,10 +31,15 @@ public class AddUserController {
     @PostMapping("/user")
     public String createUser(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "users/adduser";
+            return "redirect:users/adduser";
         }
         userService.addUser(userDto);
         return "redirect:/user/create-success";
+    }
+
+    @GetMapping("/user")
+    public String goBack(Model model) {
+        return "index";
     }
 
     @GetMapping("/user/create-success")

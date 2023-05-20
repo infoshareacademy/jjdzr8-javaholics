@@ -1,26 +1,28 @@
 package com.javaholics.web.service;
 
-import com.javaholics.web.domain.User;
-import com.javaholics.web.domain.UserRoles;
+import com.javaholics.web.domain.*;
 import com.javaholics.web.dto.UserDto;
 import com.javaholics.web.mapper.UserMapper;
 import com.javaholics.web.repository.UserRepository;
 import com.javaholics.web.utilities.PassEncoderBinding;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.PanelUI;
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
@@ -28,6 +30,14 @@ public class UserService implements UserDetailsService {
     private UserMapper userMapper;
 
     private PassEncoderBinding passEncoderBinding;
+
+    public List<UserDto> getUsers() {
+        log.info("Pokaż wszystkich Userów");
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
+    }
     public String useridName() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
@@ -71,6 +81,12 @@ public class UserService implements UserDetailsService {
             userRepository.save(
                     User.builder()
                             .login("admin")
+                            .sex(SexChoice.OTHER)
+                            .loginProvider(UserProvider.LOCAL)
+                            .name("Administrator")
+                            .location("Polska")
+                            .prefferedRegionEvents(Region.SLASKIE)
+                            .lastName("Administrator")
                             .email("admin@admin.pl")
                             .password(passEncoderBinding.encoder().encode("admin1234"))
                             .role(UserRoles.ADMIN)
@@ -84,4 +100,9 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).isPresent();
     }
 
+    public void deleteUserById(long id) {
+        log.debug("Usuwanie usera: {}", id);
+        userRepository.deleteById(id);
+        log.info("User usunięty z sukcesem!");
+    }
 }

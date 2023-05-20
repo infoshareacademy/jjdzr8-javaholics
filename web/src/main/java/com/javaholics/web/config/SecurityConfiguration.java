@@ -1,5 +1,6 @@
 package com.javaholics.web.config;
 
+import com.javaholics.web.domain.UserRoles;
 import com.javaholics.web.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -46,8 +47,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(auth -> {
                                             auth.requestMatchers("/public/**").permitAll();
-                                            auth.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN");
-                                            auth.requestMatchers("/user/**").hasAuthority("ROLE_USER");
+                                            auth.requestMatchers("/admin/**").hasAuthority(UserRoles.ADMIN.toString());
+                                            auth.requestMatchers("/user/**").hasAuthority(UserRoles.USER.toString());
 //                                            auth.anyRequest().authenticated();
                                             }
                 )
@@ -58,7 +59,7 @@ public class SecurityConfiguration {
                 .formLogin(formLoginConfigurer ->
                                             formLoginConfigurer
                                             .loginPage("/public/login")
-                                            .failureUrl("/login.html?error=true")
+                                            .failureUrl("/public/login")
                                             .defaultSuccessUrl("/public/successlogin", true)
                                             //        .failureForwardUrl("/public/login-error.html")
                                             .permitAll())
@@ -71,9 +72,9 @@ public class SecurityConfiguration {
                                             .deleteCookies("JSESSIONID"))
 
                 .oauth2Login(Customizer.withDefaults())
-                .rememberMe()
+                .rememberMe();
                 //.key("BigSecret")
-                .tokenValiditySeconds(3600);
+
 //              .httpBasic(Customizer.withDefaults());
 
         return http.build();

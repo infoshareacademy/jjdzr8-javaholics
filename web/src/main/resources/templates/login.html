@@ -46,29 +46,10 @@
     </form>
 
 
-<!--        <p th:if="${loginError}" class="error">Wrong user or password</p>-->
-<!--        <form name='f' action="login" method='POST'>-->
-<!--            <table>-->
-<!--                <tr>-->
-<!--                    <td>User:</td>-->
-<!--                    <td><input type='text' name='username' value=''></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>Password:</td>-->
-<!--                    <td><input type='password' name='password' /></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>Remember Me:</td>-->
-<!--                    <td><input type="checkbox" name="remember-me" /></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><input name="submit" type="submit" value="submit" /></td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--        </form>-->
             <div class="text-center">
+
                 <h2>Nie masz konta?</h2>
-                <button th:href="@{/public/user/create}" class="btn btn-warning btn-block mb-4">Zarejestruj</button>
+                <a th:href="@{/public/user/create}"><button  type="button" class="btn btn-warning btn-block mb-4">Zarejestruj nowego użytkownika</button></a>
                 <p>albo zaloguj się przez:</p>
                 <button type="button" class="btn btn-link btn-floating mx-1">
                     <a href="/oauth2/authorization/google">Google <i class="fab fa-google"></i> </a>

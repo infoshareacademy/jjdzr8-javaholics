@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Meet2gether - PANEL ADMINISTRACJI</title>
+  <meta content="Jest to aplikacja pozwalająca na spotykanie się ze znajomymi na wspólnych aktywanościach na zewnątrz. Wygodna wyszukiwarka tras i ewentów." name="description">
+
+  <link th:insert="~{sections/imports}">
+
+</head>
+
+<body>
+
+<header>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #05386B; text-decoration-color: #05386B">
+    <a class="navbar-brand" th:href="@{/}">Meet2gether</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/}">Powrót do aplikacji</a>
+    </div>
+  </nav>
+</header>
+
+<div class="bg-color"
+     style="background: rgb(5,56,107);
+            background: linear-gradient(180deg, rgba(5,56,107,1) 8%, rgba(92,219,133,1) 64%);
+            height: 20vh;">
+</div>
+<main>
+  <div class="row mb-12 justify-content-center">
+    <a th:href="@{/admin/routes}" class="btn btn-success mr-2">
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj trasami
+    </a>
+    <a th:href="@{/admin/events}" class="btn btn-success mr-2">
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj eventami
+    </a>
+    <a th:href="@{/admin/users}" class="btn btn-success mr-2" >
+      <i class="fas fa-screwdriwer-wrench"></i> Administruj użytkownikami
+    </a>
+    <br/>
+    <br/>
+  </div>
+
+  <div class="mt-2">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th >#</th>
+        <th th:text="#{route.name}">Name</th>
+        <th th:text="#{route.locality}">Locality</th>
+        <th th:text="#{route.placeStart}">Start place</th>
+        <th th:text="#{route.placeStop}">Stop place</th>
+        <th th:text="#{route.difficulty}">Difficulty</th>
+        <th th:text="#{route.type}">Type</th>
+        <th th:text="#{route.length}">Lenght</th>
+        <th>Szczegóły</th>
+
+          <th th:text="#{gui.actions}">Actions</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="route,iterStat: ${routes}">
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${route.name}"></td>
+        <td th:text="${route.locality}"></td>
+        <td th:text="${route.placeStart}"></td>
+        <td th:text="${route.placeStop}"></td>
+        <td th:switch="${route.difficulty.name()}">
+          <p th:case="'EASY'" th:text="#{difficulty.easy}"></p>
+          <p th:case="'MEDIUM'" th:text="#{difficulty.medium}"></p>
+          <p th:case="'HARD'" th:text="#{difficulty.hard}"></p>
+          <p th:case="'EXTREME'" th:text="#{difficulty.extreme}"></p>
+          <p th:case="*" th:text="#{difficulty.unknown}"></p>
+        </td>
+
+        <td th:switch="${route.type.name()}">
+          <p th:case="'WALKING'" th:text="#{type.walking}"></p>
+          <p th:case="'RUNNING'" th:text="#{type.running}"></p>
+          <p th:case="'BIKE'" th:text="#{type.bike}"></p>
+          <p th:case="'OTHER'" th:text="#{type.other}"></p>
+          <p th:case="*" th:text="#{difficulty.unknown}"></p>
+        </td>
+        <td th:text="${route.length}"></td>
+        <td>
+          <a th:href="@{/public/routes/detailsmain/{routeId}(routeId=${route.id})}" class="btn btn-success">
+            Szczegóły
+          </a>
+        </td>
+
+          <td>
+            <button class="btn btn-outline-danger"
+                    data-toggle="modal" th:attr="data-target='#recordDeleteModal'+${route.id}"><i
+                    class="far fa-trash-alt "
+            ></i></button>
+
+            <a th:href="@{/admin/routes/{routeId}(routeId=${route.id})}" class="btn btn-success">
+              Edytuj
+            </a>
+            <!-- The Modal -->
+            <div class="modal fade" th:attr="id='recordDeleteModal'+${route.id}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Usunie to bezpowrotnie rekord. Usunąć?</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-success"
+                            data-dismiss="modal">Anuluj
+                    </button>
+                    <a th:attr="href='/admin/routes/delete-route/'+${route.id}">
+                      <button
+                              type="button" class="btn btn-danger">Usuń
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+  <div th:insert="~{/../sections/footer :: footer}"></div>
+
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

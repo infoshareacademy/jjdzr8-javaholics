@@ -38,23 +38,16 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/public/about}">O Aplikacji</a>
                 </li>
-                <div sec:authorize="isAuthenticated()">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/public/routes/myroutes}">Moje trasy</a>
-                </li>
-                </div>
-                <div sec:authorize="isAuthenticated()">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/public/events/myevents}">Moje eventy</a>
-                </li>
-                </div>
-                <li class="nav-item">
-
                     <a class="nav-link" th:href="@{/public/team}">Zespół</a>
                 </li>
             </ul>
+            <a sec:authorize="hasAuthority('USER')" class="nav-link" th:href="@{/public/routes/myroutes}">Moje trasy </a></div>
+            <a sec:authorize="hasAuthority('USER')" class="nav-link" th:href="@{/public/events/myevents}">Moje eventy </a>
+            <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/admin/api}">Panel administracyjny </a>
             <a th:href="@{/public/login}"><button sec:authorize="!isAuthenticated()" type="button" class="btn btn-success ml-5">Zaloguj</button></a>
             <a th:href="@{/public/logout}"><button sec:authorize="isAuthenticated()" type="button" class="btn btn-success ml-5">Wyloguj</button></a>
+
             </div>
     </nav>
 </header>
