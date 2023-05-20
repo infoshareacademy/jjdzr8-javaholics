@@ -74,7 +74,7 @@ public class EventService {
             return findEventByUserId(id);
         }
         return findEventByUserId(id).stream()
-                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
@@ -128,7 +128,7 @@ public class EventService {
             return getEvents();
         }
         return getEvents().stream()
-                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
