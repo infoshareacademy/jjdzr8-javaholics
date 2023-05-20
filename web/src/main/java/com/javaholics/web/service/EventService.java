@@ -134,4 +134,22 @@ public class EventService {
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
     }
+
+    public void addUserToEvent(Long eventId, Long userId) {
+        log.debug("Dopisz się na event.");
+
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new RouteNotFoundException("Nie znaleziono event z ID: %s".formatted(eventId)));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono użytkownika z ID: %s".formatted(userId)));
+
+        if (event.getUsers().contains(user)) {
+            throw new IllegalArgumentException("Użytkownik jest już dopisany na ten event!.");
+        }
+
+        event.getUsers().add(user);
+        eventRepository.save(event);
+        log.info("Użytkownik został zapisany na event!");
+    }
 }
