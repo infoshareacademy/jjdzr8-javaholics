@@ -142,12 +142,4 @@ public class EventController {
         return "redirect:/public/events/" + eventId;
     }
 
-
-    @GetMapping("/public/events/alleventusers/{eventId}")
-    public String getAllEventUsers(@PathVariable Long eventId, Model model) {
-        Event event = eventService.findEventById(eventId);
-        List<User> users = event.getUsers();
-        model.addAttribute("users", users);
-        return "alleventusers";
-    }
 }
