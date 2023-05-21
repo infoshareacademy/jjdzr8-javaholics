@@ -4,7 +4,6 @@ import com.javaholics.web.domain.Event;
 import com.javaholics.web.domain.Route;
 import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.EventDto;
-import com.javaholics.web.dto.RouteDto;
 import com.javaholics.web.exception.RouteNotFoundException;
 import com.javaholics.web.mapper.EventMapper;
 import com.javaholics.web.repository.EventRepository;
@@ -75,7 +74,7 @@ public class EventService {
             return findEventByUserId(id);
         }
         return findEventByUserId(id).stream()
-                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
@@ -85,7 +84,7 @@ public class EventService {
             return findEventsByCount(users_count);
         }
         return findEventsByCount(users_count).stream()
-                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());
@@ -129,7 +128,7 @@ public class EventService {
             return getEvents();
         }
         return getEvents().stream()
-                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion(),placeKey))
+                .filter(event-> StringUtils.containsAnyIgnoreCase(event.getRegion().toString(),placeKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getEventName(), nameKey))
                 .filter(event -> StringUtils.containsIgnoreCase(event.getDescription(),descriptionKey))
                 .collect(Collectors.toList());

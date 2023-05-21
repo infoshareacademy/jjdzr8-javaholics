@@ -1,5 +1,6 @@
 package com.javaholics.web.dto;
 
+import com.javaholics.web.domain.Region;
 import com.javaholics.web.domain.RouteDifficulty;
 import com.javaholics.web.domain.RouteType;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,8 @@ public class RouteDto {
     private Integer routeOwner;
 
     private String locality;
+
+    private Region region;
 
     @NotBlank
     private String placeStart;

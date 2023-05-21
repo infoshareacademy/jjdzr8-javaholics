@@ -23,7 +23,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-        @ManyToOne(fetch = FetchType.EAGER)
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "route_id")
         private Route route;
 
@@ -40,9 +40,10 @@ public class Event {
 
     @NotBlank
     @Column(name = "region")
-    private String region;
+    @Enumerated(EnumType.STRING)
+    private Region region;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User ownerOfEvent;
 

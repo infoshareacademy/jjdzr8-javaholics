@@ -18,7 +18,7 @@ public class EventMapper {
                 .description(eventDto.getDescription())
                 .eventDateTime(eventDto.getEventDateTime())
                 .createDate(eventDto.getCreateDate())
-                .region(eventDto.getRegion())
+               .region(route.getRegion())
                 .usersCount(eventDto.getUsersCount())
                 .ownerOfEvent(user)
                 .route(route)
@@ -32,13 +32,12 @@ public class EventMapper {
                 .eventName(event.getEventName())
 //                .place(event.getPlace())
                 .route(event.getRoute().getId())
-//                .route(1l)
                 .description(event.getDescription())
                 .eventDateTime(event.getEventDateTime())
-//                .createDate(event.getCreateDate())
+                .createDate(event.getCreateDate())
                 .region(event.getRegion())
                 .usersCount(event.getUsersCount())
-                .ownerOfEvent(1l)
+                .ownerOfEvent(event.getOwnerOfEvent().getId())
                 .build();
     }
 

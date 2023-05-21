@@ -22,7 +22,29 @@
 <form th:action="@{/public/events/search}">
     <div class="d-flex justify-content-center">
         <div class="p-2">Filtr nazwy:   <input type="text" name="nameWord" th:value="${nameWord}" /></div>
-        <div class="p-2">Filtr regionu:  <input type="text" name="localWord" th:value="${localWord}" /></div>
+        <div class="p-2">Filtr regionu:  <select type="text" name="localWord" th:value="${localWord}">
+
+            <option></option>
+            <option th:value="'DOLNOSLASKIE'" th:text="dolnośląskie"/>
+            <option th:value="'KUJAWKSOPOMORSKIE'" th:text="kujawsko-pomorskie"/>
+            <option th:value="'LUBELSKIE'" th:text="lubelskie"/>
+            <option th:value="'LUBUSKIE'" th:text="lubuskie"/>
+            <option th:value="'LODZKIE'" th:text="łódzkie"/>
+            <option th:value="'MALOPOLSKIE'" th:text="małopolskie"/>
+            <option th:value="'MAZOWIECKIE'" th:text="mazowieckie"/>
+            <option th:value="'OPOLSKIE'" th:text="opolskie"/>
+            <option th:value="'PODKARPACKIE'" th:text="podkarpackie"/>
+            <option th:value="'PODLASKIE'" th:text="podlaskie"/>
+            <option th:value="'POMORSKIE'" th:text="pomorskie"/>
+            <option th:value="'SLASKIE'" th:text="śląskie"/>
+            <option th:value="'SWIETOKRZYSKIE'" th:text="świętokrzyskie"/>
+            <option th:value="'WARMINSKOMAZURSKIE'" th:text="warmińsko-mazurskie"/>
+            <option th:value="'WIELKOPOLSKIE'" th:text="wielkopolskie"/>
+            <option th:value="'ZACHODNIOPOMORSKIE'" th:text="zachodniopomorskie"/>
+        </select></div>
+
+        <div class="p-2">  </div>
+
 
         <div class="p-2">Szukaj w opisie:  <input type="text" name="descriptionWord" th:value="${descriptionWord}" /></div>
         <div class="p-2">  </div>
