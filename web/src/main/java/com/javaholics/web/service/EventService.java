@@ -151,4 +151,5 @@ public class EventService {
         eventRepository.save(event);
         log.info("Użytkownik został zapisany na event!");
     }
+
 }

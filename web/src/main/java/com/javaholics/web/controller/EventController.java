@@ -1,5 +1,7 @@
 package com.javaholics.web.controller;
 
+import com.javaholics.web.domain.Event;
+import com.javaholics.web.domain.User;
 import com.javaholics.web.dto.EventDto;
 import com.javaholics.web.repository.RouteRepository;
 import com.javaholics.web.repository.UserRepository;
@@ -138,5 +140,14 @@ public class EventController {
     public String addUserToEvent(@PathVariable("eventId") Long eventId, @PathVariable("userId") Long userId) {
         eventService.addUserToEvent(eventId, userId);
         return "redirect:/public/events/" + eventId;
+    }
+
+
+    @GetMapping("/public/events/alleventusers/{eventId}")
+    public String getAllEventUsers(@PathVariable Long eventId, Model model) {
+        Event event = eventService.findEventById(eventId);
+        List<User> users = event.getUsers();
+        model.addAttribute("users", users);
+        return "alleventusers";
     }
 }

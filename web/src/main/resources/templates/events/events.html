@@ -49,6 +49,7 @@
                 <th th:text="#{event.usersCount}">Ilość uczestników</th>
                 <th>Szczegóły</th>
                 <th>Dołącz do eventu</th>
+                <th>Wszyscy użytkownicy eventu</th>
                 <div sec:authorize="hasRole('ADMIN')">
                 <th>Kasowanie/Edycja</th>
                 </div>
@@ -74,6 +75,11 @@
                 <td>
                     <a th:href="@{/public/events}" class="btn btn-primary">
                         Dołącz do eventu
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/public/events/alleventusers}" class="btn btn-primary">
+                        Wszyscy użytkownicy eventu
                     </a>
                 </td>
                 <div sec:authorize="hasRole('ADMIN')">
